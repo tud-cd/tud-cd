@@ -576,13 +576,29 @@
     \ifx\@institut\@empty\else\strut \@institut\\\fi
     \ifx\@professur\@empty\else\strut \@professur\\\fi
 }
+\def\tud@par@error#1{%
+	\ClassError{tudmathposter}{%
+		#1 darf keine Zeilenumbrüche oder Absätze enthalten%
+	}%
+}%
 \footcolumn2{%
   \ifx\@author\@empty\else\strut\@author\\\fi
-  \strut 01062 Dresden\\
+%  \strut 01062 Dresden\\
   \ifx\@telefon\@empty
   \else \strut Tel.:~\@telefon\\\fi
   \ifx\@email\@empty\else\strut\@email\\\fi
-  \ifx\@homepage\@empty\else\vfill\strut \rlap{\@homepage}\fi
+  \ifx\@homepage\@empty
+  \else
+  	\vfill
+  	\strut 
+	\begingroup
+		\def\par{\tud@par@error{\string\homepage }}%
+		\let\\\par
+		\let\clearpage\par
+		\let\pagebreak\par
+		\rlap{\@homepage}%
+	\endgroup
+  \fi
 }
 
 % Initialisierung des Textbereiches
