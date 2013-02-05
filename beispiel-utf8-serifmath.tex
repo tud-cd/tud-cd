@@ -30,9 +30,66 @@
                             % nicht UTF 8
 \usepackage[ngerman]{babel}
 \usepackage{multicol}
+\usepackage{listings}
 \usepackage{tikz}
 \usepackage{url}
 %\usepackage{tabularx}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{positioning}
+
+% Beispiel für die Verwendung des listings-Paketes (Mutabor-Sprache)
+\lstdefinelanguage{Mutabor}{%
+%otherkeywords={:,=,:=,+,-,*,\(,\),[,],.,\,,;},
+%morekeywords=[1]{},%
+%Befehle
+morekeywords=[1]{INTERVALL,TON,TONSYSTEM,UMSTIMMUNG,HARMONIE,LOGIK,%
+INTERVAL,TONE,TONESYSTEM,RETUNING,PATTERN,LOGIC,SHIFTED},%
+%Funktionen
+morekeywords=[2]{MIDIKANAL,WURZEL,TASTE,MIDIIN,MIDIOUT,ANSONSTEN,%
+FORM,ROOT,MIDICHANNEL,KEY,ELSE},
+%morekeywords=[3]{=,-},
+%Datentypen
+%morekeywords=[4]{},%
+   sensitive=false,%
+   %alsoletter={=,-},
+%   alsoletter={+,-,*,/,.,:,=,<,>}, %(,),[,],.,\,,:,;,^,@,
+%   morecomment=[s]{(*}{*)},%
+%   morecomment=[s]{\{}{\}},%
+%   morecomment=[l]{//},%
+   morecomment=[s]{"}{"},%
+%   moredelim=*[s]{\[}{\]},%
+%   moredelim=*[s]{(}{)}
+%   moredelim=*[s]{\{}{\}}
+%   morestring=[d]'%
+  }%[keywords,comments,strings]%
+% lst-Sprachen laden.
+\lstloadlanguages{Mutabor}
+% Einstellungen für listings: Fonts und Farben
+\lstset{%
+  tabsize=8,
+  language=Mutabor,
+  defaultdialect=Mutabor,
+  basicstyle=\ttfamily\scriptsize\normalcolor,
+  identifierstyle=\color{HKS92K100},
+  keywordstyle=[1]{\color{HKS41K100}\bfseries},
+  keywordstyle=[2]{\color{HKS41K100}},
+  keywordstyle=[4]{\normalcolor},
+  keywordstyle=[3]{\color{HKS92K100}},
+  stringstyle=\color{HKS92K50},
+  commentstyle=\color{HKS92K70}\textit,
+  inputencoding=utf8,
+  extendedchars=false,
+  showtabs=false,
+  showspaces=false,%
+  texcl=true,%
+  escapechar=",
+  escapebegin={\color[rgb]{0.5,0.5,0.5}\expandafter\textit\bgroup%
+    \obeylines\obeyspaces
+    \dq},
+  escapeend={\dq\egroup}
+}
+
 
 % Beschriftung im Seitenkopf und Seitenfuß
 \institut{Institut für Algebra}
@@ -41,11 +98,16 @@
 \telefon{0351 463-35078}
 \fax{0351 463-\dots}
 \homepage{\small\url{http://www.math.tu-dresden.de/~schlemme/tudmathposter/}}
-\zweitlogofile{mathelogo}
+% Folgende Zeile ist nicht CD-konform
+%\zweitlogofile{mathelogo}
 
 \title{Die Dokumentklasse „tudmathposter“}
 \subtitle{Eine \LaTeX klasse für die Evaluationsposter}
 \grautabelle
+\addto\captionsngerman{%
+  \def\figurename{Abb.}%
+  \def\tablename{Tab.}%
+}%
 \begin{document}
 %\color{HKS41K100}%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -248,8 +310,10 @@ Demonstration der Nutzung vom Paket „url“ für die Angabe der Homepage
   aus der LM-Familie lmr10 geladen wird. Dieses Paket wird automatisch
   mit dem Faktor 3 geladen.
 \item Das „DRESDEN Concept“-Logo wurde integriert.
-\item Neue Makros \textbf{\textbackslash zweitlogo},
-  \textbf{\textbackslash zweitlogofile}, \textbf{\textbackslash
+\item Neue Makros \textbf{\textbackslash zweitlogo} \textbf{(veraltet,
+    vgl. Ver. 1.4)},
+  \textbf{\textbackslash zweitlogofile} \textbf{(veraltet,
+    vgl. Ver. 1.4)}, \textbf{\textbackslash
     drittlogo} und \textbf{\textbackslash drittlogofile}, mit denen
   das Zweit- (Instituts-) und das Drittlogo („DRESDEN Concept“)
   eingestellt werden können. Die Variante mit „\dots file“ ist jeweils
@@ -258,7 +322,261 @@ Demonstration der Nutzung vom Paket „url“ für die Angabe der Homepage
   aufnehmen kann, wenn das Logo komplizierter dargestellt werden muss.
 \end{itemize}
 \end{multicols}
-\pagebreak
+\pagebreak\leavevmode
+\title{Version 1.4}
+\subtitle{Beispiel für die freie Platzierung}
+\setlength{\columnsep}{1.5cm}%
+\setlength\abovecaptionskip{0.0\baselineskip}%
+\newcommand\hilfsgitter{%
+  \draw[color=HKS92K10!50!white](0,0) grid [step=1mm] (\breite,\hoehe);
+  \draw[color=HKS92K10](0,0) grid[step = 1cm] (\breite,\hoehe);
+  \draw[color=HKS92K20](0,0) grid[step = 5cm] (\breite,\hoehe);
+  \draw[color=HKS92K40](0,0) grid[step = 10cm] (\breite,\hoehe);
+  \foreach \y in {0,5,...,90}
+  \draw[color=HKS92K10] (0,\y) node [anchor=north west,inner sep = 2pt] {\tiny\y};
+  \foreach \x in {0,5,...,70} \draw (\x,0) node [anchor=north
+  west, inner sep = 2pt,color=HKS92K10] {\tiny\x};
+}%
+%
+\makeatletter
+\newcommand\nopt[1]{\strip@pt#1}%
+\makeatother
+%
+\selectlanguage{ngerman}\extrasngerman
+%
+\newlength{\breite}\setlength{\breite}{\textwidth}%
+\newlength{\hoehe}\setlength{\hoehe}{\textheight}%
+\newlength{\test}%
+\newlength{\boxabstand}\setlength{\boxabstand}{0.25em}%
+\newlength{\boxradius}\setlength{\boxradius}{2\boxabstand}%
+\newlength{\randspaltenbreite}\setlength\randspaltenbreite{21.5cm-0.5\columnsep-\boxabstand}%%
+\newlength{\zweispaltenbreite}\setlength\zweispaltenbreite{\breite-\randspaltenbreite-2\columnsep-1\boxabstand}%
+\newlength{\dreispaltenbreite}\setlength{\dreispaltenbreite}{\breite-2\boxabstand}%
+\newlength{\mittelspaltenbreite}\setlength\mittelspaltenbreite{\breite-4\boxabstand-30cm-\columnsep}%
+%
+\tikzstyle{text node}=[%
+rectangle split,
+rectangle split parts=2,
+draw=HKS92K10,
+color=HKS92K10,
+text=HKS41K100,
+rectangle split part fill={HKS92K10,HKS92K10!20!white},
+inner sep=\boxabstand,
+rounded corners=\boxradius]%
+\tikzstyle{reset settings}=[anchor=center,
+text width=,
+scale=1,
+color=HKS41K100,
+fill=none]
+\tikzstyle{beispiel node}=[text node,
+rectangle split part fill={HKS41K10,HKS41K10!40!white}
+]%
+\newcommand\motivation{%
+Auf den mehrfachen Wunsch einiger Verantwortlicher folgt mit Version
+1.4 nun auch ein Beispiel für eine freie Platzierung von Blöcken, die
+auch mehrspaltig sein können. Auch CTAN erschien Kürzlich ein Paket,
+das Textboxen ganz frei verteilen kann. Damit kann man vielleicht noch
+mehr anstellen.
+}%
+%
+\newcommand\projekt{%
+  \subsection{bereinigte Fehler}
+  \nodepart{second}
+  \begin{itemize}
+  \item ein Fehler in rescalefont.sty wurde behoben, wo bei der
+    Berechnug der Font-Dateinamen eine falsche Zahl benutzt wurde
+    (aufgefallen beim stmaryrd-Paket.
+  \item Ein Leerzeichen hatte sich am Anfang der Einrichtungszeile
+    eingeschlichen und wurde entfernt.
+  \item Die CD-Richtlinien für Poster sind nicht ganz klar
+    formuliert. Die in Ver. 1.3 eingeführten Makros \textbackslash
+    zweitlogo und \textbackslash zweitlogofile entsprechen nicht dem
+    CD und wurden mit einer \textbf{Warnung} versehen.
+  \end{itemize}
+}%
+%
+\newcommand\technischedaten{%
+  \subsection{Technische Daten}
+  \nodepart{second}
+ \begin{itemize}
+  \item Grobe Ausgründung aus dem Mutabor"=Poster und sollte verschönert werden.
+  \item tikz
+  \item Hilfsgitter für Positionierung und Größenanpassung.
+  \item Verschachtelte tikzpicture-Umgebungen
+  \item Blockbreite wird direkt berechnent
+  \item Blockhöhe kann mit \textbackslash vspace korrigiert werden. (Siehe
+    Abb.~%\ref{Quelltext}).
+  \item Blöcke können mit TikZ-Mitteln gut relativ zueinander positioniert werden.
+ \end{itemize}%
+}%
+%
+\newcommand\systemvoraussetzungen{%
+\subsection{Hilfsgitter}
+\nodepart{second}
+In der Beispieldatei wird ein Hifsgitter (1x1mm) definiert, das
+einfach auskommentiert werden kann (Makro: \textbackslash hilfsgitter)
+}%
+%
+\newcommand\beispiel{%
+\subsection{Verschachtelte TikZ"=Zeichnungen}
+\nodepart{second}
+Man kann relativ einfach tikzpicture-Umgebungen
+verschachteln. Allerdings werden dabei alle Einstellungen vererbt, so
+müssen evtl anchor oder andere Eigenschaften in der neuen Zeichnung
+explizit zurückgesetzt werden.
+\tonnetzbsp
+In Abb.~\ref{tonnetz} sieht man die Vererbung an den eckigen Knoten.}%
+%
+\newcommand\aufbau{%
+% \begin{figurehere}
+\begin{tikzpicture}[ultra thick,scale={\ratio{\linewidth}{8.7cm}},anchor=center,text width=]\scriptsize
+  \draw (0,0) node(klavier)
+  {\includegraphics[width=4cm]{mathelogo}} -- (3,0) 
+  node (laptop)
+  {\includegraphics[width=4cm]{TU_Logo_SW}}--(6,0) node
+  (expander) {\includegraphics[width=3cm]{DDC-03}};
+  \draw (klavier.center) +(0,-1.9) node[text width=3.05cm](kb-text)
+  {\centering MIDI-\\Keyboard\\} 
+  (laptop.center)++(0,-1.9) node (mut-text){} 
+  (expander.center)++(0,-1.9) node[text width=4.7cm]
+  (midi-text){\centering MIDI-\\Klangerzeuger\\};
+  \draw[->] (kb-text) -- (mut-text);
+  \draw[->] (mut-text) -- (midi-text);
+\end{tikzpicture}%
+%\caption{Aufbau eines "=Systems}
+%\end{figurehere}%
+}%
+%
+\newcommand\tonnetzbsp{%
+  \begin{figurehere}%[h]%{l}{\linewidth}
+   % \the\test
+    %\edef\pgfmathresultunitscale{\the\test}
+  \begin{tikzpicture}[reset
+    settings,scale={\ratio{\linewidth}{7cm}},rounded corners=2mm]\tiny
+     \useasboundingbox (-3.5,-2.5) rectangle (3.5,2.5);
+     \fill[fill=HKS92K10!20!white] (-3.5,-2.5) rectangle (3.5,2.5);
+      \tikzstyle tonnetz node=[HKS41K100,shape=circle,fill=white,draw,
+      minimum size=24mm,inner sep=0pt,text width=]%
+      \tikzstyle tonnetz active node=[fill=HKS41K10,text=HKS41K80,draw=HKS41K100,text width=]
+      \tikzstyle tonnetz center
+      node=[fill=HKS41K20,text=HKS41K100,draw=HKS41K100,text width=]
+% 
+      \node[tonnetz center node] (fundamental1) at (0,0) {1};
+      \node[tonnetz active node] (fundamental2) [right=of fundamental1] {2};
+      \node[tonnetz node] (fundamental3) [below=of fundamental2] {3};
+      \node[tonnetz node] (fundamental4) [below left=of fundamental3] {4};
+      \node[tonnetz node] (fundamental5) [left=of fundamental4] {5};
+      \node[tonnetz node] (fundamental6) [above left=of fundamental5] {6};
+%
+     \draw[fill=HKS92K10,draw=HKS92K100](fundamental1.center)--%
+      (fundamental2.center)--%
+      (fundamental3.center)--(fundamental4.center)--%
+      (fundamental5.center)--(fundamental6.center)--cycle;%
+      % \draw[draw=HKS92K100](fundamental1.center)--(fundamental2.center)--%
+      % (fundamental3.center)--(fundamental4.center)--%
+      % (fundamental5.center)--(fundamental6.center)--cycle;
+      % \tndeftonestyle00{fill=red!30}%
+  %    
+?  %   
+   \end{tikzpicture}%
+
+   \caption{Tonnetz für die reine Stimmung mit Fundamentalsystem für
+      die aktuelle C-Dur-Stimmung}\label{tonnetz}%
+  \end{figurehere}%
+}%
+%
+\newcommand\quelltext{%
+\subsection{Beispielprogramm}\nodepart{second}\vskip0.5\baselineskip
+\intextsep0pt
+\vfill
+\begin{figurehere}
+\lstinputlisting{tonnetz.mut}%
+\setlength\abovecaptionskip{0.5\baselineskip}%
+\caption{Tonnetz nach M.\,Vogel}\label{Quelltext}%
+\end{figurehere}}%
+%\color{HKS41K100}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Poster-Titel
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vbox{\maketitle\vss}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Poster-Inhalt
+%%%
+%%% Hinweis:
+%%%   \raggedright muss nach jedem Kommando aufgerufen, dass die
+%%%   Absatzformatierung wieder zurückstellt. Beispiele:
+%%%   \begin{minipage}, \parbox.
+%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\maketitle
+%\test33.02mm\relax
+%\typeout{33.02mm = \the\test; topskip = \the\topskip}%
+%\vskip 33.02mm\relax
+%\vskip -\topskip
+%\advance \test by -\topskip
+%\vskip\test
+\raisebox{1em}{\begin{tikzpicture}[yscale=-1]%
+\useasboundingbox (0,0) rectangle (0,0);
+%
+\hilfsgitter
+%
+\test\topskip
+\draw (0,0) node [text width=\breite,anchor=north west,inner
+sep=0pt,outer sep=0pt,line width=0pt](title) {\begingroup
+  \topskip33.02mm\relax%
+  \maketitle
+\endgroup
+%\section{Motivation}%
+};
+%
+%
+\draw let \p1 = (title.south) in 
+(\breite,\y1) node [anchor=south east] {\includegraphics[height=\y1]{mathelogo}};
+%
+%\clip(0,0) rectangle (\breite,\hoehe);
+%
+%\draw($(title.south west) + (0pt,3.17cm)$) node [text
+\draw($(title.south west) +(0,3.17cm)$)node[text node,text width=\zweispaltenbreite,anchor=north west] (motivation){%
+\subsection{Motivation}%
+\nodepart{second}
+\begin{multicols}{2}%
+\motivation
+\end{multicols}};
+%
+\draw ($(0.5\breite,0)!(motivation.south)!(0.5\breite,\hoehe)$) node
+[anchor=north,yshift=-1.5cm] (bach)
+{\pgfimage[width=267mm]{mathelogo}};
+%
+%
+\draw ($(0,0)!(bach.north)!(0,\hoehe)$) node [text node, text
+width=\randspaltenbreite,anchor=north west,yshift=-\boxabstand] (projekt) {\projekt};
+%
+\draw (0,\hoehe) node [text node,text
+width=\mittelspaltenbreite,anchor=south west]
+(Systemvoraussetzungen) {\systemvoraussetzungen};
+%
+\draw (Systemvoraussetzungen.north west) node [text node,text
+width=\randspaltenbreite,anchor=south west,yshift={\columnsep}]
+(technische daten) {\technischedaten};
+%
+\draw(technische daten.south east) node [text node,rectangle,text
+width={\breite - \randspaltenbreite-30cm-6\boxabstand-2\columnsep},anchor=south
+west,xshift={\columnsep}](aufbau){\begingroup\intextsep0pt\aufbau\endgroup};
+%
+\draw($(\breite,0)!(motivation.north)!(\breite,\hoehe)$) node [beispiel
+node,anchor=north east,text
+width=\randspaltenbreite,anchor=north east] (beispiel) {\beispiel};
+%
+\draw let \p1 = (aufbau.north) in
+(\breite,\hoehe) node [beispiel node,anchor=south east,text
+width=30cm,minimum height=30cm](quelltext){\quelltext};
+%
+%\draw (\breite,\hoehe) node [beispiel node,anchor=south east,text
+%width=\randspaltenbreite](tonnetz){\tonnetzbsp};
+\end{tikzpicture}}%
+%\maketitle
+\vfill
+\clearpage
 \fax{nur Tel.: 0351 463-35078}%
 \title{Beispiel}%
 \maketitle

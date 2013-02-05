@@ -74,15 +74,15 @@
 % DeclareMathSizes
 \newcommand\DeclareTudMathSizes[4]{%
   \edef\@tempa{\noexpand\DeclareMathSizes{#1}}%
-  \setlength\@tempdima{#2pt*\tudmathsizefactor}
+  \setlength\@tempdima{#2pt*\tudmathsizefactor}%
   \expandafter\edef\expandafter\@tempa\expandafter{%
     \expandafter\noexpand\@tempa{\strip@pt\@tempdima}%
   }%
-  \setlength\@tempdima{#3pt*\tudmathsizefactor}
+  \setlength\@tempdima{#3pt*\tudmathsizefactor}%
   \expandafter\edef\expandafter\@tempa\expandafter{%
     \expandafter\noexpand\@tempa{\strip@pt\@tempdima}%
   }%
-  \setlength\@tempdima{#4pt*\tudmathsizefactor}
+  \setlength\@tempdima{#4pt*\tudmathsizefactor}%
   \expandafter\edef\expandafter\@tempa\expandafter{%
     \expandafter\noexpand\@tempa{\strip@pt\@tempdima}%
   }%

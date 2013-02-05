@@ -24,7 +24,7 @@
 %% v0.4) - Optionaler blauer Hintergrund im Inhaltsbereich.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{tudmathposter}[2010/07/09 v1.1 Tobias.Schlemmer@mailbox.tu-dresden.de]
+\ProvidesClass{tudmathposter}[2010/08/20 v1.4 TU Dresden Matheposter Tobias.Schlemmer@mailbox.tu-dresden.de]
 
 \newif\if@tudposter@bluebg\@tudposter@bluebgfalse
 \DeclareOption{bluebg}{\@tudposter@bluebgtrue}
@@ -89,7 +89,16 @@
 \newcommand*{\telefon}[1]{\renewcommand*{\@telefon}{#1}}
 \newcommand*{\fax}[1]{\renewcommand*{\@fax}{#1}}
 \newcommand*{\homepage}[1]{\renewcommand*{\@homepage}{#1}}
-\newcommand*{\zweitlogo}[1]{\renewcommand*{\@zweitlogo}{#1}}
+\newcommand*{\zweitlogo}[1]{%
+  \ClassWarning{tudmathposter}{Die Position fuer das Zweitlogo ist im\MessageBreak
+    CD der TU Dresden nicht eindeutig geregelt.\MessageBreak
+    Die aktuell implementierte Position ist *falsch*.\MessageBreak
+    Eine Reimplementation ist aus o.g. Gruenden nicht möglich.\MessageBreak
+    Verwenden Sie bitte \string\drittlogo, \string\drittlogofile oder\MessageBreak
+    positionieren Sie bitte das Logo im Hauptteil.%
+  }%
+  \renewcommand*{\@zweitlogo}{#1}%
+}
 \newcommand*{\zweitlogofile}[1]{\zweitlogo{\includegraphics[height=0.292\tudposter@logowidth]{#1}}}
 \newcommand*{\drittlogo}[1]{\renewcommand*{\@drittlogo}{#1}}
 \newcommand*{\drittlogofile}[1]{\drittlogo{\includegraphics[heigt=5\baselineskip]{#1}}}
@@ -333,10 +342,10 @@
         \makebox[0mm][l]{\rule{\paperwidth-\tudposter@lmargin}{\paperheight}}%
       }%
       % ... mit weißen Linien statt Balken
-      \color{white}
+      \color{white}%
       \makebox[0mm][r]{\rule{\tudposter@lmargin}{3pt}}%
       \makebox[0mm][l]{\rule{\paperwidth-\tudposter@lmargin}{3pt}}%
-      \raisebox{\tudposter@cbheight}[0mm][0mm]{
+      \raisebox{\tudposter@cbheight}[0mm][0mm]{%
         \makebox[0mm][r]{\rule{\tudposter@lmargin}{3pt}}%
         \makebox[0mm][l]{\rule{\paperwidth-\tudposter@lmargin}{3pt}}%
       }%
@@ -353,7 +362,7 @@
     \fi
     \rlap{\raisebox{\tudposter@cbtextraise}{%
 	\color{white}%
-	\fontsize{\tudposter@cbfontsize}{1.2\tudposter@cbfontsize}
+	\fontsize{\tudposter@cbfontsize}{1.2\tudposter@cbfontsize}%
 	% auf leere Inhalte prüfen
         \def\tudposter@comma{}%
 	\ifx\@einrichtung\@empty\else\textbf{\@einrichtung}%
@@ -375,7 +384,7 @@
 	\includegraphics[width=\tudposter@logowidth]{\tudposter@logo}%
     }}%
     \hfill% Damit alles links ausgerichtet wird
-    \raisebox{\tudposter@logoposy}{\@zweitlogo}
+    \raisebox{\tudposter@logoposy}{\@zweitlogo}%
   }%
   \renewcommand*{\@oddfoot}{% Fußzeile
     \ifdim\tudposter@footheight>0mm
@@ -384,7 +393,7 @@
     \makebox[0mm][l]{\rule{\paperwidth-\tudposter@lmargin}{\tudposter@footheight}}%
     \raisebox{.5\tudposter@footheight}{%
       \begin{minipage}{\textwidth}%
-	\color{white}
+	\color{white}%
 	\@fusszeile
       \end{minipage}%
     }%
@@ -436,16 +445,16 @@
 \fi
 
 \renewcommand\maketitle{%
-  \vskip 33.02mm\relax
-  \vskip -\topskip
-  {%
+  \setlength\@tempskipa{33.02mm-\topskip}%
+  \vskip\@tempskipa
+ {%
     \ifx\@title\@empty\else
-    \usekomafont{title}\preprocesstitle{\@title}
+    \usekomafont{title}\preprocesstitle{\@title}%
     \ifx\@subtitle\@empty\else\\\fi
     \fi
   }{
     \ifx\@subtitle\@empty\else
-    \subtitlefont\preprocesstitle{\@subtitle}
+    \subtitlefont\preprocesstitle{\@subtitle}%
     \fi
     \vskip 3.17cm\relax
   }%
@@ -498,7 +507,7 @@
     \ifx\@fax\@empty\else\strut Fax:~\@fax\\\fi
     \ifx\@homepage\@empty\else\strut \@homepage \fi
   }%
-  \hfill\raisebox{-4\baselineskip}{\@drittlogo}
+  \hfill\raisebox{-4\baselineskip}{\@drittlogo}%
 \endgroup
 }
 
@@ -525,8 +534,10 @@
 {%
   \def\@captype{figure}%
   \vskip\intextsep
+  \ignorespaces
 }{
   \vskip\intextsep
+  \ignorespaces
 }
 
 \addtokomafont{caption}{\small}
