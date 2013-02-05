@@ -1,4 +1,4 @@
-%% Beispiel für Klasse tudposter.cls (Version 0.5).
+% Beispiel für Klasse tudposter.cls (Version 0.5).
 %%
 %% Autor: Martin Zabel (martin.zabel@tu-dresden.de)
 %%        Tobias schlemmer (tobias.schlemmer@mailbox.tu-dresden.de)
@@ -33,6 +33,7 @@
 \usepackage{listings}
 \usepackage{tikz}
 \usepackage{url}
+\usepackage[pdfborder={0 0 0}]{hyperref}
 %\usepackage{tabularx}
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes.multipart}
@@ -232,98 +233,43 @@ Din Bold
   Schlemmer angepasst. Die Autoren stehen für Fragen bereit.
 \end{multicols}
 \pagebreak
-\fax{}%
-\title{Updates}%
+\fax{}\label{Updanfang}%
+\title{Updates III (Seiten \pageref{Updanfang} bis \pageref{Updende})}%
 \subtitle{Änderungen an der Klasse für die neue Version}
 \maketitle
-\section{Version 1.1 (09.\,07.~2010)}
+\centerline{\fbox{%
+\begin{minipage}\linewidth
+\section{Version 1.5 (25.\,08.~2010)}
 \begin{multicols}2
-  \subsection{Fehlerkorrekturen}
- \begin{figurehere}
-    \centerline{%
-      \fbox{%
-        \begin{minipage}{0.9\linewidth}
-          \begin{itemize}
-          \item In der Klasse wurde der Klassenname korrigiert (Warnung behoben)
-          \item Der Fakultätsname wurde korrigiert
-          \end{itemize}
-        \end{minipage}%
-      }%
-    }
-    \caption{Fehlerkorrekturen}
-  \end{figurehere}
-  \subsection{Erweiterungen}
-  \begin{tablehere}
-    \centering
-    \begin{farbtabellen}
-      \begin{tabular}{||c|p{0.8\linewidth}||}
-        \hline\hline
-        Nr.&Beschreibung\\\hline\hline
-        1&Neue Umgebungen „\textbf{tablehere}“ und „\textbf{figurehere}“ für die Verwendung
-        anstelle von Fließobjekten innerhalb von Multicol-Umgebungen\\\hline
-        2&Schriftgröße für Tabellen- und Abbildungsunterschriften reduziert.\\\hline
-      \end{tabular}
-    \end{farbtabellen}
-    \caption{Erweiterungen}
-  \end{tablehere}
-\end{multicols}
-\section{Version 1.2 (11.\,07.~2010)}
-\begin{multicols}2
-\subsection{Korrekturen}
-Verbesserter Zeilenumbruch im Fußbereich, wenn nur Telefonnummer oder nur Faxnummer angegeben sind (incl. Demonstration)
-\subsection{Erweiterungen}
-Demonstration der Nutzung vom Paket „url“ für die Angabe der Homepage
-\end{multicols}
-\section{Version 1.3 (03.\,08.~2010)}
-\begin{multicols}3
-\subsection{Korrekturen}
+\subsection{Änderungen}
 \begin{itemize}
-\item Die Schriftgrößen der Matheschriften bei „serifmath“ entsprechen jetzt denen der Univers.
-\item Weitere Mathematik-Symbole sind jetzt verfügbar.
-\end{itemize}
-
-\subsection{Erweiterungen}
-\begin{itemize}
-\item Die Fontdefinitionen wurden in eine Datei tudfonts.sty
-  ausgelagert, die für andere Projekte (Übungsblätter, Scheine etc.)
-  eingebunden werden kann. Diese unterstützt die Optionen „noDIN“ (für 
-  Definitionen ohne DIN Bold, „noeulermath“ um die AMS Euler-Schriften
-  nicht zu laden und „serifmath“, die die klassischen
-  Mathematikschriften aus dem Paket „lmodern“ lädt.
-\item tudfonts.sty lädt die AMS Euler-Schriften,
-  um Mathematiksymbole darzustellen. \textbf{Dadurch ändert sich das
-    Erscheinungsbild der Formeln.} Das alte Verhalten kann
-  (verbessert) mit der Option „noeulermath“ wiederhergestellt werden.
-\item Neue Makros \textbf{\textbackslash tudmathsizefactor} und
-  \textbf{\textbackslash DeclareTudMathSizes}. Ersteres stellt das
-  Verhältnis zwischen Matheschriftgröße und Brotschrift dar
-  (Voreinstellung: „7/6“ für „serifmath“ und sonst „1“). Es kann mit
-  \textbackslash renewcommand umdefiniert werden. Das zweitere bekommt
-  vier Argumente, eine Brotschriftgröße und drei Mathematikgrößen. Die
-  erste der Mathematikgrößen sollte der Brotschriftgröße (also der
-  normalen Schriftgröße) entsprechen. Die anderen beiden sind
-  entsprechend den Einstellungen kleiner zu wählen.
-\item Neues Paket „rescalefonts.sty“. Damit werden Schriftgrößen
-  umgerechtnet. Das Makro \textbf{\textbackslash fontscaling{\textit{Faktor}}}
-  legt den Umrechnungsfaktor fest. Beispielsweise bewirkt
-  „\textbackslash fontscaling\{3\}“, dass für eine $30$\,pt"=Schrift
-  aus der LM-Familie lmr10 geladen wird. Dieses Paket wird automatisch
-  mit dem Faktor 3 geladen.
-\item Das „DRESDEN Concept“-Logo wurde integriert.
-\item Neue Makros \textbf{\textbackslash zweitlogo} \textbf{(veraltet,
-    vgl. Ver. 1.4)},
-  \textbf{\textbackslash zweitlogofile} \textbf{(veraltet,
-    vgl. Ver. 1.4)}, \textbf{\textbackslash
-    drittlogo} und \textbf{\textbackslash drittlogofile}, mit denen
-  das Zweit- (Instituts-) und das Drittlogo („DRESDEN Concept“)
-  eingestellt werden können. Die Variante mit „\dots file“ ist jeweils
-  für den Dateinamen der entsprechenden PDF-Datei vorgesehen (ohne
-  Endung „.pdf“), während die kürzere Variante beliebigen LaTeX-Code
-  aufnehmen kann, wenn das Logo komplizierter dargestellt werden muss.
+\item Neues Dresden-Concept-Logo. Es gibt jetzt eine offizielle Version für
+dunkle Hintergründe. Die PDF-Datei dafür enthält auch eine Fassung für
+Schwarz-Weiß-Dokumente. Es wurde die getönte verwendet.
+\item Institutsname in der Fußzeile. Wenn in der linken Spalte des Fußes mehr,
+als vier Zeilen stehen, wird dafür das Wort „Kontakt“ weggelassen.
+\item Umstrukturierung der Beispiel-Datei. Die neueren Änderungen
+  stehen jetzt vor den älteren. Links sind jetzt anklickbar (das
+  hyperref sollte aber sicherheitshalber bei Postern weggelassen werden). \columnbreak
+\item Die Farbdefinitionen wurden in das Paket tudcolors ausgelagert
+  und um die Definitionen der Auszeichnungsfarben aus dem CD-Handbuch
+  (\url{http://tu-dresden.de/service/cd/6\_handbuch/handbuch\_farbregister.pdf})
+  ergänzt.
+  Damit stehen jetzt neben den Hausfarben \textbf{\textcolor{HKS41K100}{HKS41\_K}} und
+  \textbf{\textcolor{HKS92K100}{HKS 92\_K}} auch die Auszeichnungsfarbe
+  1.~Kategorie \textbf{\textcolor{HKS44K100}{HKS 44\_K}}, die
+  Auszeichnungsfarben 2.~Kategorie \textbf{\textcolor{HKS36K100}{HKS 36\_K}},
+  \textbf{\textcolor{HKS33K100}{HKS 33\_K}}, \textbf{\textcolor{HKS57K100}{HKS 57\_K}} und
+  \textbf{\textcolor{HKS65K100}{HKS 65\_K}} und die Ausnahmefarbe
+  \textbf{\textcolor{HKS07K100}{HKS 07\_K}} in den jeweils 10 Deckungsstufen des
+  Farbregisters zur Verfügung. Das Namensschema orientiert sich an dem
+  der Hausfarben. Informationen zum Gebrauch entnehmen Sie bitte dem
+  CD-Handbuch (\url{http://tu-dresden.de/service/cd/6\_handbuch}).
 \end{itemize}
 \end{multicols}
+\end{minipage}}}
 \pagebreak\leavevmode
-\title{Version 1.4}
+\title{Version 1.4 (Änderungen II)}
 \subtitle{Beispiel für die freie Platzierung}
 \setlength{\columnsep}{1.5cm}%
 \setlength\abovecaptionskip{0.0\baselineskip}%
@@ -413,7 +359,7 @@ mehr anstellen.
 \newcommand\systemvoraussetzungen{%
 \subsection{Hilfsgitter}
 \nodepart{second}
-In der Beispieldatei wird ein Hifsgitter (1x1mm) definiert, das
+In der Beispieldatei wird ein Hilfsgitter (1x1mm) definiert, das
 einfach auskommentiert werden kann (Makro: \textbackslash hilfsgitter)
 }%
 %
@@ -477,7 +423,7 @@ In Abb.~\ref{tonnetz} sieht man die Vererbung an den eckigen Knoten.}%
       % (fundamental5.center)--(fundamental6.center)--cycle;
       % \tndeftonestyle00{fill=red!30}%
   %    
-?  %   
+  %   
    \end{tikzpicture}%
 
    \caption{Tonnetz für die reine Stimmung mit Fundamentalsystem für
@@ -576,6 +522,98 @@ width=30cm,minimum height=30cm](quelltext){\quelltext};
 \end{tikzpicture}}%
 %\maketitle
 \vfill
+\clearpage
+\fax{}%
+\title{Updates I}%
+\subtitle{Änderungen an der Klasse für die neue Version}
+\maketitle
+\section{Version 1.3 (03.\,08.~2010)}
+\begin{multicols}3
+\subsection{Korrekturen}
+\begin{itemize}
+\item Die Schriftgrößen der Matheschriften bei „serifmath“ entsprechen jetzt denen der Univers.
+\item Weitere Mathematik-Symbole sind jetzt verfügbar.
+\end{itemize}
+
+\subsection{Erweiterungen}
+\begin{itemize}
+\item Die Fontdefinitionen wurden in eine Datei tudfonts.sty
+  ausgelagert, die für andere Projekte (Übungsblätter, Scheine etc.)
+  eingebunden werden kann. Diese unterstützt die Optionen „noDIN“ (für 
+  Definitionen ohne DIN Bold, „noeulermath“ um die AMS Euler-Schriften
+  nicht zu laden und „serifmath“, die die klassischen
+  Mathematikschriften aus dem Paket „lmodern“ lädt.
+\item tudfonts.sty lädt die AMS Euler-Schriften,
+  um Mathematiksymbole darzustellen. \textbf{Dadurch ändert sich das
+    Erscheinungsbild der Formeln.} Das alte Verhalten kann
+  (verbessert) mit der Option „noeulermath“ wiederhergestellt werden.
+\item Neue Makros \textbf{\textbackslash tudmathsizefactor} und
+  \textbf{\textbackslash DeclareTudMathSizes}. Ersteres stellt das
+  Verhältnis zwischen Matheschriftgröße und Brotschrift dar
+  (Voreinstellung: „7/6“ für „serifmath“ und sonst „1“). Es kann mit
+  \textbackslash renewcommand umdefiniert werden. Das zweitere bekommt
+  vier Argumente, eine Brotschriftgröße und drei Mathematikgrößen. Die
+  erste der Mathematikgrößen sollte der Brotschriftgröße (also der
+  normalen Schriftgröße) entsprechen. Die anderen beiden sind
+  entsprechend den Einstellungen kleiner zu wählen.
+\item Neues Paket „rescalefonts.sty“. Damit werden Schriftgrößen
+  umgerechtnet. Das Makro \textbf{\textbackslash fontscaling{\textit{Faktor}}}
+  legt den Umrechnungsfaktor fest. Beispielsweise bewirkt
+  „\textbackslash fontscaling\{3\}“, dass für eine $30$\,pt"=Schrift
+  aus der LM-Familie lmr10 geladen wird. Dieses Paket wird automatisch
+  mit dem Faktor 3 geladen.
+\item Das „DRESDEN Concept“-Logo wurde integriert.
+\item Neue Makros \textbf{\textbackslash zweitlogo} \textbf{(veraltet,
+    vgl. Ver. 1.4)},
+  \textbf{\textbackslash zweitlogofile} \textbf{(veraltet,
+    vgl. Ver. 1.4)}, \textbf{\textbackslash
+    drittlogo} und \textbf{\textbackslash drittlogofile}, mit denen
+  das Zweit- (Instituts-) und das Drittlogo („DRESDEN Concept“)
+  eingestellt werden können. Die Variante mit „\dots file“ ist jeweils
+  für den Dateinamen der entsprechenden PDF-Datei vorgesehen (ohne
+  Endung „.pdf“), während die kürzere Variante beliebigen LaTeX-Code
+  aufnehmen kann, wenn das Logo komplizierter dargestellt werden muss.
+\end{itemize}
+\end{multicols}
+\section{Version 1.2 (11.\,07.~2010)}
+\begin{multicols}2
+\subsection{Korrekturen}
+Verbesserter Zeilenumbruch im Fußbereich, wenn nur Telefonnummer oder nur Faxnummer angegeben sind (incl. Demonstration)
+\subsection{Erweiterungen}
+Demonstration der Nutzung vom Paket „url“ für die Angabe der Homepage
+\end{multicols}
+\section{Version 1.1 (09.\,07.~2010)}
+\begin{multicols}2
+  \subsection{Fehlerkorrekturen}
+ \begin{figurehere}
+    \centerline{%
+      \fbox{%
+        \begin{minipage}{0.9\linewidth}
+          \begin{itemize}
+          \item In der Klasse wurde der Klassenname korrigiert (Warnung behoben)
+          \item Der Fakultätsname wurde korrigiert
+          \end{itemize}
+        \end{minipage}%
+      }%
+    }
+    \caption{Fehlerkorrekturen}
+  \end{figurehere}
+  \subsection{Erweiterungen}
+  \begin{tablehere}
+    \centering
+    \begin{farbtabellen}
+      \begin{tabular}{||c|p{0.8\linewidth}||}
+        \hline\hline
+        Nr.&Beschreibung\\\hline\hline
+        1&Neue Umgebungen „\textbf{tablehere}“ und „\textbf{figurehere}“ für die Verwendung
+        anstelle von Fließobjekten innerhalb von Multicol-Umgebungen\\\hline
+        2&Schriftgröße für Tabellen- und Abbildungsunterschriften reduziert.\\\hline
+      \end{tabular}
+    \end{farbtabellen}
+    \caption{Erweiterungen}
+  \end{tablehere}
+\end{multicols}
+\label{Updende}
 \clearpage
 \fax{nur Tel.: 0351 463-35078}%
 \title{Beispiel}%

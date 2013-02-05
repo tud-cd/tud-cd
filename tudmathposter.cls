@@ -1,21 +1,20 @@
 %% LaTeX-Klasse für Poster im Corporate Design der TU Dresden.
 %%
-%% Autor: Martin Zabel (martin.zabel@tu-dresden.de)
-%% Modifikationen: 
+%% Originalautor: Martin Zabel (martin.zabel@tu-dresden.de)
+%% Modifikationen (Mathematik): 
 %% Tobias Schlemmer (tobias.schlemmer@mailbox.tu-dresden.de)
 %% Daniel Borchmann (daniel.borchmann@mailbox.tu-dresden.de)
 %% 
 %%
-%% Klassenoptionen:
-%% - a0paper: DIN A0
-%% - a4paper: DIN A4
-%% - bluebg: Umschalten auf blauen Hintergrund im Inhaltsbereich.
-%% - serifmath: Formeln mit Serifenschrift (CM/EC), statt Univers.
+%% Dokumentation: Siehe Beispiel-utf8.pdf
+%%
 %%
 %% Für DIN A1 bis DIN A3 werden zwar schon die Balken und Textbereiche 
 %% implementiert, aber es fehlen noch passende Schriftgrößen.
 %%
+%%
 %% Änderungen:
+%% tudmathposter: siehe Beispiel-utf8.pdf
 %% v0.6) - Bei Option bluebg: Balken korrigiert, jetzt mit weißen Linien.
 %% v0.5) - Serifenlose Formeln (Deaktivierbar).
 %%       - Korrekte Größe und Farben für Überschriften (section, u.a.).
@@ -24,7 +23,7 @@
 %% v0.4) - Optionaler blauer Hintergrund im Inhaltsbereich.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{tudmathposter}[2010/08/20 v1.4 TU Dresden Matheposter Tobias.Schlemmer@mailbox.tu-dresden.de]
+\ProvidesClass{tudmathposter}[2010/08/20 v1.5 TU Dresden Matheposter Tobias.Schlemmer@mailbox.tu-dresden.de]
 
 \newif\if@tudposter@bluebg\@tudposter@bluebgfalse
 \DeclareOption{bluebg}{\@tudposter@bluebgtrue}
@@ -64,6 +63,7 @@
 \RequirePackage{textcomp}
 \RequirePackage{tabularx}
 \RequirePackage{tudfonts}
+\RequirePackage{tudcolors}
 
 % Konfiguration
 % Vom Nutzer anzugebende / veraenderbare Namen und Bezeichnungen
@@ -403,29 +403,6 @@
   \let\@evenfoot\@oddfoot
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Farbdefinitionen
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\definecolor{HKS41K100}{cmyk}{1.00, 0.70, 0.10, 0.50}
-\definecolor{HKS41K90}{cmyk}{0.9, 0.63, 0.09, 0.45}
-\definecolor{HKS41K80}{cmyk}{0.8, 0.56, 0.08, 0.40}
-\definecolor{HKS41K70}{cmyk}{0.7, 0.49, 0.07, 0.35}
-\definecolor{HKS41K60}{cmyk}{0.6, 0.42, 0.06, 0.30}
-\definecolor{HKS41K50}{cmyk}{0.5, 0.35, 0.05, 0.25}
-\definecolor{HKS41K40}{cmyk}{0.4, 0.28, 0.04, 0.20}
-\definecolor{HKS41K30}{cmyk}{0.3, 0.21, 0.03, 0.15}
-\definecolor{HKS41K20}{cmyk}{0.2, 0.14, 0.02, 0.10}
-\definecolor{HKS41K10}{cmyk}{0.1, 0.07, 0.01, 0.05}
-\definecolor{HKS92K100}{cmyk}{0.1,0.00,0.05,0.65}
-\definecolor{HKS92K90}{cmyk}{0.09,0.00,0.045,0.585}
-\definecolor{HKS92K80}{cmyk}{0.08,0.00,0.04,0.52}
-\definecolor{HKS92K70}{cmyk}{0.07,0.00,0.035,0.455}
-\definecolor{HKS92K60}{cmyk}{0.06,0.00,0.03,0.39}
-\definecolor{HKS92K50}{cmyk}{0.05,0.00,0.025,0.325}
-\definecolor{HKS92K40}{cmyk}{0.04,0.00,0.02,0.26}
-\definecolor{HKS92K30}{cmyk}{0.03,0.00,0.015,0.195}
-\definecolor{HKS92K20}{cmyk}{0.02,0.00,0.01,0.13}
-\definecolor{HKS92K10}{cmyk}{0.01,0.00,0.005,0.065}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -488,11 +465,17 @@
 \fi
 \fusszeile{\normalsize%
 \begingroup
+ \def\tud@kontakt{}%
+ \ifx\@einrichtung\@empty\def\tud@kontakt{\strut Kontakt\\}\fi
+ \ifx\@einrichtung\@empty\def\tud@kontakt{\strut Kontakt\\}\fi
+ \ifx\@einrichtung\@empty\def\tud@kontakt{\strut Kontakt\\}\fi
+ \ifx\@einrichtung\@empty\def\tud@kontakt{\strut Kontakt\\}\fi
  \parbox[t]{907.3pt}{\raggedright%
-    \strut Kontakt\\
+    \tud@kontakt
     \strut Technische Universit\"at Dresden\\
     \ifx\@einrichtung\@empty\else\strut \@einrichtung\\\fi
     \ifx\@fachrichtung\@empty\else\strut \@fachrichtung\\\fi
+    \ifx\@institut\@empty\else\strut \@institut\\\fi
     \ifx\@professur\@empty\else\strut \@professur\\\fi
   }%
   \parbox[t]{907.3pt}{\raggedright
@@ -517,7 +500,8 @@
 \einrichtung{Fakult\"at f\"ur Mathematik und Naturwissenschaften}
 \fachrichtung{Fachrichtung Mathematik}
 \homepage{http://tu-dresden.de/mathematik}
-\drittlogo{\colorbox{white}{\includegraphics[height=5\baselineskip]{DDC-01.pdf}}}
+%\drittlogo{\colorbox{white}{\includegraphics[height=5\baselineskip]{DDC-01.pdf}}}
+\drittlogo{\includegraphics[page=3,height=5\baselineskip]{DDC_Logo_BB.pdf}}
 \pagestyle{tudposter}
 \normalsize
 \fi 
