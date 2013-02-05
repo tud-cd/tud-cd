@@ -17,7 +17,7 @@
 %\pdfmapfile{+univers.map}
 %\pdfmapfile{+dinbold.map}
 %%
-\documentclass[a0paper,noDIN,Mathematik]{tudmathposter}
+\documentclass[a0paper,noDIN,MathematikA0]{tudmathposter}
 \listfiles
 % Bei Bedarf: dinBold für Section. Dann aber auch Überschrift nur in
 % Großbuchstaben.
@@ -91,6 +91,9 @@ FORM,ROOT,MIDICHANNEL,KEY,ELSE},
   escapeend={\dq\egroup}
 }
 
+\newlength{\zielbreite}%
+\newlength{\zielhoehe}%
+\newlength{\printmml}%
 
 % Beschriftung im Seitenkopf und Seitenfuß
 \institut{Institut für Algebra}
@@ -100,7 +103,7 @@ FORM,ROOT,MIDICHANNEL,KEY,ELSE},
 \fax{0351 463-\dots}
 \homepage{\small\url{http://www.math.tu-dresden.de/~schlemme/tudmathposter/}}
 % Folgende Zeile ist nicht CD-konform
-%\zweitlogofile{mathelogo}
+\institutslogofile{mathelogo}
 
 \title{Die Dokumentklasse „tudmathposter“}
 \subtitle{Eine \LaTeX klasse für die Evaluationsposter}
@@ -237,6 +240,39 @@ Din Bold
 \title{Updates III (Seiten \pageref{Updanfang} bis \pageref{Updende})}%
 \subtitle{Änderungen an der Klasse für die neue Version}
 \maketitle
+\section{Version 1.6 (09.\,09.~2010)}
+\begin{multicols}2
+\subsection{\textcolor{HKS07K100}{Hinweis}}
+Aufgrund falscher Maßangaben in den PowerPoint-Vorlagen, ergab sich
+eine Diskrepanz zwischen InDesign auf der einen Seite und \LaTeX{} und
+PowerPoint/OpenDocument auf der anderen Seite. Aus diesem Grunde wurde
+ein System entwickelt um fertige Poster an ein einheitliches Layout
+anzupassen. Alle \LaTeX{}"=Poster, die den Vorgaben entsprechen werden
+während der Druckvorbereitung angepasst werden.
+
+Wer sein Poster selbst anpassen möchte kann statt der Klassenoption
+\textbf{Mathematik} die Klassenoption \textbf{MathematikA0}
+verwenden. Dadurch werden sich Unterschiede zum bisherigen Layout
+ergeben. Unter anderem wurden einige Abstände neu festgelegt. Das
+Makro \textbf{\textbackslash oldfontsize} kann einige dieser
+Änderungen zurücksetzen.
+
+\subsection{weitere Änderungen}
+\begin{itemize}
+\item bessere Positionierung der Markierungen von Aufzählungen.
+\item Institutslogos können jetzt mit dem Makro \textbf{\textbackslash
+    institutslogo} definiert oder mit \textbf{\textbackslash
+    institutslogofile} eingebunden werden. Die höhe des
+  Dresden-Concept- und des Institutslogos sind gleich und kann aus dem
+  Register \textbf{\textbackslash drittlogoheight} ausgelesen werden.
+\item Neues Layout für den Fußbereich (weiterhin vorläufig).
+\item Auslagerung der Schriftgrößendefinitionen in eigene Dateien
+\item Möglichkeit, eine Verschnittkante zu definieren. Definiert man
+  ein Makro namens \textbf{\textbackslash schnittrand}, wird
+  automatisch ein entsprechender Wert zu allen vier Rändern addiert. 
+\end{itemize}
+\end{multicols}
+\vspace{\sectiontopskip}
 \centerline{\fbox{%
 \begin{minipage}\linewidth
 \section{Version 1.5 (25.\,08.~2010)}
@@ -265,13 +301,14 @@ als vier Zeilen stehen, wird dafür das Wort „Kontakt“ weggelassen.
   Farbregisters zur Verfügung. Das Namensschema orientiert sich an dem
   der Hausfarben. Informationen zum Gebrauch entnehmen Sie bitte dem
   CD-Handbuch (\url{http://tu-dresden.de/service/cd/6\_handbuch}).
+  \smallskip
 \end{itemize}
 \end{multicols}
 \end{minipage}}}
 \pagebreak\leavevmode
-\title{Version 1.4 (Änderungen II)}
-\subtitle{Beispiel für die freie Platzierung}
-\setlength{\columnsep}{1.5cm}%
+\title{Version 1.4 (Änderungen II)}%
+\subtitle{Beispiel für die freie Platzierung}%
+\setlength{\columnsep}{1.417cm}%
 \setlength\abovecaptionskip{0.0\baselineskip}%
 \newcommand\hilfsgitter{%
   \draw[color=HKS92K10!50!white](0,0) grid [step=1mm] (\breite,\hoehe);
@@ -455,21 +492,14 @@ In Abb.~\ref{tonnetz} sieht man die Vererbung an den eckigen Knoten.}%
 %%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\maketitle
-%\test33.02mm\relax
-%\typeout{33.02mm = \the\test; topskip = \the\topskip}%
-%\vskip 33.02mm\relax
-%\vskip -\topskip
-%\advance \test by -\topskip
-%\vskip\test
 \raisebox{1em}{\begin{tikzpicture}[yscale=-1]%
 \useasboundingbox (0,0) rectangle (0,0);
 %
 \hilfsgitter
 %
-\test\topskip
 \draw (0,0) node [text width=\breite,anchor=north west,inner
 sep=0pt,outer sep=0pt,line width=0pt](title) {\begingroup
-  \topskip33.02mm\relax%
+  \topsep33.02mm\relax%
   \maketitle
 \endgroup
 %\section{Motivation}%
@@ -490,7 +520,7 @@ sep=0pt,outer sep=0pt,line width=0pt](title) {\begingroup
 \end{multicols}};
 %
 \draw ($(0.5\breite,0)!(motivation.south)!(0.5\breite,\hoehe)$) node
-[anchor=north,yshift=-1.5cm] (bach)
+[anchor=north,yshift=-1.417cm] (bach)
 {\pgfimage[width=267mm]{mathelogo}};
 %
 %
@@ -666,13 +696,30 @@ Dies ist eine Aufzählung.
   \begin{itemize}
   \item SubItem
   \item SubItem
+    \begin{itemize}
+    \item SubSubItem
+    \item SubSubItem
+      \begin{itemize}
+      \item SubSubSubItem
+      \item SubSubSubItem
+      \item SubSubSubItem
+      \end{itemize}
+    \item SubSubItem
+    \end{itemize}
   \item SubItem
   \end{itemize}
-\item Item
-\item Item
-\item Item
-\item Item
-\item Item
+\renewcommand*\labelitemi{\textbullet}
+\item Item \vrule\kern1cm\vrule
+\renewcommand*\labelitemi{\textbullet\,}
+\item Item \vrule\kern1cm\vrule
+\renewcommand*\labelitemi{\textbullet\kern 0.25em}
+\item Item \vrule\kern1cm\vrule
+\renewcommand*\labelitemi{\textbullet\,\,}
+\item Item \vrule\kern1cm\vrule
+\renewcommand*\labelitemi{\textbullet\enspace}
+\item Item \vrule\kern1cm\vrule
+\renewcommand*\labelitemi{\textbullet\kern 1em}
+\item Item \vrule\kern1cm\vrule
 \item[\raisebox{.2ex}{$\Rightarrow$}] Ergebnis
 \end{itemize}
 
@@ -724,25 +771,7 @@ $\Leftrightarrow\Leftarrow\Rightarrow\leftrightarrow\rightarrow\leftharpoonup\le
 \rule{\linewidth}{2cm}
 \end{multicols}
 
-\begin{multicols}{2}
-\makeatletter
-\@tempdima=1cm
-1cm = $\the\@tempdima$\\
-\makeatother
-topmargin = $\the\topmargin$\\
-headheight = $\the\headheight$\\
-headsep = $\the\headsep$\\
-topskip = $\the\topskip$\\
-baselineskip = $\the\baselineskip$\\
-footskip = $\the\footskip$\\
-{\textcolor{black}{
-textheight = $\the\textheight$}}\\
-oddsidemargin = $\the\oddsidemargin$\\
-evensidemargin = $\the\evensidemargin$\\
-textwidth = $\the\textwidth$\\
-paperheight = $\the\paperheight$\\
-paperwidth = $\the\paperwidth$
-\end{multicols}
+
 \iffalse
 %\definecolor{mathelogoblau}{cmyk}{0.96,0.7,0.00,0.07}
 %\definecolor{mathelogorot}{cmyk}{0.00,0.99,0.95,0.00}
@@ -759,7 +788,6 @@ paperwidth = $\the\paperwidth$
 \fill [mathelogorot,rotate around={-53:(1,0)}] (0.4,0) rectangle (1,0.6);
 \end{tikzpicture}
 \fi
-\pagebreak
 \Huge Huge $2^{2^2}$
 
 \huge huge $2^{2^2}$
@@ -783,4 +811,5 @@ paperwidth = $\the\paperwidth$
 \vfill
 Diese Hilfslinie zeigt das Seitenende an. \textbf{ZU ENTFERNEN}!
 \hrule
+
 \end{document}
