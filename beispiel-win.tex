@@ -1,6 +1,7 @@
 %% Beispiel für Klasse tudposter.cls (Version 0.5).
 %%
 %% Autor: Martin Zabel (martin.zabel@tu-dresden.de)
+%%        Tobias schlemmer (tobias.schlemmer@mailbox.tu-dresden.de)
 %%
 %% Klassenoptionen siehe tudposter.cls.
 %%
@@ -9,10 +10,15 @@
 %% in der Standardkonfiguration erwähnt sind laden wir die .map-Datei
 %% Wichtig: das muss vor dem ersten Font-Befehl (also vor der
 %% Dokumentklasse geschehen.
-\pdfmapfile{+univers.map}
+%
+% Diese Zeilen sind jetzt auskommentiert, da dies das Paket „tudfonts“
+% jetzt übernimmt
+%
+%\pdfmapfile{+univers.map}
+%\pdfmapfile{+dinbold.map}
 %%
 \documentclass[a0paper,noDIN,Mathematik]{tudmathposter}
-
+\listfiles
 % Bei Bedarf: dinBold für Section. Dann aber auch Überschrift nur in
 % Großbuchstaben.
 %\addtokomafont{section}{\dinBold}
@@ -25,7 +31,6 @@
 \usepackage[ngerman]{babel}
 \usepackage{multicol}
 \usepackage{tikz}
-\usepackage{amsmath}
 \usepackage{url}
 %\usepackage{tabularx}
 
@@ -35,7 +40,8 @@
 \author{T. Schlemmer, M. Behrisch und D. Borchmann}% Zum Beispiel für Kontaktdaten.
 \telefon{0351 463-35078}
 \fax{0351 463-\dots}
-\homepage{\url{http://www.math.tu-dresden.de/~schlemme/tudmathposter/}}
+\homepage{\small\url{http://www.math.tu-dresden.de/~schlemme/tudmathposter/}}
+\zweitlogofile{mathelogo}
 
 \title{Die Dokumentklasse „tudmathposter“}
 \subtitle{Eine \LaTeX klasse für die Evaluationsposter}
@@ -206,6 +212,52 @@ Verbesserter Zeilenumbruch im Fußbereich, wenn nur Telefonnummer oder nur Faxnum
 \subsection{Erweiterungen}
 Demonstration der Nutzung vom Paket „url“ für die Angabe der Homepage
 \end{multicols}
+\section{Version 1.3 (03.\,08.~2010)}
+\begin{multicols}3
+\subsection{Korrekturen}
+\begin{itemize}
+\item Die Schriftgrößen der Matheschriften bei „serifmath“ entsprechen jetzt denen der Univers.
+\item Weitere Mathematik-Symbole sind jetzt verfügbar.
+\end{itemize}
+
+\subsection{Erweiterungen}
+\begin{itemize}
+\item Die Fontdefinitionen wurden in eine Datei tudfonts.sty
+  ausgelagert, die für andere Projekte (Übungsblätter, Scheine etc.)
+  eingebunden werden kann. Diese unterstützt die Optionen „noDIN“ (für 
+  Definitionen ohne DIN Bold, „noeulermath“ um die AMS Euler-Schriften
+  nicht zu laden und „serifmath“, die die klassischen
+  Mathematikschriften aus dem Paket „lmodern“ lädt.
+\item tudfonts.sty lädt die AMS Euler-Schriften,
+  um Mathematiksymbole darzustellen. \textbf{Dadurch ändert sich das
+    Erscheinungsbild der Formeln.} Das alte Verhalten kann
+  (verbessert) mit der Option „noeulermath“ wiederhergestellt werden.
+\item Neue Makros \textbf{\textbackslash tudmathsizefactor} und
+  \textbf{\textbackslash DeclareTudMathSizes}. Ersteres stellt das
+  Verhältnis zwischen Matheschriftgröße und Brotschrift dar
+  (Voreinstellung: „7/6“ für „serifmath“ und sonst „1“). Es kann mit
+  \textbackslash renewcommand umdefiniert werden. Das zweitere bekommt
+  vier Argumente, eine Brotschriftgröße und drei Mathematikgrößen. Die
+  erste der Mathematikgrößen sollte der Brotschriftgröße (also der
+  normalen Schriftgröße) entsprechen. Die anderen beiden sind
+  entsprechend den Einstellungen kleiner zu wählen.
+\item Neues Paket „rescalefonts.sty“. Damit werden Schriftgrößen
+  umgerechtnet. Das Makro \textbf{\textbackslash fontscaling{\textit{Faktor}}}
+  legt den Umrechnungsfaktor fest. Beispielsweise bewirkt
+  „\textbackslash fontscaling\{3\}“, dass für eine $30$\,pt"=Schrift
+  aus der LM-Familie lmr10 geladen wird. Dieses Paket wird automatisch
+  mit dem Faktor 3 geladen.
+\item Das „DRESDEN Concept“-Logo wurde integriert.
+\item Neue Makros \textbf{\textbackslash zweitlogo},
+  \textbf{\textbackslash zweitlogofile}, \textbf{\textbackslash
+    drittlogo} und \textbf{\textbackslash drittlogofile}, mit denen
+  das Zweit- (Instituts-) und das Drittlogo („DRESDEN Concept“)
+  eingestellt werden können. Die Variante mit „\dots file“ ist jeweils
+  für den Dateinamen der entsprechenden PDF-Datei vorgesehen (ohne
+  Endung „.pdf“), während die kürzere Variante beliebigen LaTeX-Code
+  aufnehmen kann, wenn das Logo komplizierter dargestellt werden muss.
+\end{itemize}
+\end{multicols}
 \pagebreak
 \fax{nur Tel.: 0351 463-35078}%
 \title{Beispiel}%
@@ -291,7 +343,24 @@ Abgesetze Formeln:
 \mbox{Funktion:}&&A(r)=\pi r^2\\
 \mbox{Funktionsnamen:}&&\lim_{n\to0}\frac{1}{n}=\infty\\
 \mbox{Summensymbol:}&&e=\sum_{k=0}^{\infty}\frac{1}{k!}\\
+\text{w$e$iter:}&&\int\limits_0^\pi \sin x\,dx = 2
 \end{eqnarray}
+a$a$a b$b$b c$c$c d$d$d e$e$e f$f$f g$g$g h$h$h i$i$i j$j$j k$k$k
+l$l$l m$m$m n$n$n o$o$o p$p$p q$q$q r$r$r s$s$s t$t$t u$u$u v$v$v
+w$w$w x$x$x y$y$y z$z$z 1$1$1 2$2$2 3$3$3 4$4$4 5$5$5 6$6$6 7$7$7
+8$8$8 9$9$9 0$0$0 A$A$A B$B$B C$C$C E$E$E F$F$F G$G$G H$H$H I$I$I
+J$J$J K$K$K L$L$L M$M$M N$N$N O$O$O P$P$P Q$Q$Q R$R$R S$S$S T$T$T
+U$U$U V$V$V W$W$W X$X$X Y$Y$Y Z$Z$Z $R\mathbb RR$ $\partial x$
+$G\Gamma D\Delta T\Theta L\Lambda X\Xi P\Pi S\Sigma Y\Upsilon F\Phi
+Ps\Psi O\Omega s\sigma r\rho$ 
+\[
+\mathbf{\frac{\text{A}ABCDEFGHI\mathfrak{JKLM}NOPQRSTUVWXYZ\text{Z}}
+{\text{a}abcdefghijklmnopqrstuvwxyz\text{z}}}
+\]
+$!$!$($($)$)$+$+$-$-$=$=$[$[$]$]$"$"$\&$\&$:$:$;$;$?$?$`$`$|$|
+$\aleph\Re\Im\neg=\neq\wedge\vee\setminus\sim\mid\mathsection$
+$\intop\ointop\braceld\bracerd\bracelu\braceru\infty\nearrow\searrow\nwarrow\swarrow$
+$\Leftrightarrow\Leftarrow\Rightarrow\leftrightarrow\rightarrow\leftharpoonup\leftharpoondown$
 
 \vfill
 %\columnbreak
@@ -334,6 +403,27 @@ paperwidth = $\the\paperwidth$
 \fill [mathelogorot,rotate around={-53:(1,0)}] (0.4,0) rectangle (1,0.6);
 \end{tikzpicture}
 \fi
+\pagebreak
+\Huge Huge $2^{2^2}$
+
+\huge huge $2^{2^2}$
+
+\LARGE LARGE  $2^{2^2}$
+
+\Large Large $2^{2^2}$
+
+\large large $2^{2^2}$
+
+\normalsize normalsize $2^{2^2}$
+
+\small small $2^{2^2}$
+
+\footnotesize footnotesize $2^{2^2}$
+
+\scriptsize scriptsize $2^{2^2}$
+
+\tiny tiny $2^{2^2}$
+
 \vfill
 Diese Hilfslinie zeigt das Seitenende an. \textbf{ZU ENTFERNEN}!
 \hrule

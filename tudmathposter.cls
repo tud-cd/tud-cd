@@ -29,42 +29,41 @@
 \newif\if@tudposter@bluebg\@tudposter@bluebgfalse
 \DeclareOption{bluebg}{\@tudposter@bluebgtrue}
 
-% Analog tudbook.cls
-\newif\if@tudposter@sansmath\@tudposter@sansmathtrue
-\DeclareOption{serifmath}{\@tudposter@sansmathfalse}
+% Font-Optionen weitergeben
+\DeclareOption{serifmath}{\PassOptionsToPackage{\CurrentOption}{tudfonts}}
+\DeclareOption{noeulermath}{\PassOptionsToPackage{\CurrentOption}{tudfonts}}
+\DeclareOption{noDIN}{\PassOptionsToPackage{\CurrentOption}{tudfonts}}
 
-\newif\if@tudposter@nodin\@tudposter@nodinfalse
-\DeclareOption{noDIN}{\@tudposter@nodintrue}
+% Wers hardcore haben möchte. Acrobat schimpft dann über falsche Angaben
+\DeclareOption{x-1a}{\RequirePackage[x-1a]{pdfx}}
+\DeclareOption{a-1b}{\RequirePackage[a-1b]{pdfx}}
 
 \newif\if@mathevorgabe\@mathevorgabefalse
 \DeclareOption{Mathematik}{\@mathevorgabetrue}
+
 
 \DeclareOption*{
   % scrartcl: Für Papierformat und Basislayout, Schriftgrößen,
   % Description, ...
   \PassOptionsToClass{\CurrentOption}{scrartcl}%
-%  \PassOptionsToPackage{\CurrentOption}{color}%
-%  \PassOptionsToPackage{\CurrentOption}{graphicx}%
 }
 \ProcessOptions\relax
 
 \PassOptionsToPackage{pagesize}{typearea}
 % Das Paket a0poster.cls konnte aufgrund eines komischen Fehlers in den
 % pagestyles nicht direkt benutzt werden.
-% Für zusätzliche Schriftgrößen der CM-/EC-Schriften, die nach wie vor
-% für mathematische Symbole benötigt werden, wird außerdem das Paket
-% fix-cm.sty statt a0size.sty verwendet. Siehe auch fixltx2e.pdf in
-% der Dokumentation zu TeX-Live.
-%\RequirePackage{fix-cm}% Vor dem Laden einer LaTeX-Klasse!
+\RequirePackage{rescalefont}%
 \LoadClass{scrartcl}
 %\AtBeginDvi{\special{! /landplus90 true store}}% für landscape
-\PassOptionsToPackage{table,fixpdftex,cmyk}{xcolor}
 \RequirePackage{calc}
+\PassOptionsToPackage{table,fixpdftex,cmyk,dvipsnames}{xcolor}
 \RequirePackage{xcolor}
+\convertcolorsDtrue
+\convertcolorsUtrue
 \RequirePackage{graphicx}
 \RequirePackage{textcomp}
 \RequirePackage{tabularx}
-\RequirePackage{lmodern}
+\RequirePackage{tudfonts}
 
 % Konfiguration
 % Vom Nutzer anzugebende / veraenderbare Namen und Bezeichnungen
@@ -78,6 +77,8 @@
 \newcommand*\@telefon{}
 \newcommand*\@fax{}
 \newcommand*\@homepage{http://www.math.tu-dresden.de/}
+\newcommand*\@zweitlogo{}
+\newcommand*\@drittlogo{}
 
 \providecommand*{\subtitle}[1]{\renewcommand*{\@subtitle}{#1}}
 \newcommand*{\einrichtung}[1]{\renewcommand*{\@einrichtung}{#1}}
@@ -88,135 +89,11 @@
 \newcommand*{\telefon}[1]{\renewcommand*{\@telefon}{#1}}
 \newcommand*{\fax}[1]{\renewcommand*{\@fax}{#1}}
 \newcommand*{\homepage}[1]{\renewcommand*{\@homepage}{#1}}
+\newcommand*{\zweitlogo}[1]{\renewcommand*{\@zweitlogo}{#1}}
+\newcommand*{\zweitlogofile}[1]{\zweitlogo{\includegraphics[height=0.292\tudposter@logowidth]{#1}}}
+\newcommand*{\drittlogo}[1]{\renewcommand*{\@drittlogo}{#1}}
+\newcommand*{\drittlogofile}[1]{\drittlogo{\includegraphics[heigt=5\baselineskip]{#1}}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Schriftart für Text
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand*{\familydefault}{\sfdefault}
-\renewcommand*{\seriesdefault}{l}
-\renewcommand*{\shapedefault}{n}
-\renewcommand*{\sfdefault}{aun}
-\renewcommand*{\ttdefault}{aun}
-\renewcommand*{\rmdefault}{aun}% Required for package: url
-\normalfont
-
-% Definitionen der Originalfontnamen
-\newcommand\tudposter@deffont[2]{%
-  \expandafter\newcommand\csname #1\endcsname{#2}%
-}
-\tudposter@deffont{Univers CE 75 Black}{\fontfamily{aub}\fontseries{m}\normalshape}
-\tudposter@deffont{Univers CE 75 Black Oblique}{\fontfamily{aub}\fontseries{m}\slshape}
-\tudposter@deffont{Univers CE 60}{\fontfamily{aun}\fontseries{b}\normalshape}
-\tudposter@deffont{Univers CE 60 Oblique}{\fontfamily{aun}\fontseries{b}\slshape}
-\tudposter@deffont{Univers CE 45 Light}{\fontfamily{aun}\fontseries{l}\normalshape}
-\tudposter@deffont{Univers CE 45 Light Oblique}{\fontfamily{aun}\fontseries{l}\slshape}
-\tudposter@deffont{Univers CE 55}{\fontfamily{aun}\fontseries{m}\normalshape}
-\tudposter@deffont{Univers CE 55 Oblique}{\fontfamily{aun}\fontseries{m}\slshape}
-\tudposter@deffont{Din Bold}{\dinBold}
-\newcommand\tudfont[1]{\csname #1\endcsname}
-
-
-% aus tudbook.cls
-\newcommand*{\dinBold}{\fontfamily{din}\fontseries{b}\selectfont}
-
-% \textbullet aus Encoding TS1 für korrekte horizontale Ausrichtung.
-% Encoding TS1 bereits durch fix-cm.sty verfügbar.
-\DeclareTextSymbolDefault{\textbullet}{TS1}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Schriftart für Mathematisches
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Korrekte Symbolgrößen
-\usepackage{exscale}
-% cmex in beliebigen Größen, analog fix-cm.sty
-\DeclareFontShape{OMX}{cmex}{m}{n}{%
-      <-8>sfixed * cmex7
-      <8-9> cmex8
-      <9-10> cmex9
-      <10->cmex10
-       }{}
-\DeclareSymbolFont{largesymbols}{OMX}{cmex}{m}{n}
-
-
-\if@tudposter@sansmath
-% Serifenlose Schrift für Variablen und anderes.
-% Für Operatoren kann direkt die Schriftart geändert werden, da hier das
-% OT1-Encoding verwendet wird. Dies entspricht der Vorgehensweise in
-% den Paketen sfmath.sty und mathptmx.sty.
-\SetSymbolFont{operators}{normal}{OT1}{aun}{l}{n}
-\SetSymbolFont{operators}{bold}{OT1}{aun}{b}{n}
-
-% Für Buchstaben u.ä. ist aber die Kodierung OML vorgegeben, die nicht
-% für Univers existiert. Man muss also die Buchstaben/Symbole einzeln
-% ändern. (Siehe auch sfmath.sty) Hier wird ein Auszug aus tudbook.cls
-% von Klaus Bergmann wiederverwendet.
-    \DeclareSymbolFont{aunLetters}{T1}{aun}{l}{sl}
-    \SetSymbolFont{aunLetters}{bold}{T1}{aun}{b}{sl}
-    \DeclareMathSymbol{a}{\mathalpha}{aunLetters}{`a}
-    \DeclareMathSymbol{b}{\mathalpha}{aunLetters}{`b}
-    \DeclareMathSymbol{c}{\mathalpha}{aunLetters}{`c}
-    \DeclareMathSymbol{d}{\mathalpha}{aunLetters}{`d}
-    \DeclareMathSymbol{e}{\mathalpha}{aunLetters}{`e}
-    \DeclareMathSymbol{f}{\mathalpha}{aunLetters}{`f}
-    \DeclareMathSymbol{g}{\mathalpha}{aunLetters}{`g}
-    \DeclareMathSymbol{h}{\mathalpha}{aunLetters}{`h}
-    \DeclareMathSymbol{i}{\mathalpha}{aunLetters}{`i}
-    \DeclareMathSymbol{j}{\mathalpha}{aunLetters}{`j}
-    \DeclareMathSymbol{k}{\mathalpha}{aunLetters}{`k}
-    \DeclareMathSymbol{l}{\mathalpha}{aunLetters}{`l}
-    \DeclareMathSymbol{m}{\mathalpha}{aunLetters}{`m}
-    \DeclareMathSymbol{n}{\mathalpha}{aunLetters}{`n}
-    \DeclareMathSymbol{o}{\mathalpha}{aunLetters}{`o}
-    \DeclareMathSymbol{p}{\mathalpha}{aunLetters}{`p}
-    \DeclareMathSymbol{q}{\mathalpha}{aunLetters}{`q}
-    \DeclareMathSymbol{r}{\mathalpha}{aunLetters}{`r}
-    \DeclareMathSymbol{s}{\mathalpha}{aunLetters}{`s}
-    \DeclareMathSymbol{t}{\mathalpha}{aunLetters}{`t}
-    \DeclareMathSymbol{u}{\mathalpha}{aunLetters}{`u}
-    \DeclareMathSymbol{v}{\mathalpha}{aunLetters}{`v}
-    \DeclareMathSymbol{w}{\mathalpha}{aunLetters}{`w}
-    \DeclareMathSymbol{x}{\mathalpha}{aunLetters}{`x}
-    \DeclareMathSymbol{y}{\mathalpha}{aunLetters}{`y}
-    \DeclareMathSymbol{z}{\mathalpha}{aunLetters}{`z}
-    \DeclareMathSymbol{A}{\mathalpha}{aunLetters}{`A}
-    \DeclareMathSymbol{B}{\mathalpha}{aunLetters}{`B}
-    \DeclareMathSymbol{C}{\mathalpha}{aunLetters}{`C}
-    \DeclareMathSymbol{D}{\mathalpha}{aunLetters}{`D}
-    \DeclareMathSymbol{E}{\mathalpha}{aunLetters}{`E}
-    \DeclareMathSymbol{F}{\mathalpha}{aunLetters}{`F}
-    \DeclareMathSymbol{G}{\mathalpha}{aunLetters}{`G}
-    \DeclareMathSymbol{H}{\mathalpha}{aunLetters}{`H}
-    \DeclareMathSymbol{I}{\mathalpha}{aunLetters}{`I}
-    \DeclareMathSymbol{J}{\mathalpha}{aunLetters}{`J}
-    \DeclareMathSymbol{K}{\mathalpha}{aunLetters}{`K}
-    \DeclareMathSymbol{L}{\mathalpha}{aunLetters}{`L}
-    \DeclareMathSymbol{M}{\mathalpha}{aunLetters}{`M}
-    \DeclareMathSymbol{N}{\mathalpha}{aunLetters}{`N}
-    \DeclareMathSymbol{O}{\mathalpha}{aunLetters}{`O}
-    \DeclareMathSymbol{P}{\mathalpha}{aunLetters}{`P}
-    \DeclareMathSymbol{Q}{\mathalpha}{aunLetters}{`Q}
-    \DeclareMathSymbol{R}{\mathalpha}{aunLetters}{`R}
-    \DeclareMathSymbol{S}{\mathalpha}{aunLetters}{`S}
-    \DeclareMathSymbol{T}{\mathalpha}{aunLetters}{`T}
-    \DeclareMathSymbol{U}{\mathalpha}{aunLetters}{`U}
-    \DeclareMathSymbol{V}{\mathalpha}{aunLetters}{`V}
-    \DeclareMathSymbol{W}{\mathalpha}{aunLetters}{`W}
-    \DeclareMathSymbol{X}{\mathalpha}{aunLetters}{`X}
-    \DeclareMathSymbol{Y}{\mathalpha}{aunLetters}{`Y}
-    \DeclareMathSymbol{Z}{\mathalpha}{aunLetters}{`Z}
-
-    \DeclareMathSymbol{,}{\mathpunct}{aunLetters}{`,}
-    \DeclareMathSymbol{.}{\mathord}{aunLetters}{`.}
-    \DeclareMathSymbol{/}{\mathord}{aunLetters}{`/}
-
-    \DeclareSymbolFontAlphabet{\mathsf}{operators}%MZ: angepasst
-    \DeclareSymbolFontAlphabet{\mathnormal}{aunLetters}
-    \DeclareMathAlphabet\mathbf{T1}{aun}{b}{n}
-    \SetMathAlphabet\mathbf{bold}{T1}{aun}{b}{n}
-    \DeclareMathAlphabet\mathit{T1}{aun}{l}{sl}
-    \SetMathAlphabet\mathit{bold}{T1}{aun}{l}{sl}
-% Ende des Auszugs    
-\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Schriftgrößen für einzelne Papiergrößen
@@ -226,17 +103,28 @@
 
 %% Copied from a0poster.sty from TeX-Live distribution.
 %% Copyright (C) 1997-2004 Gerlinde Kettl and Matthias Weiser
-  \renewcommand{\tiny}{\fontsize{17.36}{20.83}\selectfont}
+  \renewcommand{\tiny}{\@setfontsize\tiny{17.36}{20.83}}
 
-  \renewcommand{\scriptsize}{\fontsize{20.83}{25}\selectfont}   
-  \renewcommand{\footnotesize}{\fontsize{25}{30}\selectfont}
-  \renewcommand{\small}{\fontsize{30}{36}\selectfont}
-  \renewcommand{\normalsize}{\fontsize{36}{43,2}\selectfont}
-  \renewcommand{\large}{\fontsize{42}{50,4}\selectfont}
-  \renewcommand{\Large}{\fontsize{50}{60}\selectfont}
-  \renewcommand{\LARGE}{\fontsize{60}{72}\selectfont}
-  \renewcommand{\huge}{\fontsize{80}{96}\selectfont}
-  \renewcommand{\Huge}{\fontsize{104}{124,8}\selectfont}
+  \renewcommand{\scriptsize}{\@setfontsize\scriptsize{20.83}{25}}   
+  \renewcommand{\footnotesize}{\@setfontsize\footnotesize{25}{30}}
+  \renewcommand{\small}{\@setfontsize\small{30}{36}}
+  \renewcommand{\normalsize}{\@setfontsize\normalsize{36}{43,2}}
+  \renewcommand{\large}{\@setfontsize\large{42}{50,4}}
+  \renewcommand{\Large}{\@setfontsize\Large{50}{60}}
+  \renewcommand{\LARGE}{\@setfontsize\LARGE{60}{72}}
+  \renewcommand{\huge}{\@setfontsize\huge{80}{96}}
+  \renewcommand{\Huge}{\@setfontsize\Huge{104}{124,8}}
+
+  \DeclareTudMathSizes{17.36}{17.36}{17.36}{17.36}
+  \DeclareTudMathSizes{20.83}{20.83}{17.36}{17.36}
+  \DeclareTudMathSizes{25}{25}{20.83}{17.36}
+  \DeclareTudMathSizes{30}{30}{25}{20.83}
+  \DeclareTudMathSizes{36}{36}{30}{25}
+  \DeclareTudMathSizes{42}{42}{36}{30}
+  \DeclareTudMathSizes{50}{50}{42}{36}
+  \DeclareTudMathSizes{60}{60}{50}{42}
+  \DeclareTudMathSizes{80}{80}{60}{50}
+  \DeclareTudMathSizes{104}{104}{80}{60}
 
   \setlength\smallskipamount{9pt plus 2pt minus 2pt}
   \setlength\medskipamount{18pt plus 4pt minus 4pt}
@@ -252,7 +140,7 @@
 %% End of Copy
 \fi
 
-\if@tudposter@nodin
+\if@tudfonts@nodin
   \setkomafont{title}{\fontfamily{aun}\fontseries{b}\Huge} % Univ
   \newcommand\subtitlefont{\fontfamily{aun}\fontseries{m}\huge}
   \newcommand\preprocesstitle[1]{\mbox{#1}}
@@ -263,17 +151,16 @@
 \fi
 
 \if@mathevorgabe
-\if@tudposter@nodin
+\if@tudfonts@nodin
 \setkomafont{title}{\fontfamily{aun}\fontseries{b}\Huge} % Univers 55
                                 % bold 104pt
 \renewcommand\subtitlefont{\fontfamily{aun}\fontseries{m}\huge}
 \else
-\setkomafont{title}{\dinBold\Huge} % Univers 55
-                                % bold 104pt
+\setkomafont{title}{\dinBold\Huge} % DIN bold 104pt
 \renewcommand\subtitlefont{\dinBold\huge}
 \fi
-\newcommand{\sectionfont}{\fontfamily{aun}\fontseries{b}\fontshape{n}\LARGE\selectfont} %Univers55 bold 60pt
-\newcommand{\subsectionfont}{\fontfamily{aun}\fontseries{b}\fontshape{n}\large\selectfont}
+\newcommand{\sectionfont}{\fontfamily{aun}\fontseries{b}\fontshape{n}\LARGE} %Univers55 bold 60pt
+\newcommand{\subsectionfont}{\fontfamily{aun}\fontseries{b}\fontshape{n}\large}
 % Univers45 light bold 42pt
 \fi
 
@@ -466,7 +353,7 @@
     \fi
     \rlap{\raisebox{\tudposter@cbtextraise}{%
 	\color{white}%
-	\fontsize{\tudposter@cbfontsize}{1.2\tudposter@cbfontsize}\selectfont
+	\fontsize{\tudposter@cbfontsize}{1.2\tudposter@cbfontsize}
 	% auf leere Inhalte prüfen
         \def\tudposter@comma{}%
 	\ifx\@einrichtung\@empty\else\textbf{\@einrichtung}%
@@ -488,6 +375,7 @@
 	\includegraphics[width=\tudposter@logowidth]{\tudposter@logo}%
     }}%
     \hfill% Damit alles links ausgerichtet wird
+    \raisebox{\tudposter@logoposy}{\@zweitlogo}
   }%
   \renewcommand*{\@oddfoot}{% Fußzeile
     \ifdim\tudposter@footheight>0mm
@@ -565,14 +453,27 @@
 
 % Gliederungstiefen
 \if@mathevorgabe
-\renewcommand\section{\@startsection{section}{1}{0pt}{68pt}{43.2pt}{\sectionfont}}
-\renewcommand\subsection{\@startsection{subsection}{2}{0pt}{26.3pt}{13.4pt}{\subsectionfont}}
+\newcommand\sectiontopskip{68pt}
+\newcommand\subsectiontopskip{26.3pt}
+\newcommand\topsection{\@startsection{section}{1}{0pt}{0pt}{43.2pt}{\sectionfont}}
+\newcommand\topsubsection{\@startsection{subsection}{2}{0pt}{26.3pt}{13.4pt}{\subsectionfont}}
+\newcommand\topcentersection{%
+  \@startsection{section}{1}{0pt}{0pt}{43.2pt}
+  {\sectionfont\centering}%
+}
+\newcommand\topcentersubsection{%
+  \@startsection{subsection}{2}{0pt}{0pt}{13.4pt}
+  {\centering\subsectionfont}%
+}
+
+\renewcommand\section{\@startsection{section}{1}{0pt}{\sectiontopskip}{43.2pt}{\sectionfont}}
+\renewcommand\subsection{\@startsection{subsection}{2}{0pt}{\subsectiontopskip}{13.4pt}{\subsectionfont}}
 \newcommand\centersection{%
-  \@startsection{section}{1}{0pt}{68pt}{43.2pt}
+  \@startsection{section}{1}{0pt}{\sectiontopskip}{43.2pt}
   {\sectionfont\centering}%
 }
 \newcommand\centersubsection{%
-  \@startsection{subsection}{2}{0pt}{26.3pt}{13.4pt}
+  \@startsection{subsection}{2}{0pt}{\subsectiontopskip}{13.4pt}
   {\centering\subsectionfont}%
 }
 \fi
@@ -597,7 +498,7 @@
     \ifx\@fax\@empty\else\strut Fax:~\@fax\\\fi
     \ifx\@homepage\@empty\else\strut \@homepage \fi
   }%
-  \hfill\raisebox{-4\baselineskip}{\includegraphics[height=5\baselineskip]{mathelogo.pdf}}
+  \hfill\raisebox{-4\baselineskip}{\@drittlogo}
 \endgroup
 }
 
@@ -607,6 +508,7 @@
 \einrichtung{Fakult\"at f\"ur Mathematik und Naturwissenschaften}
 \fachrichtung{Fachrichtung Mathematik}
 \homepage{http://tu-dresden.de/mathematik}
+\drittlogo{\colorbox{white}{\includegraphics[height=5\baselineskip]{DDC-01.pdf}}}
 \pagestyle{tudposter}
 \normalsize
 \fi 
