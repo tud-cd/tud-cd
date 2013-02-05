@@ -11,7 +11,7 @@
 %% Copyright (C) 1993--1995 Frank Jensen and Frank Mittelbach.
 %% All rights reserved.
 
-\def\fileversion{v1.5}
+\def\fileversion{v1.10}
 \def\filedate{2010/08/25}
 
 %% \CharacterTable
@@ -47,13 +47,16 @@
 
 \ProcessOptions\relax
 % Fontmaps laden
-\@ifundefined{pdfmapfile}{}{%
-  \pdfmapfile{+univers.map}%
-  \if@tudfonts@nodin\else
-    \pdfmapfile{+dinbold.map}%
-  \fi
-}
-
+\RequirePackage{ifpdf}
+\ifpdf% pdfTEX is running in pdf mode 
+  \@ifundefined{pdfmapfile}{}{%
+    \pdfmapfile{+univers.map}%
+    \if@tudfonts@nodin\else
+      \pdfmapfile{+dinbold.map}%
+    \fi
+  }
+\else% TEX or pdfTEX in dvi mode 
+\fi
 
 % Load packages
 \RequirePackage{amsfonts}

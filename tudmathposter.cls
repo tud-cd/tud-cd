@@ -23,7 +23,7 @@
 %% v0.4) - Optionaler blauer Hintergrund im Inhaltsbereich.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{tudmathposter}[2010/09/21 v1.7 TU Dresden Matheposter Tobias.Schlemmer@mailbox.tu-dresden.de]
+\ProvidesClass{tudmathposter}[2010/09/21 v1.10 TU Dresden Matheposter Tobias.Schlemmer@mailbox.tu-dresden.de]
 
 \newif\if@tudposter@bluebg\@tudposter@bluebgfalse
 \DeclareOption{bluebg}{\@tudposter@bluebgtrue}
