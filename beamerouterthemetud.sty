@@ -16,8 +16,8 @@
 \newif\if@usePageNum\@usePageNumfalse
 \DeclareOptionBeamer{pagenum}{\@usePageNumtrue}
 
-\newif\if@useNoFrameTitleSection\@useNoFrameTitleSectionfalse
-\DeclareOptionBeamer{nosectionnum}{\@useNoFrameTitleSectiontrue}
+\newif\if@useNoFrameTitleSection\@useNoFrameTitleSectiontrue
+\DeclareOptionBeamer{section}{\@useNoFrameTitleSectionfalse}
 
 \newif\if@useNavBar\@useNavBarfalse
 \DeclareOptionBeamer{navbar}{\@useNavBartrue}
@@ -34,27 +34,23 @@
 
 % Templates
 
-% Vordefinierte Namen und Bezeichnungen
-% \newcommand*{\englishnames}{%
-%     \newcommand*{\@slide}{slide}
-%     \newcommand*{\@of}{of}
-% }
-
-% \newcommand*{\germannames}{%
-%     \newcommand*{\@slide}{Folie}
-%     \newcommand*{\@of}{von}
-% }
-
 
 \def\tudbeamer@setGermanNames{%
-  \def\tudbeamerslidename{Folie}%
-  \def\tudbeamerofname{von}%
+  \setbeamertemplate{page number: text and total}[german]%
+  \setbeamertemplate{page number: text}[german]%
+  \setbeamertemplate{frame number: text and total}[german]%
+  \setbeamertemplate{frame number: text}[german]%
 }
 
 \def\tudbeamer@setEnglishNames{%
-  \def\tudbeamerslidename{slide}%
-  \def\tudbeamerofname{of}%
+  \setbeamertemplate{page number: text and total}[english]%
+  \setbeamertemplate{page number: text}[english]%
+  \setbeamertemplate{frame number: text and total}[english]%
+  \setbeamertemplate{frame number: text}[english]%
 }
+
+
+\mode<presentation>
 
 \AtBeginDocument{%
   \@ifundefined{captionsgerman}{}{\addto\captionsgerman{\tudbeamer@setGermanNames}}%
@@ -82,14 +78,25 @@
 \newcommand*{\professur}[1]{\renewcommand*{\@professur}{#1}}
 
 \newcommand*{\datecity}[1]{\renewcommand*{\insertdatecity}{#1}}
-
+\newcommand*\insertslideinframe{%
+  \@tempcnta\beamer@slideinframe
+  \advance\@tempcnta by -1\relax
+  \ifnum\@tempcnta < 0\relax
+    \@tempcnta -\@tempcnta
+  \else
+    \ifnum \@tempcnta = 0 \relax
+      \@tempcnta = 1
+    \fi
+  \fi
+  \@arabic\@tempcnta
+}
 
 \newlength\tudbeamer@logoleftmargin
 \newlength\tudbeamer@logotopmargin
 \newlength\tudbeamer@logowidth
-\newlength\tudbeamer@footer@placewidth
-\newlength\tudbeamer@footer@titlewidth
-\newlength\tudbeamer@footer@pagenumwidth
+\newlength\tudbeamerfooterplacewidth
+\newlength\tudbeamerfootertitlewidth
+\newlength\tudbeamerfooterpagenumwidth
 
 \if@smallRightMargin
 \beamersetrightmargin{0.10\paperheight}
@@ -97,21 +104,56 @@
 \beamersetrightmargin{0.15\paperheight}
 \fi
 \beamersetleftmargin{0.15\paperheight}
+\setlength{\tudbeamerfooterplacewidth}{0.25\linewidth}%
+\setlength{\tudbeamerfooterpagenumwidth}{\tudbeamerfooterplacewidth}%
+\setlength{\tudbeamerfootertitlewidth}{\paperwidth - \beamer@leftmargin-\beamer@rightmargin
+  -\tudbeamerfooterplacewidth -\tudbeamerfooterpagenumwidth}%
 
 \newcommand\tudbeamer@calcsizes[1][0.125]{%
   \def\tudbeamer@setlength##1##2{\setlength{##1}{##2 *
-      \ratio{#1\paperheight}{65pt}}}
- \tudbeamer@setlength\tudbeamer@logowidth{40mm}%
+      \ratio{#1\paperheight}{65pt}}}%
+  \tudbeamer@setlength\tudbeamer@logowidth{40mm}%
   \setlength\tudbeamer@logoleftmargin{\beamer@leftmargin-0.3333\tudbeamer@logowidth}%
   \setlength\@tempdima{0.020\paperheight}%
   \setlength{\@tempdima}{\@tempdima*\ratio{#1pt}{0.125pt}}%
   \setlength{\@tempdima}{\@tempdima*\ratio{#1pt}{0.125pt}}%
   \setlength{\tudbeamer@logotopmargin}{#1\paperheight - \@tempdima -
     0.282\tudbeamer@logowidth}%
-  \setlength{\tudbeamer@footer@placewidth}{0.3\paperheight}%
-  \setlength{\tudbeamer@footer@pagenumwidth}{\tudbeamer@footer@placewidth}%
-  \setlength{\tudbeamer@footer@titlewidth}{\paperwidth - \beamer@leftmargin-\beamer@rightmargin
--\tudbeamer@footer@placewidth -\tudbeamer@footer@pagenumwidth}
+}
+
+\providecommand\tudbeamer@savesizes[1]{%
+  \edef#1{%
+    \noexpand\tudbeamer@logowidth\the\tudbeamer@logowidth\relax
+    \noexpand\tudbeamer@logoleftmargin\the\tudbeamer@logoleftmargin\relax
+    \noexpand\tudbeamer@logotopmargin\the\tudbeamer@logotopmargin\relax
+  }%
+}
+
+\providecommand\tudsavebeamertemplate[2]{%
+  \expandafter\let\expandafter#2\csname beamer@@tmpl@#1\endcsname
+}
+\providecommand\tudrestorebeamertemplate[2]{%
+  \expandafter\let\csname beamer@@tmpl@#1\endcsname#2
+}
+\providecommand\tudsavebeamercolor[2]{
+  \expandafter\let\expandafter\@tempa\csname beamer@thcuse@#1\endcsname%
+  \expandafter\let\csname tud@color@#2@thcuse@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname beamer@thcinherits@#1\endcsname%
+  \expandafter\let\csname tud@color@#2@thcinherits@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname beamer@thcfg@#1\endcsname%
+  \expandafter\let\csname tud@color@#2@thcfg@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname beamer@thcbg@#1\endcsname%
+  \expandafter\let\csname tud@color@#2@thcbg@#1\endcsname\@tempa
+}
+\providecommand\tudrestorebeamercolor[2]{
+  \expandafter\let\expandafter\@tempa\csname tud@color@#2@thcuse@#1\endcsname%
+  \expandafter\let\csname beamer@thcuse@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname tud@color@#2@thcinherits@#1\endcsname%
+  \expandafter\let\csname beamer@thcinherits@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname tud@color@#2@thcfg@#1\endcsname%
+  \expandafter\let\csname beamer@thcfg@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname tud@color@#2@thcbg@#1\endcsname%
+  \expandafter\let\csname beamer@thcbg@#1\endcsname\@tempa
 }
 
 
@@ -127,7 +169,9 @@
 \newcommand<>\tud@frametitles{\gdef\frame@title@section{}\alt#1{\@dblarg\beamer@@frametitle}{\beamer@gobbleoptional}}
 
 \providecommand*{\insertdatecity}{Dresden}
-\newcommand*{\inserttotalpagenumber}{\textbf{??}}
+\providecommand*\inserttotalpagenumber{??}
+\providecommand*\inserttotalframenumber{??}
+
 
 
 \def\logo@front{logo_weiss}
@@ -144,87 +188,76 @@
   \fi
 \fi
 
-
-% Faktor zur PPT-Vorlage: / 0,1984375      * 5,04
-\defbeamertemplate*{title page}{tud}{%
-    \color{white}%
-    \vfill%
-    {%
-      %\renewcommand\baselinestretch{1}%
-      \usebeamerfont*{title}%
-     \expandafter\setlength\expandafter\baselineskip{\f@size pt*\ratio{10pt}{10pt}}%
-%      \vskip2ex plus1ex minus1ex%
-%      \setlength\baselineskip{2cm}%{}
-      \MakeUppercase{\inserttitle}\par%
-    }\vfill%
-    {%
-      \ifx\insertsubtitle\empty
-      \else
-        \usebeamerfont*{subtitle}\insertsubtitle
-        \vfill
-      \fi%
-      \scriptsize\insertauthor
-    }%
-    \vfill\vfill%
+\defbeamertemplate{einrichtung/titlepage}{default}{%
+  % Hier muss ein Leerzeichen folgen
+  \@einrichtung{}
+  \strut
+}
+\defbeamertemplate{fachrichtung/titlepage}{default}{%
+  \@fachrichtung%
+  \ifx\@institut\empty\else,
+  \ifx\@professur\empty\else,
+  \fi\fi
+  \strut
+}
+\defbeamertemplate{institut/titlepage}{default}{%
+  \@institut%
+  \ifx\@professur\empty\else,
+  \fi
+  \strut
+}
+\defbeamertemplate{professur/titlepage}{default}{%
+  \@institut%
+  \strut
 }
 
 \defbeamertemplate{headline}{tud titlepage}{%
- \tudbeamer@calcsizes[0.175]
- \vbox to 0.175\paperheight{\vskip\tudbeamer@logotopmargin
-   \color{white}%
-%  \setlength{\arrayrulewidth}{0.3pt}%
- %\let\@tmp@ifrowcolors\if@rowcolors
- % \@rowcolorsfalse
- %\begin{tabular*}{\paperwidth}[b]{l@{\extracolsep\fill}}
- %  \vbox{
-   %\rownum0\relax
-    % TUD-Logo
-    %\hspace*{3.0mm}
+  \vbox to 0.175\paperheight{%
+    \vskip\tudbeamer@logotopmargin
     \hskip\tudbeamer@logoleftmargin
-    % \color{white}\includegraphics[height=7.81mm]{\logo@front}\\[1.2mm]
-    \color{white}%
+    \usebeamercolor[fg]{logo/titlepage}%
     \includegraphics[height=0.282\tudbeamer@logowidth]{\logo@front}%
     \if@ddc
         \hfill
         \includegraphics[height=0.282\tudbeamer@logowidth]{DDC-weiss}%
         \hskip\beamer@rightmargin\\
-     \fi
-   }%
-   \color{white}%\vskip1.2mm
-    \rule{\paperwidth}{0.3pt}\par%
-    \vbox to 0.025\paperheight{\vfill
-      \hskip\beamer@leftmargin%\rule[-0.8mm]{0pt}{2.47mm}%
-      \def\@@dummyComma{}%
-      \color{white}\textbf{\@einrichtung}%
-      \ifx\@einrichtung\@empty\else\def\@@dummyComma{ }\fi%
-      \ifx\@fachrichtung\@empty\else\@@dummyComma\@fachrichtung%
-      \ifx\@institut\@empty\else\def\@@dummyComma{, }\fi%
-      \ifx\@professur\@empty\else\def\@@dummyComma{, }\fi%
-      \fi%
-      \ifx\@institut\@empty\else\@@dummyComma\@institut
-      \ifx\@professur\@empty\else\def\@@dummyComma{, }\fi
-      \fi%
-      \ifx\@professur\@empty\else\@@dummyComma\fi%
-      \@professur\par%
-      \vfill
-    }%
-    \rule{\paperwidth}{0.3pt}\par
-  %}
- % \end{tabular*}\par%\hspace{-\paperwidth}%
-  %\let\if@rowcolors\@tmp@ifrowcolors
-}%
+    \fi
+    \vskip 0pt plus 1 fil\relax
+  }%
+  \usebeamercolor[fg]{upper separation line head/titlepage}%
+  \rule{\paperwidth}{0.3pt}\par%
+  \vbox to 0.025\paperheight{\vskip 0pt plus 1 fil
+    \hskip\beamer@leftmargin%
+    \usebeamertemplate*{einrichtung/titlepage}%
+    \usebeamertemplate*{fachrichtung/titlepage}%
+    \usebeamertemplate*{institut/titlepage}%
+    \usebeamertemplate*{professur/titlepage}%
+    \par%
+    \vskip 0pt plus 1 fil
+  }%
+  \usebeamercolor[fg]{lower separation line head/titlepage}%
+  \rule{\paperwidth}{0.3pt}\par
+}[action]{%
+  \tudbeamer@calcsizes[0.175]%
+}
+
 
 \defbeamertemplate{headline}{tud header}{%
-  \tudbeamer@calcsizes
-  \vbox to 0.125\paperheight{\vskip\tudbeamer@logotopmargin
-    \hskip\tudbeamer@logoleftmargin\color{text}\includegraphics[width=\tudbeamer@logowidth]{\logo@default}%
+  \vbox to 0.125\paperheight{%
+    \vskip\tudbeamer@logotopmargin
+    \hskip\tudbeamer@logoleftmargin%
+    \usebeamercolor[fg]{logo}%
+    \includegraphics[width=\tudbeamer@logowidth]{\logo@default}%
     \par
     \vfill
- }%
- \color{frametitle}%
- \rule{\paperwidth}{0.1pt}\par
- \vskip0.015\paperheight
- \rule{\paperwidth}{0.1pt}\par
+  }%
+  \usebeamercolor[fg]{upper separation line head}%
+  \rule{\paperwidth}{0.3pt}\par
+  \vskip0.015\paperheight
+  \usebeamercolor[fg]{lower separation line head}%
+  \rule{\paperwidth}{0.3pt}\par
+}[action]{
+  \tudbeamer@calcsizes[0.125]%
 }
 
 \defbeamertemplate{headline}{tud noheader}{%
@@ -232,135 +265,259 @@
   \rule{0pt}{\the\topmarginnoheader}%
 }
 
-\defbeamertemplate{footline}{tud titlepage}{%
-  \tudbeamer@calcsizes
-%  \vfill
-   \hbox to \textwidth{%
-     \hskip\beamer@leftmargin
-     \normalsize
-     \color{white}%
-     \insertdatecity
-     \ifx\insertdatecity\empty
-     \else
-       \ifx\insertdate\empty
-       \else,
-       \fi
-     \fi
-     \insertdate%
-     \hfill
-     \if@ddcfooter
-      \includegraphics[height=0.424\tudbeamer@logowidth]{DDC-weissf}%
-       \hskip\beamer@rightmargin
-     \fi
-   }%
-   \vskip0.125\paperheight
-}%
 
-\defbeamertemplate{footline}{tud pagenum}{%
-  \tudbeamer@calcsizes
-  \color{frametitle}%
-  \tiny
-  \vbox to 0.0777\paperheight{%
-    \hbox to \paperwidth{%
-      \hskip\beamer@leftmargin
-      \hbox to \tudbeamer@footer@placewidth{\raggedright\mbox{TU Dresden\ifx\insertdate\empty\else, \insertdate\fi}}%
-      \parbox{\tudbeamer@footer@titlewidth}{\centerline{\insertshorttitle}}%
-      \hbox to \tudbeamer@footer@pagenumwidth {\hfill\tudbeamerslidename\ \insertpagenumber\ \tudbeamerofname\ \inserttotalpagenumber}%
-    }%
- }%
-}
-
-\defbeamertemplate{footline}{tud nopagenum}{%
-  \tudbeamer@calcsizes
-  \color{frametitle}%
-  \tiny
-  \vbox to 0.0777\paperheight{%
-    \hbox to \paperwidth{%
-      \hskip\beamer@leftmargin
-      \hbox to \tudbeamer@footer@placewidth{\raggedright\mbox{TU Dresden\ifx\insertdate\empty\else, \insertdate\fi}}%
-      \parbox{\tudbeamer@footer@titlewidth}{\centerline{\insertshorttitle}}%
-      \kern\tudbeamer@footer@pagenumwidth%
-    }%
+\defbeamertemplate*{date/place in footline}{default}[1][TU~Dresden]{%
+  \parbox[b]\tudbeamerfooterplacewidth{%
+    \raggedright%\mbox{
+      \def\@tempa{#1}%
+      \ifx\@tempa\empty
+      \else
+        \@tempa
+        \ifx\insertdate\empty\else, %
+        \fi
+      \fi
+      \insertdate
+    %}%
+    \strut
   }%
 }
 
+\defbeamertemplate*{title in head/foot}{tud}{%
+  \parbox[b]{\tudbeamerfootertitlewidth}{%
+    \centering\insertshorttitle%h
+    \strut
+  }%
+}
+
+\defbeamertemplate{page number in footline}{page}[1][text and total]{%
+  \parbox[b]\tudbeamerfooterpagenumwidth {%
+    \raggedleft
+    \usebeamertemplate{page number: #1}%
+  }%
+}
+\defbeamertemplate*{page number in footline}{frame}[1][text and total]{%
+  \parbox[b]\tudbeamerfooterpagenumwidth {%
+    \raggedleft
+    \usebeamertemplate{frame number: #1}%
+  }%
+}
+
+\defbeamertemplate*{page number: text and total}{english}{%
+  Page \insertpagenumber\ of \inserttotalpagenumber
+}
+\defbeamertemplate*{page number: text}{english}{%
+  Page \insertpagenumber
+}
+\defbeamertemplate{page number: text and total}{german}{%
+  Seite \insertpagenumber\ of \inserttotalpagenumber
+}
+\defbeamertemplate{page number: text}{german}{%
+  Seite \insertpagenumber
+}
+\defbeamertemplate*{page number: total}{default}{%
+  \insertpagenumber/\inserttotalpagenumber
+}
+\defbeamertemplate*{page number: only}{default}{%
+  \insertpagenumber
+}
+\defbeamertemplate*{frame number: text and total}{english}{%
+  Slide \insertframenumber\ of \inserttotalframenumber
+}
+\defbeamertemplate*{frame number: text and total and overlay}{english}{%
+  Slide \insertframenumber.\insertslideinframe\ of \inserttotalframenumber
+}
+\defbeamertemplate*{frame number: text}{english}{%
+  Slide \insertframenumber
+}
+\defbeamertemplate*{frame number: text and overlay}{english}{%
+  Slide \insertframenumber.\insertslideinframe%
+}
+\defbeamertemplate{frame number: text and total}{german}{%
+  Folie \insertframenumber\ von \inserttotalframenumber
+}
+\defbeamertemplate{frame number: text and total and overlay}{german}{%
+  Folie \insertframenumber.\insertslideinframe\ von \inserttotalframenumber
+}
+\defbeamertemplate{frame number: text}{german}{%
+  Folie \insertframenumber
+}
+\defbeamertemplate{frame number: text and overlay}{german}{%
+  Folie \insertframenumber.\insertslideinframe%
+}
+\defbeamertemplate*{frame number: total}{default}{%
+  \insertframenumber/\inserttotalframenumber
+}
+\defbeamertemplate*{frame number: total and overlay}{default}{%
+  \insertframenumber.\insertslideinframe/\inserttotalframenumber
+}
+\defbeamertemplate*{frame number: only}{default}{%
+  \insertframenumber
+}
+\defbeamertemplate*{frame number: overlay}{default}{%
+  \insertframenumber.\insertslideinframe
+}
+
+
+\defbeamertemplate{footline}{tud titlepage}{%
+%  \vfill
+   \hbox to \textwidth{%
+     \hskip\beamer@leftmargin
+       \usebeamerfont*{date in head/foot/titlepage}%
+       \usebeamercolor[fg]{date in head/foot/titlepage}%
+       \insertdatecity
+       \ifx\insertdatecity\empty
+       \else
+         \ifx\insertdate\empty
+         \else,
+         \fi
+       \fi
+       \insertdate%
+       \strut
+     \hskip 0pt plus 1 fil\relax
+     \if@ddcfooter
+      \includegraphics[height=0.424\tudbeamer@logowidth]{DDC-weissf}%
+     \fi
+     \hskip\beamer@rightmargin
+   }%
+   \vskip0.125\paperheight
+}[action]{\tudbeamer@calcsizes[0.175]}%
+
+
+\defbeamertemplate*{upper separation line foot}{default}{%
+  \rule{\paperwidth}{0.3pt}\par
+  \vskip 0.1em\relax
+}
+\defbeamertemplate*{footline}{tud pagenum}{%
+  \usebeamertemplate***{upper separation line foot}%
+  \usebeamerfont{footline}%
+%  \vbox to 0.0777\paperheight{%
+    \hbox to \paperwidth{%
+      \hskip\beamer@leftmargin
+      \usebeamertemplate***{date/place in footline}%
+      \hskip 0pt plus 1 fil minus 1 fil\relax
+      \usebeamertemplate***{title in head/foot}%
+      \hskip 0pt plus 1 fil minus 1 fil\relax
+      \usebeamertemplate***{page number in footline}%
+      \hskip\beamer@rightmargin
+    }%
+%    \vskip 0pt plus 1 fil
+%  }%
+}[action]{\tudbeamer@calcsizes}
+
+\defbeamertemplate{footline}{tud nopagenum}{%
+  \usebeamertemplate***{upper separation line foot}%
+  \usebeamerfont{footline}%
+%  \vbox to 0.0777\paperheight{%
+    \hbox{%
+      \hskip\beamer@leftmargin
+      \usebeamertemplate***{date/place in footline}%
+      \hskip 0pt plus 1 fil minus 1 fil\relax
+      \usebeamertemplate***{title in head/foot}%
+      \hskip 0pt plus 1 fil minus 1 fil\relax
+      \kern\tudbeamerfooterpagenumwidth%
+      \hskip\beamer@rightmargin
+    }%
+%    \vskip 0pt plus 1 fil
+%  }%
+}[action]{\tudbeamer@calcsizes}
+
+
 \defbeamertemplate{frametitle}{tud titlesection}{%
 %  \vskip0.3ex%
-  \color{frametitle}\frame@title@section\insertframetitle\\%
-  \vskip0.3ex\color{text}\small\bfseries\insertframesubtitle%
+  \ifx\insertframetitle\empty
+  \else
+    \usebeamercolor[fg]{section in head/foot}%
+    \usebeamerfont{section in head/foot}%
+    \ifx\insertsection\empty
+      \strut\hfill\\
+    \else 
+      \arabic{section} \insertsection\strut\\
+    \fi
+    \usebeamercolor[fg]{frametitle}%
+    \usebeamerfont{frametitle}%
+    \insertframetitle
+    \ifx\insertframesubtitle\empty
+    \else
+      \strut\\%
+    \fi
+  \fi
+  \ifx\insertframesubtitle\empty
+  \else
+    \vskip0.3ex
+    \usebeamercolor[fg]{framesubtitle}%
+    \usebeamerfont{framesubtitle}%
+    \insertframesubtitle%
+  \fi
+  \strut
+  \usebeamerfont*{normal text}%
 }
 
-\defbeamertemplate{frametitle}{tud notitlesection}{%
-  \vskip6.5mm\color{frametitle}\insertframetitle\\%
-  \vskip0.3ex\color{text}\small\bfseries\insertframesubtitle%
+\defbeamertemplate*{frametitle}{tud notitlesection}{%
+  \ifx\insertframetitle\empty
+  \else
+    \usebeamercolor[fg]{frametitle}%
+    \usebeamerfont{frametitle}%
+    \insertframetitle
+    \ifx\insertframesubtitle\empty
+    \else
+      \\%
+    \fi
+  \fi
+  \ifx\insertframesubtitle\empty
+  \else
+    \vskip0.3ex
+    \usebeamercolor[fg]{framesubtitle}%
+    \usebeamerfont     {framesubtitle}%
+    \insertframesubtitle%
+  \fi
+  \usebeamerfont* {normal text}%
+  \usebeamercolor*{normal text}%
 }
 
-\newcommand\setbeamertemplates{%
-    %\beamertemplateshadingbackground{white}{white}
-    \setbeamercolor{normal text}{bg=white}%
-    \if@useHeader%
-      \setbeamertemplate{headline}[tud header]%
-    \else
-      \setbeamertemplate{headline}[tud noheader]%
-    \fi
+%\beamertemplateshadingbackground{white}{white}
+\setbeamercolor{normal text}{bg=white}%
+\if@useHeader%
+\setbeamertemplate{headline}[tud header]%
+\else
+\setbeamertemplate{headline}[tud noheader]%
+\fi
 
-    \if@usePageNum%
-      \setbeamertemplate{footline}[tud pagenum]%
-    \else
-      \setbeamertemplate{footline}[tud nopagenum]%
-    \fi
+\if@usePageNum%
+\setbeamertemplate{footline}[tud pagenum]%
+\else
+\setbeamertemplate{footline}[tud nopagenum]%
+\fi
 
-    \if@useNoFrameTitleSection
-      \setbeamertemplate{frametitle}[tud notitlesection]%
-    \else
-      \setbeamertemplate{frametitle}[tud titlesection]%
-    \fi
-    \beamer@calculateheadfoot
-}
+\if@useNoFrameTitleSection
+\setbeamertemplate{frametitle}[tud notitlesection]%
+\else
+\setbeamertemplate{frametitle}[tud titlesection]%
+\fi
 
 \renewcommand\maketitle{%
-    %\beamertemplateshadingbackground{darkblue}{darkblue}
-    \setbeamercolor{normal text}{bg=HKS41K100}%
-    % Kopf-/Fusszeile fuer Titel
-    \setbeamertemplate{headline}[tud titlepage]%
-    \setbeamertemplate{footline}[tud titlepage]%
-    \beamer@calculateheadfoot
-    \frame{\titlepage}%
-   % Kopf-/Fusszeilen fuer restliche Folien
-    \setbeamertemplates%
+  %\clearpage
+  \tudsavebeamertemplate{headline}\tud@saveheadline
+  \tudsavebeamertemplate{footline}\tud@savefootline
+  \tudsavebeamercolor{normal text}{normal text}%
+  \tudbeamer@savesizes\tudbeamer@savedsizes
+  %\beamertemplateshadingbackground{darkblue}{darkblue}
+  \setbeamercolor{normal text}{bg=HKS41K100}%
+  % Kopf-/Fusszeile fuer Titel
+  \setbeamertemplate{headline}[tud titlepage]%
+  \setbeamertemplate{footline}[tud titlepage]%
+  \beamer@calculateheadfoot
+  \frame{\titlepage}%
+  % Kopf-/Fusszeilen fuer restliche Folien
+  \tudrestorebeamertemplate{headline}\tud@saveheadline
+  \tudrestorebeamertemplate{footline}\tud@savefootline
+  \tudrestorebeamercolor{normal text}{normal text}%
+  \tudbeamer@savedsizes
+  \beamer@calculateheadfoot
 }
 
 
-% Sprache einstellen
-\AtBeginDocument{%
-%     \ifx\@undefined\if@german%
-%         \newif\if@german                                    % Nutzung des german-Packages ?
-%         \ifx\@undefined\germanTeX\else\@germantrue\fi       % Wenn \(n)germanTeX definiert ist,
-%         \ifx\@undefined\ngermanTeX\else\@germantrue\fi      % ist das (n)german-Package eingebunden
-%         \ifx\@undefined\language\else                       %
-%             \ifnum0=\language\@germanfalse\else\fi          % \language=0  =>  english
-%         \fi                                                 %
-%         \if@useGerman\@germantrue\fi                        % Zur expliziten Nutzung der deutschen Texte (das ngerman-Package wurde automatisch eingebunden)
-%         \if@useNoGerman\@germanfalse\fi                     % Zur expliziten Nutzung der englischen Texte (auch bei vorheriger Einbindung des german-Packages)
-%         \if@german                                          %
-%             \ifx\@undefined\language\else                   %
-%                 \ifnum2<\language\selectlanguage{german}\fi % deutsch gewuenscht, aber andere Sprache eingestellt ??  =>  deutsch
-%                 \ifnum2>\language\selectlanguage{german}\fi %
-%             \fi                                             %
-%             \germannames                                    %
-%             \def\today{\number\day.\,\number\month.\,\number\year}  % Datum im Format DD.MM.YYYY
-%         \else                                               %
-%             \ifx\@undefined\language\else                   %
-%                 \ifnum0<\language\selectlanguage{english}\fi% englisch gewuenscht, aber andere Sprache eingestellt ??  =>  englisch
-%             \fi                                             %
-%             \englishnames                                   %
-%             \def\today{\number\year/\number\month/\number\day}  % Datum im Format YYYY/MM/DD
-%         \fi                                                 %
-%     \fi%
-    \setbeamertemplates%
-    \scriptsize
-}%
 
+\iffalse
 \AtEndDocument{%
     \clearpage
     \beamer@tempcount=\c@page\advance\beamer@tempcount by -1%
@@ -386,3 +543,8 @@
         \immediate\openout\tf@snm\jobname.snm\relax
     \fi%
 }
+\fi
+
+\mode<all>
+%\loggingoutput
+%\errorcontextlines\maxdimen

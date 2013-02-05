@@ -48,7 +48,19 @@ bold for TU Dresden(ts)]
   \@tudfonts@eulermathfalse
 }
 
+\newif\if@tudfonts@heavyfont\@tudfonts@heavyfontfalse
+\DeclareOption{heavyfont}{\@tudfonts@heavyfonttrue}
+
 \ProcessOptions\relax
+
+\def\@if@tudfonts@din#1{%
+  \if@tudfonts@nodin
+    \PackageError{tudfonts}
+    {DIN fonts disabled. Unable to expand \string#1 .}%
+    \expandafter\@gobble
+  \fi
+}
+
 % Fontmaps laden
 \RequirePackage{ifpdf}
 \ifpdf% pdfTEX is running in pdf mode 
@@ -96,6 +108,7 @@ bold for TU Dresden(ts)]
 }
 \if@tudfonts@sansmath
 \newcommand\tudmathsizefactor{1}
+\def\mathfamilydefault{\sfdefault}
 \else
 \newcommand\tudmathsizefactor{7/6}
 \fi
@@ -104,7 +117,12 @@ bold for TU Dresden(ts)]
 %%% Schriftart für Text
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand*{\familydefault}{\sfdefault}
-\renewcommand*{\seriesdefault}{l}
+\if@tudfonts@heavyfont
+   \newcommand*\tudfont@series{m}
+\else
+   \newcommand*\tudfont@series{l}
+\fi
+\let\seriesdefault\tudfont@series
 \renewcommand*{\shapedefault}{n}
 \renewcommand*{\sfdefault}{aun}
 \renewcommand*{\ttdefault}{aun}
@@ -123,10 +141,12 @@ bold for TU Dresden(ts)]
 \tudfonts@deffont{Univers CE 45 Light Oblique}{\fontfamily{aun}\fontseries{l}\slshape}
 \tudfonts@deffont{Univers CE 55}{\fontfamily{aun}\fontseries{m}\normalshape}
 \tudfonts@deffont{Univers CE 55 Oblique}{\fontfamily{aun}\fontseries{m}\slshape}
-\tudfonts@deffont{Din Bold}{\dinBold}
+\tudfonts@deffont{Din Bold}{\@if@tudfonts@din{\tudfont{Din Bold}}{\dinfamily}}
 \newcommand\tudfont[1]{\csname #1\endcsname}
 
-\newcommand*{\dinBold}{\fontfamily{din}\fontseries{b}\selectfont}
+\newcommand*{\tudfamily}{\fontfamily{aun}\fontseries{\tudfont@series}\selectfont}
+\newcommand*{\dinfamily}{\@if@tudfonts@din\dinfamily{\fontfamily{din}\fontseries{b}\selectfont}}
+\newcommand*{\dinBold}{\@if@tudfonts@din\dinBold{\dinfamily}}
 
 % \textbullet aus Encoding TS1 für korrekte horizontale Ausrichtung.
 % Encoding TS1 bereits durch fix-cm.sty verfügbar.
@@ -141,15 +161,27 @@ bold for TU Dresden(ts)]
 % Für Operatoren kann direkt die Schriftart geändert werden, da hier das
 % OT1-Encoding verwendet wird. Dies entspricht der Vorgehensweise in
 % den Paketen sfmath.sty und mathptmx.sty.
-\SetSymbolFont{operators}{normal}{OT1}{aun}{l}{n}
-\SetSymbolFont{operators}{bold}{OT1}{aun}{b}{n}
 
 % Für Buchstaben u.ä. ist aber die Kodierung OML vorgegeben, die nicht
 % für Univers existiert. Man muss also die Buchstaben/Symbole einzeln
 % ändern. (Siehe auch sfmath.sty) Hier wird ein Auszug aus tudbook.cls
 % von Klaus Bergmann wiederverwendet.
+
+  \if@tudfonts@heavyfont
+    \SetSymbolFont{operators}{normal}{OT1}{aun}{m}{n}
+    \DeclareSymbolFont{aunUpright}{T1}{aun}{m}{n}
+    \DeclareSymbolFont{aunLetters}{T1}{aun}{m}{sl}
+  \else 
+    \SetSymbolFont{operators}{normal}{OT1}{aun}{l}{n}
     \DeclareSymbolFont{aunUpright}{T1}{aun}{l}{n}
-    \SetSymbolFont{aunUpright}{bold}{T1}{aun}{b}{n}
+    \DeclareSymbolFont{aunLetters}{T1}{aun}{l}{sl}
+  \fi
+  \SetSymbolFont{operators}{bold}{OT1}{aun}{b}{n}
+  \SetSymbolFont{aunUpright}{bold}{T1}{aun}{b}{n}
+  \SetSymbolFont{aunLetters}{bold}{T1}{aun}{b}{sl}  
+
+
+
     \DeclareMathSymbol{0}{\mathalpha}{aunUpright}{`0}
     \DeclareMathSymbol{1}{\mathalpha}{aunUpright}{`1}
     \DeclareMathSymbol{2}{\mathalpha}{aunUpright}{`2}
@@ -160,8 +192,7 @@ bold for TU Dresden(ts)]
     \DeclareMathSymbol{7}{\mathalpha}{aunUpright}{`7}
     \DeclareMathSymbol{8}{\mathalpha}{aunUpright}{`8}
     \DeclareMathSymbol{9}{\mathalpha}{aunUpright}{`9}
-    \DeclareSymbolFont{aunLetters}{T1}{aun}{l}{sl}
-    \SetSymbolFont{aunLetters}{bold}{T1}{aun}{b}{sl}  
+
     \DeclareMathSymbol{a}{\mathalpha}{aunLetters}{`a}
     \DeclareMathSymbol{b}{\mathalpha}{aunLetters}{`b}
     \DeclareMathSymbol{c}{\mathalpha}{aunLetters}{`c}
@@ -223,8 +254,13 @@ bold for TU Dresden(ts)]
     \DeclareSymbolFontAlphabet{\mathnormal}{aunLetters}
     \DeclareMathAlphabet\mathbf{T1}{aun}{b}{n}
     \SetMathAlphabet\mathbf{bold}{T1}{aun}{b}{n}
-    \DeclareMathAlphabet\mathit{T1}{aun}{l}{sl}
-    \SetMathAlphabet\mathit{bold}{T1}{aun}{l}{sl}
+    \if@tudfonts@heavyfont
+      \DeclareMathAlphabet\mathit{T1}{aun}{m}{sl}
+      \SetMathAlphabet\mathit{bold}{T1}{aun}{m}{sl}
+    \else
+      \DeclareMathAlphabet\mathit{T1}{aun}{l}{sl}
+      \SetMathAlphabet\mathit{bold}{T1}{aun}{l}{sl}
+    \fi
 
     \if@tudfonts@eulermath
     \else
@@ -241,6 +277,7 @@ bold for TU Dresden(ts)]
     \DeclareMathSymbol\Omega  \mathord{letters}{"0A}    
     \fi
 
+    \let\operator@font\sffamily
 % Ende des Auszugs    
 \fi
 

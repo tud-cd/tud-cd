@@ -1,0 +1,614 @@
+#+TITLE:     Beamer-Präsentationen mit dem CD der TU Dresden
+#+AUTHOR:    Tobias Schlemmer
+#+EMAIL:     Tobias.Schlemmer@tu-dresden.de
+#+DATE:      7.\,5.~2012
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  de
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:f
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+#+startup: beamer
+#+startup: indent
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [presentation,t]
+#+BEAMER_FRAME_LEVEL: 3
+##COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+#+BEAMER_HEADER_EXTRA: \usepackage{amsmath}
+#+BEAMER_HEADER_EXTRA: \usepackage{uniinput}
+#+BEAMER_HEADER_EXTRA: \usepackage{amsfonts}
+#+BEAMER_HEADER_EXTRA: \usepackage{tikz}
+#+BEAMER_HEADER_EXTRA: \usepackage[ngerman]{babel}
+#+BEAMER_HEADER_EXTRA: \usetikzlibrary{decorations.pathmorphing}
+#+BEAMER_HEADER_EXTRA: \usetheme[section,navigation,pagenum,ddc]{tud}
+#+BEAMER_HEADER_EXTRA: \useinnertheme[shadow=true]{rounded}
+#+BEAMER_HEADER_EXTRA: %\usetheme{Boadilla}
+#+BEAMER_HEADER_EXTRA: %\usecolortheme{tud}
+#+BEAMER_HEADER_EXTRA: \institut{Institut f\"ur Algebra}%
+#+BEAMER_HEADER_EXTRA: \DeclareMathOperator\Orb{Orb}%
+#+BEAMER_HEADER_EXTRA: \title[TUD-CD mit \LaTeX\ gesetzt]{Beamer-Präsentationen mit dem CD der TU Dresden}
+#+BEAMER_HEADER_EXTRA: \subtitle{TUD-CD mit \LaTeX\ gesetzt}
+#+BEAMER_HEADER_EXTRA: \setbeamerfont{description item}{series=\bfseries}
+#+BEAMER_HEADER_EXTRA: \setbeamertemplate{date/place in footline}[default][T. Schlemmer]
+#+BEAMER_HEADER_EXTRA: \setbeamertemplate{page number in footline}[frame][total]
+#+BEAMER_HEADER_EXTRA: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Topic}\tableofcontents[currentsection]\end{frame}}
+#+BEAMER_HEADER_EXTRA: \setlength{\tudbeamerfooterplacewidth}{0.3\linewidth}%
+#+BEAMER_HEADER_EXTRA: \setlength{\tudbeamerfooterpagenumwidth}{5em}%
+#+BEAMER_HEADER_EXTRA: \makeatletter
+#+BEAMER_HEADER_EXTRA: \setlength{\tudbeamerfootertitlewidth}{\paperwidth-\beamer@leftmargin-\beamer@rightmargin
+#+BEAMER_HEADER_EXTRA:    -\tudbeamerfooterplacewidth-\tudbeamerfooterpagenumwidth}%
+#+BEAMER_HEADER_EXTRA: \makeatother
+#+COLUMNS: %45ITEM %10BEAMER_env(Env) %10BEAMER_envargs(Env Args) %4BEAMER_col(Col) %8BEAMER_extra(Extra)
+#+PROPERTY: BEAMER_col_ALL 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 :ETC
+* Einführung
+** Allgemeines
+*** Geschichte
+- Corporate Design der TU Dresden
+- tudbeamer Klasse (mit vielen Nachteilen)
+- tud-cd-Paket
+- \alert{Konfigurierbarer Beamer-Stil}
+*** CD-Vorgaben (Handbuch)
+- \textcolor{HKS65K100}{Ränder relativ zu Papiergrüße}
+- \textcolor{red}{Schriften in MS Punkt (inkompatible Maßeinheit)}
+- \textcolor{red}{Logoposition fehlt}
+*** Designkriterien
+- Interpretation der Vorgaben
+- Abweichend: HKS Farbschema und Univers
+- Kombinierbar mit \textbackslash useinnertheme\{rounded\}
+- Farbschema mit anderem Layout kombinierbar (partiell implementiert)
+- Alle Stile überschreibbar
+** Benutzung
+*** Beispieldokument                                              :B_example:
+:PROPERTIES:
+:BEAMER_env: example
+:END:
+\textbackslash usepackage[ngerman]\{babel\}\\
+\textbackslash usetheme[section,navigation]\{tud\}\\
+\textbackslash institut{Institut f\"ur Algebra}%
+\textbackslash title[Beispiel]{Langer Title mit Beispiel}
+\textbackslash begin\{document\}\\
+\textbackslash begin\{frame\}\\
+\textbackslash maketitle\\
+\textbackslash end\{frame\}\\
+\textbackslash begin\{frame\}\{Eine Folie\}\\
+Inhalt
+\textbackslash end\{frame\}\\
+\textbackslash end\{document\}\\
+
+* Einstellungen
+** \textbackslash usetheme\{tud\}
+*** Paketoptionen (Schriften)
+- noeulermath :: Benutze keine Euler-Mathematikschriften
+- noDIN :: Titel ohne DIN bold
+- serifmath :: Nutze Computer Modern für Mathematik
+- heavyfont :: Nutze Univers 55 statt Univers 45
+- beamerfont :: Keine Fontänderungen
+*** Paketoptionen (Seitenstruktur)
+- noheader :: Benutze Folien ohne Kopfzeile
+- smallrightmargin :: Schmaler rechter Rand (verletzt CD-Richtlinie
+- pagenum :: Seitenzahlen in der Fußzeile anzeigen
+- section :: mit Abschnittstitel auf jeder Folie
+- navbar :: mit Navigationshilfen
+- ddc :: mit Dresden-Concept-Logo
+- ddcfooter :: mit Dresden-Concept Logo im Fußbereich
+** \textbackslash useoutertheme\{tud\}
+*** Paketoptionen
+- noheader :: Benutze Folien ohne Kopfzeile
+- smallrightmargin :: Schmaler rechter Rand (verletzt CD-Richtlinie
+- pagenum :: Seitenzahlen in der Fußzeile anzeigen
+- section :: mit Abschnittstitel auf jeder Folie
+- navbar :: mit Navigationshilfen
+- ddc :: mit Dresden-Concept-Logo
+- ddcfooter :: mit Dresden-Concept Logo im Fußbereich
+*** Makros
+- \textbackslash einrichtung\{/einrichtung/\} :: Legt die
+ Einrichtung/Fakultät fest
+- \textbackslash fachrichtung\{/Fachrichtung/\} :: Legt die
+ Fachrichtung fest
+- \textbackslash institut\{/Institut/\} :: Legt das
+ Institut fest
+- \textbackslash professur\{/Professur/\} :: Legt die
+ Professur fest
+- \textbackslash datecity\{/Datumsort/\} :: Legt den Ort für den Vortrag fest
+*** Register
+- \textbackslash topmarginnoheader :: Länge, die den Oberen Rand Seitenrand bei
+ Kopflosen Folien angibt.
+- \textbackslash tudbeamerfooterplacewidth :: Länge, die Breite des
+     Datums/Ort/(Autor-)Blockes in der Fußzeile bestimmt
+- \textbackslash tudbeamerfooterpagenumwidth :: Länge, die Platz für
+     die Seitenzahl in der Fußzeilereserviert
+- \textbackslash topmarginnoheader :: Länge, die Platz für den
+     Kurztitel in der Fußzeile reserviert
+*** Vorlagen                                                        :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_envargs: [allowframebreaks]
+:END:
+Vorlangen werden mit 
+#+LaTeX: \textbf{\textbackslash setbeamertemplate\{\emph{Kategorie}\}[\emph{Vorlage}]} 
+gesetzt. Es können neue
+definiert und ausgewählt werden. Weitere Informationen dazu gibt es im
+„Beamer User Guide“ (\texttt{texdoc beamer}).
+**** headline                                                       :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Vorlage für Seitenkopf
+- tud titlepage :: Titelseitenkopf
+- tud header :: normaler Folienkopf
+- tud noheader :: Folienkopf für kopflose Folien
+
+**** date/place in footline                                      :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+- default :: Vorlage für Datum/Ort in Fußzeile mit optionalem Argument
+ für Ort. Standardwert „TU Dresden“.
+
+**** short title in footline                                     :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+- default :: Fügt den Kurztitel in die Fußzeile ein
+
+**** page number in footline                                     :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+\small
+- page :: Setzt die Seitenzahl. Die Form kann als optionaler Parameter
+ übergeben werden. Standardwert „text and total". Für weitere Werte
+ siehe unten, Vorlagen, die mit „page number: “ anfangen (dieser Teil
+ wird automatisch hinzugefügt).
+- frame :: Setzt die Foliennummer. Die Form kann als optionaler Parameter
+ übergeben werden. Standardwert „text and total". Für weitere Werte
+ siehe unten, Vorlagen, die mit „frame number: “ anfangen (dieser Teil
+ wird automatisch hinzugefügt).
+
+*** Vorlagen (Fortsetzung)                                          :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_envargs: [allowframebreaks]
+:END:
+**** page number: text and total                                 :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt Seitenzahl – Sprachauswahl für Nummer und Gesamtzahl.(wird automatisch gesetzt)
+- english :: Englisch
+- german :: Deutsch
+
+**** page number: text                                 :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt Seitenzahl – Sprachauswahl für Nummer.(wird automatisch gesetzt)
+- english :: Englisch
+- german :: Deutsch
+
+**** page number: total                                             :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt Seitenzahl und Gesamtzahl ohne Worte.(wird automatisch gesetzt)
+- default :: Standardeinstellung
+
+**** page number: only                                              :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt Seitenzahl ohne Gesamtzahl ohne Worte.(wird automatisch gesetzt)
+- default :: Standardeinstellung
+
+**** frame number: text and total                                   :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt Foliennummer – Sprachauswahl für Nummer und Gesamtzahl.(wird automatisch gesetzt)
+- english :: Englisch
+- german :: Deutsch
+
+**** frame number: text                                   :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt Foliennummer – Sprachauswahl für Nummer.(wird automatisch gesetzt)
+- english :: Englisch
+- german :: Deutsch
+
+**** frame number: total                                            :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt Foliennummer und Gesamtzahl ohne Worte.(wird automatisch gesetzt)
+- default :: Standardeinstellung
+
+**** frame number: only                                             :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt Foliennummer ohne  Gesamtzahl ohne Worte.(wird automatisch gesetzt)
+- default :: Standardeinstellung
+
+
+**** footline                                                       :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt den Seitenfuß
+
+- tud titlepage :: Fußzeile auf der Titelseite
+- tud pagenum :: Fußzeile mit Seiten- oder Folienzahl entsprechend dem
+   Parameter zu „page number in footline“
+- tud nopagenum :: Fußzeile ohne Seiten- und Folienzahl
+
+**** frametitle                                                  :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt den Folientitel
+- tud titlesection :: Setzt vor dem eigentlichen Titel den
+Abschnittstitel
+- tud notitlesection :: Es wird nur der 
+
+*** Beispiel
+
+  #+BEGIN_LATEX
+    \textbackslash setbeamercolor\{normal text\}\{bg=white\}\\
+    \textbackslash setbeamertemplate\{headline\}[tud header]\\
+    \textbackslash setbeamertemplate\{footline\}[tud pagenum]\\
+    \textbackslash setbeamertemplate\{frametitle\}[tud notitlesection]\\
+  #+END_LATEX
+ 
+
+** \textbackslash usefonttheme\{tud\}
+
+*** Paketoptionen
+- noeulermath :: Benutze keine Euler-Mathematikschriften
+- noDIN :: Titel ohne DIN bold
+- nodin :: Titel ohne DIN bold
+- serifmath :: Nutze Computer Modern für Mathematik
+- heavyfont :: Nutze Univers 55 statt Univers 45
+- beamerfont :: Keine Fontänderungen
+
+*** Makros
+- \textbackslash tudtitlenormalsize :: Ersatz für \textbackslash
+  normalsize auf der Titelseite
+- \textbackslash tudtitlesmall :: Ersatz für \textbackslash small auf der Titelseite
+- \textbackslash tudtitletiny :: Ersatz für \textbackslash tiny auf der Titelseite
+
+Darüberhinaus lädt dieses Paket das Paket „tudfonts“ mit all seinen makros
+
+*** Schriftvorlagen                                               :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_envargs: [allowframebreaks]
+:END:
+Vorlangen werden mit \textbackslash
+setbeamerfont\{/Name/\}\{Werte\} gesetzt. Sie können mit \textbackslash
+usebeamerfont aktiviert werden. Weitere Informationen dazu gibt es im
+„Beamer User Guide“ (\texttt{texdoc beamer}).
+
+Es werden folgende Vorlagen definiert:
+-  \textbackslash setbeamerfont\{itemize/enumerate subbody\} \{size=\textbackslash scriptsize\}
+-  \textbackslash setbeamerfont\{itemize/enumerate subsubbody\} \{size=\textbackslash scriptsize\}
+-  \textbackslash setbeamerfont\{section in head/foot\}\{size=\textbackslash normalsize, family=\textbackslash sffamily\}
+-  \textbackslash setbeamerfont\{frametitle\} \{size=\textbackslash normalsize, family=\textbackslash sffamily\}
+-  \textbackslash setbeamerfont\{framesubtitle\} \{size=\textbackslash
+   small, series=\textbackslash bfseries,family=\textbackslash sffamily\}
+-  \textbackslash setbeamerfont\{footline\} \{size=\textbackslash tiny\}
+-  \textbackslash setbeamerfont\{block title\} \{size=\{\}\}
+-  \textbackslash if@noDIN
+    \textbackslash setbeamerfont\{title\} \{size=\textbackslash
+   @setfontsize\textbackslash LARGE\textbackslash @xviipt\{22\},
+   series=\textbackslash bfseries, family=\textbackslash sffamily\}
+  \textbackslash else
+    \textbackslash setbeamerfont\{title\} \{size=\textbackslash
+   @setfontsize\textbackslash LARGE\textbackslash @xviipt\{22\},
+   series=\textbackslash bfseries, family=\textbackslash dinfamily\}
+  \textbackslash fi
+-  \textbackslash setbeamerfont\{subtitle\} \{series=\textbackslash
+   bfseries, family=\textbackslash sffamily\}
+-  \textbackslash setbeamerfont\{einrichtung/titlepage\}
+   \{size=\textbackslash tudtitletiny, series=\textbackslash bfseries\}
+-  \textbackslash setbeamerfont\{fachrichtung/titlepage\} \{size=\textbackslash tudtitletiny\}
+-  \textbackslash setbeamerfont\{institut/titlepage\} \{parent=fachrichtung/titlepage\}
+-  \textbackslash setbeamerfont\{professur/titlepage\} \{parent=fachrichtung/titlepage\}
+-  \textbackslash setbeamerfont\{date in head/foot/titlepage\} \{size=\textbackslash tudtitlenormalsize\}
+-  \textbackslash setbeamerfont\{author\} \{size=\textbackslash tudtitlesmall\}  
+
+
+
+** \textbackslash usecolortheme\{tud\}
+
+*** Makros
+- \textbackslash darktitlepale :: Stellt eine dunkle Titelseite ein, wie
+vom CD gefordert
+- \textbackslash whitetitlepage :: Titelseite wird weiß (nicht CD-Konform).
+
+Darüberhinaus lädt dieses Paket das Paket „tudcolors“ mit all seinen
+makros und den HKS-Farben (siehe Dokumentation von tudmathposter)
+
+*** Farbvorlagen                                                    :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_envargs: [allowframebreaks]
+:END:
+Farbvorlagen werden mit \textbackslash
+setbeamercolor\{/Name/\}\{Werte\} gesetzt. Sie können mit \textbackslash
+usebeamercolor für die Aktivierung geladen werden. Weitere Informationen dazu gibt es im
+„Beamer User Guide“ (\texttt{texdoc beamer}).
+
+Es werden folgende Vorlagen definiert:
+-  \textbackslash setbeamercolor\{normal text\} \{fg=HKS41K100,bg=white\}
+-  \textbackslash setbeamercolor\{structure\} \{fg=HKS41K100\}
+-  \textbackslash setbeamercolor\{alerted text\} \{fg=HKS44K100\}
+-  \textbackslash setbeamercolor\{alternate palette\} \{fg=HKS92K80\}
+-  \textbackslash setbeamercolor\{date in head/foot\} \{parent=alternate palette\}
+-  \textbackslash setbeamercolor\{title in head/foot\} \{parent=alternate palette\}
+-  \textbackslash setbeamercolor\{page number in head/foot\} \{parent=alternate palette\}
+-  \textbackslash setbeamercolor\{section in head/foot\} \{parent=alternate palette\}
+-  \textbackslash setbeamercolor\{subsection in head/foot\} \{parent=section in head/foot\}
+-  \textbackslash setbeamercolor\{upper separation line head\} \{parent=alternate palette\}
+-  \textbackslash setbeamercolor\{lower separation line head\} \{parent=upper separation line head\}
+-  \textbackslash setbeamercolor\{author in head/foot\} \{parent=section in head/foot\}
+-  \textbackslash setbeamercolor\{title in head/foot\} \{parent=subsection in head/foot\}
+-  \textbackslash setbeamercolor\{logo\} \{use=structure, fg=structure.fg\}
+-  \textbackslash newcommand*\{\textbackslash darktitlepage\}\{%
+  -  \textbackslash setbeamercolor\{normal text/titlepage\} \{fg=white,bg=HKS41K100\}%
+  -  \textbackslash setbeamercolor\{title\} \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{subtitle\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{author/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{headline/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{logo/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{einrichtung/titlepage\}
+     \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{fachrichtung/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{institut/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{professur/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{upper separation line
+     head/titlepage\} \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{lower separation line head/titlepage\}%
+      \{use=upper separation line head/titlepage, fg=upper separation line head/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{date in head/foot/titlepage\}
+     \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash let\textbackslash logo\@ DDC\textbackslash logo\@ DDC\@ white
+  -  \textbackslash let\textbackslash logo\@ DDCf\textbackslash logo\@ DDC\@ whitef
+     \}
+-  \textbackslash newcommand*\{\textbackslash whitetitlepage\}\{%
+  -   \textbackslash setbeamercolor\{normal text/titlepage\}
+      \{use=normal text,fg=normal text.fg, bg=normal text.bg\}
+  - \textbackslash setbeamercolor\{title\} \{use=normal
+    text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{subtitle\} \{use=normal
+     text/titlepagexo, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{author/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{headline/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{logo/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{einrichtung/titlepage\} \{fg=HKS92K100\}%
+  -  \textbackslash setbeamercolor\{fachrichtung/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{institut/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{professur/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{upper separation line
+     head/titlepage\} \{fg=HKS92K100\}%
+  -  \textbackslash setbeamercolor\{lower separation line head/titlepage\}%
+      \{use=upper separation line head/titlepage,fg=upper separation line
+        head/titlepage.fg\}%
+  -  \textbackslash setbeamercolor\{date in head/foot/titlepage\} \{fg=HKS92K100\}%
+  -  \textbackslash let\textbackslash logo\@ DDC\textbackslash logo\@ DDC\@ bunt%
+  -  \textbackslash let\textbackslash logo\@ DDCf\textbackslash logo\@ DDC\@ colorf
+     \}
+-  \textbackslash darktitlepage
+  
+-  \textbackslash setbeamercolor\{block body\} \{use=normal text,
+   fg=normal text.fg, bg=HKS41K10\}
+-  \textbackslash setbeamercolor\{block title\} \{fg=HKS41K100,bg=HKS41K20\}
+-  \textbackslash setbeamercolor\{block body example\} \{use=normal
+   text, fg=normal text.fg, bg=HKS41K10\}
+-  \textbackslash setbeamercolor\{block title example\}
+   \{fg=HKS57K100, bg=HKS41K20\}
+-  \textbackslash setbeamercolor\{block body alerted\} \{use=normal
+   text, fg=normal text.fg, bg=HKS65K10\}
+-  \textbackslash setbeamercolor\{block title alerted\}
+   \{fg=HKS07K100, bg=HKS65K20\}
+
+
+
+** \textbackslash useinnertheme\{tud\}
+
+*** Vorlagen                                                        :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_envargs: [allowframebreaks]
+:END:
+Für die inneren Vorlagen gibt es keine Vorgaben außer für die
+Titelseite.
+**** Verwendete Vorlagen/Makros                                  :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+- \textbackslash beamertemplatedotitem :: siehe beamer-Dokumentation
+- \textbackslash usesubitemizeitemtemplate\{-\/-\} :: siehe
+     beamer-Dokumentation
+- \textbackslash setbeamertemplate\{title page\}[tud] :: stellt das CD
+     der TUD für die Titelseite ein. Dieses Makro wird automatisch mit
+     \textbackslash begin \{document\} aufgerufen.
+
+** Tips:
+*** Fußzeile
+Die Fußzeile sollte die wichtigsten Informationen enthalten, an die
+sich das Publikum erinnern soll. Wenn das TU-Logo im Kopf enthalten
+ist die Angabe „TU Dresden“ redundant.
+
+\textbackslash setbeamertemplate\{date/place in
+footline\}[default][I. Nachname] 
+
+Setzt statt der TU Dresden den Namen
+des Sprechers.
+*** Blöcke mit runden Ecken und Schatten
+**** Aufruf                                                      :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Blöcke wie dieser hier werden mittels 
+
+\textbackslash useinnertheme[shadow=true]\{rounded\}
+
+in der Dokumentpräambel voreingestellt
+** Ein Beispiel    
+*** Eine Beispielfolie                                              
+**** 0.3                                                       :B_columns:
+:PROPERTIES:
+:BEAMER_env: columns
+:END:
+***** 0.3                                                      :B_column:
+:PROPERTIES:
+:BEAMER_env: column
+:END:
+#+BEGIN_LATEX
+  \tikzstyle{automorphismuspfeil}=[->,HKS44K100,decoration={bent,aspect=0.3,amplitude=3},decorate]
+  \tikzstyle{automorphismuspfeil2}=[automorphismuspfeil,decoration={bent,aspect=0.3,amplitude=2}]
+  \begin{tikzpicture}
+  \draw (0,0) node (n0) {0};
+  \draw (-1,1) node (n1) {1};
+  \draw (1,1) node (n2) {2};
+  \draw (-1.5,2) node (n3) {3};
+  \draw (-0.5,2) node (n4) {4};
+  \draw (0.5,2) node (n5) {5};
+  \draw (1.5,2) node (n6) {6};
+  \draw (0,3) node (n7) {7};
+  \draw (n0) -- (n1) -- (n3) -- (n7) -- (n6) -- (n2) -- (n0);
+  \draw (n1) -- (n4) -- (n7) -- (n5) -- (n2);
+  \only<1,2,5,6> {
+    \draw[automorphismuspfeil] (n1) -- (n2);
+    \draw[automorphismuspfeil] (n2) -- (n1); 
+  }
+  \only<3,4>{
+    \draw[automorphismuspfeil] (n3) -- (n4);
+    \draw[automorphismuspfeil] (n4) -- (n3);
+  }
+  \only<5>{
+    \draw[automorphismuspfeil] (n3) -- (n5);
+    \draw[automorphismuspfeil] (n5) -- (n3);
+  }
+  \only<6>{
+    \draw[automorphismuspfeil] (n3) -- (n6);
+    \draw[automorphismuspfeil] (n6) -- (n3);
+  }
+  \only<6>{
+    \draw[automorphismuspfeil2] (n4) -- (n5);
+    \draw[automorphismuspfeil2] (n5) -- (n4);
+  }
+  \only<5>{
+    \draw[automorphismuspfeil] (n4) -- (n6);
+    \draw[automorphismuspfeil] (n6) -- (n4);
+  }
+  \only<3,4>{
+    \draw[automorphismuspfeil] (n5) -- (n6);
+    \draw[automorphismuspfeil] (n6) -- (n5);
+  }
+  \only<1>{
+    \draw[automorphismuspfeil] (n3) -- (n5);
+    \draw[automorphismuspfeil2] (n5) -- (n4);
+    \draw[automorphismuspfeil] (n4) -- (n6);
+    \draw[automorphismuspfeil] (n6) -- (n3);
+  }
+  \only<2>{
+    \draw[automorphismuspfeil] (n3) -- (n6);
+    \draw[automorphismuspfeil] (n6) -- (n4);
+    \draw[automorphismuspfeil2] (n4) -- (n5);
+    \draw[automorphismuspfeil] (n5) -- (n3);
+  }
+  \end{tikzpicture}
+  
+#+END_LATEX
+***** Beschreibung                                        :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_envargs: c<1-7>
+:BEAMER_col: 0.7
+:END:
+
+Eine Tabelle
+
+#+BEAMER: {}\uncover<2->{\tiny %}
+|------------------+-----+-----+-----+-----+-----+-----+-----+-----|
+|                  | $1$ | $a$ | $b$ | $c$ | $d$ | $e$ | $f$ | $g$ |
+|------------------+-----+-----+-----+-----+-----+-----+-----+-----|
+| $1=(1)$          | $1$ | $a$ | $b$ | $c$ | $d$ | $e$ | $f$ | $g$ |
+| $a=(34)$         | $a$ | $1$ | $c$ | $b$ | $g$ | $f$ | $e$ | $d$ |
+| $b=(56)$         | $b$ | $c$ | $1$ | $a$ | $f$ | $g$ | $d$ | $e$ |
+| $c=(34)(56)$     | $c$ | $b$ | $a$ | $1$ | $e$ | $d$ | $g$ | $f$ |
+| $d=(12)(35)(46)$ | $d$ | $f$ | $g$ | $e$ | $1$ | $c$ | $a$ | $b$ |
+| $e=(12)(36)(45)$ | $e$ | $g$ | $f$ | $d$ | $c$ | $1$ | $b$ | $a$ |
+| $f=(12)(3546)$   | $f$ | $d$ | $e$ | $g$ | $b$ | $a$ | $c$ | $1$ |
+| $g=(12)(3645)$   | $g$ | $e$ | $d$ | $f$ | $a$ | $b$ | $1$ | $c$ |
+|------------------+-----+-----+-----+-----+-----+-----+-----+-----|
+#+BEAMER: }
+
+
+* Minimal agierende Automorphismen
+** Quasiordnung der Automorphismen
+*** Ein Satz mit Beweis
+**** Quasiordnung                                              :B_theorem:
+:PROPERTIES:
+:BEAMER_env: theorem
+:BEAMER_envargs: <1->
+:END:
+Sei $G\leq \mathfrak{Aut}(M,\leq)$ eine Untergruppe der geordneten
+Menge $(M,\leq)$. Dann ist die Relation ${\sqsubseteq}\subseteq
+G\times G$ mit 
+\[
+g\sqsubseteq h :\Leftrightarrow ∀u∈\Orb(〈g〉)∃U'∈\Orb(〈h〉)\text{ und }U\subseteq U'
+\]
+eine Quasiordnung.
+
+**** Beweis                                              :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: proof
+:BEAMER_envargs: <1>
+:END:
+1. Reflexiv: $\Orb(〈g〉) = \Orb(〈g〉)$
+2. Transitiv: 
+#+BEGIN_LATEX
+  \[
+  \begin{matrix}∀U∈\Orb(〈g〉)∃U'∈\Orb(〈h〉): U\subseteq U'\\
+    ∀V∈\Orb(〈h〉)∃V'∈\Orb(〈i〉): V\subseteq V'
+  \end{matrix}\quad ⇒\quad ∃U''∈\Orb(〈f〉): U\subseteq U''.
+  \]\vspace{-0.25\baselineskip}
+#+END_LATEX
+*** Beispielfolie                                               :B_example:
+:PROPERTIES:
+:BEAMER_env: example
+:END:
+**** Beispieltitel                                             :B_example:
+:PROPERTIES:
+:BEAMER_env: example
+:END:
+ mal sehen, was wird
+**** Block hervorgehoben                                    :B_alertblock:
+:PROPERTIES:
+:BEAMER_env: alertblock
+:END:
+Inhalt
+

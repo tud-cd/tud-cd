@@ -3,15 +3,37 @@ corporate design inner theme]
 \beamertemplatedotitem
 \usesubitemizeitemtemplate{--}
 
-%\def\today{\number\day.\,\number\month.\,\number\year}
+\mode<presentation>
 
-\addtobeamertemplate{block end}{}{\colorlet{structure}{text}}
-\let\@oldendbeamerboxesrounded\endbeamerboxesrounded
-\def\endbeamerboxesrounded{%
-  \@oldendbeamerboxesrounded
-  \setbeamercolor{structure}{fg=text,bg=white}%
-  \usebeamercolor{normal text}%
-  \color{fg}%
-  \colorlet{beamerstructure}{text}
-  \colorlet{beamerstructure}{text}
-} 
+%\useinnertheme[shadow=true]{rounded}
+
+% Faktor zur PPT-Vorlage: / 0,1984375      * 5,04
+\defbeamertemplate*{title page}{tud}{%
+  \usebeamercolor{normal text/titlepage}%
+  \usebeamerfont{normal text/titlepage}%
+    \vfill%
+    {%
+      %\renewcommand\baselinestretch{1}%
+      \usebeamerfont*{title}%
+      \usebeamercolor[fg]{title}%
+      \expandafter\setlength\expandafter\baselineskip{\f@size pt*\ratio{10pt}{10pt}}%
+      \MakeUppercase{\inserttitle}\par%
+    }\vfill%
+    {%
+      \ifx\insertsubtitle\empty
+      \else
+        \usebeamerfont*{subtitle}%
+        \usebeamercolor[fg]{subtitle}%
+        \insertsubtitle
+        \vfill
+      \fi%
+      \usebeamerfont*{author}%
+      \usebeamercolor[fg]{author/titlepage}%
+      \insertauthor
+    }%
+    \vfill\vfill%
+}
+
+\AtBeginDocument{\setbeamertemplate{title page}[tud]}
+
+\mode<all>
