@@ -23,7 +23,7 @@
 %% v0.4) - Optionaler blauer Hintergrund im Inhaltsbereich.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{tudmathposter}[2010/09/09 v1.6 TU Dresden Matheposter Tobias.Schlemmer@mailbox.tu-dresden.de]
+\ProvidesClass{tudmathposter}[2010/09/21 v1.7 TU Dresden Matheposter Tobias.Schlemmer@mailbox.tu-dresden.de]
 
 \newif\if@tudposter@bluebg\@tudposter@bluebgfalse
 \DeclareOption{bluebg}{\@tudposter@bluebgtrue}
@@ -590,7 +590,8 @@
 \fachrichtung{Fachrichtung Mathematik}
 \homepage{http://tu-dresden.de/mathematik}
 %\drittlogo{\colorbox{white}{\includegraphics[height=5\baselineskip]{DDC-01.pdf}}}
-\drittlogo{\includegraphics[page=3,height=\drittlogoheight]{DDC_Logo_BB.pdf}}
+%\drittlogo{\includegraphics[page=3,height=\drittlogoheight]{DDC_Logo_BB.pdf}}
+\drittlogofile{DDC-graublau.pdf}
 \pagestyle{tudposter}
 \normalsize
 \fi 

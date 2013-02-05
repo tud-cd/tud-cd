@@ -1,3 +1,12 @@
+%% Copyright (c) 2010
+%% Tobias Schlemmer and any individual authors listed elsewhere in this file.
+%% 
+%% This file is part of the TU Dresden Corporate Design bundle.
+%% ---------------------------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project
+%% Public License in the version distributed, see file `lppl.txt' or
+%% `lppl-de.txt'.
 \ProvidesFile{%
   tudsizeold36pt.clo%
 }[2010/09/09 v1.6 old font size option 36pt]
