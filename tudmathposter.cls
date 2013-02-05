@@ -80,6 +80,7 @@
 \newcommand*\@fusszeile{}
 \newcommand*\@telefon{}
 \newcommand*\@fax{}
+\newcommand*\@email{}
 \newcommand*\@homepage{http://www.math.tu-dresden.de/}
 \newcommand*\@zweitlogo{}
 \newcommand*\@drittlogo{}
@@ -92,6 +93,7 @@
 \newcommand*{\professur}[1]{\renewcommand*{\@professur}{#1}}
 \newcommand{\fusszeile}[1]{\renewcommand*{\@fusszeile}{#1}}
 \newcommand*{\telefon}[1]{\renewcommand*{\@telefon}{#1}}
+\newcommand*{\email}[1]{\renewcommand*{\@email}{#1}}
 \newcommand*{\fax}[1]{\renewcommand*{\@fax}{#1}}
 \newcommand*{\homepage}[1]{\renewcommand*{\@homepage}{#1}}
 \newcommand*{\zweitlogo}[1]{%
@@ -330,7 +332,8 @@
   \setlength{\evensidemargin}{\oddsidemargin}
   % -2in wegen globaler Verschiebung in \oddsidemargin
   \setlength{\textwidth}{\paperwidth-\tudposter@lmargin-\tudposter@rmargin-2\tudposter@cutborder}
-  \setlength{\tudposter@institutslogopos}{\textwidth-\tudposter@footheight}
+%  \setlength{\tudposter@institutslogopos}{\textwidth-\tudposter@footheight}
+   \setlength{\tudposter@institutslogopos}{500mm}
 }
 \tudposter@calclayout
 \if@mathevorgabe
@@ -567,7 +570,6 @@
 \newcommand\footcolumn[2]{\expandafter\def\csname
   tudposter@footleftcolumn#1\endcsname{#2}}
 \footcolumn1{%
-    Kontakt\\
     \strut Technische Universit\"at Dresden\\
     \ifx\@einrichtung\@empty\else\strut \@einrichtung\\\fi
     \ifx\@fachrichtung\@empty\else\strut \@fachrichtung\\\fi
@@ -579,14 +581,35 @@
   \strut 01062 Dresden\\
   \ifx\@telefon\@empty
   \else \strut Tel.:~\@telefon\\\fi
-  \ifx\@fax\@empty\else\strut Fax:~\@fax\\\fi
+  \ifx\@email\@empty\else\strut\@email\\\fi
   \ifx\@homepage\@empty\else\vfill\strut \rlap{\@homepage}\fi
 }
 
 % Initialisierung des Textbereiches
 \setcounter{secnumdepth}{0}
 \if@mathevorgabe
-\einrichtung{Fakult\"at f\"ur Mathematik und Naturwissenschaften}
+\def\tud@endchk@einrichtung{\tud@endchk@einrichtung}%
+\def\tud@chk@einrichtung#1 #2 #3 #4\tud@endchk@einrichtung{%
+	\edef\@tempa{#2}%
+	\edef\@tempb{f\"ur}
+	\ifx\@tempa\@tempb
+		\edef\@tempa{#3}%
+		\edef\@tempb{Mathematik}%
+		\ifx\@tempa\@tempb
+			\ClassError{tudmathposter}{Die Fakultät heißt \MessageBreak\MessageBreak
+				„Fakultät Mathematik und Naturwissenschaften”, \MessageBreak
+				\space\space\space\space\space\space\space\space nicht \MessageBreak
+				„Fakultät für Mathematik und Naturwissenschaften“.\MessageBreak\MessageBreak
+				Bitte Kommentieren Sie den \MessageBreak
+				Aufruf von \string\einrichtung \space aus}
+		\fi
+	\fi
+}
+\einrichtung{Fakult\"at Mathematik und Naturwissenschaften}
+\def\einrichtung#1{%
+	\tud@chk@einrichtung#1   \tud@endchk@einrichtung%
+	\def\@einrichtung{#1}%
+}
 \fachrichtung{Fachrichtung Mathematik}
 \homepage{http://tu-dresden.de/mathematik}
 %\drittlogo{\colorbox{white}{\includegraphics[height=5\baselineskip]{DDC-01.pdf}}}

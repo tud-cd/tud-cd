@@ -98,9 +98,10 @@ FORM,ROOT,MIDICHANNEL,KEY,ELSE},
 % Beschriftung im Seitenkopf und Seitenfuß
 \institut{Institut für Algebra}
 \professur{Professur für \TeX nische Algebra}
-\author{T. Schlemmer, M. Behrisch und D. Borchmann}% Zum Beispiel für Kontaktdaten.
+\author{T. Schlemmer, M. Behrisch und D. Borchmann\\\strut}% Zum Beispiel für Kontaktdaten.
 \telefon{0351 463-35078}
 \fax{0351 463-\dots}
+\email{Tobias.Schlemmer@mailbox.tu-dresden.de}
 \homepage{\small\url{http://www.math.tu-dresden.de/~schlemme/tudmathposter/}}
 % Folgende Zeile ist nicht CD-konform
 \institutslogofile{mathelogo}
@@ -240,6 +241,23 @@ Din Bold
 \title{Updates III (Seiten \pageref{Updanfang} bis \pageref{Updende})}%
 \subtitle{Änderungen an der Klasse für die neue Version}
 \maketitle
+\section{Version 1.8 (15.\,10.~2010)}
+\begin{multicols}2
+\begin{itemize}
+\item Absicherung des korrekten Fakultätsnamens
+\item Schriftgrößen sind jetzt auch mit älteren Koma"=Skript"=Klassen kompatibel
+\item Neues Fußzeilenfeld \textbf{\textbackslash email}
+\item Offizielle Vorgaben für den Fußbereich wurden umgesetzt:
+	\begin{itemize}
+	\item 	Die \textbf{linke Spalte} enthält Hochschule, Einrichtung, Fachrichtung, Institut und 		Professur. 
+		Institut und Professur sollten mit \textbf{\textbackslash institut} und 		\textbf{\textbackslash professur} gesetzt werden. Die restlichen, Einrichtung und 		Fachrichtung, werden automatisch gesetzt.
+	\item 	Die \textbf{rechte Spalte} ist frei wählbar, und kann alternativ mit den vorgegebenen Variablen \textbf{\textbackslash author}, \textbf{\textbackslash telefon}, \textbf{\textbackslash email} und \textbf{\textbackslash homepage} oder mit einem frei gewählten Absatz (\textbf{\textbackslash footcolumn2}) gefüllt werden.
+	
+	\textbf{Hinweis:} Wenn sich die Homepage mit dem Institutslogo überschneidet, kann jedes beliebige Feld mit Zeilenumbrüchen vertikal erweitert werden. Dazu können die üblichen Makrokombinationen wie \textbackslash\textbackslash\ für den Zeilenumbruch und \textbackslash strut zum Erzeugen von Inhalt für eine leere Zeile genutzt werden.
+	\end{itemize}
+	\item Das Institutslogo erhält seine endgültige Position.
+\end{itemize}
+\end{multicols}
 \section{Version 1.7 (21.\,09.~2010)}
 \begin{multicols}2
 Neues Dresden-Concept-Logo (voraussichtlich Endfassung)

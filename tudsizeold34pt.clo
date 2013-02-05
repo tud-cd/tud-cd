@@ -9,9 +9,11 @@
 %% `lppl-de.txt'.
 \ProvidesFile{%
   tudsizeold34pt.clo%
-}[2010/09/09 v1.6 old font size option]
+}[2010/10/07 v1.8 old font size option]
 
-\input{scrsize11pt.clo}
+\InputIfFileExists{scrsize11pt.clo}{}{%
+	\input{tudsizeold11pt.clo}
+}
 
 \renewcommand{\tiny}{\@setfontsize\tiny{16.4}{19.678}}
 \renewcommand{\scriptsize}{\@setfontsize\scriptsize{19.678}{23.618}}   
