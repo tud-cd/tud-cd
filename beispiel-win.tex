@@ -26,6 +26,7 @@
 \usepackage{multicol}
 \usepackage{tikz}
 \usepackage{amsmath}
+\usepackage{url}
 %\usepackage{tabularx}
 
 % Beschriftung im Seitenkopf und Seitenfuß
@@ -34,8 +35,7 @@
 \author{T. Schlemmer, M. Behrisch und D. Borchmann}% Zum Beispiel für Kontaktdaten.
 \telefon{0351 463-35078}
 \fax{0351 463-\dots}
-\homepage{http://www.math.tu-dresden.de/\textasciitilde schlemme/tudmathposter/}
-
+\homepage{\url{http://www.math.tu-dresden.de/~schlemme/tudmathposter/}}
 
 \title{Die Dokumentklasse „tudmathposter“}
 \subtitle{Eine \LaTeX klasse für die Evaluationsposter}
@@ -63,7 +63,7 @@ documentclass[noDIN,a0paper,Mathematik]\{tudmathposter\}}
 
 Die Klassenoptionen sind mit anzugeben. Andernfalls fällt die Klasse
 in einigen Einstellungen auf das Standard-CD der TUD zurück.
-\subsection{neue Kommandos}
+\subsection{Neue Kommandos}
 \begin{description}
 \item[\textbackslash tudfont\{font\}] wählt eine der Univers-Varianten
   der TUD (siehe Tab. \ref{tab:schriften}aus. Hinweis: Der Schriftschnitt „Univers 45 Light Bold“
@@ -118,7 +118,7 @@ Din Bold
 \end{table}
 
 \begin{multicols}2
-  \centersubsection{weitere Makros}
+  \centersubsection{Weitere Makros}
   Eine ganze Reihe von weiteren Kommandos kann benutzt werden, um
   die Üblichen Angaben zu machen. Die Namen sollten selbsterklärend
   sein.
@@ -164,7 +164,8 @@ Din Bold
   Schlemmer angepasst. Die Autoren stehen für Fragen bereit.
 \end{multicols}
 \pagebreak
-\title{Updates}
+\fax{}%
+\title{Updates}%
 \subtitle{Änderungen an der Klasse für die neue Version}
 \maketitle
 \section{Version 1.1 (09.\,07.~2010)}
@@ -198,8 +199,16 @@ Din Bold
     \caption{Erweiterungen}
   \end{tablehere}
 \end{multicols}
+\section{Version 1.2 (11.\,07.~2010)}
+\begin{multicols}2
+\subsection{Korrekturen}
+Verbesserter Zeilenumbruch im Fußbereich, wenn nur Telefonnummer oder nur Faxnummer angegeben sind (incl. Demonstration)
+\subsection{Erweiterungen}
+Demonstration der Nutzung vom Paket „url“ für die Angabe der Homepage
+\end{multicols}
 \pagebreak
-\title{Beispiel}
+\fax{nur Tel.: 0351 463-35078}%
+\title{Beispiel}%
 \maketitle
 \centersubsection{Überschrift 2}
 
@@ -234,6 +243,8 @@ p^2=+\begin{pmatrix} a_1 &a_2\\a_3&a_4\end{pmatrix} =
   Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
 \end{multicols}
 \pagebreak
+\homepage{http://www.math.tu-dresden.de/\textasciitilde schlemme/tudmathposter/}
+\telefon{}%
 \title{2. Plakat}%
 \subtitle{testausgaben}%
 \maketitle

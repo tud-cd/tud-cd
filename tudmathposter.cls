@@ -589,8 +589,12 @@
     \strut\hfill\\
     \ifx\@author\@empty\else\strut\@author\\\fi
     \strut 01062 Dresden\\
-    \ifx\@telefon\@empty\else\strut Tel.:~\@telefon\ifx\@fax\@empty\else{} / \fi\fi
-    \ifx\@fax\@empty\else Fax:~\@fax\\\fi
+    \ifx\@telefon\@empty
+    \else
+      \strut Tel.:~\@telefon
+      \ifx\@fax\@empty\\\else{} / \fi
+    \fi
+    \ifx\@fax\@empty\else\strut Fax:~\@fax\\\fi
     \ifx\@homepage\@empty\else\strut \@homepage \fi
   }%
   \hfill\raisebox{-4\baselineskip}{\includegraphics[height=5\baselineskip]{mathelogo.pdf}}
