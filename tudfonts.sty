@@ -30,8 +30,11 @@
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
-\ProvidesPackage{tudfonts}[\filedate\space\fileversion]
-\typeout{Package: `tudfonts' \fileversion\space <\filedate> (ts)}
+\ProvidesPackage{tudfonts}[\filedate\space\fileversion\space Univers and DIN
+bold for TU Dresden(ts)]
+
+\let\auskommentiert\iffalse
+
 
 \newif\if@tudfonts@eulermath\@tudfonts@eulermathtrue
 \DeclareOption{noeulermath}{\@tudfonts@eulermathfalse}
@@ -105,7 +108,7 @@
 \renewcommand*{\shapedefault}{n}
 \renewcommand*{\sfdefault}{aun}
 \renewcommand*{\ttdefault}{aun}
-\renewcommand*{\rmdefault}{aun}% Required for package: url
+%\renewcommand*{\rmdefault}{aun}% Required for package: url
 \normalfont
 
 % Definitionen der Originalfontnamen
@@ -132,7 +135,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Schriftart für Mathematisches
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \if@tudfonts@sansmath
 % Serifenlose Schrift für Variablen und anderes.
@@ -257,8 +259,6 @@
   \def\bigg{\bBigg@\tw@}%
   \def\Bigg{\bBigg@{2.5}}%
 }
-
-
 
 % Korrekte Symbolgrößen
 \DeclareFontFamily{OMX}{lmex}{}

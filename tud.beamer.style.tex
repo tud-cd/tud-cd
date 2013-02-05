@@ -1,0 +1,72 @@
+\usepackage{xcolor}
+\usepackage{listings}
+\usetheme[pagenum,navbar]{tud}
+\title{Ein Beamer-Stil für die TU Dresden}
+\author{Tobias Schlemmer}
+\begin{document}
+\maketitle
+\frame{\tableofcontents}
+\section{Einführung}
+\begin{frame}
+
+Für das Corporate Design der TU Dresden gibt es seit geraumer Zeit eine Präsentationsklasse zum Erstellen von \LaTeX{}"=Dokumenten mit Hilfe von Beamer. Leider gab es bei dieser Klasse immer wieder Probleme im Zusammenspiel mit anderen Paketen. Dies führte dazu, dass sich nach und nach der vorliegende Beamerstil entwickelt hat. Er versucht einige der Probleme der Klasse auszugleichen:
+  \begin{block}{Nachteile von tudbeamer.cls}
+    \begin{itemize}
+    \item Keine Benutzung von beamerarticle.sty möglich
+    \item Lädt veraltetes Paket ngerman.sty und provoziert Inkompatibilitäten
+    \item Benutzt Tabellen für das Layout und beißt sich mit xcolor.sty und colortbl.sty
+    \item Fehlerhafter Zeilenabstand zwischen vorletzter und letzter Titelzeile
+    \item Monolithisch: Arbeit an Fonts und Layout doppelt sich – schwer zu warten.
+    \item Falscher unterer und rechter Rand
+    \end{itemize}
+  \end{block}
+  Wir wollen hier aber nicht die Arbeit anderer schlecht reden, sondern in die Benutzung einführen.
+\end{frame}
+
+\section{Benutzung}
+\begin{frame}{Einbindung}
+  Die Klasse kann einfach eingebunden werden:
+  \begin{block}{}
+    \texttt{\textbackslash usetheme\{tud\}}
+  \end{block}
+  Und schon erscheint die Präsentation im Corporate Design der TU Dresden. 
+
+  Das CD"=Handbuch enthält zu wenig brauchbare Vorgaben, um ein ganz einheitliches Layout vorzugeben. Das ist sicherlich teilweise beabsichtigt. Insofern gibt es auch verschiedene Optionen, mit denen das Layout angepasst werden kann. Die meisten wurden von tudbeamer.cls geerbt. Die beiden Optionen „nogerman“ und „german“ entfallen. Verwenden Sie stattdessen bitte
+  \begin{block}{}
+    \textbackslash usepakage[ngerman]\{babel\}
+  \end{block}
+  für Ihren Deutschen Text. Das Paket (n)german.sty ist veraltet und zu einigen Paketen inkompatibel.
+  \end{frame}
+\begin{frame}{Klassenoptionen}
+  \begin{description}
+    \item[heavyfont] Stärkere Schriften
+    \item[nodin] Lade keine {\dinfamily DIN bold}
+    \item[beamerfont] Keine TU"=Schriften
+    \item[serifmath] Benutze die forgegebene Serifenschrift für mathematische Formeln
+    \item[noheader] Keine Kopfzeile mit Logo (außer Titelseite)
+    \item[smallrightmargin] Benutze verrigerten rechten Rand von tudbeamer.cls
+    \item[pagenum] Seitennummern in der Fußzeile
+    \item[nosectionnum] Keine Abschnittsnummern in Folienüberschriften
+    \item[navbar] Navigationszeile
+    \item[ddc] Logo von Dresden Concept als Zweitlogo auf der Titelseite (benötigt Logo"=Datei von tudbeamer.cls) 
+    \item[ddcfooter] Logo von Dresden Concept in der Fußzeile der Titelseite (benötigt Logo"=Datei von tudbeamer.cls)
+  \end{description}
+\end{frame}
+\begin{frame}{Schlussbemerkungen}
+  Darüber hinaus gibt es wenig zu bemerken. 
+
+  Ach ja, die Titelseite erzeugen Sie mit \textbackslash maketitle.
+
+  \vfill
+  \begin{block}{}
+    \centerline{\huge\textbf{Viel Spaß!}}
+  \end{block}
+  \vfill
+  P.S.: Die Beigelegte Präsentation ist ein Beispiel für die Verwendung der Klasse, aber als Präsentation völlig ungeeignet. Tipps für Ihre Präsentation können sie u.\,a.\ der Datei beameruserguide.pdf ihrer \TeX"=Installation entnehmen.
+\end{frame}
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

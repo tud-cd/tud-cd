@@ -1,0 +1,121 @@
+\ProvidesPackage{beamerfontthemetud}[2011/01/17 v1 TU Dresden font
+theme for Beamer class]
+
+\newif\if@useHeavyFont\@useHeavyFontfalse
+\DeclareOptionBeamer{heavyfont}{\@useHeavyFonttrue}
+
+\newif\if@noDIN\@noDINfalse
+\DeclareOptionBeamer{nodin}{\@noDINtrue}
+
+%\newif\if@useBeamerFont\@useBeamerFontfalse
+%\DeclareOption{beamerfont}{\@useBeamerFonttrue}
+
+\newif\if@sansmath\@sansmathtrue
+\DeclareOptionBeamer{serifmath}{\@sansmathfalse}
+\ProcessOptionsBeamer
+
+% Schriftspezifische Definitionen
+%\if@useBeamerFont\else%
+    \renewcommand*\encodingdefault{OT1}
+    \renewcommand*\familydefault{aun}
+    \renewcommand*\bfseries{\fontseries{b}\selectfont}
+    \if@useHeavyFont\renewcommand*\seriesdefault{m}\else\renewcommand*\seriesdefault{l}\fi
+    \renewcommand*\shapedefault{n}
+    \renewcommand*\sfdefault{aun}
+    %\renewcommand*{\sffamily}{\not@math@alphabet\sffamily\mathsf\fontfamily{aun}\selectfont}
+    %\renewcommand*{\ttfamily}{\fontfamily{\ttdefault}\fontseries{\mddefault}\selectfont}
+    \renewcommand*\ttfamily{\not@math@alphabet\ttfamily\mathtt\fontfamily\ttdefault\fontseries\mddefault\selectfont}
+    %\DeclareRobustCommand\dindefault{din}
+    \newcommand*{\dinfamily}{\fontencoding{OT1}\fontfamily{din}\fontseries{b}\selectfont}
+    %\DeclareRobustCommand\dinfamily{\not@math@alphabet\sffamily\mathsf\fontfamily\dindefault\selectfont}
+%\fi
+
+\if@sansmath
+    \DeclareSymbolFont{aunLetters}{T1}{aun}{l}{sl}
+    \SetSymbolFont{aunLetters}{bold}{T1}{aun}{b}{sl}
+    \DeclareSymbolFont{aunOperators}{T1}{aun}{l}{n}
+    \SetSymbolFont{aunOperators}{bold}{T1}{aun}{b}{n}
+    
+    \DeclareMathSymbol{a}{\mathalpha}{aunLetters}{`a}
+    \DeclareMathSymbol{b}{\mathalpha}{aunLetters}{`b}
+    \DeclareMathSymbol{c}{\mathalpha}{aunLetters}{`c}
+    \DeclareMathSymbol{d}{\mathalpha}{aunLetters}{`d}
+    \DeclareMathSymbol{e}{\mathalpha}{aunLetters}{`e}
+    \DeclareMathSymbol{f}{\mathalpha}{aunLetters}{`f}
+    \DeclareMathSymbol{g}{\mathalpha}{aunLetters}{`g}
+    \DeclareMathSymbol{h}{\mathalpha}{aunLetters}{`h}
+    \DeclareMathSymbol{i}{\mathalpha}{aunLetters}{`i}
+    \DeclareMathSymbol{j}{\mathalpha}{aunLetters}{`j}
+    \DeclareMathSymbol{k}{\mathalpha}{aunLetters}{`k}
+    \DeclareMathSymbol{l}{\mathalpha}{aunLetters}{`l}
+    \DeclareMathSymbol{m}{\mathalpha}{aunLetters}{`m}
+    \DeclareMathSymbol{n}{\mathalpha}{aunLetters}{`n}
+    \DeclareMathSymbol{o}{\mathalpha}{aunLetters}{`o}
+    \DeclareMathSymbol{p}{\mathalpha}{aunLetters}{`p}
+    \DeclareMathSymbol{q}{\mathalpha}{aunLetters}{`q}
+    \DeclareMathSymbol{r}{\mathalpha}{aunLetters}{`r}
+    \DeclareMathSymbol{s}{\mathalpha}{aunLetters}{`s}
+    \DeclareMathSymbol{t}{\mathalpha}{aunLetters}{`t}
+    \DeclareMathSymbol{u}{\mathalpha}{aunLetters}{`u}
+    \DeclareMathSymbol{v}{\mathalpha}{aunLetters}{`v}
+    \DeclareMathSymbol{w}{\mathalpha}{aunLetters}{`w}
+    \DeclareMathSymbol{x}{\mathalpha}{aunLetters}{`x}
+    \DeclareMathSymbol{y}{\mathalpha}{aunLetters}{`y}
+    \DeclareMathSymbol{z}{\mathalpha}{aunLetters}{`z}
+    \DeclareMathSymbol{A}{\mathalpha}{aunLetters}{`A}
+    \DeclareMathSymbol{B}{\mathalpha}{aunLetters}{`B}
+    \DeclareMathSymbol{C}{\mathalpha}{aunLetters}{`C}
+    \DeclareMathSymbol{D}{\mathalpha}{aunLetters}{`D}
+    \DeclareMathSymbol{E}{\mathalpha}{aunLetters}{`E}
+    \DeclareMathSymbol{F}{\mathalpha}{aunLetters}{`F}
+    \DeclareMathSymbol{G}{\mathalpha}{aunLetters}{`G}
+    \DeclareMathSymbol{H}{\mathalpha}{aunLetters}{`H}
+    \DeclareMathSymbol{I}{\mathalpha}{aunLetters}{`I}
+    \DeclareMathSymbol{J}{\mathalpha}{aunLetters}{`J}
+    \DeclareMathSymbol{K}{\mathalpha}{aunLetters}{`K}
+    \DeclareMathSymbol{L}{\mathalpha}{aunLetters}{`L}
+    \DeclareMathSymbol{M}{\mathalpha}{aunLetters}{`M}
+    \DeclareMathSymbol{N}{\mathalpha}{aunLetters}{`N}
+    \DeclareMathSymbol{O}{\mathalpha}{aunLetters}{`O}
+    \DeclareMathSymbol{P}{\mathalpha}{aunLetters}{`P}
+    \DeclareMathSymbol{Q}{\mathalpha}{aunLetters}{`Q}
+    \DeclareMathSymbol{R}{\mathalpha}{aunLetters}{`R}
+    \DeclareMathSymbol{S}{\mathalpha}{aunLetters}{`S}
+    \DeclareMathSymbol{T}{\mathalpha}{aunLetters}{`T}
+    \DeclareMathSymbol{U}{\mathalpha}{aunLetters}{`U}
+    \DeclareMathSymbol{V}{\mathalpha}{aunLetters}{`V}
+    \DeclareMathSymbol{W}{\mathalpha}{aunLetters}{`W}
+    \DeclareMathSymbol{X}{\mathalpha}{aunLetters}{`X}
+    \DeclareMathSymbol{Y}{\mathalpha}{aunLetters}{`Y}
+    \DeclareMathSymbol{Z}{\mathalpha}{aunLetters}{`Z}
+
+    \DeclareMathSymbol{,}{\mathpunct}{aunLetters}{`,}
+    \DeclareMathSymbol{.}{\mathord}{aunLetters}{`.}
+    \DeclareMathSymbol{/}{\mathord}{aunLetters}{`/}
+
+    \DeclareMathSymbol{0}\mathalpha{aunOperators}{"30}
+    \DeclareMathSymbol{1}\mathalpha{aunOperators}{"31}
+    \DeclareMathSymbol{2}\mathalpha{aunOperators}{"32}
+    \DeclareMathSymbol{3}\mathalpha{aunOperators}{"33}
+    \DeclareMathSymbol{4}\mathalpha{aunOperators}{"34}
+    \DeclareMathSymbol{5}\mathalpha{aunOperators}{"35}
+    \DeclareMathSymbol{6}\mathalpha{aunOperators}{"36}
+    \DeclareMathSymbol{7}\mathalpha{aunOperators}{"37}
+    \DeclareMathSymbol{8}\mathalpha{aunOperators}{"38}
+    \DeclareMathSymbol{9}\mathalpha{aunOperators}{"39}
+
+    \DeclareSymbolFontAlphabet{\mathsf}{aunOperators}
+    \DeclareSymbolFontAlphabet{\mathnormal}{aunLetters}
+    \DeclareMathAlphabet\mathbf{T1}{aun}{b}{n}
+    \SetMathAlphabet\mathbf{bold}{T1}{aun}{b}{n}
+    \DeclareMathAlphabet\mathit{T1}{aun}{l}{sl}
+    \SetMathAlphabet\mathit{bold}{T1}{aun}{l}{sl}
+    
+    \let\operator@font\sf
+\fi
+\usefonttheme[onlymath]{serif}
+
+\setbeamerfont{itemize/enumerate subbody}{size=\scriptsize}
+\setbeamerfont{itemize/enumerate subsubbody}{size=\scriptsize}
+\setbeamerfont{title}{size=\LARGE,series=\bfseries,family=\dinfamily}
+\setbeamerfont{subtitle}{series=\bfseries,family=\sffamily}

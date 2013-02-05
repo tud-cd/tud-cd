@@ -1,0 +1,388 @@
+% Vom Nutzer anzugebende / veraenderbare Namen und Bezeichnungen
+
+
+
+%\newif\if@useGerman                             % explizit deutsche Namen verwenden und german-Package einbinden ?
+% \newif\if@useNoGerman                           % explizit englische Namen verwenden
+% \DeclareOptionBeamer{nogerman}{\@useNoGermantrue\@useGermanfalse}
+% \DeclareOptionBeamer{german}{\@useGermantrue\@useNoGermanfalse}
+
+\newif\if@useHeader\@useHeadertrue
+\DeclareOptionBeamer{noheader}{\@useHeaderfalse}
+
+\newif\if@smallRightMargin\@smallRightMarginfalse
+\DeclareOptionBeamer{smallrightmargin}{\@smallRightMargintrue}
+
+\newif\if@usePageNum\@usePageNumfalse
+\DeclareOptionBeamer{pagenum}{\@usePageNumtrue}
+
+\newif\if@useNoFrameTitleSection\@useNoFrameTitleSectionfalse
+\DeclareOptionBeamer{nosectionnum}{\@useNoFrameTitleSectiontrue}
+
+\newif\if@useNavBar\@useNavBarfalse
+\DeclareOptionBeamer{navbar}{\@useNavBartrue}
+
+\newif\if@ddc
+\DeclareOptionBeamer{ddc}{\@ddctrue}
+\newif\if@ddcfooter
+\DeclareOptionBeamer{ddcfooter}{\@ddcfootertrue\@ddcfalse}
+
+
+\ProcessOptionsBeamer\relax
+
+\RequirePackage{calc}
+
+% Templates
+
+% Vordefinierte Namen und Bezeichnungen
+% \newcommand*{\englishnames}{%
+%     \newcommand*{\@slide}{slide}
+%     \newcommand*{\@of}{of}
+% }
+
+% \newcommand*{\germannames}{%
+%     \newcommand*{\@slide}{Folie}
+%     \newcommand*{\@of}{von}
+% }
+
+
+\def\tudbeamer@setGermanNames{%
+  \def\tudbeamerslidename{Folie}%
+  \def\tudbeamerofname{von}%
+}
+
+\def\tudbeamer@setEnglishNames{%
+  \def\tudbeamerslidename{slide}%
+  \def\tudbeamerofname{of}%
+}
+
+\AtBeginDocument{%
+  \@ifundefined{captionsgerman}{}{\addto\captionsgerman{\tudbeamer@setGermanNames}}%
+  \@ifundefined{captionsngerman}{}{\addto\captionsngerman{\tudbeamer@setGermanNames}}%
+  \@ifundefined{captionsenglish}{}{\addto\captionsenglish{\tudbeamer@setEnglishNames}}%
+  \@ifundefined{captionsUKenglish}{}{\addto\captionsUKenglish{\tudbeamer@setEnglishNames}}%
+  \@ifundefined{captionsbritish}{}{\addto\captionsbritish{\tudbeamer@setEnglishNames}}%
+  \@ifundefined{captionsamerican}{}{\addto\captionsamerican{\tudbeamer@setEnglishNames}}%
+  \@ifundefined{captionsUSenglish}{}{\addto\captionsUSenglish{\tudbeamer@setEnglishNames}}%
+  \@ifundefined{captionscanadian}{}{\addto\captionscanadian{\tudbeamer@setEnglishNames}}%
+  \@ifundefined{captionsaustralian}{}{\addto\captionsaustralien{\tudbeamer@setEnglishNames}}%
+  \@ifundefined{captionsnewzealand}{}{\addto\captionsnewzealand{\tudbeamer@setEnglishNames}}%
+  \@ifundefined{captions\languagename}{\tudbeamer@setEnglishNames}
+  {\csname captions\languagename\endcsname}%
+}
+
+\newcommand*\@einrichtung{}
+\newcommand*\@fachrichtung{}
+\newcommand*\@institut{}
+\newcommand*\@professur{}
+
+\newcommand*{\einrichtung}[1]{\renewcommand*{\@einrichtung}{#1}}
+\newcommand*{\fachrichtung}[1]{\renewcommand*{\@fachrichtung}{#1}}
+\newcommand*{\institut}[1]{\renewcommand*{\@institut}{#1}}
+\newcommand*{\professur}[1]{\renewcommand*{\@professur}{#1}}
+
+\newcommand*{\datecity}[1]{\renewcommand*{\insertdatecity}{#1}}
+
+
+\newlength\tudbeamer@logoleftmargin
+\newlength\tudbeamer@logotopmargin
+\newlength\tudbeamer@logowidth
+\newlength\tudbeamer@footer@placewidth
+\newlength\tudbeamer@footer@titlewidth
+\newlength\tudbeamer@footer@pagenumwidth
+
+\if@smallRightMargin
+\beamersetrightmargin{0.10\paperheight}
+\else
+\beamersetrightmargin{0.15\paperheight}
+\fi
+\beamersetleftmargin{0.15\paperheight}
+
+\newcommand\tudbeamer@calcsizes[1][0.125]{%
+  \def\tudbeamer@setlength##1##2{\setlength{##1}{##2 *
+      \ratio{#1\paperheight}{65pt}}}
+ \tudbeamer@setlength\tudbeamer@logowidth{40mm}%
+  \setlength\tudbeamer@logoleftmargin{\beamer@leftmargin-0.3333\tudbeamer@logowidth}%
+  \setlength\@tempdima{0.020\paperheight}%
+  \setlength{\@tempdima}{\@tempdima*\ratio{#1pt}{0.125pt}}%
+  \setlength{\@tempdima}{\@tempdima*\ratio{#1pt}{0.125pt}}%
+  \setlength{\tudbeamer@logotopmargin}{#1\paperheight - \@tempdima -
+    0.282\tudbeamer@logowidth}%
+  \setlength{\tudbeamer@footer@placewidth}{0.3\paperheight}%
+  \setlength{\tudbeamer@footer@pagenumwidth}{\tudbeamer@footer@placewidth}%
+  \setlength{\tudbeamer@footer@titlewidth}{\paperwidth - \beamer@leftmargin-\beamer@rightmargin
+-\tudbeamer@footer@placewidth -\tudbeamer@footer@pagenumwidth}
+}
+
+
+\newlength{\topmarginnoheader}
+\setlength{\topmarginnoheader}{0.01\paperheight}
+
+\if@useNavBar\else\setbeamertemplate{navigation symbols}{}\fi    % Nav-Leiste aus
+
+% frame title
+\gdef\frame@title@section{}
+\def\frametitle{\secdef\tud@frametitlea\tud@frametitles}
+\newcommand<>\tud@frametitlea{\gdef\frame@title@section{\ifnum\c@section>9\else 0\fi\arabic{section}\,\,}\alt#1{\@dblarg\beamer@@frametitle}{\beamer@gobbleoptional}}
+\newcommand<>\tud@frametitles{\gdef\frame@title@section{}\alt#1{\@dblarg\beamer@@frametitle}{\beamer@gobbleoptional}}
+
+\providecommand*{\insertdatecity}{Dresden}
+\newcommand*{\inserttotalpagenumber}{\textbf{??}}
+
+
+\def\logo@front{logo_weiss}
+\def\logo@default{logo_blau}
+\ifx\pdfoutput\undefined
+\else
+  \ifx\pdfoutput\relax
+  \else
+    \ifcase\pdfoutput
+    \else
+      \def\logo@front{TU_Logo_SW}%
+      \def\logo@default{TU_Logo_SW}%
+    \fi
+  \fi
+\fi
+
+
+% Faktor zur PPT-Vorlage: / 0,1984375      * 5,04
+\defbeamertemplate*{title page}{tud}{%
+    \color{white}%
+    \vfill%
+    {%
+      %\renewcommand\baselinestretch{1}%
+      \usebeamerfont*{title}%
+     \expandafter\setlength\expandafter\baselineskip{\f@size pt*\ratio{10pt}{10pt}}%
+%      \vskip2ex plus1ex minus1ex%
+%      \setlength\baselineskip{2cm}%{}
+      \MakeUppercase{\inserttitle}\par%
+    }\vfill%
+    {%
+      \ifx\insertsubtitle\empty
+      \else
+        \usebeamerfont*{subtitle}\insertsubtitle
+        \vfill
+      \fi%
+      \scriptsize\insertauthor
+    }%
+    \vfill\vfill%
+}
+
+\defbeamertemplate{headline}{tud titlepage}{%
+ \tudbeamer@calcsizes[0.175]
+ \vbox to 0.175\paperheight{\vskip\tudbeamer@logotopmargin
+   \color{white}%
+%  \setlength{\arrayrulewidth}{0.3pt}%
+ %\let\@tmp@ifrowcolors\if@rowcolors
+ % \@rowcolorsfalse
+ %\begin{tabular*}{\paperwidth}[b]{l@{\extracolsep\fill}}
+ %  \vbox{
+   %\rownum0\relax
+    % TUD-Logo
+    %\hspace*{3.0mm}
+    \hskip\tudbeamer@logoleftmargin
+    % \color{white}\includegraphics[height=7.81mm]{\logo@front}\\[1.2mm]
+    \color{white}%
+    \includegraphics[height=0.282\tudbeamer@logowidth]{\logo@front}%
+    \if@ddc
+        \hfill
+        \includegraphics[height=0.282\tudbeamer@logowidth]{DDC-weiss}%
+        \hskip\beamer@rightmargin\\
+     \fi
+   }%
+   \color{white}%\vskip1.2mm
+    \rule{\paperwidth}{0.3pt}\par%
+    \vbox to 0.025\paperheight{\vfill
+      \hskip\beamer@leftmargin%\rule[-0.8mm]{0pt}{2.47mm}%
+      \def\@@dummyComma{}%
+      \color{white}\textbf{\@einrichtung}%
+      \ifx\@einrichtung\@empty\else\def\@@dummyComma{ }\fi%
+      \ifx\@fachrichtung\@empty\else\@@dummyComma\@fachrichtung%
+      \ifx\@institut\@empty\else\def\@@dummyComma{, }\fi%
+      \ifx\@professur\@empty\else\def\@@dummyComma{, }\fi%
+      \fi%
+      \ifx\@institut\@empty\else\@@dummyComma\@institut
+      \ifx\@professur\@empty\else\def\@@dummyComma{, }\fi
+      \fi%
+      \ifx\@professur\@empty\else\@@dummyComma\fi%
+      \@professur\par%
+      \vfill
+    }%
+    \rule{\paperwidth}{0.3pt}\par
+  %}
+ % \end{tabular*}\par%\hspace{-\paperwidth}%
+  %\let\if@rowcolors\@tmp@ifrowcolors
+}%
+
+\defbeamertemplate{headline}{tud header}{%
+  \tudbeamer@calcsizes
+  \vbox to 0.125\paperheight{\vskip\tudbeamer@logotopmargin
+    \hskip\tudbeamer@logoleftmargin\color{text}\includegraphics[width=\tudbeamer@logowidth]{\logo@default}%
+    \par
+    \vfill
+ }%
+ \color{frametitle}%
+ \rule{\paperwidth}{0.1pt}\par
+ \vskip0.015\paperheight
+ \rule{\paperwidth}{0.1pt}\par
+}
+
+\defbeamertemplate{headline}{tud noheader}{%
+  % \rule{0pt}{14.57mm}
+  \rule{0pt}{\the\topmarginnoheader}%
+}
+
+\defbeamertemplate{footline}{tud titlepage}{%
+  \tudbeamer@calcsizes
+%  \vfill
+   \hbox to \textwidth{%
+     \hskip\beamer@leftmargin
+     \normalsize
+     \color{white}%
+     \insertdatecity
+     \ifx\insertdatecity\empty
+     \else
+       \ifx\insertdate\empty
+       \else,
+       \fi
+     \fi
+     \insertdate%
+     \hfill
+     \if@ddcfooter
+      \includegraphics[height=0.424\tudbeamer@logowidth]{DDC-weissf}%
+       \hskip\beamer@rightmargin
+     \fi
+   }%
+   \vskip0.125\paperheight
+}%
+
+\defbeamertemplate{footline}{tud pagenum}{%
+  \tudbeamer@calcsizes
+  \color{frametitle}%
+  \tiny
+  \vbox to 0.0777\paperheight{%
+    \hbox to \paperwidth{%
+      \hskip\beamer@leftmargin
+      \hbox to \tudbeamer@footer@placewidth{\raggedright\mbox{TU Dresden\ifx\insertdate\empty\else, \insertdate\fi}}%
+      \parbox{\tudbeamer@footer@titlewidth}{\centerline{\insertshorttitle}}%
+      \hbox to \tudbeamer@footer@pagenumwidth {\hfill\tudbeamerslidename\ \insertpagenumber\ \tudbeamerofname\ \inserttotalpagenumber}%
+    }%
+ }%
+}
+
+\defbeamertemplate{footline}{tud nopagenum}{%
+  \tudbeamer@calcsizes
+  \color{frametitle}%
+  \tiny
+  \vbox to 0.0777\paperheight{%
+    \hbox to \paperwidth{%
+      \hskip\beamer@leftmargin
+      \hbox to \tudbeamer@footer@placewidth{\raggedright\mbox{TU Dresden\ifx\insertdate\empty\else, \insertdate\fi}}%
+      \parbox{\tudbeamer@footer@titlewidth}{\centerline{\insertshorttitle}}%
+      \kern\tudbeamer@footer@pagenumwidth%
+    }%
+  }%
+}
+
+\defbeamertemplate{frametitle}{tud titlesection}{%
+%  \vskip0.3ex%
+  \color{frametitle}\frame@title@section\insertframetitle\\%
+  \vskip0.3ex\color{text}\small\bfseries\insertframesubtitle%
+}
+
+\defbeamertemplate{frametitle}{tud notitlesection}{%
+  \vskip6.5mm\color{frametitle}\insertframetitle\\%
+  \vskip0.3ex\color{text}\small\bfseries\insertframesubtitle%
+}
+
+\newcommand\setbeamertemplates{%
+    %\beamertemplateshadingbackground{white}{white}
+    \setbeamercolor{normal text}{bg=white}%
+    \if@useHeader%
+      \setbeamertemplate{headline}[tud header]%
+    \else
+      \setbeamertemplate{headline}[tud noheader]%
+    \fi
+
+    \if@usePageNum%
+      \setbeamertemplate{footline}[tud pagenum]%
+    \else
+      \setbeamertemplate{footline}[tud nopagenum]%
+    \fi
+
+    \if@useNoFrameTitleSection
+      \setbeamertemplate{frametitle}[tud notitlesection]%
+    \else
+      \setbeamertemplate{frametitle}[tud titlesection]%
+    \fi
+    \beamer@calculateheadfoot
+}
+
+\renewcommand\maketitle{%
+    %\beamertemplateshadingbackground{darkblue}{darkblue}
+    \setbeamercolor{normal text}{bg=HKS41K100}%
+    % Kopf-/Fusszeile fuer Titel
+    \setbeamertemplate{headline}[tud titlepage]%
+    \setbeamertemplate{footline}[tud titlepage]%
+    \beamer@calculateheadfoot
+    \frame{\titlepage}%
+   % Kopf-/Fusszeilen fuer restliche Folien
+    \setbeamertemplates%
+}
+
+
+% Sprache einstellen
+\AtBeginDocument{%
+%     \ifx\@undefined\if@german%
+%         \newif\if@german                                    % Nutzung des german-Packages ?
+%         \ifx\@undefined\germanTeX\else\@germantrue\fi       % Wenn \(n)germanTeX definiert ist,
+%         \ifx\@undefined\ngermanTeX\else\@germantrue\fi      % ist das (n)german-Package eingebunden
+%         \ifx\@undefined\language\else                       %
+%             \ifnum0=\language\@germanfalse\else\fi          % \language=0  =>  english
+%         \fi                                                 %
+%         \if@useGerman\@germantrue\fi                        % Zur expliziten Nutzung der deutschen Texte (das ngerman-Package wurde automatisch eingebunden)
+%         \if@useNoGerman\@germanfalse\fi                     % Zur expliziten Nutzung der englischen Texte (auch bei vorheriger Einbindung des german-Packages)
+%         \if@german                                          %
+%             \ifx\@undefined\language\else                   %
+%                 \ifnum2<\language\selectlanguage{german}\fi % deutsch gewuenscht, aber andere Sprache eingestellt ??  =>  deutsch
+%                 \ifnum2>\language\selectlanguage{german}\fi %
+%             \fi                                             %
+%             \germannames                                    %
+%             \def\today{\number\day.\,\number\month.\,\number\year}  % Datum im Format DD.MM.YYYY
+%         \else                                               %
+%             \ifx\@undefined\language\else                   %
+%                 \ifnum0<\language\selectlanguage{english}\fi% englisch gewuenscht, aber andere Sprache eingestellt ??  =>  englisch
+%             \fi                                             %
+%             \englishnames                                   %
+%             \def\today{\number\year/\number\month/\number\day}  % Datum im Format YYYY/MM/DD
+%         \fi                                                 %
+%     \fi%
+    \setbeamertemplates%
+    \scriptsize
+}%
+
+\AtEndDocument{%
+    \clearpage
+    \beamer@tempcount=\c@page\advance\beamer@tempcount by -1%
+    \if@filesw
+        \immediate\write\@auxout{\string\@writefile{nav}%
+            {\noexpand\headcommand{\noexpand\beamer@partpages{\the\beamer@partstartpage}{\the\beamer@tempcount}}}}%
+        \immediate\write\@auxout{\string\@writefile{nav}%
+            {\noexpand\headcommand{\noexpand\beamer@subsectionpages{\the\beamer@subsectionstartpage}{\the\beamer@tempcount}}}}%
+        \immediate\write\@auxout{\string\@writefile{nav}%
+            {\noexpand\headcommand{\noexpand\beamer@sectionpages{\the\beamer@sectionstartpage}{\the\beamer@tempcount}}}}%
+        \immediate\write\@auxout{\string\@writefile{nav}%
+            {\noexpand\headcommand{\noexpand\beamer@documentpages{\the\beamer@tempcount}}}}
+        \immediate\write\@auxout{\string\@writefile{nav}%
+            {\noexpand\headcommand{\noexpand\def\noexpand\inserttotalframenumber{\the\c@framenumber}}}}
+        \addtocounter{page}{-1}
+        \immediate\write\@auxout{\string\@writefile{nav}%
+            {\noexpand\headcommand{\noexpand\def\noexpand\inserttotalpagenumber{\thepage}}}}
+        \newwrite\tf@nav
+        \immediate\openout\tf@nav\jobname.nav\relax
+        \newwrite\tf@toc
+        \immediate\openout\tf@toc\jobname.toc\relax
+        \newwrite\tf@snm
+        \immediate\openout\tf@snm\jobname.snm\relax
+    \fi%
+}

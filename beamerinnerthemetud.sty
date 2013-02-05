@@ -1,0 +1,17 @@
+\ProvidesPackage{beamerinnerthemetud}[2011/01/17 v1 TU Dresden
+corporate design inner theme]
+\beamertemplatedotitem
+\usesubitemizeitemtemplate{--}
+
+%\def\today{\number\day.\,\number\month.\,\number\year}
+
+\addtobeamertemplate{block end}{}{\colorlet{structure}{text}}
+\let\@oldendbeamerboxesrounded\endbeamerboxesrounded
+\def\endbeamerboxesrounded{%
+  \@oldendbeamerboxesrounded
+  \setbeamercolor{structure}{fg=text,bg=white}%
+  \usebeamercolor{normal text}%
+  \color{fg}%
+  \colorlet{beamerstructure}{text}
+  \colorlet{beamerstructure}{text}
+} 
