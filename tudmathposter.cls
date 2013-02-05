@@ -24,7 +24,7 @@
 %% v0.4) - Optionaler blauer Hintergrund im Inhaltsbereich.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{tudposter}[2010/03/04 v0.6 martin.zabel@tu-dresden.de]
+\ProvidesClass{tudmathposter}[2010/07/09 v1.1 Tobias.Schlemmer@mailbox.tu-dresden.de]
 
 \newif\if@tudposter@bluebg\@tudposter@bluebgfalse
 \DeclareOption{bluebg}{\@tudposter@bluebgtrue}
@@ -578,14 +578,14 @@
 \fi
 \fusszeile{\normalsize%
 \begingroup
- \parbox[t]{807.3pt}{\raggedright%
+ \parbox[t]{907.3pt}{\raggedright%
     \strut Kontakt\\
     \strut Technische Universit\"at Dresden\\
     \ifx\@einrichtung\@empty\else\strut \@einrichtung\\\fi
     \ifx\@fachrichtung\@empty\else\strut \@fachrichtung\\\fi
     \ifx\@professur\@empty\else\strut \@professur\\\fi
   }%
-  \parbox[t]{807.3pt}{\raggedright
+  \parbox[t]{907.3pt}{\raggedright
     \strut\hfill\\
     \ifx\@author\@empty\else\strut\@author\\\fi
     \strut 01062 Dresden\\
@@ -600,12 +600,31 @@
 % Initialisierung des Textbereiches
 \setcounter{secnumdepth}{0}
 \if@mathevorgabe
-\einrichtung{Fakultät für Mathematik und Informatik}
+\einrichtung{Fakult\"at f\"ur Mathematik und Naturwissenschaften}
 \fachrichtung{Fachrichtung Mathematik}
 \homepage{http://tu-dresden.de/mathematik}
 \pagestyle{tudposter}
 \normalsize
 \fi 
+
+\newenvironment{tablehere}
+{%
+  \def\@captype{table}%
+  \vskip\intextsep
+}{%
+  \vskip\intextsep
+}
+
+\newenvironment{figurehere}
+{%
+  \def\@captype{figure}%
+  \vskip\intextsep
+}{
+  \vskip\intextsep
+}
+
+\addtokomafont{caption}{\small}
+\addtokomafont{captionlabel}{\small}
 
 \newcommand{\blautabelle}{%
   \colorlet{tableoddcolor}{HKS41K20}%
@@ -634,7 +653,6 @@
   \endgroup
 }
 %\show\showrowcolors
-
 \global \@rowcolorsfalse % Abschalten, da Interferenz mit Mathe-Arrays
 \newcommand\farbtabelle{\@rowcolorstrue\@rowcolors}
 \renewcommand\normalcolor{\color{HKS41K100}}
