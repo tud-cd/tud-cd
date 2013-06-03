@@ -1,0 +1,74 @@
+\documentclass[a5paper,fontsize=10pt,twoside,DIV12,pagesize]{scrartcl}
+%\documentclass[a4paper,twoside,12pt]{amsart}
+	
+% Dieses Dokument demonstriert die Wirkungsweise des Preprint-Paketes für das
+% Institut für Algebra an einem minimalistischen Beispiel. Eine genauere 
+% Dokumentation der möglichen Befehle findet man in dem anderen Beispiel.
+%
+% Fehler, Probleme, Wünsche, Verbesserungen bitte an mich richten:
+% mike.behrisch@mailbox.tu-dresden.de
+%
+
+% Das Paket wird in der Präambel irgendwo unter den anderen Paketen und
+% Definitionen geladen (hier nur ein Beispiel)
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage[german,british]{babel}
+
+\usepackage[tudfonts]{algpreprint}  % "[tudfonts]" weglassen, wenn Fonts nicht
+                                    % installiert sind
+
+%\usepackage{pdfpages}  % Für Variante 3 (siehe unten)
+
+\begin{document}
+\selectlanguage{german} % Falls der Titel etc. in deutscher Sprache ist 
+
+% notwendige Befehle:
+%--------------------
+\Autor{Der Verursacher.}
+\Titel[Manchmal einen Kurztitel]{%
+       Jede Veröffentlichung braucht einen Titel:\\ und einen Untertitel}
+\MathAlNummer{??}       % Einstellen der Preprintnummer
+                       
+% optionale Befehle:
+%--------------------
+%\AlsManuskriptGedruckt  % falls dieser Text auf dem Preprint erscheinen soll;
+%                        % wird der Befehl nicht verwendet, so erscheint dieser
+%                        % Text nicht.
+%\TechnicalReport        %  --> Ersetze "PREPRINT" durch "TECHNICAL REPORT"
+%\TUDfonts               %  --> Aktiviere Benutzung der TUD-Schriftarten 
+%                        %      (Univers und Din bold), müssen dazu installiert
+%                        %      sein, Default = keine TUD-Fonts
+%\TitelFussnote{Ein Fußnotentext zum Titel (optional), Standard=leer} 
+
+% Hauptbefehl:
+%--------------
+\Deckblatt              % sonst erscheint kein Deckblatt
+
+%-------------------------------------------------------
+% Hier kommt der eigentliche Inhalt der Publikation.
+%-------------------------------------------------------
+%
+% 3 Möglichkeiten werden demonstriert:
+
+% Variante 1: Die Publikation direkt schreiben:
+%~~~~~~~~~~~~
+\selectlanguage{british}
+\author{Someone, who calls himself a mathematician}
+\title{On the social life of algebras and graphs}
+\date{\today}
+\maketitle
+
+An algebra goes shopping and meets a homomorphism \ldots 
+
+
+% Variante 2: Die Publikation bis auf die Präambel über eine Datei einbinden:
+%~~~~~~~~~~~~
+%\input{mynewresult.tex}
+
+% Variante 3: Die fertige Publikation einbinden:
+%~~~~~~~~~~~~
+%\includepdf[pages=-]{mypublication.pdf}
+% Nachteil: Hyperref-Optionen, insbesondere Links werden nicht übernommen.
+
+\end{document}
