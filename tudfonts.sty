@@ -84,8 +84,16 @@ bold for TU Dresden(ts)]
 
   \DeclareSymbolFont{cmmigroup}{OML}{lmm}{m}{it}
   \SetSymbolFont{cmmigroup}{bold}{OML}{lmm}{b}{it}
-  \DeclareMathAlphabet\cm@equals@alphabet{OT1}{lmr}{m}{n}
-  \DeclareMathAlphabet\cm@minus@alphabet{OMS}{lmsy}{m}{n}
+%  \tracingall
+%  \@ifundefined{cm@equals@alphabet}{%
+%    \DeclareMathAlphabet\cm@equals@alphabet{OT1}{lmr}{m}{n}%
+%  }{
+  \makeatletter
+  \SetMathAlphabet\cm@equals@alphabet{normal}{OT1}{lmr}{m}{n}%}%
+  \SetMathAlphabet\cm@minus@alphabet{normal}{OMS}{lmsy}{m}{n}%}
+  %\@ifundefined{cm@minus@alphabet}{%
+    %\DeclareMathAlphabet\cm@minus@alphabet{OMS}{lmsy}{m}{n}%
+  %}{
 \fi
 \RequirePackage{calc}
 
@@ -252,8 +260,9 @@ bold for TU Dresden(ts)]
 
     \DeclareSymbolFontAlphabet{\mathsf}{operators}%MZ: angepasst
     \DeclareSymbolFontAlphabet{\mathnormal}{aunLetters}
-    \DeclareMathAlphabet\mathbf{T1}{aun}{b}{n}
+    \SetMathAlphabet\mathbf{normal}{T1}{aun}{b}{n}
     \SetMathAlphabet\mathbf{bold}{T1}{aun}{b}{n}
+%    \tracingall
     \if@tudfonts@heavyfont
       \DeclareMathAlphabet\mathit{T1}{aun}{m}{sl}
       \SetMathAlphabet\mathit{bold}{T1}{aun}{m}{sl}
@@ -281,11 +290,17 @@ bold for TU Dresden(ts)]
 % Ende des Auszugs    
 \fi
 
+% Korrekte Symbolgrößen
+\DeclareFontFamily{OMX}{lmex}{}
+\DeclareFontShape{OMX}{lmex}{m}{n}{%
+  <->lmex10%
+}{}
+\if@tudfonts@eulermath
+\else
+\DeclareSymbolFont{largesymbols}{OMX}{lmex}{m}{n}%
+\fi
+
 \AtBeginDocument{%
-  \if@tudfonts@eulermath
-  \else
-  \DeclareSymbolFont{largesymbols}{OMX}{lmex}{m}{n}%
-  \fi
   \newdimen\big@size
   \addto@hook\every@math@size{\setbox\z@\vbox{\hbox{$($}\kern\z@}%
     \global\big@size 1.2\ht\z@}%
@@ -296,12 +311,6 @@ bold for TU Dresden(ts)]
   \def\bigg{\bBigg@\tw@}%
   \def\Bigg{\bBigg@{2.5}}%
 }
-
-% Korrekte Symbolgrößen
-\DeclareFontFamily{OMX}{lmex}{}
-\DeclareFontShape{OMX}{lmex}{m}{n}{%
-   <->lmex10%
-   }{}
 
 
 \iffalse

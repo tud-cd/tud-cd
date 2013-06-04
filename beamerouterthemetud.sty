@@ -303,13 +303,19 @@
 }
 
 \defbeamertemplate*{page number: text and total}{english}{%
+  Page \insertpagenumber\ of \insertpresentationendpage
+}
+\defbeamertemplate*{page number: text and filetotal}{english}{%
   Page \insertpagenumber\ of \inserttotalpagenumber
 }
 \defbeamertemplate*{page number: text}{english}{%
   Page \insertpagenumber
 }
 \defbeamertemplate{page number: text and total}{german}{%
-  Seite \insertpagenumber\ of \inserttotalpagenumber
+  Seite \insertpagenumber\ von \insertpresentationendpage
+}
+\defbeamertemplate{page number: text and filetotal}{german}{%
+  Seite \insertpagenumber\ von \inserttotalpagenumber
 }
 \defbeamertemplate{page number: text}{german}{%
   Seite \insertpagenumber
@@ -321,9 +327,15 @@
   \insertpagenumber
 }
 \defbeamertemplate*{frame number: text and total}{english}{%
+  Slide \insertframenumber\ of \insertpresentationendframe
+}
+\defbeamertemplate*{frame number: text and filetotal}{english}{%
   Slide \insertframenumber\ of \inserttotalframenumber
 }
 \defbeamertemplate*{frame number: text and total and overlay}{english}{%
+  Slide \insertframenumber.\insertslideinframe\ of \insertpresentationendframe
+}
+\defbeamertemplate*{frame number: text and filetotal and overlay}{english}{%
   Slide \insertframenumber.\insertslideinframe\ of \inserttotalframenumber
 }
 \defbeamertemplate*{frame number: text}{english}{%
@@ -333,9 +345,15 @@
   Slide \insertframenumber.\insertslideinframe%
 }
 \defbeamertemplate{frame number: text and total}{german}{%
+  Folie \insertframenumber\ von \insertpresentationendframe
+}
+\defbeamertemplate{frame number: text and filetotal}{german}{%
   Folie \insertframenumber\ von \inserttotalframenumber
 }
 \defbeamertemplate{frame number: text and total and overlay}{german}{%
+  Folie \insertframenumber.\insertslideinframe\ von \insertpresentationendframe
+}
+\defbeamertemplate{frame number: text and filetotal and overlay}{german}{%
   Folie \insertframenumber.\insertslideinframe\ von \inserttotalframenumber
 }
 \defbeamertemplate{frame number: text}{german}{%
@@ -345,9 +363,15 @@
   Folie \insertframenumber.\insertslideinframe%
 }
 \defbeamertemplate*{frame number: total}{default}{%
+  \insertframenumber/\insertpresentationendframe
+}
+\defbeamertemplate*{frame number: filetotal}{default}{%
   \insertframenumber/\inserttotalframenumber
 }
 \defbeamertemplate*{frame number: total and overlay}{default}{%
+  \insertframenumber.\insertslideinframe/\insertpresentationendframe
+}
+\defbeamertemplate*{frame number: filetotal and overlay}{default}{%
   \insertframenumber.\insertslideinframe/\inserttotalframenumber
 }
 \defbeamertemplate*{frame number: only}{default}{%
@@ -516,6 +540,22 @@
 }
 
 
+\newcommand{\tudbeamer@appendixstart}{%
+  \edef\insertpresentationendframe{\insertframenumber}%
+  \immediate\write\@auxout{\string\@writefile{nav}%
+    {\noexpand\headcommand{\noexpand\def\noexpand\insertpresentationendframe{\insertframenumber}}}%
+  }%
+  \let\tudbeamer@enddocument\relax
+}
+\providecommand{\insertpresentationendframe}{??}
+\let\tudbeamer@origappendix\appendix
+\def\appendix{%
+  \tudbeamer@appendixstart
+  \tudbeamer@origappendix
+}
+
+\newcommand{\tudbeamer@enddocument}{\tudbeamer@appendixstart}
+\AtEndDocument{\tudbeamer@enddocument}
 
 \iffalse
 \AtEndDocument{%
