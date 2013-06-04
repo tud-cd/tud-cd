@@ -1,0 +1,22 @@
+\documentclass[a4paper]{article}
+	
+
+% Dieses Dokument demonstriert die Erstellung eines Booklets unter Benutzung
+% des "pdfpages"-Pakets. Ein solches kann dann bequem ausgedruckt werden.
+%
+% Fehler, Probleme, Wünsche, Verbesserungen bitte an mich richten:
+% mike.behrisch@mailbox.tu-dresden.de
+%
+
+\usepackage{pdfpages}  % zur Einbindung von pdf-Seiten
+
+\begin{document}
+
+% Die fertige Publikation wird inklusive Deckblatt eingebunden.
+% Das Ergebnis muß dann über die lange Seite gewendet gedruckt werden.
+\includepdf[pages=-,booklet,landscape]{smallexample.pdf}
+
+% ACHTUNG: Diese Vorgehensweise ist nur für den Druck zu empfehlen, da sämtliche
+%          Hyperref-Optionen, pdf-Annotationen, insbesondere Links im pdf beim
+%          Einfügen mit pdfpages nicht übernommen werden.
+\end{document}
