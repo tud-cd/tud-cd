@@ -190,24 +190,37 @@
 
 \defbeamertemplate{einrichtung/titlepage}{default}{%
   % Hier muss ein Leerzeichen folgen
-  \@einrichtung{}
+  \@einrichtung%
+  \ifx\@fachrichtung\empty
+    \ifx\@institut\empty
+      \ifx\@professur\empty
+      \else,
+      \fi
+    \else,
+    \fi
+  \else,
+  \fi
   \strut
 }
 \defbeamertemplate{fachrichtung/titlepage}{default}{%
   \@fachrichtung%
-  \ifx\@institut\empty\else,
-  \ifx\@professur\empty\else,
-  \fi\fi
+  \ifx\@institut\empty
+    \ifx\@professur\empty
+    \else,
+    \fi
+  \else,
+  \fi
   \strut
 }
 \defbeamertemplate{institut/titlepage}{default}{%
   \@institut%
-  \ifx\@professur\empty\else,
+  \ifx\@professur\empty
+  \else,
   \fi
   \strut
 }
 \defbeamertemplate{professur/titlepage}{default}{%
-  \@institut%
+  \@professur%
   \strut
 }
 
