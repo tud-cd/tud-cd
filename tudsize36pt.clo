@@ -112,7 +112,7 @@
 }
 \@listi
 
-\setlength{columnsep}{1.5cm}
+\setlength{\columnsep}{1.5cm}
 \endinput
 %%
 %% End of file `scrsize12pt.clo'.
