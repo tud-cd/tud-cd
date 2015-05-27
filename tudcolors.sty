@@ -3,6 +3,8 @@
 %% Tobias Schlemmer (tobias.schlemmer@mailbox.tu-dresden.de)
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{tudcolors}[2012/02/05 v2.0.1 TU Dresden CD-Farben Tobias.Schlemmer@mailbox.tu-dresden.de]
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{xcolor}}
+\ProcessOptions\relax
 \RequirePackage{xcolor}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
