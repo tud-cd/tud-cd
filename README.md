@@ -3,8 +3,9 @@ tud-cd
 
 Corporate Design der TU Dresden – inoffizielles Repository
 
-In diesem Verzeichnis liegen die Vorlagen für Poster der 
-Fachrichtung Mathematik der TU Dresden.
+In diesem Verzeichnis liegen ein Beamer-Stil, die Vorlagen für Poster
+der Fachrichtung Mathematik und ein Paket für Preprint-Titelseiten des
+Instituts für Algebra der TU Dresden.
 
 Installation: 
 
@@ -40,7 +41,15 @@ Installation:
 	MacTeX: ~/Library/texmf/tex/latex/tudmathposter
 	MikTeX: ...\Dokumente und Einstellungen\<Benutzername>\texmf\tex\latex\tudmathposter
 
-4. Die Dokumentation der Klassen, Stile und Pakete befindet sich in den beigefügten PDF-Dateien.
+4. Die Dokumentation der Klassen, Stile und Pakete befindet sich in
+   den beigefügten PDF-Dateien.  Die wichtigsten sind
+   beamer-org-mode-demo.pdf (Beamer-Stil), beispiel-utf8.pdf
+   (tudmathposter) und algpreprint.sty (algpreprint).
+
+Zum Download finden Sie auf https://github.com/tud-cd/tud-cd auf der
+rechten Seite einen unscheinbaren Knopf mit der Aufschrift „Download
+ZIP“. Oder Sie rufen die zugehörige Adresse
+https://github.com/tud-cd/tud-cd/archive/master.zip direkt auf.
 
 
 Versionen:
