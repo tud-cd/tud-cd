@@ -67,6 +67,7 @@
 \setlength{\algpreprint@hoffset}{0pt}%
 \setlength{\algpreprint@voffset}{0pt}%
 \def\algpreprint@PreprintName{PREPRINT}
+\newif\ifalgpreprintresetpage\algpreprintresetpagetrue
 \newif\ifalgpreprint@FussnoteZumTitel\algpreprint@FussnoteZumTitelfalse%
 \newif\ifalgpreprint@Manuskriptnotiz\algpreprint@Manuskriptnotizfalse%
 \newif\ifalgpreprint@tudfonts\algpreprint@tudfontsfalse%
@@ -347,7 +348,9 @@
   \ifalgpreprint@offsetmessung%
     \end{document}%
   \else%
-    \setcounter{page}{1}%
+    \ifalgpreprintresetpage
+      \setcounter{page}{1}%
+    \fi
     \loadgeometry{usergeometry}%
   \fi%
 }%end of Deckblatt
