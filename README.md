@@ -3,15 +3,32 @@ tud-cd
 
 Corporate Design der TU Dresden – inoffizielles Repository
 
-In diesem Verzeichnis liegen die Vorlagen für Poster der 
-Fachrichtung Mathematik der TU Dresden.
+In diesem Verzeichnis liegen ein Beamer-Stil, die Vorlagen für Poster
+der Fachrichtung Mathematik und ein Paket für Preprint-Titelseiten des
+Instituts für Algebra der TU Dresden.
 
 Installation: 
 
-1. Zunächst müssen die Schriften des Corporate Design der TU Dresden installiert
-   sein. Informationen dazu sind unter der Adresse 
-   http://tu-dresden.de/service/cd/4_latex
+1. Zunächst müssen die Schriften des Corporate Design der TU Dresden
+   installiert sein. Die Rohschriften müssen per Email angefordert
+   werden.
+
+   Informationen dazu sind unter der Adresse 
+   http://tu-dresden.de/service/publizieren/cd/4_latex
    erhältlich.
+
+   Der Präsentationsstil wurde noch unter der
+   Verwendung der alten Schriftdateien erstellt.
+   Ein Installationsskript findet sich unter der Adresse
+   https://github.com/tud-cd/tudscrold/releases/tag/fonts
+   
+   Es wird jedoch empfohlen, für Beamer-Präsentationen stattdessen die
+   Schriften so zu installieren, wie es das aktuelle tudscr-Paket
+   empfiehlt: http://www.ctan.org/pkg/tudscr
+   Als Beispiel sei hier beamerpraesentation-tudscrfonts.tex genannt.
+
+   Allerdings konnte die letztere Variation noch nicht getestet werden. 
+   Fehlermeldungen und Anregungen sind auf https://github.com/tud-cd/tud-cd/issues herzlich willkommen.
 
 2. Wenn die Schriften installiert sind und das Paket in ein Verzeichnis entpackt
    worden ist, sollten die Klasse für alle Dateien in diesem Verzeichnis zur 
@@ -23,6 +40,16 @@ Installation:
 	*nix (incl. macports): ~/texmf/tex/latex/tudmathposter
 	MacTeX: ~/Library/texmf/tex/latex/tudmathposter
 	MikTeX: ...\Dokumente und Einstellungen\<Benutzername>\texmf\tex\latex\tudmathposter
+
+4. Die Dokumentation der Klassen, Stile und Pakete befindet sich in
+   den beigefügten PDF-Dateien.  Die wichtigsten sind
+   beamer-org-mode-demo.pdf (Beamer-Stil), beispiel-utf8.pdf
+   (tudmathposter) und algpreprint.sty (algpreprint).
+
+Zum Download finden Sie auf https://github.com/tud-cd/tud-cd auf der
+rechten Seite einen unscheinbaren Knopf mit der Aufschrift „Download
+ZIP“. Oder Sie rufen die zugehörige Adresse
+https://github.com/tud-cd/tud-cd/archive/master.zip direkt auf.
 
 
 Versionen:
