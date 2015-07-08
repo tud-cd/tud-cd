@@ -188,38 +188,56 @@
   \fi
 \fi
 
-\defbeamertemplate{einrichtung/titlepage}{default}{%
+\defbeamertemplate{einrichtung/titlepage}{empty}{%
+}
+\defbeamertemplate{fachrichtung/titlepage}{empty}{%
+}
+\defbeamertemplate{institut/titlepage}{empty}{%
+}
+\defbeamertemplate{professur/titlepage}{empty}{%
+}
+
+\defbeamertemplate*{einrichtung/titlepage}{default}{%
   % Hier muss ein Leerzeichen folgen
-  \@einrichtung%
+  \ifx\@einrichtung\empty
+  \else
+    \@einrichtung%
+    \ifx\@fachrichtung\empty
+      \ifx\@institut\empty
+        \ifx\@professur\empty
+        \else,
+        \fi
+      \else,
+      \fi
+    \else,
+    \fi
+  \fi
+  \strut
+}
+\defbeamertemplate*{fachrichtung/titlepage}{default}{%
   \ifx\@fachrichtung\empty
+  \else
+  \@fachrichtung%
     \ifx\@institut\empty
       \ifx\@professur\empty
       \else,
       \fi
     \else,
     \fi
-  \else,
   \fi
   \strut
 }
-\defbeamertemplate{fachrichtung/titlepage}{default}{%
-  \@fachrichtung%
+\defbeamertemplate*{institut/titlepage}{default}{%
   \ifx\@institut\empty
+  \else
+    \@institut%
     \ifx\@professur\empty
     \else,
     \fi
-  \else,
   \fi
   \strut
 }
-\defbeamertemplate{institut/titlepage}{default}{%
-  \@institut%
-  \ifx\@professur\empty
-  \else,
-  \fi
-  \strut
-}
-\defbeamertemplate{professur/titlepage}{default}{%
+\defbeamertemplate*{professur/titlepage}{default}{%
   \@professur%
   \strut
 }
