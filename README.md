@@ -17,34 +17,38 @@ Installation:
    http://tu-dresden.de/service/publizieren/cd/4_latex
    erhältlich.
 
-   Der Präsentationsstil wurde noch unter der
-   Verwendung der alten Schriftdateien erstellt.
-   Ein Installationsskript findet sich unter der Adresse
-   https://github.com/tud-cd/tudscrold/releases/tag/fonts
+   Der Präsentationsstil kann sowohl mit der alten Variante der Fonts,
+   als auch mit den verbesserten Fonts aus dem TUD-KOMA-Script-Paket
+   verwendet werden. Die anderen Vorlagen verwenden die alten Schriften
+   Installationsskripte sind unter 
+   +     https://github.com/tud-cd/tudscr/releases/tag/fonts (neu)
+   +     https://github.com/tud-cd/tudscrold/releases/tag/fonts (alt)
+   zu finden.
    
    Es wird jedoch empfohlen, für Beamer-Präsentationen stattdessen die
    Schriften so zu installieren, wie es das aktuelle tudscr-Paket
    empfiehlt: http://www.ctan.org/pkg/tudscr
    Als Beispiel sei hier beamerpraesentation-tudscrfonts.tex genannt.
 
-   Allerdings konnte die letztere Variation noch nicht getestet werden. 
    Fehlermeldungen und Anregungen sind auf https://github.com/tud-cd/tud-cd/issues herzlich willkommen.
 
-2. Wenn die Schriften installiert sind und das Paket in ein Verzeichnis entpackt
-   worden ist, sollten die Klasse für alle Dateien in diesem Verzeichnis zur 
-   Verfügung stehen.
+2. Das Paket ist entsprechend dem TeX-Standard aufgebaut. Die
+   einzelnen Dateien können für die einmalige Verwendung in das
+   jeweilige Arbeitsverzeichnis kopeirt werden. Bei häufiger
+   Verwendung wird die systemweite oder die Nutzerspezifische
+   Installation empfohlen.
 
 3. Soll die Klasse für alle Dokumente eines Nutzers zur Verfügung stehen, müssen
-   nur die benötigten Dateien (Klasse+Logos) in das lokale texmf-Verzeichnis
-   kopiert werden:
-	*nix (incl. macports): ~/texmf/tex/latex/tudmathposter
-	MacTeX: ~/Library/texmf/tex/latex/tudmathposter
-	MikTeX: ...\Dokumente und Einstellungen\<Benutzername>\texmf\tex\latex\tudmathposter
+   nur die benötigten Dateien und Verzeichnisse (Klasse+Logos) in das lokale texmf-Verzeichnis
+   entpackt werden:
+   +	*nix (incl. macports): ~/texmf/
+   +	MacTeX: ~/Library/texmf/
+   +	MikTeX: ...\Dokumente und Einstellungen\<Benutzername>\texmf\
 
 4. Die Dokumentation der Klassen, Stile und Pakete befindet sich in
-   den beigefügten PDF-Dateien.  Die wichtigsten sind
-   beamer-org-mode-demo.pdf (Beamer-Stil), beispiel-utf8.pdf
-   (tudmathposter) und algpreprint.sty (algpreprint).
+   den beigefügten PDF-Dateien im Unterordner doc. Die wichtigsten sind
+   tud-beamerstyle/beamer-org-mode-demo.pdf (Beamer-Stil), tudmathposter/beispiel-utf8.pdf
+   (tudmathposter) und die Quelldatei tex/latex/tudmathposter/algpreprint.sty (algpreprint).
 
 Zum Download finden Sie auf https://github.com/tud-cd/tud-cd auf der
 rechten Seite einen unscheinbaren Knopf mit der Aufschrift „Download
