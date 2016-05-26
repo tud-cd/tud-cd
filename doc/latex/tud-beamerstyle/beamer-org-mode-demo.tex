@@ -1,0 +1,659 @@
+% Created 2015-07-08 Mi 21:19
+\documentclass[presentation,t]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\usetheme{default}
+\author{Tobias Schlemmer}
+\date{7.$\backslash$,5.\textasciitilde{}2012}
+\title{Beamer-Präsentationen mit dem CD der TU Dresden}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 24.3.2 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\#\#COLUMNS: \%40ITEM \%10BEAMER$_{\text{env}}$(Env) \%9BEAMER$_{\text{envargs}}$(Env Args) \%4BEAMER$_{\text{col}}$(Col) \%10BEAMER$_{\text{extra}}$(Extra)
+\section{Einführung}
+\label{sec-1}
+\subsection{Allgemeines}
+\label{sec-1-1}
+\begin{frame}[label=sec-1-1-1]{Geschichte}
+\begin{itemize}
+\item Corporate Design der TU Dresden
+\item tudbeamer Klasse (mit vielen Nachteilen)
+\item tud-cd-Paket
+\item \alert{Konfigurierbarer Beamer-Stil}
+\end{itemize}
+\end{frame}
+\begin{frame}[label=sec-1-1-2]{CD-Vorgaben (Handbuch)}
+\begin{itemize}
+\item \textcolor{HKS65K100}{Ränder relativ zu Papiergrüße}
+\item \textcolor{red}{Schriften in MS Punkt (inkompatible Maßeinheit)}
+\item \textcolor{red}{Logoposition fehlt}
+\end{itemize}
+\end{frame}
+\begin{frame}[label=sec-1-1-3]{Designkriterien}
+\begin{itemize}
+\item Interpretation der Vorgaben
+\item Abweichend: HKS Farbschema und Univers
+\item Kombinierbar mit \textbackslash useinnertheme\{rounded\}
+\item Farbschema mit anderem Layout kombinierbar (partiell implementiert)
+\item Alle Stile überschreibbar
+\end{itemize}
+\end{frame}
+\subsection{Benutzung}
+\label{sec-1-2}
+\begin{frame}[label=sec-1-2-1]{Beispieldokument}
+\textbackslash usepackage[ngerman]\{babel\}\\
+\textbackslash usetheme[section,navigation]\{tud\}\\
+\textbackslash institut\{Institut f$\backslash$"ur Algebra\}\%
+\textbackslash title[Beispiel]\{Langer Title mit Beispiel\}
+\textbackslash begin\{document\}\\
+\textbackslash begin\{frame\}\\
+\textbackslash maketitle\\
+\textbackslash end\{frame\}\\
+\textbackslash begin\{frame\}\{Eine Folie\}\\
+Inhalt
+\textbackslash end\{frame\}\\
+\textbackslash end\{document\}\\
+\end{frame}
+
+\section{Einstellungen}
+\label{sec-2}
+\subsection{\textbackslash usetheme\{tud\}}
+\label{sec-2-1}
+\begin{frame}[label=sec-2-1-1]{Paketoptionen (Schriften)}
+\begin{description}
+\item[{noeulermath}] Benutze keine Euler-Mathematikschriften
+\item[{noDIN}] Titel ohne DIN bold
+\item[{serifmath}] Nutze Computer Modern für Mathematik
+\item[{heavyfont}] Nutze Univers 55 statt Univers 45
+\item[{beamerfont}] Keine Fontänderungen
+\end{description}
+\end{frame}
+\begin{frame}[label=sec-2-1-2]{Paketoptionen (Seitenstruktur)}
+\begin{description}
+\item[{noheader}] Benutze Folien ohne Kopfzeile
+\item[{smallrightmargin}] Schmaler rechter Rand (verletzt CD-Richtlinie
+\item[{pagenum}] Seitenzahlen in der Fußzeile anzeigen
+\item[{section}] mit Abschnittstitel auf jeder Folie
+\item[{navbar}] mit Navigationshilfen
+\item[{ddc}] mit Dresden-Concept-Logo
+\item[{ddcfooter}] mit Dresden-Concept Logo im Fußbereich
+\end{description}
+\end{frame}
+\subsection{\textbackslash useoutertheme\{tud\}}
+\label{sec-2-2}
+\begin{frame}[label=sec-2-2-1]{Paketoptionen}
+\begin{description}
+\item[{noheader}] Benutze Folien ohne Kopfzeile
+\item[{smallrightmargin}] Schmaler rechter Rand (verletzt CD-Richtlinie
+\item[{pagenum}] Seitenzahlen in der Fußzeile anzeigen
+\item[{section}] mit Abschnittstitel auf jeder Folie
+\item[{navbar}] mit Navigationshilfen
+\item[{ddc}] mit Dresden-Concept-Logo
+\item[{ddcfooter}] mit Dresden-Concept Logo im Fußbereich
+\end{description}
+\end{frame}
+\begin{frame}[label=sec-2-2-2]{Makros}
+\begin{description}
+\item[{\textbackslash einrichtung\{\emph{einrichtung}\}}] Legt die
+Einrichtung/Fakultät fest
+\item[{\textbackslash fachrichtung\{\emph{Fachrichtung}\}}] Legt die
+Fachrichtung fest
+\item[{\textbackslash institut\{\emph{Institut}\}}] Legt das
+Institut fest
+\item[{\textbackslash professur\{\emph{Professur}\}}] Legt die
+Professur fest
+\item[{\textbackslash datecity\{\emph{Datumsort}\}}] Legt den Ort für den Vortrag fest
+\end{description}
+\end{frame}
+\begin{frame}[label=sec-2-2-3]{Register}
+\begin{description}
+\item[{\textbackslash topmarginnoheader}] Länge, die den Oberen Rand Seitenrand bei
+Kopflosen Folien angibt.
+\item[{\textbackslash tudbeamerfooterplacewidth}] Länge, die Breite des
+Datums/Ort/(Autor-)Blockes in der Fußzeile bestimmt
+\item[{\textbackslash tudbeamerfooterpagenumwidth}] Länge, die Platz für
+die Seitenzahl in der Fußzeilereserviert
+\item[{\textbackslash topmarginnoheader}] Länge, die Platz für den
+Kurztitel in der Fußzeile reserviert
+\end{description}
+\end{frame}
+\begin{frame}[label=sec-2-2-4]{Vorlagen}
+Vorlangen werden mit 
+\textbf{\textbackslash setbeamertemplate\{\emph{Kategorie}\}[\emph{Vorlage}]}
+gesetzt. Es können neue
+definiert und ausgewählt werden. Weitere Informationen dazu gibt es im
+„Beamer User Guide“ (\texttt{texdoc beamer}).
+\begin{block}{headline}
+Vorlage für Seitenkopf
+\begin{description}
+\item[{tud titlepage}] Titelseitenkopf
+\item[{tud header}] normaler Folienkopf
+\item[{tud noheader}] Folienkopf für kopflose Folien
+\end{description}
+\end{block}
+
+\begin{block}{date/place in footline}
+
+\begin{description}
+\item[{default}] Vorlage für Datum/Ort in Fußzeile mit optionalem Argument
+für Ort. Standardwert „TU Dresden“.
+\end{description}
+\end{block}
+
+\begin{block}{short title in footline}
+
+\begin{description}
+\item[{default}] Fügt den Kurztitel in die Fußzeile ein
+\end{description}
+\end{block}
+
+\begin{block}{page number in footline}
+\small
+\begin{description}
+\item[{page}] Setzt die Seitenzahl. Die Form kann als optionaler Parameter
+übergeben werden. Standardwert „text and total". Für weitere Werte
+siehe unten, Vorlagen, die mit „page number: “ anfangen (dieser Teil
+wird automatisch hinzugefügt).
+\item[{frame}] Setzt die Foliennummer. Die Form kann als optionaler Parameter
+übergeben werden. Standardwert „text and total". Für weitere Werte
+siehe unten, Vorlagen, die mit „frame number: “ anfangen (dieser Teil
+wird automatisch hinzugefügt).
+\end{description}
+\end{block}
+\end{frame}
+
+\begin{frame}[label=sec-2-2-5]{Vorlagen (Fortsetzung)}
+\begin{block}{page number: text and total}
+Setzt Seitenzahl – Sprachauswahl für Nummer und Gesamtzahl.(wird automatisch gesetzt)
+\begin{description}
+\item[{english}] Englisch
+\item[{german}] Deutsch
+\end{description}
+\end{block}
+
+\begin{block}{page number: text}
+Setzt Seitenzahl – Sprachauswahl für Nummer.(wird automatisch gesetzt)
+\begin{description}
+\item[{english}] Englisch
+\item[{german}] Deutsch
+\end{description}
+\end{block}
+
+\begin{block}{page number: total}
+Setzt Seitenzahl und Gesamtzahl ohne Worte.(wird automatisch gesetzt)
+\begin{description}
+\item[{default}] Standardeinstellung
+\end{description}
+\end{block}
+
+\begin{block}{page number: only}
+Setzt Seitenzahl ohne Gesamtzahl ohne Worte.(wird automatisch gesetzt)
+\begin{description}
+\item[{default}] Standardeinstellung
+\end{description}
+\end{block}
+
+\begin{block}{frame number: text and total}
+Setzt Foliennummer – Sprachauswahl für Nummer und Gesamtzahl.(wird automatisch gesetzt)
+\begin{description}
+\item[{english}] Englisch
+\item[{german}] Deutsch
+\end{description}
+\end{block}
+
+\begin{block}{frame number: text}
+Setzt Foliennummer – Sprachauswahl für Nummer.(wird automatisch gesetzt)
+\begin{description}
+\item[{english}] Englisch
+\item[{german}] Deutsch
+\end{description}
+\end{block}
+
+\begin{block}{frame number: total}
+Setzt Foliennummer und Gesamtzahl ohne Worte.(wird automatisch gesetzt)
+\begin{description}
+\item[{default}] Standardeinstellung
+\end{description}
+\end{block}
+
+\begin{block}{frame number: only}
+Setzt Foliennummer ohne  Gesamtzahl ohne Worte.(wird automatisch gesetzt)
+\begin{description}
+\item[{default}] Standardeinstellung
+\end{description}
+\end{block}
+
+
+\begin{block}{footline}
+Setzt den Seitenfuß
+
+\begin{description}
+\item[{tud titlepage}] Fußzeile auf der Titelseite
+\item[{tud pagenum}] Fußzeile mit Seiten- oder Folienzahl entsprechend dem
+Parameter zu „page number in footline“
+\item[{tud nopagenum}] Fußzeile ohne Seiten- und Folienzahl
+\end{description}
+\end{block}
+
+\begin{block}{frametitle}
+Setzt den Folientitel
+\begin{description}
+\item[{tud titlesection}] Setzt vor dem eigentlichen Titel den
+\end{description}
+Abschnittstitel
+\begin{description}
+\item[{tud notitlesection}] Es wird nur der
+\end{description}
+\end{block}
+
+\begin{block}{einrichtung/titlepage}
+Setzt die Einrichtung im Seitenkopf auf der Titelseite
+
+\begin{description}
+\item[{default}] normal
+\item[{empty}] keine Ausgabe
+\end{description}
+\end{block}
+\begin{block}{fachrichtung/titlepage}
+Setzt die Fachrichtung im Seitenkopf auf der Titelseite
+
+\begin{description}
+\item[{default}] normal
+\item[{empty}] keine Ausgabe
+\end{description}
+\end{block}
+\begin{block}{intstitut/titlepage}
+Setzt den Institutsnamen im Seitenkopf auf der Titelseite
+
+\begin{description}
+\item[{default}] normal
+\item[{empty}] keine Ausgabe
+\end{description}
+\end{block}
+
+\begin{block}{professur/titlepage}
+Setzt die Professur im Seitenkopf auf der Titelseite
+
+\begin{description}
+\item[{default}] normal
+\item[{empty}] keine Ausgabe
+\end{description}
+\end{block}
+\end{frame}
+
+\subsection{Beispiel}
+\label{sec-2-3}
+
+\textbackslash setbeamercolor\{normal text\}\{bg=white\}\\
+\textbackslash setbeamertemplate\{headline\}[tud header]\\
+\textbackslash setbeamertemplate\{footline\}[tud pagenum]\\
+\textbackslash setbeamertemplate\{frametitle\}[tud notitlesection]\\
+
+
+\subsection{\textbackslash usefonttheme\{tud\}}
+\label{sec-2-4}
+
+\begin{frame}[label=sec-2-4-1]{Paketoptionen}
+\begin{description}
+\item[{noeulermath}] Benutze keine Euler-Mathematikschriften
+\item[{noDIN}] Titel ohne DIN bold
+\item[{nodin}] Titel ohne DIN bold
+\item[{serifmath}] Nutze Computer Modern für Mathematik
+\item[{heavyfont}] Nutze Univers 55 statt Univers 45
+\item[{beamerfont}] Keine Fontänderungen
+\end{description}
+\end{frame}
+
+\begin{frame}[label=sec-2-4-2]{Makros}
+\begin{description}
+\item[{\textbackslash tudtitlenormalsize}] Ersatz für \textbackslash
+  normalsize auf der Titelseite
+\item[{\textbackslash tudtitlesmall}] Ersatz für \textbackslash small auf der Titelseite
+\item[{\textbackslash tudtitletiny}] Ersatz für \textbackslash tiny auf der Titelseite
+\end{description}
+
+Darüberhinaus lädt dieses Paket das Paket „tudfonts“ mit all seinen makros
+\end{frame}
+
+\begin{frame}[label=sec-2-4-3]{Schriftvorlagen}
+Vorlangen werden mit \textbackslash
+setbeamerfont\{\emph{Name}\}\{Werte\} gesetzt. Sie können mit \textbackslash
+usebeamerfont aktiviert werden. Weitere Informationen dazu gibt es im
+„Beamer User Guide“ (\texttt{texdoc beamer}).
+
+Es werden folgende Vorlagen definiert:
+\begin{itemize}
+\item \textbackslash setbeamerfont\{itemize/enumerate subbody\} \{size=\textbackslash scriptsize\}
+\item \textbackslash setbeamerfont\{itemize/enumerate subsubbody\} \{size=\textbackslash scriptsize\}
+\item \textbackslash setbeamerfont\{section in head/foot\}\{size=\textbackslash normalsize, family=\textbackslash sffamily\}
+\item \textbackslash setbeamerfont\{frametitle\} \{size=\textbackslash normalsize, family=\textbackslash sffamily\}
+\item \textbackslash setbeamerfont\{framesubtitle\} \{size=\textbackslash
+   small, series=\textbackslash bfseries,family=\textbackslash sffamily\}
+\item \textbackslash setbeamerfont\{footline\} \{size=\textbackslash tiny\}
+\item \textbackslash setbeamerfont\{block title\} \{size=\{\}\}
+\item \textbackslash if@noDIN
+  \textbackslash setbeamerfont\{title\} \{size=\textbackslash
+ @setfontsize\textbackslash LARGE\textbackslash @xviipt\{22\},
+ series=\textbackslash bfseries, family=\textbackslash sffamily\}
+\textbackslash else
+  \textbackslash setbeamerfont\{title\} \{size=\textbackslash
+ @setfontsize\textbackslash LARGE\textbackslash @xviipt\{22\},
+ series=\textbackslash bfseries, family=\textbackslash dinfamily\}
+\textbackslash fi
+\item \textbackslash setbeamerfont\{subtitle\} \{series=\textbackslash
+   bfseries, family=\textbackslash sffamily\}
+\item \textbackslash setbeamerfont\{einrichtung/titlepage\}
+\{size=\textbackslash tudtitletiny, series=\textbackslash bfseries\}
+\item \textbackslash setbeamerfont\{fachrichtung/titlepage\} \{size=\textbackslash tudtitletiny\}
+\item \textbackslash setbeamerfont\{institut/titlepage\} \{parent=fachrichtung/titlepage\}
+\item \textbackslash setbeamerfont\{professur/titlepage\} \{parent=fachrichtung/titlepage\}
+\item \textbackslash setbeamerfont\{date in head/foot/titlepage\} \{size=\textbackslash tudtitlenormalsize\}
+\item \textbackslash setbeamerfont\{author\} \{size=\textbackslash tudtitlesmall\}
+\end{itemize}
+\end{frame}
+
+
+
+\subsection{\textbackslash usecolortheme\{tud\}}
+\label{sec-2-5}
+
+\begin{frame}[label=sec-2-5-1]{Makros}
+\begin{description}
+\item[{\textbackslash darktitlepale}] Stellt eine dunkle Titelseite ein, wie
+\end{description}
+vom CD gefordert
+\begin{description}
+\item[{\textbackslash whitetitlepage}] Titelseite wird weiß (nicht CD-Konform).
+\end{description}
+
+Darüberhinaus lädt dieses Paket das Paket „tudcolors“ mit all seinen
+makros und den HKS-Farben (siehe Dokumentation von tudmathposter)
+\end{frame}
+
+\begin{frame}[label=sec-2-5-2]{Farbvorlagen}
+Farbvorlagen werden mit \textbackslash
+setbeamercolor\{\emph{Name}\}\{Werte\} gesetzt. Sie können mit \textbackslash
+usebeamercolor für die Aktivierung geladen werden. Weitere Informationen dazu gibt es im
+„Beamer User Guide“ (\texttt{texdoc beamer}).
+
+Es werden folgende Vorlagen definiert:
+\begin{itemize}
+\item \textbackslash setbeamercolor\{normal text\} \{fg=HKS41K100,bg=white\}
+\item \textbackslash setbeamercolor\{structure\} \{fg=HKS41K100\}
+\item \textbackslash setbeamercolor\{alerted text\} \{fg=HKS44K100\}
+\item \textbackslash setbeamercolor\{alternate palette\} \{fg=HKS92K80\}
+\item \textbackslash setbeamercolor\{date in head/foot\} \{parent=alternate palette\}
+\item \textbackslash setbeamercolor\{title in head/foot\} \{parent=alternate palette\}
+\item \textbackslash setbeamercolor\{page number in head/foot\} \{parent=alternate palette\}
+\item \textbackslash setbeamercolor\{section in head/foot\} \{parent=alternate palette\}
+\item \textbackslash setbeamercolor\{subsection in head/foot\} \{parent=section in head/foot\}
+\item \textbackslash setbeamercolor\{upper separation line head\} \{parent=alternate palette\}
+\item \textbackslash setbeamercolor\{lower separation line head\} \{parent=upper separation line head\}
+\item \textbackslash setbeamercolor\{author in head/foot\} \{parent=section in head/foot\}
+\item \textbackslash setbeamercolor\{title in head/foot\} \{parent=subsection in head/foot\}
+\item \textbackslash setbeamercolor\{logo\} \{use=structure, fg=structure.fg\}
+\item \textbackslash newcommand*\{\textbackslash darktitlepage\}\{\%
+\begin{itemize}
+\item \textbackslash setbeamercolor\{normal text/titlepage\} \{fg=white,bg=HKS41K100\}\%
+\item \textbackslash setbeamercolor\{title\} \{use=normal text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{subtitle\} \{use=normal
+text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{author/titlepage\} \{use=normal
+text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{headline/titlepage\} \{use=normal
+text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{logo/titlepage\} \{use=normal
+text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{einrichtung/titlepage\}
+\{use=normal text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{fachrichtung/titlepage\}
+\{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{institut/titlepage\}
+\{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{professur/titlepage\}
+\{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{upper separation line
+head/titlepage\} \{use=normal text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{lower separation line head/titlepage\}\%
+\{use=upper separation line head/titlepage, fg=upper separation line head/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{date in head/foot/titlepage\}
+\{use=normal text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash let\textbackslash logo$\backslash$@ DDC\textbackslash logo$\backslash$@ DDC$\backslash$@ white
+\item \textbackslash let\textbackslash logo$\backslash$@ DDCf\textbackslash logo$\backslash$@ DDC$\backslash$@ whitef
+\}
+\end{itemize}
+\item \textbackslash newcommand*\{\textbackslash whitetitlepage\}\{\%
+\begin{itemize}
+\item \textbackslash setbeamercolor\{normal text/titlepage\}
+\{use=normal text,fg=normal text.fg, bg=normal text.bg\}
+\item \textbackslash setbeamercolor\{title\} \{use=normal
+text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{subtitle\} \{use=normal
+text/titlepagexo, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{author/titlepage\} \{use=normal
+text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{headline/titlepage\} \{use=normal
+text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{logo/titlepage\} \{use=normal
+text/titlepage, fg=normal text/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{einrichtung/titlepage\} \{fg=HKS92K100\}\%
+\item \textbackslash setbeamercolor\{fachrichtung/titlepage\}
+\{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{institut/titlepage\}
+\{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{professur/titlepage\}
+\{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{upper separation line
+head/titlepage\} \{fg=HKS92K100\}\%
+\item \textbackslash setbeamercolor\{lower separation line head/titlepage\}\%
+\{use=upper separation line head/titlepage,fg=upper separation line
+  head/titlepage.fg\}\%
+\item \textbackslash setbeamercolor\{date in head/foot/titlepage\} \{fg=HKS92K100\}\%
+\item \textbackslash let\textbackslash logo$\backslash$@ DDC\textbackslash logo$\backslash$@ DDC$\backslash$@ bunt\%
+\item \textbackslash let\textbackslash logo$\backslash$@ DDCf\textbackslash logo$\backslash$@ DDC$\backslash$@ colorf
+\}
+\end{itemize}
+\item \textbackslash darktitlepage
+
+\item \textbackslash setbeamercolor\{block body\} \{use=normal text,
+fg=normal text.fg, bg=HKS41K10\}
+\item \textbackslash setbeamercolor\{block title\} \{fg=HKS41K100,bg=HKS41K20\}
+\item \textbackslash setbeamercolor\{block body example\} \{use=normal
+text, fg=normal text.fg, bg=HKS41K10\}
+\item \textbackslash setbeamercolor\{block title example\}
+\{fg=HKS57K100, bg=HKS41K20\}
+\item \textbackslash setbeamercolor\{block body alerted\} \{use=normal
+text, fg=normal text.fg, bg=HKS65K10\}
+\item \textbackslash setbeamercolor\{block title alerted\}
+\{fg=HKS07K100, bg=HKS65K20\}
+\end{itemize}
+\end{frame}
+
+
+
+\subsection{\textbackslash useinnertheme\{tud\}}
+\label{sec-2-6}
+
+\begin{frame}[label=sec-2-6-1]{Vorlagen}
+Für die inneren Vorlagen gibt es keine Vorgaben außer für die
+Titelseite.
+\begin{block}{Verwendete Vorlagen/Makros}
+\begin{description}
+\item[{\textbackslash beamertemplatedotitem}] siehe beamer-Dokumentation
+\item[{\textbackslash usesubitemizeitemtemplate\{-$\backslash$/-\}}] siehe
+beamer-Dokumentation
+\item[{\textbackslash setbeamertemplate\{title page\}[tud]}] stellt das CD
+der TUD für die Titelseite ein. Dieses Makro wird automatisch mit
+\textbackslash begin \{document\} aufgerufen.
+\end{description}
+\end{block}
+\end{frame}
+
+\subsection{Tips:}
+\label{sec-2-7}
+\begin{frame}[label=sec-2-7-1]{Fußzeile}
+Die Fußzeile sollte die wichtigsten Informationen enthalten, an die
+sich das Publikum erinnern soll. Wenn das TU-Logo im Kopf enthalten
+ist die Angabe „TU Dresden“ redundant.
+
+\textbackslash setbeamertemplate\{date/place in
+footline\}[default][I. Nachname] 
+
+Setzt statt der TU Dresden den Namen
+des Sprechers.
+\end{frame}
+\begin{frame}[label=sec-2-7-2]{Blöcke mit runden Ecken und Schatten}
+\begin{block}{Aufruf}
+Blöcke wie dieser hier werden mittels 
+
+\textbackslash useinnertheme[shadow=true]\{rounded\}
+
+in der Dokumentpräambel voreingestellt
+\end{block}
+\end{frame}
+\subsection{Ein Beispiel}
+\label{sec-2-8}
+\begin{frame}[label=sec-2-8-1]{Eine Beispielfolie}
+\begin{columns}
+\tikzstyle{automorphismuspfeil}=[->,HKS44K100,decoration={bent,aspect=0.3,amplitude=3},decorate]
+\tikzstyle{automorphismuspfeil2}=[automorphismuspfeil,decoration={bent,aspect=0.3,amplitude=2}]
+\begin{tikzpicture}
+\draw (0,0) node (n0) {0};
+\draw (-1,1) node (n1) {1};
+\draw (1,1) node (n2) {2};
+\draw (-1.5,2) node (n3) {3};
+\draw (-0.5,2) node (n4) {4};
+\draw (0.5,2) node (n5) {5};
+\draw (1.5,2) node (n6) {6};
+\draw (0,3) node (n7) {7};
+\draw (n0) -- (n1) -- (n3) -- (n7) -- (n6) -- (n2) -- (n0);
+\draw (n1) -- (n4) -- (n7) -- (n5) -- (n2);
+\only<1,2,5,6> {
+  \draw[automorphismuspfeil] (n1) -- (n2);
+  \draw[automorphismuspfeil] (n2) -- (n1); 
+}
+\only<3,4>{
+  \draw[automorphismuspfeil] (n3) -- (n4);
+  \draw[automorphismuspfeil] (n4) -- (n3);
+}
+\only<5>{
+  \draw[automorphismuspfeil] (n3) -- (n5);
+  \draw[automorphismuspfeil] (n5) -- (n3);
+}
+\only<6>{
+  \draw[automorphismuspfeil] (n3) -- (n6);
+  \draw[automorphismuspfeil] (n6) -- (n3);
+}
+\only<6>{
+  \draw[automorphismuspfeil2] (n4) -- (n5);
+  \draw[automorphismuspfeil2] (n5) -- (n4);
+}
+\only<5>{
+  \draw[automorphismuspfeil] (n4) -- (n6);
+  \draw[automorphismuspfeil] (n6) -- (n4);
+}
+\only<3,4>{
+  \draw[automorphismuspfeil] (n5) -- (n6);
+  \draw[automorphismuspfeil] (n6) -- (n5);
+}
+\only<1>{
+  \draw[automorphismuspfeil] (n3) -- (n5);
+  \draw[automorphismuspfeil2] (n5) -- (n4);
+  \draw[automorphismuspfeil] (n4) -- (n6);
+  \draw[automorphismuspfeil] (n6) -- (n3);
+}
+\only<2>{
+  \draw[automorphismuspfeil] (n3) -- (n6);
+  \draw[automorphismuspfeil] (n6) -- (n4);
+  \draw[automorphismuspfeil2] (n4) -- (n5);
+  \draw[automorphismuspfeil] (n5) -- (n3);
+}
+\end{tikzpicture}
+\begin{column}{0.7\textwidth}
+\begin{block}{Beschreibung}
+
+Eine Tabelle
+
+{}\uncover<2->{\tiny %}
+\begin{center}
+\begin{tabular}{lllllllll}
+\hline
+ & $1$ & $a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$\\
+\hline
+$1=(1)$ & $1$ & $a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$\\
+$a=(34)$ & $a$ & $1$ & $c$ & $b$ & $g$ & $f$ & $e$ & $d$\\
+$b=(56)$ & $b$ & $c$ & $1$ & $a$ & $f$ & $g$ & $d$ & $e$\\
+$c=(34)(56)$ & $c$ & $b$ & $a$ & $1$ & $e$ & $d$ & $g$ & $f$\\
+$d=(12)(35)(46)$ & $d$ & $f$ & $g$ & $e$ & $1$ & $c$ & $a$ & $b$\\
+$e=(12)(36)(45)$ & $e$ & $g$ & $f$ & $d$ & $c$ & $1$ & $b$ & $a$\\
+$f=(12)(3546)$ & $f$ & $d$ & $e$ & $g$ & $b$ & $a$ & $c$ & $1$\\
+$g=(12)(3645)$ & $g$ & $e$ & $d$ & $f$ & $a$ & $b$ & $1$ & $c$\\
+\hline
+\end{tabular}
+\end{center}
+}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\section{Minimal agierende Automorphismen}
+\label{sec-3}
+\subsection{Quasiordnung der Automorphismen}
+\label{sec-3-1}
+\begin{frame}[label=sec-3-1-1]{Ein Satz mit Beweis}
+\begin{theorem}[Quasiordnung]
+Sei $G\leq \mathfrak{Aut}(M,\leq)$ eine Untergruppe der geordneten
+Menge $(M,\leq)$. Dann ist die Relation ${\sqsubseteq}\subseteq
+G\times G$ mit 
+\[
+g\sqsubseteq h :\Leftrightarrow ∀u∈\Orb(〈g〉)∃U'∈\Orb(〈h〉)\text{ und }U\subseteq U'
+\]
+eine Quasiordnung.
+\end{theorem}
+
+\begin{proof}[Beweis]
+\begin{enumerate}
+\item Reflexiv: $\Orb(〈g〉) = \Orb(〈g〉)$
+\item Transitiv:
+\end{enumerate}
+\[
+\begin{matrix}∀U∈\Orb(〈g〉)∃U'∈\Orb(〈h〉): U\subseteq U'\\
+  ∀V∈\Orb(〈h〉)∃V'∈\Orb(〈i〉): V\subseteq V'
+\end{matrix}\quad ⇒\quad ∃U''∈\Orb(〈f〉): U\subseteq U''.
+\]\vspace{-0.25\baselineskip}
+\end{proof}
+\end{frame}
+\begin{frame}[label=sec-3-1-2]{Beispielfolie}
+\begin{example}[Beispieltitel]
+mal sehen, was wird
+\end{example}
+\begin{alertblock}{Block hervorgehoben}
+Inhalt
+\end{alertblock}
+\end{frame}
+% Emacs 24.3.2 (Org mode 8.2.10)
+\end{document}

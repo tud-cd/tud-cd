@@ -258,7 +258,41 @@ Setzt den Folientitel
 Abschnittstitel
 - tud notitlesection :: Es wird nur der 
 
-*** Beispiel
+**** einrichtung/titlepage                                          :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt die Einrichtung im Seitenkopf auf der Titelseite
+
+- default :: normal
+- empty :: keine Ausgabe
+**** fachrichtung/titlepage                                         :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt die Fachrichtung im Seitenkopf auf der Titelseite
+
+- default :: normal
+- empty :: keine Ausgabe
+**** intstitut/titlepage                                            :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt den Institutsnamen im Seitenkopf auf der Titelseite
+
+- default :: normal
+- empty :: keine Ausgabe
+
+**** professur/titlepage                                            :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Setzt die Professur im Seitenkopf auf der Titelseite
+
+- default :: normal
+- empty :: keine Ausgabe
+
+** Beispiel
 
   #+BEGIN_LATEX
     \textbackslash setbeamercolor\{normal text\}\{bg=white\}\\
