@@ -313,6 +313,8 @@
   \@ifundefined{schnittrand}
   {\setlength{\tudposter@cutborder}{0pt}}
   {\setlength{\tudposter@cutborder}{\schnittrand}}%
+  \addtolength{\paperheight}{2\tudposter@cutborder}%
+  \addtolength{\paperwidth}{2\tudposter@cutborder}%
   % rechter Rand: lt. M. Kaden: Achsenabstand minus zweimal Querbalken
   \setlength{\tudposter@rmargin}{\tudposter@lmargin-2\tudposter@cbheight}
   % 
