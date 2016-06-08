@@ -1,0 +1,14 @@
+#!/bin/bash
+selfname="$0"
+basedir=$(dirname "$0")/../../..
+datadir="$basedir/doc/latex/tud-beamerstyle"
+
+TEXMFDBS='{!!~/texmf,!!$TEXMFHOME,!!$TEXMFSYSVAR,!!$TEXMFDEBIAN,!!$TEXMFMAIN,!!$TEXMFLOCAL,!!$TEXMFDIST}' 
+export TEXMFDBS
+
+cd "$datadir"
+pdflatex beamer-org-mode-demo.tex
+latex beamer-org-mode-demo.tex
+dvicopy beamer-org-mode-demo.dvi beamer-org-mode-demo-nonvf.dvi
+dvips beamer-org-mode-demo-nonvf
+ps2pdf -d 1 -u +univers.map -u +dinbold.map beamer-org-mode-demo-nonvf.ps

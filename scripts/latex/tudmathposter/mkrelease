@@ -1,0 +1,50 @@
+#!/bin/bash
+TEXMFDBS='{!!~/texmf:!!$TEXMFHOME,!!$TEXMFSYSVAR,!!$TEXMFDEBIAN,!!$TEXMFMAIN,!!$TEXMFLOCAL,!!$TEXMFDIST}' 
+export TEXMFDBS
+selfname="$0"
+basedir=$(dirname "$selfname")/../../..
+tudmathposterdir="$basedir/doc/latex/tudmathposter/"
+
+./mkmasze
+cd "$(tudmathposterdir)"
+iconv -f utf8 -t ms-ansi <beispiel-utf8.tex |\
+	sed -e 's/\\usepackage\[utf8\]{inputenc}/\\usepackage[ansinew]{inputenc}/;
+s/tonnetz\.mut/tonnetz-win.mut/g;
+s/inputencoding=utf8/inputencoding=ansinew/g'\
+	>beispiel-win.tex
+
+iconv -f utf8 -t ms-ansi <tonnetz.mut >tonnetz-win.mut
+
+sed -e 's/\\documentclass\[/\\documentclass[serifmath,/'\
+	<beispiel-utf8.tex \
+	>beispiel-utf8-serifmath.tex
+
+iconv -f latin1 -t utf8 <beispiel2-latin1.tex |\
+	sed -e 's/\\usepackage\[latin1\]{inputenc}/\\usepackage[utf8]{inputenc}/'\
+	>beispiel2-utf8.tex
+
+
+for d in beispiel*.tex
+do
+	/usr/texbin/pdflatex $d
+	/usr/texbin/pdflatex $d
+	/usr/texbin/pdflatex $d
+done
+
+rm *.aux *.out
+rm *.log
+
+cd ../tud-beamerstyle
+
+
+for d in beamerstyle.tex beamer*.tex
+do
+	/usr/texbin/pdflatex $d
+	/usr/texbin/pdflatex $d
+	/usr/texbin/pdflatex $d
+done
+
+rm *.aux *.out
+rm *.log
+
+git tag -a -m "$2" "$1"

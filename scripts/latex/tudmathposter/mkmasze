@@ -1,0 +1,13 @@
+#!/bin/bash
+selfid="$0"
+datadir=$(dirname "$self")/../../../source/latex/tudmathposter/tests
+cd "$datadir"
+cp masze.tex masze-powerpoint.tex
+sed -e 's/Mathematik]{tudmathposter}/MathematikA0]{tudmathposter}/' <masze.tex >masze-5mm-schnittrand.tex
+sed -e '1 s/^/\\def\\schnittrand{0mm}%\n/' <masze-5mm-schnittrand.tex >masze-0mm-schnittrand.tex
+sed -e '1 s/^/\\def\\schnittrand{50mm}%\n/' <masze-5mm-schnittrand.tex >masze-50mm-schnittrand.tex
+pdflatex masze.tex
+pdflatex masze-powerpoint.tex
+pdflatex masze-5mm-schnittrand.tex
+pdflatex masze-0mm-schnittrand.tex
+pdflatex masze-50mm-schnittrand.tex

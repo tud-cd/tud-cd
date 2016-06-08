@@ -1,0 +1,9 @@
+#!/bin/bash
+for i in $(seq 1 10)
+do
+  c=$(($2*i/10))
+  m=$(($3*i/10))
+  y=$(($4*i/10))
+  k=$(($5*i/10))
+  printf "\\definecolor{HKS%sK%d0}{cmyk}{0.%02d, 0.%02d, 0.%02d, 0.%02d}\\n" "$1" $i $c $m $y $k
+done
