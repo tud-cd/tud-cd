@@ -7,7 +7,7 @@
 \def\check@tud@fonts@tudscrfonts{
   \@check@tud@fontsfalse
   \@for\@tudfontfile:=%
-    tudscrfonts.sty%
+    tudscrfonts.sty,%
     8r0m6.fd,%
     8rlun.fd,%
     oml0m6.fd,%
@@ -24,18 +24,15 @@
     ts1lun.fd,%
     ts1lunt.fd%
   \do{%
-    \IfFileExists{\@tudfontfile}{}{%
-      \def\tudfontspackage{tudfonts}%
-      \@check@tud@fontstrue
-    }
+    \IfFileExists{\@tudfontfile}{}{\@check@tud@fontstrue}%
   }
   \if@check@tud@fonts
-  \csname check@tud@fonts@\tudfontspackage \endcsname
+    \def\tudfontspackage{tudfonts}%
+    \check@tud@fonts@tudfonts%
   \fi
 }
 
-
-\def\check@tud@fonts@tudscrfonts{
+\def\check@tud@fonts@tudfonts{%
   \@check@tud@fontsfalse
   \@for\@tudfontfile:=%
     tudfonts.sty,%
@@ -105,6 +102,15 @@
   \def\dinfamily{\dinbn}%
   \let\dinBold\dinfamily%
 }
+\AtBeginDocument{%
+  \providecommand*\dinfamily{%
+    \PackageWarning{beamerfontthemetud}{%
+      Neither package `tudscrfonts' nor `tudfonts' was loaded!%
+    }%
+  }%
+  \providecommand*\dinBold{\dinfamily}%
+}
+
 \if@useBeamerFont
 \else
   \RequirePackage{\tudfontspackage}
