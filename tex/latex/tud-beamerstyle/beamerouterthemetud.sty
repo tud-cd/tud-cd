@@ -22,10 +22,12 @@
 \newif\if@useNavBar\@useNavBarfalse
 \DeclareOptionBeamer{navbar}{\@useNavBartrue}
 
-\newif\if@ddc
-\DeclareOptionBeamer{ddc}{\@ddctrue}
+\newif\if@ddc\@ddcfalse
+\DeclareOptionBeamer{ddc}{\@ddctrue\@ddcfooterfalse}
 \newif\if@ddcfooter
+\@ddcfootertrue
 \DeclareOptionBeamer{ddcfooter}{\@ddcfootertrue\@ddcfalse}
+\DeclareOptionBeamer{noddc}{\@ddcfooterfalse\@ddcfalse}
 
 
 \ProcessOptionsBeamer\relax
@@ -242,17 +244,44 @@
   \strut
 }
 
+\defbeamertemplate*{zweitlogo/titlepage}{default}{}
+\defbeamertemplate{zweitlogo/titlepage}{logofile}[1]{%
+  \includegraphics[height=0.282\tudbeamer@logowidth]{#1}%
+}
+\defbeamertemplate{zweitlogo/titlepage}{ddc}{%
+  \includegraphics[height=0.282\tudbeamer@logowidth]{DDC-weiss}%
+}
+\defbeamertemplate{zweitlogo/titlepage}{freeform}[1]{%
+  \def\logoheight{0.282\tudbeamer@logowidth}%
+  #1%
+}
+
+\defbeamertemplate*{zweitlogo/headline}{default}{}
+\defbeamertemplate{zweitlogo/headline}{logofile}[1]{%
+  \includegraphics[height=0.282\tudbeamer@logowidth]{#1}%
+}
+\defbeamertemplate{zweitlogo/headline}{ddc}{%
+  \includegraphics[height=0.282\tudbeamer@logowidth]{DDC-weiss}%
+}
+\defbeamertemplate{zweitlogo/headline}{freeform}[1]{%
+  \def\logoheight{0.282\tudbeamer@logowidth}%
+  #1%
+}
+\if@ddc
+\setbeamertemplate{zweitlogo/titlepage}[ddc]
+\setbeamertemplate{zweitlogo/headline}[ddc]
+\fi
+
+
 \defbeamertemplate{headline}{tud titlepage}{%
   \vbox to 0.175\paperheight{%
     \vskip\tudbeamer@logotopmargin
     \hskip\tudbeamer@logoleftmargin
     \usebeamercolor[fg]{logo/titlepage}%
     \includegraphics[height=0.282\tudbeamer@logowidth]{\logo@front}%
-    \if@ddc
-        \hfill
-        \includegraphics[height=0.282\tudbeamer@logowidth]{DDC-weiss}%
-        \hskip\beamer@rightmargin\hbox{}%
-    \fi
+    \hfill
+    \usebeamertemplate{zweitlogo/titlepage}
+    \hskip\beamer@rightmargin\hbox{}%
     \vskip 0pt plus 1 fil\relax
   }%
   \usebeamercolor[fg]{upper separation line head/titlepage}%
@@ -279,8 +308,10 @@
     \hskip\tudbeamer@logoleftmargin%
     \usebeamercolor[fg]{logo}%
     \includegraphics[width=\tudbeamer@logowidth]{\logo@default}%
-    \par
-    \vfill
+    \hfill
+    \usebeamertemplate{zweitlogo/headline}
+    \hskip\beamer@rightmargin\hbox{}%
+    \vskip 0pt plus 1 fil\relax
   }%
   \usebeamercolor[fg]{upper separation line head}%
   \rule{\paperwidth}{0.3pt}\par

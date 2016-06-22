@@ -1,4 +1,4 @@
-% Created 2015-07-08 Mi 21:19
+% Created 2016-06-22 Mi 21:02
 \documentclass[presentation,t]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -16,22 +16,48 @@
 \usepackage{amssymb}
 \usepackage{hyperref}
 \tolerance=1000
+\pdfmapfile{+tud}%
+\pdfmapfile{+tudscr}%
+\usepackage{amsmath}
+\usepackage{uniinput}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[ngerman, germanb]{babel}
+\usetikzlibrary{decorations.pathmorphing}
+\usetheme[section,navigation,pagenum,ddc]{tud}
+\useinnertheme[shadow=true]{rounded}
+%\usetheme{Boadilla}
+%\usecolortheme{tud}
+\institut{Institut f\"ur Algebra}%
+\DeclareMathOperator\Orb{Orb}%
+\title[TUD-CD mit \LaTeX\ gesetzt]{Beamer-Präsentationen mit dem CD der TU Dresden}
+\AtBeginDocument{\date{22.\,6.~2016}}
+\subtitle{TUD-CD mit \LaTeX\ gesetzt}
+\setbeamerfont{description item}{series=\bfseries}
+\setbeamertemplate{date/place in footline}[default][T. Schlemmer]
+\setbeamertemplate{page number in footline}[frame][total]
+\AtBeginSection[]{\begin{frame}<beamer>[allowframebreaks]\frametitle{Abschnitt}\footnotesize\tableofcontents[currentsection]\end{frame}}
+\setlength{\tudbeamerfooterplacewidth}{0.3\linewidth}%
+\setlength{\tudbeamerfooterpagenumwidth}{5em}%
+\makeatletter
+\setlength{\tudbeamerfootertitlewidth}{\paperwidth-\beamer@leftmargin-\beamer@rightmargin
+-\tudbeamerfooterplacewidth-\tudbeamerfooterpagenumwidth}%
+\makeatother
 \usetheme{default}
 \author{Tobias Schlemmer}
-\date{7.$\backslash$,5.\textasciitilde{}2012}
+\date{@latex:7.$\backslash$,5.\textasciitilde{}2012@}
 \title{Beamer-Präsentationen mit dem CD der TU Dresden}
 \hypersetup{
   pdfkeywords={},
   pdfsubject={},
-  pdfcreator={Emacs 24.3.2 (Org mode 8.2.10)}}
+  pdfcreator={Emacs 24.4.1 (Org mode 8.2.10)}}
 \begin{document}
 
 \maketitle
-\begin{frame}{Outline}
+\begin{frame}[allowframebreaks]{Inhalt}
 \tableofcontents
 \end{frame}
 
-\#\#COLUMNS: \%40ITEM \%10BEAMER$_{\text{env}}$(Env) \%9BEAMER$_{\text{envargs}}$(Env Args) \%4BEAMER$_{\text{col}}$(Col) \%10BEAMER$_{\text{extra}}$(Extra)
 \section{Einführung}
 \label{sec-1}
 \subsection{Allgemeines}
@@ -65,14 +91,12 @@
 \begin{frame}[label=sec-1-2-1]{Beispieldokument}
 \textbackslash usepackage[ngerman]\{babel\}\\
 \textbackslash usetheme[section,navigation]\{tud\}\\
-\textbackslash institut\{Institut f$\backslash$"ur Algebra\}\%
-\textbackslash title[Beispiel]\{Langer Title mit Beispiel\}
+\textbackslash institut\{Institut f\textbackslash "ur Algebra\}\%\\
+\textbackslash title[Beispiel]\{Langer Titel mit Beispiel\}\\
 \textbackslash begin\{document\}\\
-\textbackslash begin\{frame\}\\
 \textbackslash maketitle\\
-\textbackslash end\{frame\}\\
 \textbackslash begin\{frame\}\{Eine Folie\}\\
-Inhalt
+Inhalt\\
 \textbackslash end\{frame\}\\
 \textbackslash end\{document\}\\
 \end{frame}
@@ -97,24 +121,26 @@ Inhalt
 \item[{pagenum}] Seitenzahlen in der Fußzeile anzeigen
 \item[{section}] mit Abschnittstitel auf jeder Folie
 \item[{navbar}] mit Navigationshilfen
+\item[{noddc}] ohne Dresden-Concept-Logo
 \item[{ddc}] mit Dresden-Concept-Logo
-\item[{ddcfooter}] mit Dresden-Concept Logo im Fußbereich
+\item[{ddcfooter}] mit Dresden-Concept Logo im Fußbereich (Standardeinstellung)
 \end{description}
 \end{frame}
 \subsection{\textbackslash useoutertheme\{tud\}}
 \label{sec-2-2}
-\begin{frame}[label=sec-2-2-1]{Paketoptionen}
+\begin{frame}[label=sec-2-2-1]{Paketoptionen (\textbackslash useoutertheme\{tud\})}
 \begin{description}
 \item[{noheader}] Benutze Folien ohne Kopfzeile
 \item[{smallrightmargin}] Schmaler rechter Rand (verletzt CD-Richtlinie
 \item[{pagenum}] Seitenzahlen in der Fußzeile anzeigen
 \item[{section}] mit Abschnittstitel auf jeder Folie
 \item[{navbar}] mit Navigationshilfen
+\item[{noddc}] ohne Dresden-Concept-Logo
 \item[{ddc}] mit Dresden-Concept-Logo
-\item[{ddcfooter}] mit Dresden-Concept Logo im Fußbereich
+\item[{ddcfooter}] mit Dresden-Concept Logo im Fußbereich (Standardeinstellung)
 \end{description}
 \end{frame}
-\begin{frame}[label=sec-2-2-2]{Makros}
+\begin{frame}[label=sec-2-2-2]{Makros (\textbackslash useoutertheme\{tud\})}
 \begin{description}
 \item[{\textbackslash einrichtung\{\emph{einrichtung}\}}] Legt die
 Einrichtung/Fakultät fest
@@ -127,7 +153,7 @@ Professur fest
 \item[{\textbackslash datecity\{\emph{Datumsort}\}}] Legt den Ort für den Vortrag fest
 \end{description}
 \end{frame}
-\begin{frame}[label=sec-2-2-3]{Register}
+\begin{frame}[label=sec-2-2-3]{Register (\textbackslash useoutertheme\{tud\})}
 \begin{description}
 \item[{\textbackslash topmarginnoheader}] Länge, die den Oberen Rand Seitenrand bei
 Kopflosen Folien angibt.
@@ -139,7 +165,7 @@ die Seitenzahl in der Fußzeilereserviert
 Kurztitel in der Fußzeile reserviert
 \end{description}
 \end{frame}
-\begin{frame}[label=sec-2-2-4]{Vorlagen}
+\begin{frame}[allowframebreaks,label=sec-2-2-4]{Vorlagen (\textbackslash useoutertheme\{tud\})}
 Vorlangen werden mit 
 \textbf{\textbackslash setbeamertemplate\{\emph{Kategorie}\}[\emph{Vorlage}]}
 gesetzt. Es können neue
@@ -151,6 +177,44 @@ Vorlage für Seitenkopf
 \item[{tud titlepage}] Titelseitenkopf
 \item[{tud header}] normaler Folienkopf
 \item[{tud noheader}] Folienkopf für kopflose Folien
+\end{description}
+\end{block}
+
+\begin{block}{zweitlogo/titlepage}
+Vorlage für ein zweites Logo im Kopf der Titelseite
+\begin{description}
+\item[{default}] kein Zweitlogo
+\item[{ddc}] Dresden-Concept-Logo
+\item[{logofile}] Eine Logo-Datei wird als Parameter übergeben und mit
+\textbackslash includegraphics eingebunden und auf die
+richtige Höhe skaliert.Beispiel: 
+\textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[logofile]\{fremdfirma.png\}}
+\item[{freeform}] Es wird der \LaTeX -Code direkt als Parameter übergeben. Beispiel:
+\textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[freefrom]\{\LaTeX\}}
+In diesem Fall ist die Höhe des Logos im Makro
+\texttt{\textbackslash logoheight} hinterlegt. Für die
+Weiterverarbeitung ist wichtig, dass es in ein
+skaliertes Register expandiert wird (siehe
+\texttt{beamerouterthemetod.sty}).
+\end{description}
+\end{block}
+
+\begin{block}{zweitlogo/headline}
+Vorlage für ein zweites Logo im Kopf einer normalen Seite (keine Titelseite)
+\begin{description}
+\item[{default}] kein Zweitlogo
+\item[{ddc}] Dresden-Concept-Logo
+\item[{logofile}] Eine Logo-Datei wird als Parameter übergeben und mit
+\textbackslash includegraphics eingebunden und auf die
+richtige Höhe skaliert. Beispiel: 
+\textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[logofile]\{fremdfirma.png\}}
+\item[{freeform}] Es wird der \LaTeX -Code direkt als Parameter übergeben. Beispiel:
+\textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[freefrom]\{\LaTeX\}}
+In diesem Fall ist die Höhe des Logos im Makro
+\texttt{\textbackslash logoheight} hinterlegt. Für die
+Weiterverarbeitung ist wichtig, dass es in ein
+skaliertes Register expandiert wird (siehe
+\texttt{beamerouterthemetod.sty}).
 \end{description}
 \end{block}
 
@@ -182,9 +246,7 @@ siehe unten, Vorlagen, die mit „frame number: “ anfangen (dieser Teil
 wird automatisch hinzugefügt).
 \end{description}
 \end{block}
-\end{frame}
 
-\begin{frame}[label=sec-2-2-5]{Vorlagen (Fortsetzung)}
 \begin{block}{page number: text and total}
 Setzt Seitenzahl – Sprachauswahl für Nummer und Gesamtzahl.(wird automatisch gesetzt)
 \begin{description}
@@ -303,19 +365,18 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 \end{block}
 \end{frame}
 
-\subsection{Beispiel}
-\label{sec-2-3}
-
+\begin{frame}[label=sec-2-2-5]{Beispiel (\textbackslash useoutertheme\{tud\})}
 \textbackslash setbeamercolor\{normal text\}\{bg=white\}\\
 \textbackslash setbeamertemplate\{headline\}[tud header]\\
 \textbackslash setbeamertemplate\{footline\}[tud pagenum]\\
 \textbackslash setbeamertemplate\{frametitle\}[tud notitlesection]\\
+\end{frame}
 
 
 \subsection{\textbackslash usefonttheme\{tud\}}
-\label{sec-2-4}
+\label{sec-2-3}
 
-\begin{frame}[label=sec-2-4-1]{Paketoptionen}
+\begin{frame}[label=sec-2-3-1]{Paketoptionen (\textbackslash usefonttheme\{tud\})}
 \begin{description}
 \item[{noeulermath}] Benutze keine Euler-Mathematikschriften
 \item[{noDIN}] Titel ohne DIN bold
@@ -326,7 +387,7 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 \end{description}
 \end{frame}
 
-\begin{frame}[label=sec-2-4-2]{Makros}
+\begin{frame}[label=sec-2-3-2]{Makros (\textbackslash usefonttheme\{tud\})}
 \begin{description}
 \item[{\textbackslash tudtitlenormalsize}] Ersatz für \textbackslash
   normalsize auf der Titelseite
@@ -337,7 +398,7 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 Darüberhinaus lädt dieses Paket das Paket „tudfonts“ mit all seinen makros
 \end{frame}
 
-\begin{frame}[label=sec-2-4-3]{Schriftvorlagen}
+\begin{frame}[allowframebreaks,label=sec-2-3-3]{Schriftvorlagen (\textbackslash usefonttheme\{tud\})}
 Vorlangen werden mit \textbackslash
 setbeamerfont\{\emph{Name}\}\{Werte\} gesetzt. Sie können mit \textbackslash
 usebeamerfont aktiviert werden. Weitere Informationen dazu gibt es im
@@ -377,9 +438,9 @@ Es werden folgende Vorlagen definiert:
 
 
 \subsection{\textbackslash usecolortheme\{tud\}}
-\label{sec-2-5}
+\label{sec-2-4}
 
-\begin{frame}[label=sec-2-5-1]{Makros}
+\begin{frame}[label=sec-2-4-1]{Makros (\textbackslash usecolortheme\{tud\})}
 \begin{description}
 \item[{\textbackslash darktitlepale}] Stellt eine dunkle Titelseite ein, wie
 \end{description}
@@ -392,7 +453,7 @@ Darüberhinaus lädt dieses Paket das Paket „tudcolors“ mit all seinen
 makros und den HKS-Farben (siehe Dokumentation von tudmathposter)
 \end{frame}
 
-\begin{frame}[label=sec-2-5-2]{Farbvorlagen}
+\begin{frame}[allowframebreaks,label=sec-2-4-2]{Farbvorlagen (\textbackslash usecolortheme\{tud\})}
 Farbvorlagen werden mit \textbackslash
 setbeamercolor\{\emph{Name}\}\{Werte\} gesetzt. Sie können mit \textbackslash
 usebeamercolor für die Aktivierung geladen werden. Weitere Informationen dazu gibt es im
@@ -494,9 +555,9 @@ text, fg=normal text.fg, bg=HKS65K10\}
 
 
 \subsection{\textbackslash useinnertheme\{tud\}}
-\label{sec-2-6}
+\label{sec-2-5}
 
-\begin{frame}[label=sec-2-6-1]{Vorlagen}
+\begin{frame}[allowframebreaks,label=sec-2-5-1]{Vorlagen (\textbackslash useinnertheme\{tud\})}
 Für die inneren Vorlagen gibt es keine Vorgaben außer für die
 Titelseite.
 \begin{block}{Verwendete Vorlagen/Makros}
@@ -511,9 +572,11 @@ der TUD für die Titelseite ein. Dieses Makro wird automatisch mit
 \end{block}
 \end{frame}
 
-\subsection{Tips:}
-\label{sec-2-7}
-\begin{frame}[label=sec-2-7-1]{Fußzeile}
+\section{Tips und Tricks}
+\label{sec-3}
+\subsection{Tips}
+\label{sec-3-1}
+\begin{frame}[label=sec-3-1-1]{Fußzeile}
 Die Fußzeile sollte die wichtigsten Informationen enthalten, an die
 sich das Publikum erinnern soll. Wenn das TU-Logo im Kopf enthalten
 ist die Angabe „TU Dresden“ redundant.
@@ -524,7 +587,7 @@ footline\}[default][I. Nachname]
 Setzt statt der TU Dresden den Namen
 des Sprechers.
 \end{frame}
-\begin{frame}[label=sec-2-7-2]{Blöcke mit runden Ecken und Schatten}
+\begin{frame}[label=sec-3-1-2]{Blöcke mit runden Ecken und Schatten}
 \begin{block}{Aufruf}
 Blöcke wie dieser hier werden mittels 
 
@@ -534,9 +597,10 @@ in der Dokumentpräambel voreingestellt
 \end{block}
 \end{frame}
 \subsection{Ein Beispiel}
-\label{sec-2-8}
-\begin{frame}[label=sec-2-8-1]{Eine Beispielfolie}
+\label{sec-3-2}
+\begin{frame}[label=sec-3-2-1]{Eine Beispielfolie}
 \begin{columns}
+\begin{column}{0.3\textwidth}
 \tikzstyle{automorphismuspfeil}=[->,HKS44K100,decoration={bent,aspect=0.3,amplitude=3},decorate]
 \tikzstyle{automorphismuspfeil2}=[automorphismuspfeil,decoration={bent,aspect=0.3,amplitude=2}]
 \begin{tikzpicture}
@@ -591,6 +655,7 @@ in der Dokumentpräambel voreingestellt
   \draw[automorphismuspfeil] (n5) -- (n3);
 }
 \end{tikzpicture}
+\end{column}
 \begin{column}{0.7\textwidth}
 \begin{block}{Beschreibung}
 
@@ -621,10 +686,10 @@ $g=(12)(3645)$ & $g$ & $e$ & $d$ & $f$ & $a$ & $b$ & $1$ & $c$\\
 
 
 \section{Minimal agierende Automorphismen}
-\label{sec-3}
+\label{sec-4}
 \subsection{Quasiordnung der Automorphismen}
-\label{sec-3-1}
-\begin{frame}[label=sec-3-1-1]{Ein Satz mit Beweis}
+\label{sec-4-1}
+\begin{frame}[label=sec-4-1-1]{Ein Satz mit Beweis}
 \begin{theorem}[Quasiordnung]
 Sei $G\leq \mathfrak{Aut}(M,\leq)$ eine Untergruppe der geordneten
 Menge $(M,\leq)$. Dann ist die Relation ${\sqsubseteq}\subseteq
@@ -647,7 +712,7 @@ eine Quasiordnung.
 \]\vspace{-0.25\baselineskip}
 \end{proof}
 \end{frame}
-\begin{frame}[label=sec-3-1-2]{Beispielfolie}
+\begin{frame}[label=sec-4-1-2]{Beispielfolie}
 \begin{example}[Beispieltitel]
 mal sehen, was wird
 \end{example}
@@ -655,5 +720,5 @@ mal sehen, was wird
 Inhalt
 \end{alertblock}
 \end{frame}
-% Emacs 24.3.2 (Org mode 8.2.10)
+% Emacs 24.4.1 (Org mode 8.2.10)
 \end{document}

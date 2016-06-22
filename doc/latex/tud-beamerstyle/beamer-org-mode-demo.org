@@ -1,10 +1,9 @@
 #+TITLE:     Beamer-Präsentationen mit dem CD der TU Dresden
 #+AUTHOR:    Tobias Schlemmer
 #+EMAIL:     Tobias.Schlemmer@tu-dresden.de
-#+DATE:      7.\,5.~2012
+#+DATE:      @latex:7.\,5.~2012@
 #+DESCRIPTION:
 #+KEYWORDS:
-#+LANGUAGE:  de
 #+EXPORT_SELECT_TAGS: export
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
@@ -18,33 +17,50 @@
 #+LaTeX_CLASS: beamer
 #+LaTeX_CLASS_OPTIONS: [presentation,t]
 #+BEAMER_FRAME_LEVEL: 3
-##COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
-#+BEAMER_HEADER_EXTRA: \usepackage{amsmath}
-#+BEAMER_HEADER_EXTRA: \usepackage{uniinput}
-#+BEAMER_HEADER_EXTRA: \usepackage{amsfonts}
-#+BEAMER_HEADER_EXTRA: \usepackage{tikz}
-#+BEAMER_HEADER_EXTRA: \usepackage[ngerman]{babel}
-#+BEAMER_HEADER_EXTRA: \usetikzlibrary{decorations.pathmorphing}
-#+BEAMER_HEADER_EXTRA: \usetheme[section,navigation,pagenum,ddc]{tud}
-#+BEAMER_HEADER_EXTRA: \useinnertheme[shadow=true]{rounded}
-#+BEAMER_HEADER_EXTRA: %\usetheme{Boadilla}
-#+BEAMER_HEADER_EXTRA: %\usecolortheme{tud}
-#+BEAMER_HEADER_EXTRA: \institut{Institut f\"ur Algebra}%
-#+BEAMER_HEADER_EXTRA: \DeclareMathOperator\Orb{Orb}%
-#+BEAMER_HEADER_EXTRA: \title[TUD-CD mit \LaTeX\ gesetzt]{Beamer-Präsentationen mit dem CD der TU Dresden}
-#+BEAMER_HEADER_EXTRA: \subtitle{TUD-CD mit \LaTeX\ gesetzt}
-#+BEAMER_HEADER_EXTRA: \setbeamerfont{description item}{series=\bfseries}
-#+BEAMER_HEADER_EXTRA: \setbeamertemplate{date/place in footline}[default][T. Schlemmer]
-#+BEAMER_HEADER_EXTRA: \setbeamertemplate{page number in footline}[frame][total]
-#+BEAMER_HEADER_EXTRA: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Topic}\tableofcontents[currentsection]\end{frame}}
-#+BEAMER_HEADER_EXTRA: \setlength{\tudbeamerfooterplacewidth}{0.3\linewidth}%
-#+BEAMER_HEADER_EXTRA: \setlength{\tudbeamerfooterpagenumwidth}{5em}%
-#+BEAMER_HEADER_EXTRA: \makeatletter
-#+BEAMER_HEADER_EXTRA: \setlength{\tudbeamerfootertitlewidth}{\paperwidth-\beamer@leftmargin-\beamer@rightmargin
-#+BEAMER_HEADER_EXTRA:    -\tudbeamerfooterplacewidth-\tudbeamerfooterpagenumwidth}%
-#+BEAMER_HEADER_EXTRA: \makeatother
+#+LATEX_HEADER_EXTRA: \pdfmapfile{+tud}%
+#+LATEX_HEADER_EXTRA: \pdfmapfile{+tudscr}%
+#+LATEX_HEDAER_EXTRA: %
+#+LATEX_HEDAER_EXTRA: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#+LATEX_HEDAER_EXTRA: %                                                                %
+#+LATEX_HEDAER_EXTRA: % Vereinfachte Organisation von Präsentationen mit               %
+#+LATEX_HEDAER_EXTRA: % Emacs und org-mode                                             %
+#+LATEX_HEDAER_EXTRA: %                                                                %
+#+LATEX_HEDAER_EXTRA: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#+LATEX_HEDAER_EXTRA: %                                                                %
+#+LATEX_HEDAER_EXTRA: % Automatisch erstellt mit Hilfe von Emacs und org-mode          %
+#+LATEX_HEDAER_EXTRA: % Die .org-Datei kann mit Emacs und installiertem or -Paket      %
+#+LATEX_HEDAER_EXTRA: % bearbeitet und nach LaTeX exportiert werden.                   %
+#+LATEX_HEDAER_EXTRA: % Der Export ist über die Tastenkombination C-C e l P möglich    %
+#+LATEX_HEDAER_EXTRA: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#+LATEX_HEDAER_EXTRA: %
+#+LATEX_HEADER_EXTRA: \usepackage{amsmath}
+#+LATEX_HEADER_EXTRA: \usepackage{uniinput}
+#+LATEX_HEADER_EXTRA: \usepackage{amsfonts}
+#+LATEX_HEADER_EXTRA: \usepackage{tikz}
+#+LATEX_HEADER_EXTRA: \usepackage[ngerman]{babel}
+#+LATEX_HEADER_EXTRA: \usetikzlibrary{decorations.pathmorphing}
+#+LATEX_HEADER_EXTRA: \usetheme[section,navigation,pagenum,ddc]{tud}
+#+LATEX_HEADER_EXTRA: \useinnertheme[shadow=true]{rounded}
+#+LATEX_HEADER_EXTRA: %\usetheme{Boadilla}
+#+LATEX_HEADER_EXTRA: %\usecolortheme{tud}
+#+LATEX_HEADER_EXTRA: \institut{Institut f\"ur Algebra}%
+#+LATEX_HEADER_EXTRA: \DeclareMathOperator\Orb{Orb}%
+#+LATEX_HEADER_EXTRA: \title[TUD-CD mit \LaTeX\ gesetzt]{Beamer-Präsentationen mit dem CD der TU Dresden}
+#+LATEX_HEADER_EXTRA: \AtBeginDocument{\date{22.\,6.~2016}}
+#+LATEX_HEADER_EXTRA: \subtitle{TUD-CD mit \LaTeX\ gesetzt}
+#+LATEX_HEADER_EXTRA: \setbeamerfont{description item}{series=\bfseries}
+#+LATEX_HEADER_EXTRA: \setbeamertemplate{date/place in footline}[default][T. Schlemmer]
+#+LATEX_HEADER_EXTRA: \setbeamertemplate{page number in footline}[frame][total]
+#+LATEX_HEADER_EXTRA: \AtBeginSection[]{\begin{frame}<beamer>[allowframebreaks]\frametitle{Abschnitt}\footnotesize\tableofcontents[currentsection]\end{frame}}
+#+LATEX_HEADER_EXTRA: \setlength{\tudbeamerfooterplacewidth}{0.3\linewidth}%
+#+LATEX_HEADER_EXTRA: \setlength{\tudbeamerfooterpagenumwidth}{5em}%
+#+LATEX_HEADER_EXTRA: \makeatletter
+#+LATEX_HEADER_EXTRA: \setlength{\tudbeamerfootertitlewidth}{\paperwidth-\beamer@leftmargin-\beamer@rightmargin
+#+LATEX_HEADER_EXTRA:    -\tudbeamerfooterplacewidth-\tudbeamerfooterpagenumwidth}%
+#+LATEX_HEADER_EXTRA: \makeatother
 #+COLUMNS: %45ITEM %10BEAMER_env(Env) %10BEAMER_envargs(Env Args) %4BEAMER_col(Col) %8BEAMER_extra(Extra)
 #+PROPERTY: BEAMER_col_ALL 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 :ETC
+#+LANGUAGE: de
 * Einführung
 ** Allgemeines
 *** Geschichte
@@ -69,14 +85,12 @@
 :END:
 \textbackslash usepackage[ngerman]\{babel\}\\
 \textbackslash usetheme[section,navigation]\{tud\}\\
-\textbackslash institut{Institut f\"ur Algebra}%
-\textbackslash title[Beispiel]{Langer Title mit Beispiel}
+\textbackslash institut{Institut f\textbackslash "ur Algebra}%\\
+\textbackslash title[Beispiel]{Langer Titel mit Beispiel}\\
 \textbackslash begin\{document\}\\
-\textbackslash begin\{frame\}\\
 \textbackslash maketitle\\
-\textbackslash end\{frame\}\\
 \textbackslash begin\{frame\}\{Eine Folie\}\\
-Inhalt
+Inhalt\\
 \textbackslash end\{frame\}\\
 \textbackslash end\{document\}\\
 
@@ -94,18 +108,20 @@ Inhalt
 - pagenum :: Seitenzahlen in der Fußzeile anzeigen
 - section :: mit Abschnittstitel auf jeder Folie
 - navbar :: mit Navigationshilfen
+- noddc :: ohne Dresden-Concept-Logo
 - ddc :: mit Dresden-Concept-Logo
-- ddcfooter :: mit Dresden-Concept Logo im Fußbereich
+- ddcfooter :: mit Dresden-Concept Logo im Fußbereich (Standardeinstellung)
 ** \textbackslash useoutertheme\{tud\}
-*** Paketoptionen
+*** Paketoptionen (\textbackslash useoutertheme\{tud\})
 - noheader :: Benutze Folien ohne Kopfzeile
 - smallrightmargin :: Schmaler rechter Rand (verletzt CD-Richtlinie
 - pagenum :: Seitenzahlen in der Fußzeile anzeigen
 - section :: mit Abschnittstitel auf jeder Folie
 - navbar :: mit Navigationshilfen
+- noddc :: ohne Dresden-Concept-Logo
 - ddc :: mit Dresden-Concept-Logo
-- ddcfooter :: mit Dresden-Concept Logo im Fußbereich
-*** Makros
+- ddcfooter :: mit Dresden-Concept Logo im Fußbereich (Standardeinstellung)
+*** Makros (\textbackslash useoutertheme\{tud\})
 - \textbackslash einrichtung\{/einrichtung/\} :: Legt die
  Einrichtung/Fakultät fest
 - \textbackslash fachrichtung\{/Fachrichtung/\} :: Legt die
@@ -115,7 +131,7 @@ Inhalt
 - \textbackslash professur\{/Professur/\} :: Legt die
  Professur fest
 - \textbackslash datecity\{/Datumsort/\} :: Legt den Ort für den Vortrag fest
-*** Register
+*** Register (\textbackslash useoutertheme\{tud\})
 - \textbackslash topmarginnoheader :: Länge, die den Oberen Rand Seitenrand bei
  Kopflosen Folien angibt.
 - \textbackslash tudbeamerfooterplacewidth :: Länge, die Breite des
@@ -124,10 +140,10 @@ Inhalt
      die Seitenzahl in der Fußzeilereserviert
 - \textbackslash topmarginnoheader :: Länge, die Platz für den
      Kurztitel in der Fußzeile reserviert
-*** Vorlagen                                                        :B_frame:
+*** Vorlagen (\textbackslash useoutertheme\{tud\})                                :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
-:BEAMER_envargs: [allowframebreaks]
+:BEAMER_OPT: allowframebreaks
 :END:
 Vorlangen werden mit 
 #+LaTeX: \textbf{\textbackslash setbeamertemplate\{\emph{Kategorie}\}[\emph{Vorlage}]} 
@@ -142,6 +158,44 @@ Vorlage für Seitenkopf
 - tud titlepage :: Titelseitenkopf
 - tud header :: normaler Folienkopf
 - tud noheader :: Folienkopf für kopflose Folien
+
+**** zweitlogo/titlepage                                            :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Vorlage für ein zweites Logo im Kopf der Titelseite
+- default :: kein Zweitlogo
+- ddc :: Dresden-Concept-Logo
+- logofile :: Eine Logo-Datei wird als Parameter übergeben und mit
+              \textbackslash includegraphics eingebunden und auf die
+              richtige Höhe skaliert.Beispiel: 
+              #+LaTeX: \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[logofile]\{fremdfirma.png\}} 
+- freeform :: Es wird der \LaTeX -Code direkt als Parameter übergeben. Beispiel:
+              #+LaTeX: \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[freefrom]\{\LaTeX\}} 
+              In diesem Fall ist die Höhe des Logos im Makro
+              \texttt{\textbackslash logoheight} hinterlegt. Für die
+              Weiterverarbeitung ist wichtig, dass es in ein
+              skaliertes Register expandiert wird (siehe
+              \texttt{beamerouterthemetod.sty}).
+
+**** zweitlogo/headline                                             :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Vorlage für ein zweites Logo im Kopf einer normalen Seite (keine Titelseite)
+- default :: kein Zweitlogo
+- ddc :: Dresden-Concept-Logo
+- logofile :: Eine Logo-Datei wird als Parameter übergeben und mit
+              \textbackslash includegraphics eingebunden und auf die
+              richtige Höhe skaliert. Beispiel: 
+              #+LaTeX: \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[logofile]\{fremdfirma.png\}} 
+- freeform :: Es wird der \LaTeX -Code direkt als Parameter übergeben. Beispiel:
+              #+LaTeX: \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[freefrom]\{\LaTeX\}} 
+              In diesem Fall ist die Höhe des Logos im Makro
+              \texttt{\textbackslash logoheight} hinterlegt. Für die
+              Weiterverarbeitung ist wichtig, dass es in ein
+              skaliertes Register expandiert wird (siehe
+              \texttt{beamerouterthemetod.sty}).
 
 **** date/place in footline                                      :B_block:
 :PROPERTIES:
@@ -172,11 +226,6 @@ Vorlage für Seitenkopf
  siehe unten, Vorlagen, die mit „frame number: “ anfangen (dieser Teil
  wird automatisch hinzugefügt).
 
-*** Vorlagen (Fortsetzung)                                          :B_frame:
-:PROPERTIES:
-:BEAMER_env: frame
-:BEAMER_envargs: [allowframebreaks]
-:END:
 **** page number: text and total                                 :B_block:
 :PROPERTIES:
 :BEAMER_env: block
@@ -292,7 +341,7 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 - default :: normal
 - empty :: keine Ausgabe
 
-** Beispiel
+*** Beispiel (\textbackslash useoutertheme\{tud\})
 
   #+BEGIN_LATEX
     \textbackslash setbeamercolor\{normal text\}\{bg=white\}\\
@@ -304,7 +353,7 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 
 ** \textbackslash usefonttheme\{tud\}
 
-*** Paketoptionen
+*** Paketoptionen (\textbackslash usefonttheme\{tud\})
 - noeulermath :: Benutze keine Euler-Mathematikschriften
 - noDIN :: Titel ohne DIN bold
 - nodin :: Titel ohne DIN bold
@@ -312,7 +361,7 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 - heavyfont :: Nutze Univers 55 statt Univers 45
 - beamerfont :: Keine Fontänderungen
 
-*** Makros
+*** Makros (\textbackslash usefonttheme\{tud\})
 - \textbackslash tudtitlenormalsize :: Ersatz für \textbackslash
   normalsize auf der Titelseite
 - \textbackslash tudtitlesmall :: Ersatz für \textbackslash small auf der Titelseite
@@ -320,10 +369,10 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 
 Darüberhinaus lädt dieses Paket das Paket „tudfonts“ mit all seinen makros
 
-*** Schriftvorlagen                                               :B_frame:
+*** Schriftvorlagen (\textbackslash usefonttheme\{tud\})                           :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
-:BEAMER_envargs: [allowframebreaks]
+:BEAMER_OPT: allowframebreaks
 :END:
 Vorlangen werden mit \textbackslash
 setbeamerfont\{/Name/\}\{Werte\} gesetzt. Sie können mit \textbackslash
@@ -362,18 +411,18 @@ Es werden folgende Vorlagen definiert:
 
 ** \textbackslash usecolortheme\{tud\}
 
-*** Makros
-- \textbackslash darktitlepale :: Stellt eine dunkle Titelseite ein, wie
+*** Makros (\textbackslash usecolortheme\{tud\})
+- \textbackslash darktitlepage :: Stellt eine dunkle Titelseite ein, wie
 vom CD gefordert
 - \textbackslash whitetitlepage :: Titelseite wird weiß (nicht CD-Konform).
 
 Darüberhinaus lädt dieses Paket das Paket „tudcolors“ mit all seinen
 makros und den HKS-Farben (siehe Dokumentation von tudmathposter)
 
-*** Farbvorlagen                                                    :B_frame:
+*** Farbvorlagen (\textbackslash usecolortheme\{tud\})                                                    :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
-:BEAMER_envargs: [allowframebreaks]
+:BEAMER_OPT: allowframebreaks
 :END:
 Farbvorlagen werden mit \textbackslash
 setbeamercolor\{/Name/\}\{Werte\} gesetzt. Sie können mit \textbackslash
@@ -470,10 +519,10 @@ Es werden folgende Vorlagen definiert:
 
 ** \textbackslash useinnertheme\{tud\}
 
-*** Vorlagen                                                        :B_frame:
+*** Vorlagen (\textbackslash useinnertheme\{tud\})                  :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
-:BEAMER_envargs: [allowframebreaks]
+:BEAMER_OPT: allowframebreaks
 :END:
 Für die inneren Vorlagen gibt es keine Vorgaben außer für die
 Titelseite.
@@ -488,7 +537,8 @@ Titelseite.
      der TUD für die Titelseite ein. Dieses Makro wird automatisch mit
      \textbackslash begin \{document\} aufgerufen.
 
-** Tips:
+* Tips und Tricks
+** Tips
 *** Fußzeile
 Die Fußzeile sollte die wichtigsten Informationen enthalten, an die
 sich das Publikum erinnern soll. Wenn das TU-Logo im Kopf enthalten
@@ -518,6 +568,7 @@ in der Dokumentpräambel voreingestellt
 ***** 0.3                                                      :B_column:
 :PROPERTIES:
 :BEAMER_env: column
+:BEAMER_col: 0.3
 :END:
 #+BEGIN_LATEX
   \tikzstyle{automorphismuspfeil}=[->,HKS44K100,decoration={bent,aspect=0.3,amplitude=3},decorate]
@@ -579,7 +630,8 @@ in der Dokumentpräambel voreingestellt
 ***** Beschreibung                                        :B_block:BMCOL:
 :PROPERTIES:
 :BEAMER_env: block
-:BEAMER_envargs: c<1-7>
+:BEAMER_OPT: c
+:BEAMER_cat: <1-7>
 :BEAMER_col: 0.7
 :END:
 
@@ -607,7 +659,7 @@ Eine Tabelle
 **** Quasiordnung                                              :B_theorem:
 :PROPERTIES:
 :BEAMER_env: theorem
-:BEAMER_envargs: <1->
+:BEAMER_OPT: <1->
 :END:
 Sei $G\leq \mathfrak{Aut}(M,\leq)$ eine Untergruppe der geordneten
 Menge $(M,\leq)$. Dann ist die Relation ${\sqsubseteq}\subseteq
@@ -620,7 +672,7 @@ eine Quasiordnung.
 **** Beweis                                              :B_ignoreheading:
 :PROPERTIES:
 :BEAMER_env: proof
-:BEAMER_envargs: <1>
+:BEAMER_OPT: <1>
 :END:
 1. Reflexiv: $\Orb(〈g〉) = \Orb(〈g〉)$
 2. Transitiv: 
@@ -646,3 +698,8 @@ eine Quasiordnung.
 :END:
 Inhalt
 
+
+# Local Variables:
+# org-beamer-outline-frame-title: "Inhalt"
+# org-beamer-outline-frame-options: "allowframebreaks"
+# End:

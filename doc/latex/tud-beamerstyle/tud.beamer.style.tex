@@ -1,3 +1,4 @@
+% -*- LaTeX -*-
 \usepackage{xcolor}
 \usepackage{listings}
 \title{Ein Beamer-Stil für die TU Dresden}
@@ -5,10 +6,17 @@
 \begin{document}
 \maketitle
 \frame{\tableofcontents}
+\section{Hinweis auf die Dokumentation}
+\begin{frame}{Dokumentation}
+  Die Dokumentation befindet sich in der Datei
+  \url{beamer-org-mode-demo.pdf}.
+\end{frame}
 \section{Einführung}
 \begin{frame}
 
 Für das Corporate Design der TU Dresden gibt es seit geraumer Zeit eine Präsentationsklasse zum Erstellen von \LaTeX{}"=Dokumenten mit Hilfe von Beamer. Leider gab es bei dieser Klasse immer wieder Probleme im Zusammenspiel mit anderen Paketen. Dies führte dazu, dass sich nach und nach der vorliegende Beamerstil entwickelt hat. Er versucht einige der Probleme der Klasse auszugleichen:
+\end{frame}
+\begin{frame}
   \begin{block}{Nachteile von tudbeamer.cls}
     \begin{itemize}
     \item Keine Benutzung von beamerarticle.sty möglich
@@ -23,20 +31,28 @@ Für das Corporate Design der TU Dresden gibt es seit geraumer Zeit eine Präsen
 \end{frame}
 
 \section{Benutzung}
-\begin{frame}{Einbindung}
+
+\begin{frame}[allowframebreaks]{Einbindung}
   Die Klasse kann einfach eingebunden werden:
   \begin{block}{}
     \texttt{\textbackslash usetheme\{tud\}}
   \end{block}
   Und schon erscheint die Präsentation im Corporate Design der TU Dresden. 
+  Dabei werden die Schriftarten in folgender Reihenfolge gesucht:
+  \begin{enumerate}
+  \item Schriften des \texttt{tudscr}-Paketes
+  \item \texttt{tudscrold}-Schriften
+  \item Schriften der alten TUD-\LaTeX-Klassen
+  \end{enumerate}
 
   Das CD"=Handbuch enthält zu wenig brauchbare Vorgaben, um ein ganz einheitliches Layout vorzugeben. Das ist sicherlich teilweise beabsichtigt. Insofern gibt es auch verschiedene Optionen, mit denen das Layout angepasst werden kann. Die meisten wurden von tudbeamer.cls geerbt. Die beiden Optionen „nogerman“ und „german“ entfallen. Verwenden Sie stattdessen bitte
   \begin{block}{}
-    \textbackslash usepakage[ngerman]\{babel\}
+    \textbackslash usepackage[ngerman]\{babel\}
   \end{block}
   für Ihren Deutschen Text. Das Paket (n)german.sty ist veraltet und zu einigen Paketen inkompatibel.
-  \end{frame}
-\begin{frame}{Klassenoptionen}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Optionen}
   \begin{description}
     \item[heavyfont] Stärkere Schriften
     \item[nodin] Lade keine {\dinfamily DIN bold}
@@ -47,19 +63,34 @@ Für das Corporate Design der TU Dresden gibt es seit geraumer Zeit eine Präsen
     \item[pagenum] Seitennummern in der Fußzeile
     \item[nosectionnum] Keine Abschnittsnummern in Folienüberschriften
     \item[navbar] Navigationszeile
-    \item[ddc] Logo von Dresden Concept als Zweitlogo auf der Titelseite (benötigt Logo"=Datei von tudbeamer.cls) 
-    \item[ddcfooter] Logo von Dresden Concept in der Fußzeile der Titelseite (benötigt Logo"=Datei von tudbeamer.cls)
+    \item[ddc] Logo von Dresden Concept als Zweitlogo auf der
+      Titelseite (benötigt Logo"=Datei von tudbeamer.cls). Diese
+      Option ist für Präsentationen im Zusammenhang mit Dresden
+      Concept vorbehalten.
+    \item[ddcfooter] Logo von Dresden Concept in der Fußzeile der
+      Titelseite (Voreinstellung, benötigt Logo"=Datei von
+      tudbeamer.cls). Diese Option ist für alle Präsentationen der TUD
+      gedacht, die nicht im Rahmen von Dresden Concept abgehalten
+      werden.
+    \item[noddc] Es wird kein Logo von Dresden Concept angezeigt
   \end{description}
 \end{frame}
+
+
+
 \begin{frame}{Schlussbemerkungen}
   \begin{itemize}
   \item Dies Titelseite erzeugen Sie mit \textbackslash maketitle.
-  \item Alle Einstellmöglichkeiten werden in den Dateien beamer*.sty definiert.
-  \item Darüber hinaus gibt es wenig zu bemerken. 
+  \item Alle Einstellmöglichkeiten werden in den Dateien beamer*.sty
+    definiert.\footnote{Das ist die Ausrede derer, die zu faul sind,
+      eine ordentliche Dokumentation zu schreiben, oder die aus anderen Gründen keine Zeit haben.}
+  \item Alle Fragen, die dann noch bleiben können gerne auf \url{http://github/tud-cd/tud-cd} als neues „Issue“ eröffnet und diskutiert werden.
+  \item Darüber hinaus wäre sicherlich eine ausführliche Dokumentation der einzelnen Einstellungen sinnvoll. Wer dort helfen will, kann gern auch gern ein „Issue“ auf \url{http://github/tud-cd/tud-cd} eröffnen.
   \end{itemize}
-  
+\end{frame}
 
-  \vfill
+
+\begin{frame}
   \begin{block}{}
     \centerline{\huge\textbf{Viel Spaß!}}
   \end{block}
