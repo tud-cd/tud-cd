@@ -18,7 +18,7 @@ Installation:
    erhältlich.
 
    Der Präsentationsstil kann sowohl mit der alten Variante der Fonts,
-   als auch mit den verbesserten Fonts aus dem TUD-KOMA-Script-Paket
+   als auch mit den verbesserten Fonts aus dem TUD-Script-Bundle
    verwendet werden. Die anderen Vorlagen verwenden die alten Schriften
    Installationsskripte sind unter 
    +     https://github.com/tud-cd/tudscr/releases/tag/fonts (neu)
