@@ -1,0 +1,24 @@
+% -*- LaTeX -*-
+% process with pdflatex
+\pdfmapfile{+tudscr.map}
+\documentclass[ngerman]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[TS1,T1]{fontenc}
+\usepackage{babel}
+\usetheme[pagenum,ddc]{tud}
+\usepackage{listings}
+\title{Ein Beamer-Stil\protect\\
+  im CD der TU Dresden}
+\subtitle{https://github/tud-cd/tud-cd}
+\author{Tobias Schlemmer}
+\lstset{language=[LaTeX]{TeX}}
+\begin{document}
+\maketitle
+\begin{frame}\tiny
+  \lstinputlisting{poster.tex}
+\end{frame}
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
