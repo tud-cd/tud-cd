@@ -64,9 +64,7 @@ Versionen:
 	stehen jetzt vor der Kapitelüberschrift und nicht mehr vor der
 	Folienüberschrift. Seiten können nach Folien- oder Seitenzahl
 	nummeriert werden. Für Entwicklungszwecke gibt es die Möglichkeit,
-	innerhalb einer Folie die Bildnummern anzeigen zu lassen. Die
-	Dokumentation ist nicht mehr so sauber, wie bisher und Support ist
-	reine Kulanzssache.
+	innerhalb einer Folie die Bildnummern anzeigen zu lassen.
 
 1.11 (07.07.2011)
 	Da er sowieso mal einer Auffrischung bedurfte habe ich meinen
