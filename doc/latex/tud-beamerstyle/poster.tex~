@@ -1,0 +1,14 @@
+\pdfmapfile{+tudscr}%
+\pdfmapfile{+tud}%
+\pdfmapfile{+univers}%
+\pdfmapfile{+dinbold}%
+\documentclass[ngerman]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[TS1,T1]{fontenc}
+\usepackage{babel}
+\usetheme[pagenum,navbar,ddc]{tud}
+\input{tud.beamer.style}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
