@@ -75,7 +75,7 @@
 *** Designkriterien
 - Interpretation der Vorgaben
 - Abweichend: HKS Farbschema und Univers
-- Kombinierbar mit \textbackslash useinnertheme\{rounded\}
+- Kombinierbar mit @@latex:\textbackslash useinnertheme\{rounded\}@@
 - Farbschema mit anderem Layout kombinierbar (partiell implementiert)
 - Alle Stile überschreibbar
 ** Benutzung
@@ -83,19 +83,19 @@
 :PROPERTIES:
 :BEAMER_env: example
 :END:
-\textbackslash usepackage[ngerman]\{babel\}\\
-\textbackslash usetheme[section,navigation]\{tud\}\\
-\textbackslash institut{Institut f\textbackslash "ur Algebra}%\\
+\textbackslash usepackage[ngerman]{babel}\\
+\textbackslash usetheme[section,navigation]{tud}\\
+\textbackslash institut{Institut f\textbackslash ''ur Algebra}%\\
 \textbackslash title[Beispiel]{Langer Titel mit Beispiel}\\
-\textbackslash begin\{document\}\\
+\textbackslash begin{document}\\
 \textbackslash maketitle\\
-\textbackslash begin\{frame\}\{Eine Folie\}\\
+\textbackslash begin{frame}{Eine Folie}\\
 Inhalt\\
-\textbackslash end\{frame\}\\
-\textbackslash end\{document\}\\
+\textbackslash end{frame}\\
+\textbackslash end{document}\\
 
 * Einstellungen
-** \textbackslash usetheme\{tud\}
+** @@latex:\textbackslash usetheme\{tud\}@@
 *** Paketoptionen (Schriften)
 - noeulermath :: Benutze keine Euler-Mathematikschriften
 - noDIN :: Titel ohne DIN bold
@@ -111,8 +111,8 @@ Inhalt\\
 - noddc :: ohne Dresden-Concept-Logo
 - ddc :: mit Dresden-Concept-Logo
 - ddcfooter :: mit Dresden-Concept Logo im Fußbereich (Standardeinstellung)
-** \textbackslash useoutertheme\{tud\}
-*** Paketoptionen (\textbackslash useoutertheme\{tud\})
+** @@latex:\textbackslash useoutertheme\{tud\}@@
+*** Paketoptionen (@@latex:\textbackslash useoutertheme\{tud\}@@)
 - noheader :: Benutze Folien ohne Kopfzeile
 - smallrightmargin :: Schmaler rechter Rand (verletzt CD-Richtlinie
 - pagenum :: Seitenzahlen in der Fußzeile anzeigen
@@ -121,26 +121,26 @@ Inhalt\\
 - noddc :: ohne Dresden-Concept-Logo
 - ddc :: mit Dresden-Concept-Logo
 - ddcfooter :: mit Dresden-Concept Logo im Fußbereich (Standardeinstellung)
-*** Makros (\textbackslash useoutertheme\{tud\})
-- \textbackslash einrichtung\{/einrichtung/\} :: Legt die
+*** Makros (@@latex:\textbackslash useoutertheme\{tud\}@@)
+- \textbackslash einrichtung{/einrichtung/} :: Legt die
  Einrichtung/Fakultät fest
-- \textbackslash fachrichtung\{/Fachrichtung/\} :: Legt die
+- \textbackslash fachrichtung{/Fachrichtung/} :: Legt die
  Fachrichtung fest
-- \textbackslash institut\{/Institut/\} :: Legt das
+- \textbackslash institut{/Institut/} :: Legt das
  Institut fest
-- \textbackslash professur\{/Professur/\} :: Legt die
+- \textbackslash professur{/Professur/} :: Legt die
  Professur fest
-- \textbackslash datecity\{/Datumsort/\} :: Legt den Ort für den Vortrag fest
-*** Register (\textbackslash useoutertheme\{tud\})
-- \textbackslash topmarginnoheader :: Länge, die den Oberen Rand Seitenrand bei
+- \textbackslash datecity{/Datumsort/} :: Legt den Ort für den Vortrag fest
+*** Register (@@latex:\textbackslash useoutertheme\{tud\}@@)
+- @@latex:\textbackslash topmarginnoheader@@ :: Länge, die den Oberen Rand Seitenrand bei
  Kopflosen Folien angibt.
-- \textbackslash tudbeamerfooterplacewidth :: Länge, die Breite des
+- @@latex:\textbackslash tudbeamerfooterplacewidth@@ :: Länge, die Breite des
      Datums/Ort/(Autor-)Blockes in der Fußzeile bestimmt
-- \textbackslash tudbeamerfooterpagenumwidth :: Länge, die Platz für
+- @@latex:\textbackslash tudbeamerfooterpagenumwidth@@ :: Länge, die Platz für
      die Seitenzahl in der Fußzeilereserviert
-- \textbackslash topmarginnoheader :: Länge, die Platz für den
+- @@latex:\textbackslash topmarginnoheader@@ :: Länge, die Platz für den
      Kurztitel in der Fußzeile reserviert
-*** Vorlagen (\textbackslash useoutertheme\{tud\})                                :B_frame:
+*** Vorlagen (@@latex:\textbackslash useoutertheme\{tud\}@@)      :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
 :BEAMER_OPT: allowframebreaks
@@ -167,16 +167,21 @@ Vorlage für ein zweites Logo im Kopf der Titelseite
 - default :: kein Zweitlogo
 - ddc :: Dresden-Concept-Logo
 - logofile :: Eine Logo-Datei wird als Parameter übergeben und mit
-              \textbackslash includegraphics eingebunden und auf die
-              richtige Höhe skaliert.Beispiel: 
-              #+LaTeX: \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[logofile]\{fremdfirma.png\}} 
+              @@latex:\textbackslash includegraphics@@ eingebunden und auf die
+              richtige Höhe skaliert.
+Beispiel: 
+#+LaTeX: \textbf{\textbackslash \mbox{setbeamertemplate} \{zweitlogo/headline\}[logofile]\{fremdfirma.png\}} 
+**** zweitlogo/titlepage (Fortsetzung)                           :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
 - freeform :: Es wird der \LaTeX -Code direkt als Parameter übergeben. Beispiel:
-              #+LaTeX: \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[freefrom]\{\LaTeX\}} 
+              #+LaTeX: \textbf{\textbackslash \mbox{setbeamertemplate} \{zweitlogo/headline\}[freeform]\{\textbackslash LaTeX\}} 
               In diesem Fall ist die Höhe des Logos im Makro
-              \texttt{\textbackslash logoheight} hinterlegt. Für die
+              @@latex:\texttt{\textbackslash logoheight}@@ hinterlegt. Für die
               Weiterverarbeitung ist wichtig, dass es in ein
               skaliertes Register expandiert wird (siehe
-              \texttt{beamerouterthemetod.sty}).
+              @@latex:\texttt{beamerouterthemetod.sty}@@).
 
 **** zweitlogo/headline                                             :B_block:
 :PROPERTIES:
@@ -186,16 +191,21 @@ Vorlage für ein zweites Logo im Kopf einer normalen Seite (keine Titelseite)
 - default :: kein Zweitlogo
 - ddc :: Dresden-Concept-Logo
 - logofile :: Eine Logo-Datei wird als Parameter übergeben und mit
-              \textbackslash includegraphics eingebunden und auf die
-              richtige Höhe skaliert. Beispiel: 
-              #+LaTeX: \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[logofile]\{fremdfirma.png\}} 
+              @@latex:\textbackslash includegraphics@@ eingebunden und auf die
+              richtige Höhe skaliert.
+Beispiel: 
+#+LaTeX: \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[logofile]\{fremdfirma.png\}} 
+**** zweitlogo/headline (Fortsetzung)                            :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
 - freeform :: Es wird der \LaTeX -Code direkt als Parameter übergeben. Beispiel:
-              #+LaTeX: \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[freefrom]\{\LaTeX\}} 
+              #+LaTeX: \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[freeform]\{\textbackslash LaTeX\}} 
               In diesem Fall ist die Höhe des Logos im Makro
-              \texttt{\textbackslash logoheight} hinterlegt. Für die
+              @@latex:\texttt{\textbackslash logoheight}@@ hinterlegt. Für die
               Weiterverarbeitung ist wichtig, dass es in ein
               skaliertes Register expandiert wird (siehe
-              \texttt{beamerouterthemetod.sty}).
+              @@latex:\texttt{beamerouterthemetod.sty}@@).
 
 **** date/place in footline                                      :B_block:
 :PROPERTIES:
@@ -341,19 +351,17 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 - default :: normal
 - empty :: keine Ausgabe
 
-*** Beispiel (\textbackslash useoutertheme\{tud\})
+*** Beispiel (@@latex:\textbackslash useoutertheme\{tud\}@@)
 
-  #+BEGIN_LATEX
-    \textbackslash setbeamercolor\{normal text\}\{bg=white\}\\
-    \textbackslash setbeamertemplate\{headline\}[tud header]\\
-    \textbackslash setbeamertemplate\{footline\}[tud pagenum]\\
-    \textbackslash setbeamertemplate\{frametitle\}[tud notitlesection]\\
-  #+END_LATEX
+\textbackslash setbeamercolor{normal text}{bg=white}\\
+\textbackslash setbeamertemplate{headline}[tud header]\\
+\textbackslash setbeamertemplate{footline}[tud pagenum]\\
+\textbackslash setbeamertemplate{frametitle}[tud notitlesection]\\
  
 
-** \textbackslash usefonttheme\{tud\}
+** @@latex:\textbackslash usefonttheme\{tud\}@@
 
-*** Paketoptionen (\textbackslash usefonttheme\{tud\})
+*** Paketoptionen (@@latex:\textbackslash usefonttheme\{tud\}@@)
 - noeulermath :: Benutze keine Euler-Mathematikschriften
 - noDIN :: Titel ohne DIN bold
 - nodin :: Titel ohne DIN bold
@@ -361,34 +369,34 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 - heavyfont :: Nutze Univers 55 statt Univers 45
 - beamerfont :: Keine Fontänderungen
 
-*** Makros (\textbackslash usefonttheme\{tud\})
-- \textbackslash tudtitlenormalsize :: Ersatz für \textbackslash
-  normalsize auf der Titelseite
-- \textbackslash tudtitlesmall :: Ersatz für \textbackslash small auf der Titelseite
-- \textbackslash tudtitletiny :: Ersatz für \textbackslash tiny auf der Titelseite
+*** Makros (@@latex:\textbackslash usefonttheme\{tud\}@@)
+- @@latex:\textbackslash tudtitlenormalsize@@ :: Ersatz für @@latex:\textbackslash
+  normalsize@@ auf der Titelseite
+- @@latex:\textbackslash tudtitlesmall@@ :: Ersatz für @@latex:\textbackslash small@@ auf der Titelseite
+- @@latex:\textbackslash tudtitletiny@@ :: Ersatz für @@latex:\textbackslash tiny@@ auf der Titelseite
 
 Darüberhinaus lädt dieses Paket das Paket „tudfonts“ mit all seinen makros
 
-*** Schriftvorlagen (\textbackslash usefonttheme\{tud\})                           :B_frame:
+*** Schriftvorlagen (@@latex:\textbackslash usefonttheme\{tud\}@@) :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
 :BEAMER_OPT: allowframebreaks
 :END:
 Vorlangen werden mit \textbackslash
-setbeamerfont\{/Name/\}\{Werte\} gesetzt. Sie können mit \textbackslash
-usebeamerfont aktiviert werden. Weitere Informationen dazu gibt es im
-„Beamer User Guide“ (\texttt{texdoc beamer}).
+setbeamerfont{/Name/}{Werte} gesetzt. Sie können mit @@latex:\textbackslash
+usebeamerfont@@ aktiviert werden. Weitere Informationen dazu gibt es im
+„Beamer User Guide“ (@@latex:\texttt{texdoc beamer}@@).
 
 Es werden folgende Vorlagen definiert:
--  \textbackslash setbeamerfont\{itemize/enumerate subbody\} \{size=\textbackslash scriptsize\}
--  \textbackslash setbeamerfont\{itemize/enumerate subsubbody\} \{size=\textbackslash scriptsize\}
--  \textbackslash setbeamerfont\{section in head/foot\}\{size=\textbackslash normalsize, family=\textbackslash sffamily\}
--  \textbackslash setbeamerfont\{frametitle\} \{size=\textbackslash normalsize, family=\textbackslash sffamily\}
--  \textbackslash setbeamerfont\{framesubtitle\} \{size=\textbackslash
-   small, series=\textbackslash bfseries,family=\textbackslash sffamily\}
--  \textbackslash setbeamerfont\{footline\} \{size=\textbackslash tiny\}
--  \textbackslash setbeamerfont\{block title\} \{size=\{\}\}
--  \textbackslash if@noDIN
+-  @@latex:\textbackslash setbeamerfont\{itemize/enumerate subbody\} \{size=\textbackslash scriptsize\}@@
+-  @@latex:\textbackslash setbeamerfont\{itemize/enumerate subsubbody\} \{size=\textbackslash scriptsize\}@@
+-  @@latex:\textbackslash setbeamerfont\{section in head/foot\}\{size=\textbackslash normalsize, family=\textbackslash sffamily\}@@
+-  @@latex:\textbackslash setbeamerfont\{frametitle\} \{size=\textbackslash normalsize, family=\textbackslash sffamily\}@@
+-  @@latex:\textbackslash setbeamerfont\{framesubtitle\} \{size=\textbackslash
+   small, series=\textbackslash bfseries,family=\textbackslash sffamily\}@@
+-  @@latex:\textbackslash setbeamerfont\{footline\} \{size=\textbackslash tiny\}@@
+-  @@latex:\textbackslash setbeamerfont\{block title\} \{size=\{\}\}@@
+-  @@latex:\textbackslash if@noDIN
     \textbackslash setbeamerfont\{title\} \{size=\textbackslash
    @setfontsize\textbackslash LARGE\textbackslash @xviipt\{22\},
    series=\textbackslash bfseries, family=\textbackslash sffamily\}
@@ -396,130 +404,130 @@ Es werden folgende Vorlagen definiert:
     \textbackslash setbeamerfont\{title\} \{size=\textbackslash
    @setfontsize\textbackslash LARGE\textbackslash @xviipt\{22\},
    series=\textbackslash bfseries, family=\textbackslash dinfamily\}
-  \textbackslash fi
--  \textbackslash setbeamerfont\{subtitle\} \{series=\textbackslash
-   bfseries, family=\textbackslash sffamily\}
--  \textbackslash setbeamerfont\{einrichtung/titlepage\}
-   \{size=\textbackslash tudtitletiny, series=\textbackslash bfseries\}
--  \textbackslash setbeamerfont\{fachrichtung/titlepage\} \{size=\textbackslash tudtitletiny\}
--  \textbackslash setbeamerfont\{institut/titlepage\} \{parent=fachrichtung/titlepage\}
--  \textbackslash setbeamerfont\{professur/titlepage\} \{parent=fachrichtung/titlepage\}
--  \textbackslash setbeamerfont\{date in head/foot/titlepage\} \{size=\textbackslash tudtitlenormalsize\}
--  \textbackslash setbeamerfont\{author\} \{size=\textbackslash tudtitlesmall\}  
+  \textbackslash fi@@
+-  @@latex:\textbackslash setbeamerfont\{subtitle\} \{series=\textbackslash
+   bfseries, family=\textbackslash sffamily\}@@
+-  @@latex:\textbackslash setbeamerfont\{einrichtung/titlepage\}
+   \{size=\textbackslash tudtitletiny, series=\textbackslash bfseries\}@@
+-  @@latex:\textbackslash setbeamerfont\{fachrichtung/titlepage\} \{size=\textbackslash tudtitletiny\}@@
+-  @@latex:\textbackslash setbeamerfont\{institut/titlepage\} \{parent=fachrichtung/titlepage\}@@
+-  @@latex:\textbackslash setbeamerfont\{professur/titlepage\} \{parent=fachrichtung/titlepage\}@@
+-  @@latex:\textbackslash setbeamerfont\{date in head/foot/titlepage\} \{size=\textbackslash tudtitlenormalsize\}@@
+-  @@latex:\textbackslash setbeamerfont\{author\} \{size=\textbackslash tudtitlesmall\}@@
 
 
 
-** \textbackslash usecolortheme\{tud\}
+** @@latex:\textbackslash usecolortheme\{tud\}@@
 
-*** Makros (\textbackslash usecolortheme\{tud\})
-- \textbackslash darktitlepage :: Stellt eine dunkle Titelseite ein, wie
+*** Makros (@@latex:\textbackslash usecolortheme\{tud\}@@)
+- @@latex:\textbackslash darktitlepage@@ :: Stellt eine dunkle Titelseite ein, wie
 vom CD gefordert
-- \textbackslash whitetitlepage :: Titelseite wird weiß (nicht CD-Konform).
+- @@latex:\textbackslash whitetitlepage@@ :: Titelseite wird weiß (nicht CD-Konform).
 
 Darüberhinaus lädt dieses Paket das Paket „tudcolors“ mit all seinen
 makros und den HKS-Farben (siehe Dokumentation von tudmathposter)
 
-*** Farbvorlagen (\textbackslash usecolortheme\{tud\})                                                    :B_frame:
+*** Farbvorlagen (@@latex:\textbackslash usecolortheme\{tud\}@@)  :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
 :BEAMER_OPT: allowframebreaks
 :END:
 Farbvorlagen werden mit \textbackslash
-setbeamercolor\{/Name/\}\{Werte\} gesetzt. Sie können mit \textbackslash
-usebeamercolor für die Aktivierung geladen werden. Weitere Informationen dazu gibt es im
-„Beamer User Guide“ (\texttt{texdoc beamer}).
+setbeamercolor{/Name/}{Werte} gesetzt. Sie können mit @@latex:\textbackslash
+usebeamercolor@@ für die Aktivierung geladen werden. Weitere Informationen dazu gibt es im
+„Beamer User Guide“ (@@latex:\texttt{texdoc beamer}@@).
 
 Es werden folgende Vorlagen definiert:
--  \textbackslash setbeamercolor\{normal text\} \{fg=HKS41K100,bg=white\}
--  \textbackslash setbeamercolor\{structure\} \{fg=HKS41K100\}
--  \textbackslash setbeamercolor\{alerted text\} \{fg=HKS44K100\}
--  \textbackslash setbeamercolor\{alternate palette\} \{fg=HKS92K80\}
--  \textbackslash setbeamercolor\{date in head/foot\} \{parent=alternate palette\}
--  \textbackslash setbeamercolor\{title in head/foot\} \{parent=alternate palette\}
--  \textbackslash setbeamercolor\{page number in head/foot\} \{parent=alternate palette\}
--  \textbackslash setbeamercolor\{section in head/foot\} \{parent=alternate palette\}
--  \textbackslash setbeamercolor\{subsection in head/foot\} \{parent=section in head/foot\}
--  \textbackslash setbeamercolor\{upper separation line head\} \{parent=alternate palette\}
--  \textbackslash setbeamercolor\{lower separation line head\} \{parent=upper separation line head\}
--  \textbackslash setbeamercolor\{author in head/foot\} \{parent=section in head/foot\}
--  \textbackslash setbeamercolor\{title in head/foot\} \{parent=subsection in head/foot\}
--  \textbackslash setbeamercolor\{logo\} \{use=structure, fg=structure.fg\}
--  \textbackslash newcommand*\{\textbackslash darktitlepage\}\{%
-  -  \textbackslash setbeamercolor\{normal text/titlepage\} \{fg=white,bg=HKS41K100\}%
-  -  \textbackslash setbeamercolor\{title\} \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{subtitle\} \{use=normal
-     text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{author/titlepage\} \{use=normal
-     text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{headline/titlepage\} \{use=normal
-     text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{logo/titlepage\} \{use=normal
-     text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{einrichtung/titlepage\}
-     \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{fachrichtung/titlepage\}
-     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{institut/titlepage\}
-     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{professur/titlepage\}
-     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{upper separation line
-     head/titlepage\} \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{lower separation line head/titlepage\}%
-      \{use=upper separation line head/titlepage, fg=upper separation line head/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{date in head/foot/titlepage\}
-     \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash let\textbackslash logo\@ DDC\textbackslash logo\@ DDC\@ white
-  -  \textbackslash let\textbackslash logo\@ DDCf\textbackslash logo\@ DDC\@ whitef
-     \}
--  \textbackslash newcommand*\{\textbackslash whitetitlepage\}\{%
-  -   \textbackslash setbeamercolor\{normal text/titlepage\}
-      \{use=normal text,fg=normal text.fg, bg=normal text.bg\}
-  - \textbackslash setbeamercolor\{title\} \{use=normal
-    text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{subtitle\} \{use=normal
-     text/titlepagexo, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{author/titlepage\} \{use=normal
-     text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{headline/titlepage\} \{use=normal
-     text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{logo/titlepage\} \{use=normal
-     text/titlepage, fg=normal text/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{einrichtung/titlepage\} \{fg=HKS92K100\}%
-  -  \textbackslash setbeamercolor\{fachrichtung/titlepage\}
-     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{institut/titlepage\}
-     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{professur/titlepage\}
-     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{upper separation line
-     head/titlepage\} \{fg=HKS92K100\}%
-  -  \textbackslash setbeamercolor\{lower separation line head/titlepage\}%
+-  @@latex:\textbackslash setbeamercolor\{normal text\} \{fg=HKS41K100,bg=white\}@@
+-  @@latex:\textbackslash setbeamercolor\{structure\} \{fg=HKS41K100\}@@
+-  @@latex:\textbackslash setbeamercolor\{alerted text\} \{fg=HKS44K100\}@@
+-  @@latex:\textbackslash setbeamercolor\{alternate palette\} \{fg=HKS92K80\}@@
+-  @@latex:\textbackslash setbeamercolor\{date in head/foot\} \{parent=alternate palette\}@@
+-  @@latex:\textbackslash setbeamercolor\{title in head/foot\} \{parent=alternate palette\}@@
+-  @@latex:\textbackslash setbeamercolor\{page number in head/foot\} \{parent=alternate palette\}@@
+-  @@latex:\textbackslash setbeamercolor\{section in head/foot\} \{parent=alternate palette\}@@
+-  @@latex:\textbackslash setbeamercolor\{subsection in head/foot\} \{parent=section in head/foot\}@@
+-  @@latex:\textbackslash setbeamercolor\{upper separation line head\} \{parent=alternate palette\}@@
+-  @@latex:\textbackslash setbeamercolor\{lower separation line head\} \{parent=upper separation line head\}@@
+-  @@latex:\textbackslash setbeamercolor\{author in head/foot\} \{parent=section in head/foot\}@@
+-  @@latex:\textbackslash setbeamercolor\{title in head/foot\} \{parent=subsection in head/foot\}@@
+-  @@latex:\textbackslash setbeamercolor\{logo\} \{use=structure, fg=structure.fg\}@@
+-  @@latex:\textbackslash newcommand*\{\textbackslash darktitlepage\}\{@@%
+  -  @@latex:\textbackslash setbeamercolor\{normal text/titlepage\} \{fg=white,bg=HKS41K100\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{title\} \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{subtitle\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{author/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{headline/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{logo/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{einrichtung/titlepage\}
+     \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{fachrichtung/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{institut/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{professur/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{upper separation line
+     head/titlepage\} \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{lower separation line head/titlepage\}%
+      \{use=upper separation line head/titlepage, fg=upper separation line head/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{date in head/foot/titlepage\}
+     \{use=normal text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash let\textbackslash logo\@ DDC\textbackslash logo\@ DDC\@ white@@
+  -  @@latex:\textbackslash let\textbackslash logo\@ DDCf\textbackslash logo\@ DDC\@ whitef
+     \}@@
+-  @@latex:\textbackslash newcommand*\{\textbackslash whitetitlepage\}\{%@@
+  -   @@latex:\textbackslash setbeamercolor\{normal text/titlepage\}@@
+      \{use=normal text,fg=normal text.fg, bg=normal text.bg\}@@
+  - @@latex:\textbackslash setbeamercolor\{title\} \{use=normal
+    text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{subtitle\} \{use=normal
+     text/titlepagexo, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{author/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{headline/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{logo/titlepage\} \{use=normal
+     text/titlepage, fg=normal text/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{einrichtung/titlepage\} \{fg=HKS92K100\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{fachrichtung/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{institut/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{professur/titlepage\}
+     \{use=einrichtung/titlepage, fg=einrichtung/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{upper separation line
+     head/titlepage\} \{fg=HKS92K100\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{lower separation line head/titlepage\}%
       \{use=upper separation line head/titlepage,fg=upper separation line
-        head/titlepage.fg\}%
-  -  \textbackslash setbeamercolor\{date in head/foot/titlepage\} \{fg=HKS92K100\}%
-  -  \textbackslash let\textbackslash logo\@ DDC\textbackslash logo\@ DDC\@ bunt%
-  -  \textbackslash let\textbackslash logo\@ DDCf\textbackslash logo\@ DDC\@ colorf
-     \}
--  \textbackslash darktitlepage
+        head/titlepage.fg\}%@@
+  -  @@latex:\textbackslash setbeamercolor\{date in head/foot/titlepage\} \{fg=HKS92K100\}%@@
+  -  @@latex:\textbackslash let\textbackslash logo\@ DDC\textbackslash logo\@ DDC\@ bunt%@@
+  -  @@latex:\textbackslash let\textbackslash logo\@ DDCf\textbackslash logo\@ DDC\@ colorf
+     \}@@
+-  @@latex:\textbackslash darktitlepage@@
   
--  \textbackslash setbeamercolor\{block body\} \{use=normal text,
-   fg=normal text.fg, bg=HKS41K10\}
--  \textbackslash setbeamercolor\{block title\} \{fg=HKS41K100,bg=HKS41K20\}
--  \textbackslash setbeamercolor\{block body example\} \{use=normal
-   text, fg=normal text.fg, bg=HKS41K10\}
--  \textbackslash setbeamercolor\{block title example\}
-   \{fg=HKS57K100, bg=HKS41K20\}
--  \textbackslash setbeamercolor\{block body alerted\} \{use=normal
-   text, fg=normal text.fg, bg=HKS65K10\}
--  \textbackslash setbeamercolor\{block title alerted\}
-   \{fg=HKS07K100, bg=HKS65K20\}
+-  @@latex:\textbackslash setbeamercolor\{block body\} \{use=normal text,
+   fg=normal text.fg, bg=HKS41K10\}@@
+-  @@latex:\textbackslash setbeamercolor\{block title\} \{fg=HKS41K100,bg=HKS41K20\}@@
+-  @@latex:\textbackslash setbeamercolor\{block body example\} \{use=normal
+   text, fg=normal text.fg, bg=HKS41K10\}@@
+-  @@latex:\textbackslash setbeamercolor\{block title example\}
+   \{fg=HKS57K100, bg=HKS41K20\}@@
+-  @@latex:\textbackslash setbeamercolor\{block body alerted\} \{use=normal
+   text, fg=normal text.fg, bg=HKS65K10\}@@
+-  @@latex:\textbackslash setbeamercolor\{block title alerted\}
+   \{fg=HKS07K100, bg=HKS65K20\}@@
 
 
 
-** \textbackslash useinnertheme\{tud\}
+** @@latex:\textbackslash useinnertheme\{tud\}@@
 
-*** Vorlagen (\textbackslash useinnertheme\{tud\})                  :B_frame:
+*** Vorlagen (@@latex:\textbackslash useinnertheme\{tud\}@@)      :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
 :BEAMER_OPT: allowframebreaks
@@ -530,12 +538,12 @@ Titelseite.
 :PROPERTIES:
 :BEAMER_env: block
 :END:
-- \textbackslash beamertemplatedotitem :: siehe beamer-Dokumentation
-- \textbackslash usesubitemizeitemtemplate\{-\/-\} :: siehe
+- @@latex:\textbackslash beamertemplatedotitem@@ :: siehe beamer-Dokumentation
+- @@latex:\textbackslash usesubitemizeitemtemplate\{-\/-\}@@ :: siehe
      beamer-Dokumentation
-- \textbackslash setbeamertemplate\{title page\}[tud] :: stellt das CD
+- @@latex:\textbackslash setbeamertemplate\{title page\}[tud]@@ :: stellt das CD
      der TUD für die Titelseite ein. Dieses Makro wird automatisch mit
-     \textbackslash begin \{document\} aufgerufen.
+     @@latex:\textbackslash begin \{document\}@@ aufgerufen.
 
 * Tips und Tricks
 ** Tips
@@ -544,8 +552,8 @@ Die Fußzeile sollte die wichtigsten Informationen enthalten, an die
 sich das Publikum erinnern soll. Wenn das TU-Logo im Kopf enthalten
 ist die Angabe „TU Dresden“ redundant.
 
-\textbackslash setbeamertemplate\{date/place in
-footline\}[default][I. Nachname] 
+@@latex:\textbackslash setbeamertemplate\{date/place in
+footline\}[default][I. Nachname]@@
 
 Setzt statt der TU Dresden den Namen
 des Sprechers.
@@ -556,7 +564,7 @@ des Sprechers.
 :END:
 Blöcke wie dieser hier werden mittels 
 
-\textbackslash useinnertheme[shadow=true]\{rounded\}
+@@latex:\textbackslash useinnertheme[shadow=true]\{rounded\}@@
 
 in der Dokumentpräambel voreingestellt
 ** Ein Beispiel    
@@ -570,7 +578,7 @@ in der Dokumentpräambel voreingestellt
 :BEAMER_env: column
 :BEAMER_col: 0.3
 :END:
-#+BEGIN_LATEX
+#+BEGIN_EXPORT latex
   \tikzstyle{automorphismuspfeil}=[->,HKS44K100,decoration={bent,aspect=0.3,amplitude=3},decorate]
   \tikzstyle{automorphismuspfeil2}=[automorphismuspfeil,decoration={bent,aspect=0.3,amplitude=2}]
   \begin{tikzpicture}
@@ -626,7 +634,7 @@ in der Dokumentpräambel voreingestellt
   }
   \end{tikzpicture}
   
-#+END_LATEX
+#+END_EXPORT
 ***** Beschreibung                                        :B_block:BMCOL:
 :PROPERTIES:
 :BEAMER_env: block
@@ -676,13 +684,9 @@ eine Quasiordnung.
 :END:
 1. Reflexiv: $\Orb(〈g〉) = \Orb(〈g〉)$
 2. Transitiv: 
-#+BEGIN_LATEX
-  \[
-  \begin{matrix}∀U∈\Orb(〈g〉)∃U'∈\Orb(〈h〉): U\subseteq U'\\
-    ∀V∈\Orb(〈h〉)∃V'∈\Orb(〈i〉): V\subseteq V'
-  \end{matrix}\quad ⇒\quad ∃U''∈\Orb(〈f〉): U\subseteq U''.
-  \]\vspace{-0.25\baselineskip}
-#+END_LATEX
+#+BEGIN_EXPORT latex
+\dots
+#+END_EXPORT
 *** Beispielfolie                                               :B_example:
 :PROPERTIES:
 :BEAMER_env: example
