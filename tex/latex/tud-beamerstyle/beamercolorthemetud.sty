@@ -1,13 +1,18 @@
 \ProvidesPackage{beamercolorthemetud}[2011/01/17 v1 Tobias Schlemmer]
+\DeclareOptionBeamer{cd2018}{\PassOptionsToPackage{tudcolors}{\CurrentOption}}
+\DeclareOptionBeamer{cd2012ts}{\PassOptionsToPackage{tudcolors}{\CurrentOption}}
+
+\RequirePackage[HTML]{tudcolors}
 
 
-\RequirePackage{tudcolors}
-
-\setbeamercolor{normal text}{fg=HKS41K100,bg=white}
-\setbeamercolor{structure}{fg=HKS41K100}
-\setbeamercolor{alerted text}{fg=HKS07K100}
-\setbeamercolor{alternate palette}{fg=HKS92K80}
-%\setbeamercolor{frametitle}{fg=HKS92K80}
+\setbeamercolor{normal text}{fg=tudbase,bg=white}
+\setbeamercolor{tud titlepage normal text cd2012ts}{fg=white,bg=tudbase}
+\setbeamercolor{tud titlepage normal text cd2018}{fg=white,bg=white}
+\setbeamercolor{structure}{fg=tudbase}
+\setbeamercolor{titleshading}{fg=tudbase,bg=tudaccent2}
+\setbeamercolor{alerted text}{fg=tudalert}
+\setbeamercolor{alternate palette}{fg=tudgrey 80}
+%\setbeamercolor{frametitle}{fg=tudgrey 80}
 %\setbeamercolor{framesubtitle}{use=normal text,fg=normal text.fg}
 
 
@@ -29,7 +34,7 @@
 
 
 \newcommand*{\darktitlepage}{%
-  \setbeamercolor{normal text/titlepage}{fg=white,bg=HKS41K100}%
+  \setbeamercolor{normal text/titlepage}{fg=white,bg=tudbase}%
   \setbeamercolor{title}{use=normal text/titlepage,fg=normal text/titlepage.fg}%
   \setbeamercolor{subtitle}{use=normal text/titlepage,fg=normal text/titlepage.fg}%
   \setbeamercolor{author/titlepage}{use=normal text/titlepage,fg=normal text/titlepage.fg}%
@@ -55,15 +60,15 @@
   \setbeamercolor{author/titlepage}{use=normal text/titlepage,fg=normal text/titlepage.fg}%
   \setbeamercolor{headline/titlepage}{use=normal text/titlepage,fg=normal text/titlepage.fg}%
   \setbeamercolor{logo/titlepage}{use=normal text/titlepage,fg=normal text/titlepage.fg}%
-  \setbeamercolor{einrichtung/titlepage}{fg=HKS92K100}%
+  \setbeamercolor{einrichtung/titlepage}{fg=tudgrey}%
   \setbeamercolor{fachrichtung/titlepage}{use=einrichtung/titlepage,fg=einrichtung/titlepage.fg}%
   \setbeamercolor{institut/titlepage}{use=einrichtung/titlepage,fg=einrichtung/titlepage.fg}%
   \setbeamercolor{professur/titlepage}{use=einrichtung/titlepage,fg=einrichtung/titlepage.fg}%
-  \setbeamercolor{upper separation line head/titlepage}{fg=HKS92K100}%
+  \setbeamercolor{upper separation line head/titlepage}{fg=tudgrey}%
   \setbeamercolor{lower separation line head/titlepage}%
     {use=upper separation line head/titlepage,fg=upper separation line
       head/titlepage.fg}%
-  \setbeamercolor{date in head/foot/titlepage}{fg=HKS92K100}%
+  \setbeamercolor{date in head/foot/titlepage}{fg=tudgrey}%
   \let\logo@DDC\logo@DDC@bunt%
   \let\logo@DDCf\logo@DDC@colorf
 }
@@ -77,13 +82,13 @@
 
 % Die folgenden Einstellungen könnnen nur sehr freie Übersetzungen des
 % CD sein
-\setbeamercolor{block body}{use=normal text,fg=normal text.fg,bg=HKS41K10}
-%\setbeamercolor{block title}{fg=HKS33K100,bg=HKS41K20}
-\setbeamercolor{block title}{fg=HKS41K100,bg=HKS41K20}
-\setbeamercolor{block body example}{use=normal text,fg=normal text.fg,bg=HKS41K10}
-\setbeamercolor{block title example}{fg=HKS57K100,bg=HKS41K20}
+\setbeamercolor{block body}{use=normal text,fg=normal text.fg,bg=tudbase 10}
+%\setbeamercolor{block title}{fg=tudaccent6,bg=tudbase 20}
+\setbeamercolor{block title}{fg=tudbase,bg=tudbase 20}
+\setbeamercolor{block body example}{use=normal text,fg=normal text.fg,bg=tudbase 10}
+\setbeamercolor{block title example}{fg=tudaccent4,bg=tudbase 20}
 
-\setbeamercolor{block body alerted}{use=normal text,fg=normal text.fg,bg=HKS65K10}
-\setbeamercolor{block title alerted}{fg=HKS07K100,bg=HKS65K20}
+\setbeamercolor{block body alerted}{use=normal text,fg=normal text.fg,bg=tudaccent3 10}
+\setbeamercolor{block title alerted}{fg=tudalert,bg=tudaccent3 20}
 
 
