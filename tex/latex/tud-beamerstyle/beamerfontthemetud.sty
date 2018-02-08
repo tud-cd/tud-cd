@@ -16,6 +16,7 @@
   \@useUniversFonttrue
 }
 
+
 \providecommand\tudfontspackage{tudscrfonts}
 \def\check@tud@fonts@tudscrfonts{
   \@check@tud@fontsfalse
@@ -64,7 +65,7 @@
   \do{%
     \IfFileExists{\@tudfontfile}{}{%
       \def\tudfontspackage{}%
-      \@useBeamerFonttrue
+      \@useUniversFontfalse
     }
   }
 }
@@ -77,6 +78,7 @@
 \else
   \csname check@tud@fonts@\tudfontspackage \endcsname
 \fi
+
 
 
 \DeclareOptionBeamer{noeulermath}{\PassOptionsToPackage{noeulermath}{tudfonts}}
@@ -99,7 +101,6 @@
 }
 
 \DeclareOptionBeamer{heavyfont}{\PassOptionsToPackage{heavyfont}{\tudfontspackage}}
-
 
 \ProcessOptionsBeamer
 
