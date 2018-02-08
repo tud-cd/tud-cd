@@ -3,6 +3,19 @@
 \newif\if@check@tud@fonts
 \@check@tud@fontstrue
 
+\newif\if@noDIN\@noDINfalse
+\newif\if@sansmath\@sansmathtrue
+\newif\if@useHeavyFont\@useHeavyFontfalse
+\newif\if@useBeamerFont\@useBeamerFontfalse
+\newif\if@useUniversFont\@useUniversFontfalse
+
+\def\tudfonts@style{cd2018}
+\DeclareOptionBeamer{cd2018}{\edef\tudfonts@style{\CurrentOption}}
+\DeclareOptionBeamer{cd2012ts}{%
+  \edef\tudfonts@style{\CurrentOption}%
+  \@useUniversFonttrue
+}
+
 \providecommand\tudfontspackage{tudscrfonts}
 \def\check@tud@fonts@tudscrfonts{
   \@check@tud@fontsfalse
@@ -56,12 +69,10 @@
   }
 }
 
-\newif\if@noDIN\@noDINfalse
-\newif\if@sansmath\@sansmathtrue
-\newif\if@useHeavyFont\@useHeavyFontfalse
-\newif\if@useBeamerFont\@useBeamerFontfalse
-
 \DeclareOptionBeamer{beamerfont}{\@useBeamerFonttrue}
+\DeclareOptionBeamer{cp2012ts}{
+  \@useUniversFonttrue
+}
 \if@useBeamerFont
 \else
   \csname check@tud@fonts@\tudfontspackage \endcsname
@@ -113,13 +124,52 @@
 
 \if@useBeamerFont
 \else
+\if@useUniversFont
   \RequirePackage{\tudfontspackage}
   \csname tud@font@setup@beamer@\tudfontspackage \endcsname
+\else
+  \@noDINtrue
+  \RequirePackage[default]{opensans}
+\fi
 \fi
 
-\newcommand*\tudtitlenormalsize{\@setfontsize\tudtitlenormalsize\@xipt{13.6}}
-\newcommand*\tudtitlesmall{\@setfontsize\tudtitlesmall\@xpt\@xiipt}
-\newcommand*\tudtitletiny{\@setfontsize\tudtitletiny\@vipt\@viipt}
+\def\tudfonts@defstyle#1{%
+  \expandafter\def\csname tudfonts@style@#1\endcsname
+}
+
+\def\tudfontsloadstyle#1{
+  \csname tudfonts@style@#1\endcsname
+}
+\tudfonts@defstyle{cd2012ts}{%
+  \typeout{font style: cd2012ts}%
+  \newcommand*\tudtitlenormalsize{\@setfontsize\tudtitlenormalsize\@xipt{13.6}}
+  \newcommand*\tudtitlesmall{\@setfontsize\tudtitlesmall\@xpt\@xiipt}
+  \newcommand*\tudtitletiny{\@setfontsize\tudtitletiny\@vipt\@viipt}
+  \newcommand*\tudtitleLARGE{\@setfontsize\LARGE\@xviipt{22}}
+  \setbeamerfont{einrichtung/titlepage}{size=\tudtitletiny,series=\bfseries}
+  \setbeamerfont{fachrichtung/titlepage}{size=\tudtitletiny}
+  \setbeamerfont{institut/titlepage}{parent=fachrichtung/titlepage}
+  \setbeamerfont{professur/titlepage}{parent=fachrichtung/titlepage}
+  \setbeamerfont{date in head/foot/titlepage}{size=\tudtitlenormalsize}
+  \setbeamerfont{author/titlepage}{size=\tudtitlesmall}
+  \setbeamerfont{subtitle}{series=\bfseries,family=\sffamily}
+}
+\tudfonts@defstyle{cd2018}{%
+  \typeout{font style: cd2018}%
+  \newcommand*\tudtitlenormalsize{\@setfontsize\tudtitlenormalsize{0.02963\paperheight}{0.02963\paperheight}}
+  \newcommand*\tudtitleLARGE{\@setfontsize\tudtitleLARGE{0.059259\paperheight}{0.059259\paperheight}}
+  \newcommand*\tudtitlesmall{\@setfontsize\tudtitlesmall{.0246916\paperheight}{.0046916\paperheight}}
+  \newcommand*\tudtitletiny{\@setfontsize\tudtitletiny{.02057638\paperheight}{.02057638\paperheight}}
+  \setbeamerfont{author/titlepage}{size=\tudtitlenormalsize,series=\mdseries,family=\sffamily}
+  \setbeamerfont{einrichtung/titlepage}{parent=author/titlepage}
+  \setbeamerfont{fachrichtung/titlepage}{parent=einrichtung/titlepage}
+  \setbeamerfont{institut/titlepage}{parent=fachrichtung/titlepage}
+  \setbeamerfont{professur/titlepage}{parent=fachrichtung/titlepage}
+  \setbeamerfont{date in head/foot/titlepage}{size=\tudtitlenormalsize,family=\sffamily}
+  \setbeamerfont{subtitle}{size=\tudtitlenormalsize,series=\mdseries,family=\sffamily}
+}
+
+\tudfontsloadstyle{\tudfonts@style}
 
 \setbeamerfont{itemize/enumerate subbody}{size=\scriptsize}
 \setbeamerfont{itemize/enumerate subsubbody}{size=\scriptsize}
@@ -130,14 +180,7 @@
 \setbeamerfont{block title}{size={}}
 
 \if@noDIN
-  \setbeamerfont{title}{size=\@setfontsize\LARGE\@xviipt{22},series=\bfseries,family=\sffamily}
+  \setbeamerfont{title}{size=\tudtitleLARGE,series=\bfseries,family=\sffamily}
 \else
-  \setbeamerfont{title}{size=\@setfontsize\LARGE\@xviipt{22},series=\bfseries,family=\dinfamily}
+  \setbeamerfont{title}{size=\tudtitleLARGE,series=\bfseries,family=\dinfamily}
 \fi
-\setbeamerfont{subtitle}{series=\bfseries,family=\sffamily}
-\setbeamerfont{einrichtung/titlepage}{size=\tudtitletiny,series=\bfseries}
-\setbeamerfont{fachrichtung/titlepage}{size=\tudtitletiny}
-\setbeamerfont{institut/titlepage}{parent=fachrichtung/titlepage}
-\setbeamerfont{professur/titlepage}{parent=fachrichtung/titlepage}
-\setbeamerfont{date in head/foot/titlepage}{size=\tudtitlenormalsize}
-\setbeamerfont{author}{size=\tudtitlesmall}
