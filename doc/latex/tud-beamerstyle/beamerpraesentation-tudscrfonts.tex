@@ -1,5 +1,12 @@
 \typeout{Warnings about duplicate map files can be ignored}%
-\pdfmapfile{+tudscr}% Warnings at this line can be ignored
+\makeatletter
+\@ifundefined{pdfmapfile}{%
+  \@ifundefined{pdfextension}{}{%
+    \pdfextension mapfile{+tudscr}%
+  }%
+}{%
+  \pdfmapfile{+tudscr}% Warnings at this line can be ignored
+}
 %\pdfmapfile{+univers}%
 %\pdfmapfile{+dinbold}%
 \documentclass[ngerman]{beamer}
@@ -8,7 +15,7 @@
 \usepackage{babel}
 \usepackage{tudscrfonts}
 \providecommand*\dinfamily{\dinbn}
-\usetheme[beamerfont,pagenum,navbar]{tud}
+\usetheme[beamerfont,pagenum,navbar,cd2012ts]{tud}
 \input{tud.beamer.style}
 %%% Local Variables: 
 %%% mode: latex
