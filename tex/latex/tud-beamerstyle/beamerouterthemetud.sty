@@ -29,12 +29,56 @@
 \DeclareOptionBeamer{ddcfooter}{\@ddcfootertrue\@ddcfalse}
 \DeclareOptionBeamer{noddc}{\@ddcfooterfalse\@ddcfalse}
 
+\def\tudbeamer@style{cd2018}
+\DeclareOptionBeamer{cd2018}{\def\tudbeamber@style{cd2018}}
+\DeclareOptionBeamer{cd2012ts}{\def\tudbeamber@style{cd2012ts}}
+
 
 \ProcessOptionsBeamer\relax
 
 \RequirePackage{calc}
 
 % Templates
+
+\providecommand*\tudbeamer@def[1]{%
+  \expandafter\newcommand\expandafter*%
+  \csname tudbeamer@#1\endcsname%
+}
+
+\newcommand*\tudbeamersetouterstyle[1]{%
+  \edef\tudbeamer@titlestyle{#1}%
+  \expandafter\let\expandafter\tudbeamer@titlesizes
+  \csname tudbeamer@calcsizes@#1@title\endcsname
+}
+\tudbeamersetouterstyle{\tudbeamer@style}
+
+% Aktuelles DDC-Logo: DDC_Logo_110x50_4C.pdf
+% 110x50 mm
+% N von DD 5,77x7,66+47,16+22,39
+
+
+\tudbeamer@def{calcsizes@cd2012ts@title}{%
+  \csname tudbeamer@calcsizes@cd2012\endcsname[0.175]%
+  \iffalse
+  \pgfmathsetmacro\tudbeamer@pagearea{(\paperheight / 1cm)* (\paperwidth / 1cm)}%
+  \pgfmathsetmacro{\tudbeamer@logofactor}{sqrt(\tudbeamer@pagearea)}%
+  \pgfmathsetlength\tudbeamer@logowidth{\tudbeamer@logofactor * 0.1544cm}%
+  \pgfmathsetmacro\tudbeamer@greybarheight{0.0252\paperheight}%
+  \pgfmathsetmacro\tudbeamer@logoheight{\tudbeamer@logowidth*0.75/2.57}%
+  \pgfmathsetmacro\tudbeamer@ddclogoheight{\tudbeamer@logoheight/0.9}%
+%  \pgfmathsetmacro\tudbeamer@logorightmargin{min(0.0717\paperwidth-1.1414*\tudbeamer@ddclogoheight)}
+  \let\tudbeamer@logorightmargin\tudbeamer@logoleftmargin
+  \beamersetleftmargin{\tudbeamer@logoleftmargin+0.3333\tudbeamer@logowidth}%
+  \beamersetrightmargin{\beamer@leftmargin}%
+  \pgfmathsetlength{\tudbeamer@ddclogotopmargin}{%
+    \tudbeamer@logotopmargin-0.5 * \tudbeamer@ddclogoheight + 0.5*\tudbeamer@logoheight}%
+  \pgfmathsetmacro{\tudbeamer@barheight}{0.0252\paperheight}
+  % Kopf ohne
+  \pgfmathsetmacro{\tudbeamer@headheight}{%
+    \tudbeamer@logotopmargin+\tudbeamer@logoheight+0.0252\paperheight
+  }%
+  \fi
+}
 
 
 \def\tudbeamer@setGermanNames{%
@@ -96,6 +140,7 @@
 \newlength\tudbeamer@logoleftmargin
 \newlength\tudbeamer@logotopmargin
 \newlength\tudbeamer@logowidth
+\newlength\tudbeamer@logoheight
 \newlength\tudbeamerfooterplacewidth
 \newlength\tudbeamerfootertitlewidth
 \newlength\tudbeamerfooterpagenumwidth
@@ -111,7 +156,7 @@
 \setlength{\tudbeamerfootertitlewidth}{\paperwidth - \beamer@leftmargin-\beamer@rightmargin
   -\tudbeamerfooterplacewidth -\tudbeamerfooterpagenumwidth}%
 
-\newcommand\tudbeamer@calcsizes[1][0.125]{%
+\tudbeamer@def{calcsizes@cd2012ts}[1][0.125]{%
   \def\tudbeamer@setlength##1##2{\setlength{##1}{##2 *
       \ratio{#1\paperheight}{65pt}}}%
   \tudbeamer@setlength\tudbeamer@logowidth{40mm}%
@@ -122,6 +167,18 @@
   \setlength{\tudbeamer@logotopmargin}{#1\paperheight - \@tempdima -
     0.282\tudbeamer@logowidth}%
 }
+\tudbeamer@def{calcsizes@cd2018}[1][0.125]{%
+  \def\tudbeamer@setlength##1##2{\setlength{##1}{##2 *
+      \ratio{#1\paperheight}{65pt}}}%
+  \tudbeamer@setlength\tudbeamer@logowidth{40mm}%
+  \setlength\tudbeamer@logoleftmargin{\beamer@leftmargin-0.3333\tudbeamer@logowidth}%
+  \setlength\@tempdima{0.020\paperheight}%
+  \setlength{\@tempdima}{\@tempdima*\ratio{#1pt}{0.125pt}}%
+  \setlength{\@tempdima}{\@tempdima*\ratio{#1pt}{0.125pt}}%
+  \setlength{\tudbeamer@logotopmargin}{#1\paperheight - \@tempdima -
+    0.282\tudbeamer@logowidth}%
+}
+
 
 \providecommand\tudbeamer@savesizes[1]{%
   \edef#1{%
@@ -249,10 +306,19 @@
   \includegraphics[height=0.282\tudbeamer@logowidth]{#1}%
 }
 \defbeamertemplate{zweitlogo/titlepage}{ddc}{%
-  \includegraphics[height=0.282\tudbeamer@logowidth]{DDC-weiss}%
+  \setbox\@tempboxa\vbox to \tudbeamer@logoheight{%
+    \vss
+    \hbox{%
+      \raisebox{-0.0555\tudbeamer@logoheight}{%
+        \includegraphics[height=1.111\tudbeamer@logoheight]{DDC_Logo_110x50_4C}%
+      }%
+    }%
+    \par\vss
+  }
+  \hbox to \wd\@tempboxa{\usebox\@tempboxa}%
 }
 \defbeamertemplate{zweitlogo/titlepage}{freeform}[1]{%
-  \def\logoheight{0.282\tudbeamer@logowidth}%
+  \def\logoheight{\tudbeamer@logoheight}%
   #1%
 }
 
@@ -261,10 +327,10 @@
   \includegraphics[height=0.282\tudbeamer@logowidth]{#1}%
 }
 \defbeamertemplate{zweitlogo/headline}{ddc}{%
-  \includegraphics[height=0.282\tudbeamer@logowidth]{DDC-weiss}%
+  \includegraphics[height=\tudbeamer@logoheight]{DDC-weiss}%
 }
 \defbeamertemplate{zweitlogo/headline}{freeform}[1]{%
-  \def\logoheight{0.282\tudbeamer@logowidth}%
+  \def\logoheight{\tudbeamer@logoheight}%
   #1%
 }
 \if@ddc
@@ -273,7 +339,7 @@
 \fi
 
 
-\defbeamertemplate{headline}{tud titlepage}{%
+\defbeamertemplate{headline}{tud titlepage cd2012ts}{%
   \vbox to 0.175\paperheight{%
     \vskip\tudbeamer@logotopmargin
     \hskip\tudbeamer@logoleftmargin
@@ -298,11 +364,139 @@
   \usebeamercolor[fg]{lower separation line head/titlepage}%
   \rule{\paperwidth}{0.3pt}\par
 }[action]{%
-  \tudbeamer@calcsizes[0.175]%
+  \csname tudbeamer@calcsizes@cd2012ts@title\endcsname%
 }
 
 
-\defbeamertemplate{headline}{tud header}{%
+\tudbeamer@def{calcsizes@cd2018@headline}{%
+%  \def\tudbeamer@setlengthh##1##2{\setlength{##1}{##2 *
+%      \ratio{#1\paperheight}{65pt}}}%
+%  \def\tudbeamer@setlengthw##1##2{\setlength{##1}{##2 *
+%      \ratio{#1\paperwidth}{65pt}}}%
+  \pgfmathsetmacro\tudbeamer@pagearea{(\paperheight / 1cm)* (\paperwidth / 1cm)}%
+  \pgfmathsetmacro{\tudbeamer@logofactor}{sqrt(\tudbeamer@pagearea)}%
+  \pgfmathsetlength\tudbeamer@logowidth{\tudbeamer@logofactor * 0.1927cm}%
+  \setlength\@tempdima{0.0252\paperheight}%
+  \edef\tudbeamer@greybarheight{\the\@tempdima}%
+  \pgfmathsetlength\tudbeamer@logoleftmargin{max(0.0717\paperwidth-0.3333\tudbeamer@logowidth,
+    \tudbeamer@greybarheight,0.0407\paperheight)}%
+  \pgfmathsetlength\tudbeamer@logoheight{\tudbeamer@logowidth*0.75/2.57}%
+%  \pgfmathsetmacro\tudbeamer@ddclogoheight{\tudbeamer@logoheight/0.9}%
+%%  \pgfmathsetmacro\tudbeamer@logorightmargin{min(0.0717\paperwidth-1.1414*\tudbeamer@ddclogoheight)}
+  \def\tudbeamer@logorightmargin{\tudbeamer@logoleftmargin}%
+  \pgfmathsetlength\beamer@leftmargin{\tudbeamer@logoleftmargin+0.3333\tudbeamer@logowidth}%
+%  \setbeamersize{text margin left=\@tempdima,text margin right=\@tempdima}%
+%  \setlength\beamer@rightmargin\beamer@leftmargin
+%  \typeout{Paper: \the\paperwidth x\the\paperheight}%
+  %\tracingall
+  %\tracingnone
+%  \typeout{Paper: \the\paperwidth x\the\paperheight}%
+%  \beamer@dogeometrytrue
+  \setlength{\tudbeamer@logotopmargin}{0.0509\paperheight}%
+%  \typeout{calculated left margin: \the\beamer@leftmargin}%
+%  \pgfmathsetlength{\tudbeamer@ddclogotopmargin}{%
+%    \tudbeamer@logotopmargin-0.5 * \tudbeamer@ddclogoheight + 0.5*\tudbeamer@logoheight}%
+%  \pgfmathsetmacro{\tudbeamer@barheight}{0.0252\paperheight}
+%  % Kopf ohne
+%  \pgfmathsetmacro{\tudbeamer@headheight}{%
+%    \tudbeamer@logotopmargin+\tudbeamer@logoheight+0.0252\paperheight
+%  }%
+}
+
+
+\defbeamertemplate{headline}{tud titlepage cd2018}{%
+  \csname tudbeamer@calcsizes@cd2018@headline\endcsname
+  \vbox to 0pt{% don't change the head height
+    \vskip\tudbeamer@logotopmargin
+    \hskip\tudbeamer@logoleftmargin%
+    \typeout{logo}%
+    \usebeamercolor[fg]{logo}%
+    \includegraphics[width=\tudbeamer@logowidth]{\logo@default}%
+    \hfill
+    \typeout{zweitlogo}%
+    \usebeamertemplate{zweitlogo/titlepage}%
+    \typeout{rechter Rand}%
+    \hskip\tudbeamer@logorightmargin\hbox{}%
+    \par
+  }%
+  \vskip\tudbeamer@greybarheight
+  \vskip\tudbeamer@greybarheight
+}[action]{%
+  \csname tudbeamer@calcsizes@cd2018@headline\endcsname
+}
+
+\expandafter\def\csname tudbeamer@calcsizes@cd2018@background\endcsname{%
+  \pgfmathsetlength{\@tempdima}{0.0252\paperheight}%
+  \edef\tudbeamer@barheight{\the\@tempdima}%
+  % Kopf ohne
+  \pgfmathsetlength{\@tempdima}{%
+    \tudbeamer@logotopmargin+
+    \tudbeamer@logoheight+
+    \tudbeamer@barheight+0.01pt%
+  }%
+  \edef\tudbeamer@headheight{\the\@tempdima}%
+  \pgfmathsetlength{\@tempdima}{%
+    \paperheight-\tudbeamer@headheight%
+  }%
+  \edef\tudbeamer@backgroundheight{\the\@tempdima}%
+  \def\tudbeamer@backgroundshadeangle{20}%
+  % The shades are automatically scaled as needed, when used in graphics context
+  \usebeamercolor{titleshading}%
+  \extractcolorspec{fg}{\tempfg}%
+  \extractcolorspec{bg}{\tempbg}%
+  \typeout{Color shading from \tempfg\space to \tempbg}%
+  \pgfdeclareverticalshading{tud titlepage background}%
+  {100bp}{
+    color(0bp)=(fg);
+    color(25bp)=(fg);
+    color(75bp)=(bg);
+    color(100bp)=(bg)}
+  % {\tudbeamer@backgroundshadelength}{color(0cm)=(red);color(\paperwidth)=(blue)}%
+  \usebeamercolor{normal text}
+}
+
+\defbeamertemplate{background}{tud titlepage cd2018}{%
+  \begin{pgfpicture}%
+%    \color{green}%
+ %   \pgfusepath{fill}%
+%    \pgfpathrectangle{\pgfpoint{0}{0}}{\pgfpoint{\paperwidth}{\tudbeamer@backgroundheight}}%
+%    \pgfusepath{clip}%
+    \pgfpathrectangle{\pgfpoint{0pt}{0pt}}{\pgfpoint{\paperwidth}{\paperheight}}%
+    \pgfusepath{use as bounding box}%
+    \pgfpathrectangle{\pgfpoint{0pt}{0pt}}{\pgfpoint{\paperwidth}{\tudbeamer@backgroundheight}}%
+    %\pgfsetadditionalshadetransform{\pgftransformshift{-0.25\paperwidth}{0pt}}%
+    \pgfshadepath{tud titlepage background}{\tudbeamer@backgroundshadeangle}%
+    %\pgfusepath{draw}%
+    \pgfusepath{discard}%
+    % \begin{pgfscope}
+    %   \color{red}%
+    %   \pgftransformrotate{tudbeamer@backgroundshadeangle}%
+    %   \pgfpathrectangle{\pgfpoint{-\paperwidth}{0}}{\pgfpoint{-\paperwidth}{\tudbeamer@backgroundheight}}%
+    %   \pgfusepath{fill}%
+    % \end{pgfscope}
+    \color{normal text.bg}%
+    \pgfsetfillopacity{0.6}%
+    \pgfpathrectangle{\pgfpoint{0}{\tudbeamer@backgroundheight-\tudbeamer@barheight}}%
+    {\pgfpoint{\paperwidth}{\tudbeamer@barheight}}%
+    \pgfusepath{fill}%
+  \end{pgfpicture}%
+  % \show\tudbeamer@backgroundheight
+  % \hbox to \paperwidth{%
+  %   \pgftransformrotate{\tudbeamer@backgroundshadeangle}%
+  %   \pgfuseshading{tud titlepage background}%
+  %   \vbox to \tudbeamer@backgroundheight{\hbox{\tudbeamer@backgroundheight}}%
+  % }
+}
+[action]
+{
+  \csname tudbeamer@calcsizes@cd2018@background\endcsname
+  \typeout{background init}%
+  % \beamer@calcvertshading{beamer@backgroundshading}{\the\paperwidth}{}
+  % \colorlet{beamer@@average}{beamer@average}
+  % \setbeamercolor{normal text}{bg=beamer@@average}
+}
+
+\defbeamertemplate{headline}{tud header cd2012ts}{%
   \vbox to 0.125\paperheight{%
     \vskip\tudbeamer@logotopmargin
     \hskip\tudbeamer@logoleftmargin%
@@ -319,7 +513,7 @@
   \usebeamercolor[fg]{lower separation line head}%
   \rule{\paperwidth}{0.3pt}\par
 }[action]{
-  \tudbeamer@calcsizes[0.125]%
+  \csname tudbeamer@calcsizes@cd2012ts\endcsname%
 }
 
 \defbeamertemplate{headline}{tud noheader}{%
@@ -444,7 +638,11 @@
 }
 
 
-\defbeamertemplate{footline}{tud titlepage}{%
+\defbeamertemplate{footline}{tud titlepage cd2018}{%
+}
+
+
+\defbeamertemplate{footline}{tud titlepage cd2012ts}{%
 %  \vfill
    \hbox to \textwidth{%
      \hskip\beamer@leftmargin
@@ -466,14 +664,14 @@
      \hskip\beamer@rightmargin
    }%
    \vskip0.125\paperheight
-}[action]{\tudbeamer@calcsizes[0.175]}%
+}[action]{\tudbeamer@calcsizes@cd2012ts@title}%
 
 
 \defbeamertemplate*{upper separation line foot}{default}{%
   \rule{\paperwidth}{0.3pt}\par
   \vskip 0.1em\relax
 }
-\defbeamertemplate*{footline}{tud pagenum}{%
+\defbeamertemplate*{footline}{tud pagenum cd2012ts}{%
   \usebeamertemplate***{upper separation line foot}%
   \usebeamerfont{footline}%
 %  \vbox to 0.0777\paperheight{%
@@ -488,7 +686,24 @@
     }%
 %    \vskip 0pt plus 1 fil
 %  }%
-}[action]{\tudbeamer@calcsizes}
+}[action]{\csname tudbeamer@calcsizes@cd2012ts\endcsname\}
+
+\defbeamertemplate*{footline}{tud pagenum cd2018}{%
+  \usebeamertemplate***{upper separation line foot}%
+  \usebeamerfont{footline}%
+%  \vbox to 0.0777\paperheight{%
+    \hbox to \paperwidth{%
+      \hskip\beamer@leftmargin
+      \usebeamertemplate***{date/place in footline}%
+      \hskip 0pt plus 1 fil minus 1 fil\relax
+      \usebeamertemplate***{title in head/foot}%
+      \hskip 0pt plus 1 fil minus 1 fil\relax
+      \usebeamertemplate***{page number in footline}%
+      \hskip\beamer@rightmargin
+    }%
+%    \vskip 0pt plus 1 fil
+%  }%
+}[action]{\csname tudbeamer@calcsizes@cd2018\endcsname\}
 
 \defbeamertemplate{footline}{tud nopagenum}{%
   \usebeamertemplate***{upper separation line foot}%
@@ -505,7 +720,7 @@
     }%
 %    \vskip 0pt plus 1 fil
 %  }%
-}[action]{\tudbeamer@calcsizes}
+}[action]{\csname tudbeamer@calcsizes@cd2012ts}
 
 
 \defbeamertemplate{frametitle}{tud titlesection}{%
@@ -516,7 +731,7 @@
     \usebeamerfont{section in head/foot}%
     \ifx\insertsection\empty
       \strut\hfill\\
-    \else 
+    \else
       \arabic{section} \insertsection\strut\\
     \fi
     \usebeamercolor[fg]{frametitle}%
@@ -580,27 +795,58 @@
 \setbeamertemplate{frametitle}[tud titlesection]%
 \fi
 
-\renewcommand\maketitle{%
-  %\clearpage
-  \tudsavebeamertemplate{headline}\tud@saveheadline
-  \tudsavebeamertemplate{footline}\tud@savefootline
-  \tudsavebeamercolor{normal text}{normal text}%
-  \tudbeamer@savesizes\tudbeamer@savedsizes
-  %\beamertemplateshadingbackground{darkblue}{darkblue}
-  \setbeamercolor{normal text}{bg=HKS41K100}%
-  % Kopf-/Fusszeile fuer Titel
-  \setbeamertemplate{headline}[tud titlepage]%
-  \setbeamertemplate{footline}[tud titlepage]%
-  \beamer@calculateheadfoot
-  \frame{\titlepage}%
-  % Kopf-/Fusszeilen fuer restliche Folien
-  \tudrestorebeamertemplate{headline}\tud@saveheadline
-  \tudrestorebeamertemplate{footline}\tud@savefootline
-  \tudrestorebeamercolor{normal text}{normal text}%
-  \tudbeamer@savedsizes
-  \beamer@calculateheadfoot
+\def\maketitle{%
+  \ifbeamer@inframe
+  \PackaegError{outer theme TUD}{Cannot set page style.^^J
+    \spaces Use \string maketitle outside of any frame, please.^^J
+    ^^J
+    \spaces Die Titelseite konnte nicht konfiguriert werden.^^J
+    \spaces Verwenden Sie bitte \string\maketitle außerhalb von Folien.
+  }%
+  \titlepage
+  \else
+  {%
+    \typeout{paper: \the\paperwidth\space  x \the\paperheight\space ^^J
+      text: \the\textwidth\space  x \the\textheight^^J
+      margins: \the\evensidemargin, \the\oddsidemargin^^J
+      top: \the\topmargin, \the\topskip^^J
+      head: \the\headheight, \the\headsep^^J
+      foot: \the\footskip,^^J
+      baseline: \the\baselineskip,^^J
+      marginpar: \the\marginparwidth, \the\marginparsep^^J
+      cols: \the\columnsep, \the\hoffset, \the\voffset^^J
+      geometry: \the\Gm@layoutwidth\space  x \the\Gm@layoutheight\space  +
+      \the\Gm@layouthoffset\space  + \the\Gm@layoutvoffset^^J}
+    \setbeamercolor{normal text}{parent=tud titlepage normal text \tudbeamer@titlestyle}%
+    \setbeamertemplate{headline}[tud titlepage \tudbeamer@titlestyle]%
+    \setbeamertemplate{footline}[tud titlepage \tudbeamer@titlestyle]%
+    \setbeamertemplate{sidebar left}[default]%
+    \setbeamertemplate{sidebar right}[default]%
+%    \tracingall
+    \newgeometry{left=\beamer@leftmargin,
+      right=\beamer@rightmargin,
+    head=0pt,top=0pt}%
+    % \tracingnone
+    \typeout{paper: \the\paperwidth\space  x \the\paperheight\space ^^J
+      text: \the\textwidth\space  x \the\textheight^^J
+      margins: \the\evensidemargin, \the\oddsidemargin^^J
+      top: \the\topmargin, \the\topskip^^J
+      head: \the\headheight, \the\headsep^^J
+      foot: \the\footskip,^^J
+      baseline: \the\baselineskip,^^J
+      marginpar: \the\marginparwidth, \the\marginparsep^^J
+      cols: \the\columnsep, \the\hoffset, \the\voffset^^J
+      geometry: \the\Gm@layoutwidth\space  x \the\Gm@layoutheight\space  +
+      \the\Gm@layouthoffset\space  + \the\Gm@layoutvoffset^^J}%
+    \setbeamertemplate{background}[tud titlepage \tudbeamer@titlestyle]%
+    \typeout{calculating head/foot}%
+    \beamer@calculateheadfoot
+    \typeout{creating frame}%
+    \frame{\titlepage}%
+    \restoregeometry
+  }%
+  \fi
 }
-
 
 \newcommand{\tudbeamer@appendixstart}{%
   \edef\insertpresentationendframe{\insertframenumber}%
