@@ -3,12 +3,78 @@
 %% Tobias Schlemmer (tobias.schlemmer@mailbox.tu-dresden.de)
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{tudcolors}[2012/02/05 v2.0.1 TU Dresden CD-Farben Tobias.Schlemmer@mailbox.tu-dresden.de]
+\def\tudcolorscheme#1{%
+  \edef\tudcolor@scheme{#1}%
+}
+\def\tudcolormodel#1{%
+  \edef\tudcolor@model{#1}%
+}
+\DeclareOption{rgb}{%
+  \PassOptionsToPackage{\CurrentOption}{xcolor}%
+  \tudcolormodel{\CurrentOption}%
+}
+\DeclareOption{cmyk}{%
+  \PassOptionsToPackage{\CurrentOption}{xcolor}%
+  \tudcolormodel{\CurrentOption}%
+}
+\DeclareOption{RGB}{%
+  \PassOptionsToPackage{\CurrentOption}{xcolor}%
+  \tudcolormodel{\CurrentOption}%
+}
+\DeclareOption{HTML}{%
+  \PassOptionsToPackage{\CurrentOption}{xcolor}%
+  \tudcolormodel{\CurrentOption}%
+}
+\DeclareOption{cd2018}{\tudcolorscheme{\CurrentOption}}
+\DeclareOption{cd2012ts}{\tudcolorscheme{\CurrentOption}}
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{xcolor}}
 \ProcessOptions\relax
 \RequirePackage{xcolor}
+\@ifundefined{tudcolor@model}{}{%
+  \selectcolormodel{\tudcolor@model}%
+}
+
+\@ifundefined{tudcolor@scheme}{%
+  \def\tudcolor@scheme{cd2018}%
+}{}
+\def\tudcolors@define@scheme#1{%
+  \expandafter\def\csname tudcolors@scheme@#1\endcsname%
+}
+
+\def\tudcolorselect{%
+  \typeout{selecting \tudcolor@scheme\ color scheme}%
+  \expandafter\csname tudcolors@scheme@\tudcolor@scheme\endcsname%
+}
+
+\def\tudcolor@defineshape#1#2{
+  \colorlet{#1 #2}{#1!#2}
+}
+
+\def\tudcolors@expand#1{%
+  \tudcolor@defineshape{#1}{100}
+  \tudcolor@defineshape{#1}{90}
+  \tudcolor@defineshape{#1}{80}
+  \tudcolor@defineshape{#1}{70}
+  \tudcolor@defineshape{#1}{60}
+  \tudcolor@defineshape{#1}{50}
+  \tudcolor@defineshape{#1}{40}
+  \tudcolor@defineshape{#1}{30}
+  \tudcolor@defineshape{#1}{20}
+  \tudcolor@defineshape{#1}{10}
+}
+\def\tudcolors@define#1#2#3{%
+  \definecolor{#1}{#2}{#3}%
+  \tudcolors@expand{#1}%
+}
+\def\tudcolors@let#1#2{%
+  \colorlet{#2}{#1}%
+  \tudcolors@expand{#2}%
+}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Farbdefinitionen entsprechend dem Farbregister auf 
+%%% Farbdefinitionen entsprechend dem Farbregister auf
 %%% http://tu-dresden.de/service/cd/6_handbuch/handbuch_farbregister.pdf
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Hausfarben
@@ -61,7 +127,7 @@
 \definecolor{HKS36K90}{cmyk/rgb}{0.72, 0.81, 0.00, 0.00 / 0.364706, 0.235294, 0.537254}
 \definecolor{HKS36K100}{cmyk/rgb}{0.80, 0.90, 0.00, 0.00 / 0.317647, 0.160784, 0.498039}
 
-%lila
+% lila
 \definecolor{HKS33K10}{cmyk/rgb}{0.05, 0.10, 0.00, 0.00/ 0.956861, 0.878431, 0.909802}
 \definecolor{HKS33K20}{cmyk/rgb}{0.10, 0.20, 0.00, 0.00/ 0.890194, 0.733332, 0.862743}
 \definecolor{HKS33K30}{cmyk/rgb}{0.15, 0.30, 0.00, 0.00/ 0.784312, 0.635293, 0.784312}
@@ -73,7 +139,7 @@
 \definecolor{HKS33K90}{cmyk/rgb}{0.45, 0.90, 0.00, 0.00/ 0.50196, 0.2, 0.513724}
 \definecolor{HKS33K100}{cmyk/rgb}{0.50, 1.00, 0.00, 0.00/ 0.505881, 0.101961, 0.470587}
 
-%dunkelgrün
+% dunkelgrün
 \definecolor{HKS57K10}{cmyk/rgb}{0.10, 0.00, 0.09, 0.02/ 0.827449, 0.905880, 0.772547}
 \definecolor{HKS57K20}{cmyk/rgb}{0.20, 0.00, 0.18, 0.04/ 0.686275, 0.831373, 0.674508}
 \definecolor{HKS57K30}{cmyk/rgb}{0.30, 0.00, 0.27, 0.06/ 0.560783, 0.764704, 0.596077}
@@ -109,4 +175,146 @@
 \definecolor{HKS07K90}{cmyk/rgb}{0.00, 0.54, 0.90, 0.00/ 0.921567, 0.545098, 0.219607}
 \definecolor{HKS07K100}{cmyk/rgb}{0.00, 0.60, 1.00, 0.00/ 0.909802, 0.482352, 0.078431}
 
+\tudcolors@define@scheme{cd2012ts}{%
+  \tudcolors@let{HKS41K100}{cddarkblue}
+  \tudcolors@let{HKS41K100}{tudbase}
+
+  % Auszeichnungsfarbe 1. Kategorie
+  \tudcolors@let{HKS44K100}{cdblue}
+  \tudcolors@let{HKS44K100}{tudaccent2}
+
+  % Auszeichnungsfarbe 1. Kategorie
+  \tudcolors@let{TUDCyanK100}{cdcyan}
+  \tudcolors@let{TUDCyanK100}{tudaccent1}
+
+  % Grau
+  \tudcolors@let{HKS92K100}{cdgray}
+  \tudcolors@let{HKS92K100}{cdgrey}
+  \tudcolors@let{HKS92K100}{tudgrey}
+
+  % lila
+  \tudcolors@let{HKS33K100}{cdpurple}
+  \tudcolors@let{HKS33K100}{tudaccent5}
+
+  % Auszeichnungsfarbe 2. Kategorie
+  % Violett
+  \tudcolors@let{HKS36K100}{cdindigo}
+  \tudcolors@let{HKS36K100}{tudaccent6}
+
+  % hellgrün
+  \tudcolors@let{HKS65K100}{cdgreen}
+  \tudcolors@let{HKS65K100}{tudaccent3}
+
+  % dunkelgrün
+  \tudcolors@let{HKS57K100}{cddarkgreen}
+  \tudcolors@let{HKS57K100}{tudaccent4}
+
+
+  % Ausnahmefarbe HKS 07_K
+  \tudcolors@let{HKS07K100}{cdorange}
+  \tudcolors@let{HKS07K100}{tudalert}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Farbdefinitionen entsprechend dem Farbregister auf
+%%% http://tu-dresden.de/service/cd/6_handbuch/handbuch_farbregister.pdf
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Hausfarben
+% Dunkelblau
+\tudcolors@define{HKS41}{cmyk/RGB/HTML}{1.00, 0.70, 0.10, 0.50/0,48,94/00305d}
+% ppt: 00305e
+% dk1
+
+% Auszeichnungsfarbe 1. Kategorie
+\tudcolors@define{HKS44}{cmyk/RGB/HTML}{1.00,0.50,0.0,0.0/0,106,179/006ab2}
+% ppt: 006ab3
+% accent2
+
+% Auszeichnungsfarbe 1. Kategorie
+\tudcolors@define{TUDCyan}{cmyk/RGB/HTML}{1.00,0.41,0.00,0.30/0,158,224/009de0}
+% ppt: 009ee0
+% accent1
+
+% Grau
+\tudcolors@define{HKS92}{cmyk/RGB/HTML}{0.1,0.00,0.05,0.65/114,120,121/717778}
+% ppt: 727879
+% lt2
+
+% lila
+\tudcolors@define{HKS33}{cmyk/RGB/HTML}{0.05, 0.10, 0.00, 0.00/147,16,126/93107d}
+% ppt: 93107e
+% accent5
+
+% Auszeichnungsfarbe 2. Kategorie
+% Violett
+\tudcolors@define{HKS36}{cmyk/RGB/HTML}{0.08, 0.09, 0.00, 0.00/84,55,138/54368a}
+% ppt: 54378a
+% accent6
+
+% hellgrün
+\tudcolors@define{HKS65}{cmyk/RGB/HTML}{0.06, 0.00, 0.10, 0.00/106,176,35/69af22}
+% ppt: 6ab023
+% accent3
+
+% dunkelgrün
+\tudcolors@define{HKS57}{cmyk/RGB/HTML}{0.10, 0.00, 0.09, 0.02/0,125,64/007d3f}
+% ppt: 007d40
+% accent4
+
+% Ausnahmefarbe HKS 07_K
+\tudcolors@define{HKS07}{cmyk/RGB/HTML}{0.00, 0.06, 0.10, 0.00/238,127,0/ee7f00}
+% ppt:
+% accent7
+
+\tudcolors@define@scheme{cd2018}{%
+\tudcolors@let{HKS41}{cddarkblue}
+\tudcolors@let{HKS41}{tudbase}
+
+% Auszeichnungsfarbe 1. Kategorie
+\tudcolors@let{HKS44}{cdblue}
+\tudcolors@let{HKS44}{tudaccent2}
+
+% Auszeichnungsfarbe 1. Kategorie
+\tudcolors@let{TUDCyan}{cdcyan}
+\tudcolors@let{TUDCyan}{tudaccent1}
+
+% Grau
+\tudcolors@let{HKS92}{cdgray}
+\tudcolors@let{HKS92}{cdgrey}
+\tudcolors@let{HKS92}{tudgrey}
+
+% lila
+\tudcolors@let{HKS33}{cdpurple}
+\tudcolors@let{HKS33}{tudaccent5}
+
+% Auszeichnungsfarbe 2. Kategorie
+% Violett
+\tudcolors@let{HKS36}{cdindigo}
+\tudcolors@let{HKS36}{tudaccent6}
+
+% hellgrün
+\tudcolors@let{HKS65}{cdgreen}
+\tudcolors@let{HKS65}{tudaccent3}
+
+% dunkelgrün
+\tudcolors@let{HKS57}{cddarkgreen}
+\tudcolors@let{HKS57}{tudaccent4}
+
+
+% Ausnahmefarbe HKS 07_K
+\tudcolors@let{HKS07}{cdorange}
+\tudcolors@let{HKS07}{tudalert}
+}
+
+\tudcolorselect
+
+\AtBeginDocument{%
+  \@ifpackageloaded{hyperref}{%
+    \hypersetup{%
+      linkcolor=tudaccent2
+    }%
+  }{}%
+}
 \endinput
