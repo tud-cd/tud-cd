@@ -4,6 +4,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{tudcolors}[2012/02/05 v2.0.1 TU Dresden CD-Farben Tobias.Schlemmer@mailbox.tu-dresden.de]
 \def\tudcolorscheme#1{%
+  \typeout{defining color scheme #1}%
   \edef\tudcolor@scheme{#1}%
 }
 \def\tudcolormodel#1{%
@@ -35,6 +36,7 @@
 }
 
 \@ifundefined{tudcolor@scheme}{%
+  \typeout{no colorscheme selected}%
   \def\tudcolor@scheme{cd2018}%
 }{}
 \def\tudcolors@define@scheme#1{%
@@ -184,8 +186,8 @@
   \tudcolors@let{HKS44K100}{tudaccent2}
 
   % Auszeichnungsfarbe 1. Kategorie
-  \tudcolors@let{TUDCyanK100}{cdcyan}
-  \tudcolors@let{TUDCyanK100}{tudaccent1}
+  \tudcolors@let{TUDCyan}{cdcyan}
+  \tudcolors@let{TUDCyan}{tudaccent1}
 
   % Grau
   \tudcolors@let{HKS92K100}{cdgray}
@@ -269,43 +271,43 @@
 % accent7
 
 \tudcolors@define@scheme{cd2018}{%
-\tudcolors@let{HKS41}{cddarkblue}
-\tudcolors@let{HKS41}{tudbase}
+  \tudcolors@let{HKS41}{cddarkblue}
+  \tudcolors@let{HKS41}{tudbase}
 
-% Auszeichnungsfarbe 1. Kategorie
-\tudcolors@let{HKS44}{cdblue}
-\tudcolors@let{HKS44}{tudaccent2}
+  % Auszeichnungsfarbe 1. Kategorie
+  \tudcolors@let{HKS44}{cdblue}
+  \tudcolors@let{HKS44}{tudaccent2}
 
-% Auszeichnungsfarbe 1. Kategorie
-\tudcolors@let{TUDCyan}{cdcyan}
-\tudcolors@let{TUDCyan}{tudaccent1}
+  % Auszeichnungsfarbe 1. Kategorie
+  \tudcolors@let{TUDCyan}{cdcyan}
+  \tudcolors@let{TUDCyan}{tudaccent1}
 
-% Grau
-\tudcolors@let{HKS92}{cdgray}
-\tudcolors@let{HKS92}{cdgrey}
-\tudcolors@let{HKS92}{tudgrey}
+  % Grau
+  \tudcolors@let{HKS92}{cdgray}
+  \tudcolors@let{HKS92}{cdgrey}
+  \tudcolors@let{HKS92}{tudgrey}
 
-% lila
-\tudcolors@let{HKS33}{cdpurple}
-\tudcolors@let{HKS33}{tudaccent5}
+  % lila
+  \tudcolors@let{HKS33}{cdpurple}
+  \tudcolors@let{HKS33}{tudaccent5}
 
-% Auszeichnungsfarbe 2. Kategorie
-% Violett
-\tudcolors@let{HKS36}{cdindigo}
-\tudcolors@let{HKS36}{tudaccent6}
+  % Auszeichnungsfarbe 2. Kategorie
+  % Violett
+  \tudcolors@let{HKS36}{cdindigo}
+  \tudcolors@let{HKS36}{tudaccent6}
 
-% hellgrün
-\tudcolors@let{HKS65}{cdgreen}
-\tudcolors@let{HKS65}{tudaccent3}
+  % hellgrün
+  \tudcolors@let{HKS65}{cdgreen}
+  \tudcolors@let{HKS65}{tudaccent3}
 
-% dunkelgrün
-\tudcolors@let{HKS57}{cddarkgreen}
-\tudcolors@let{HKS57}{tudaccent4}
+  % dunkelgrün
+  \tudcolors@let{HKS57}{cddarkgreen}
+  \tudcolors@let{HKS57}{tudaccent4}
 
 
-% Ausnahmefarbe HKS 07_K
-\tudcolors@let{HKS07}{cdorange}
-\tudcolors@let{HKS07}{tudalert}
+  % Ausnahmefarbe HKS 07_K
+  \tudcolors@let{HKS07}{cdorange}
+  \tudcolors@let{HKS07}{tudalert}
 }
 
 \tudcolorselect
