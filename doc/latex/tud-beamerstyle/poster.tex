@@ -1,9 +1,12 @@
 % -*- LaTeX -*-
-% process with pdflatex
+% process with pdflatex or lualatex
 \documentclass[ngerman,aspectratio=141]{beamer}%16:9
 \usepackage[utf8]{luainputenc}
+\usepackage{ifluatex}
+\ifluatex\else
 \usepackage[TS1,T1]{fontenc}
-\usepackage{babel}
+\fi
+\usepackage[ngerman]{babel}
 \usepackage{listings}
 \lstset{language=[LaTeX]{TeX}}
 %
