@@ -1,5 +1,7 @@
 \ProvidesPackage{beamerfontthemetud}[2011/01/17 v1 TU Dresden font theme for Beamer class]
 
+\RequirePackage{ifluatex}
+
 \newif\if@check@tud@fonts
 \@check@tud@fontstrue
 
@@ -132,7 +134,61 @@
   \csname tud@font@setup@beamer@\tudfontspackage \endcsname
 \else
   \@noDINtrue
-  \RequirePackage[default]{opensans}
+  \ifluatex
+  % Load fontspec and define a document font:
+    \usefonttheme{professionalfonts}
+    \usepackage{fontspec}
+    \setmainfont{TeX Gyre Pagella}
+
+    \RequirePackage{unicode-math}
+    \IfFontExistsTF{Open Sans}{%
+      \PackageInfo{Beamer Font Theme TUD}{Using default Open Sans font}
+      \setmathfont{XITS Math}
+      \setmainfont{Open Sans}
+      \setsansfont{Open Sans}
+%      \setmathfont{texgyrepagella-math.otf}
+ %     \setmathfont{OpenSans}
+      % \setmathfont[math-style=TeX]{Latin Modern Math}
+      % \setmathfont{Asana Math}%
+      % \setmathfont[range=\mathbfsfit/{greek,Greek,latin,Latin}]{Open Sans}
+      % up , it , tt , bfup , bfit , bb , bbit , scr , bfscr , cal , bfcal ,
+      % frak , bffrak , sfup , sfit , bfsfup , bfsfit , bfsf
+      \setmathfont[range={up}]{Open Sans}
+      \setmathfont[range={it}]{Open Sans Italic}
+      \setmathfont[range={bfup}]{Open Sans Bold}
+      \setmathfont[range={bfit}]{Open Sans Bold Italic}
+      \setmathfont[range={sfup}]{Open Sans Condensed Light}
+      \setmathfont[range={sfit}]{Open Sans Condensed Light Italic}
+      \setmathfont[range={bfsfup}]{Open Sans Light}
+      \setmathfont[range={bfsfit}]{Open Sans Light Italic}
+      %\setmathfont{Open Sans}
+      %\renewcommand*\setminus{\mathbin{\mathsf{\backslash}}}
+      % \setmonofont{Open Sans}
+      % \setmathsf{Open Sans}
+      % \setmathrm{Open Sans}
+      % \setmathtt{Open Sans}
+      % \setboldmathrm{Open Sans}
+      %\setmathfont{Asana Math}
+    }{%
+      \PackageError{Beamer Font Theme TUD}{^^J%
+        Die Schrift ,,Open Sans'' konnte nicht gefunden werden.^^J%
+        Could not load Open Sans font.%
+      }{%
+        Das bedeutet meist, dass Sie die Fonts von der TU Dresden^^J%
+        herunterladen und in Ihrem Fontverzeichnis installieren müssen.^^J%
+        Alternativ können Sie auch das entsprechende Schriftpacket (opensans)^^J%
+        Ihrer TeX-Distribution oder Ihres Betriebssystems installieren.^^J%
+        ^^J%
+        Please install Open Sans for your Operating system.^^J%
+        This usually means that you have to download the Open Sans Package^^J%
+        from the TU Dresden homepage.^^J%
+        Alternatively, you could install the corresponding font package^^J%
+        (opensans) for your TeX distribution or your operating system.^^J%
+      }%
+    }
+  \else
+    \RequirePackage[default]{opensans}
+  \fi
 \fi
 \fi
 
@@ -187,8 +243,9 @@
 
 \tudfontsloadstyle{\tudbeamer@font@style}
 
-\setbeamerfont{itemize/enumerate subbody}{size=\scriptsize}
-\setbeamerfont{itemize/enumerate subsubbody}{size=\scriptsize}
+%\setbeamerfont{itemize/enumerate subbody}{size=\scriptsize}
+%\setbeamerfont{itemize/enumerate subsubbody}{size=\scriptsize}
+\setbeamerfont{description item}{parent=item,series=\bfseries}
 \setbeamerfont{section in head/foot}{size=\normalsize,family=\sffamily}
 \setbeamerfont{footline}{size=\tudfoottiny}
 \setbeamerfont{page number in footline}{size=\tudfoottiny}
