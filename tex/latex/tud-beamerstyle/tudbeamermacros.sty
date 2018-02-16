@@ -1,0 +1,145 @@
+\ProvidesPackage{tudbeamermacros}[2018/01/10 v1.0 common macros for the beamer styles of TU Dresden]
+
+\newcommand*\tudbeamer@savesizes[1]{%
+  \edef#1{%
+    \noexpand\tudbeamer@logowidth\the\tudbeamer@logowidth\relax
+    \noexpand\tudbeamer@logoleftmargin\the\tudbeamer@logoleftmargin\relax
+    \noexpand\tudbeamer@logotopmargin\the\tudbeamer@logotopmargin\relax
+  }%
+}
+
+\newcommand*\tudsavebeamertemplate[2]{%
+  \expandafter\let\expandafter#2\csname beamer@@tmpl@#1\endcsname
+}
+
+\newcommand*\tudrestorebeamertemplate[2]{%
+  \expandafter\let\csname beamer@@tmpl@#1\endcsname#2
+}
+
+\providecommand\tudsavebeamercolor[2]{
+  \expandafter\let\expandafter\@tempa\csname beamer@thcuse@#1\endcsname%
+  \expandafter\let\csname tud@color@#2@thcuse@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname beamer@thcinherits@#1\endcsname%
+  \expandafter\let\csname tud@color@#2@thcinherits@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname beamer@thcfg@#1\endcsname%
+  \expandafter\let\csname tud@color@#2@thcfg@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname beamer@thcbg@#1\endcsname%
+  \expandafter\let\csname tud@color@#2@thcbg@#1\endcsname\@tempa
+}
+
+\providecommand\tudrestorebeamercolor[2]{
+  \expandafter\let\expandafter\@tempa\csname tud@color@#2@thcuse@#1\endcsname%
+  \expandafter\let\csname beamer@thcuse@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname tud@color@#2@thcinherits@#1\endcsname%
+  \expandafter\let\csname beamer@thcinherits@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname tud@color@#2@thcfg@#1\endcsname%
+  \expandafter\let\csname beamer@thcfg@#1\endcsname\@tempa
+  \expandafter\let\expandafter\@tempa\csname tud@color@#2@thcbg@#1\endcsname%
+  \expandafter\let\csname beamer@thcbg@#1\endcsname\@tempa
+}
+
+
+\providecommand*\tudbeamer@def[1]{%
+  \expandafter\newcommand\expandafter*%
+  \csname tudbeamer@#1\endcsname%
+}
+
+
+
+\newcommand*\@einrichtung{}
+\newcommand*\@fachrichtung{}
+\newcommand*\@institut{}
+\newcommand*\@professur{}
+
+\newcommand*{\einrichtung}[1]{\renewcommand*{\@einrichtung}{#1}}
+\newcommand*{\fachrichtung}[1]{\renewcommand*{\@fachrichtung}{#1}}
+\newcommand*{\institut}[1]{\renewcommand*{\@institut}{#1}}
+\newcommand*{\professur}[1]{\renewcommand*{\@professur}{#1}}
+
+\newcommand*{\datecity}[1]{\renewcommand*{\insertdatecity}{#1}}
+
+
+\newlength\tudbeamerlogotopmargin
+\newlength\tudbeamerlogoleftmargin
+\newlength\tudbeamerlogowidth
+\newlength\tudbeamerlogoheight
+\newlength\tudbeamerfooterplacewidth
+\newlength\tudbeamerfootercontentwidth
+\newlength\tudbeamerfooterpagenumwidth
+\newlength\tudbeamerbackgroundheight
+\newlength\tudbeamerbackgroundwidth
+
+% frame title
+\gdef\frame@title@section{}
+\def\frametitle{\secdef\tud@frametitlea\tud@frametitles}
+\newcommand<>\tud@frametitlea{\gdef\frame@title@section{\ifnum\c@section>9\else 0\fi\arabic{section}\,\,}\alt#1{\@dblarg\beamer@@frametitle}{\beamer@gobbleoptional}}
+\newcommand<>\tud@frametitles{\gdef\frame@title@section{}\alt#1{\@dblarg\beamer@@frametitle}{\beamer@gobbleoptional}}
+
+\def\printpagelayout{%
+  \typeout{paper: \the\paperwidth\space  x \the\paperheight\space ^^J
+    text: \the\textwidth\space  x \the\textheight^^J
+    margins: \the\evensidemargin, \the\oddsidemargin^^J
+    top: \the\topmargin, \the\topskip^^J
+    head: \the\headheight, \the\headsep^^J
+    foot: \the\footskip,^^J
+    baseline: \the\baselineskip,^^J
+    marginpar: \the\marginparwidth, \the\marginparsep^^J
+    cols: \the\columnsep, \the\hoffset, \the\voffset^^J
+    geometry: \the\Gm@layoutwidth\space  x \the\Gm@layoutheight\space  +
+    \the\Gm@layouthoffset\space  + \the\Gm@layoutvoffset^^J}%
+  \typeout{\if@twocolumn 2col \else 1col \fi}%
+  \typeout{\if@twoside 2side \else 1side \fi}%
+  \typeout{\if@mparswitch mpar \else no mpar \fi}%
+  \typeout{\if@reversemargin reverse margin \else margin \fi}%
+  \typeout{col: ht \the\@colht room \the\@colroom^^J
+    size: \the\hsize x \the\vsize^^J
+    colwidth: \the\columnwidth^^J
+    linewidth: \the\linewidth ^^J
+  }%
+  \typeout{bindekorrektur: \the\Gm@bindingoffset^^J
+    wd mp: \the\Gm@wd@mp
+    odd mp: \the\Gm@odd@mp
+    even mp: \the\Gm@even@mp
+  }%
+}
+
+\def\tudbeamer@save@length#1{%
+  \noexpand\setlength#1{\the#1}%
+}
+
+\newcommand\tudbeamer@savelayout[1]{%
+  \savegeometry{#1}%
+  \expandafter\edef\csname tudbeamer@savedlayout@#1\endcsname{%
+    \tudbeamer@save@length\@colht
+    \tudbeamer@save@length\@colroom
+    \tudbeamer@save@length\hsize
+    \tudbeamer@save@length\vsize
+    \tudbeamer@save@length\columnwidth
+    \tudbeamer@save@length\linewidth
+    %\tudbeamer@save@length\Gm@lmargin
+    %\tudbeamer@save@length\Gm@rmargin
+  }%
+}
+\newcommand\tudbeamer@loadlayout[1]{%
+  \loadgeometry{#1}%
+  \csname tudbeamer@savedlayout@#1\endcsname
+}
+
+
+\newcommand{\tudbeamer@appendixstart}{%
+  \edef\insertpresentationendframe{\insertframenumber}%
+  \immediate\write\@auxout{\string\@writefile{nav}%
+    {\noexpand\headcommand{\noexpand\def\noexpand\insertpresentationendframe{\insertframenumber}}}%
+  }%
+  \let\tudbeamer@enddocument\relax
+}
+
+\providecommand{\insertpresentationendframe}{??}
+\let\tudbeamer@origappendix\appendix
+\def\appendix{%
+  \tudbeamer@appendixstart
+  \tudbeamer@origappendix
+}
+
+\newcommand{\tudbeamer@enddocument}{\tudbeamer@appendixstart}
+\AtEndDocument{\tudbeamer@enddocument}
