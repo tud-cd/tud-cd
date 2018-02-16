@@ -5,14 +5,10 @@ corporate design inner theme]
 
 \mode<presentation>
 
-\providecommand\tudbeamer@titlestyle{cd2018}
-
 %\useinnertheme[shadow=true]{rounded}
-\defbeamertemplate{title page}{tud}{}%
-[action]
-{
-  \setbeamertemplate{title page}[tud \tudbeamer@titlestyle]%
-}
+\defbeamertemplate{title page}{tud}{
+  \usebeamertemplate{title page/tud}%
+}%
 
 
 % Faktor zur PPT-Vorlage: / 0,1984375      * 5,04
@@ -100,6 +96,8 @@ corporate design inner theme]
   }%
   \vfill\vfill%
 }
+
+\setbeamertemplate{title page/tud}[\tudbeamer@inner@style]%
 
 \setbeamertemplate{title page}[tud]
 

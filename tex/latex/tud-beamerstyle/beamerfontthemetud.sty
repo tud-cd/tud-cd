@@ -9,10 +9,12 @@
 \newif\if@useBeamerFont\@useBeamerFontfalse
 \newif\if@useUniversFont\@useUniversFontfalse
 
-\def\tudfonts@style{cd2018}
-\DeclareOptionBeamer{cd2018}{\edef\tudfonts@style{\CurrentOption}}
+\def\tudbeamer@font@style{cd2018}
+\DeclareOptionBeamer{cd2018}{%
+  \edef\tudbeamer@font@style{cd2018}%
+}
 \DeclareOptionBeamer{cd2012ts}{%
-  \edef\tudfonts@style{\CurrentOption}%
+  \edef\tudbeamer@font@style{cd2012ts}%
   \@useUniversFonttrue
 }
 
@@ -105,7 +107,7 @@
 \ProcessOptionsBeamer
 
 \if@sansmath
-\else 
+\else
   \usefonttheme[onlymath]{serif}
 \fi
 
@@ -135,11 +137,12 @@
 \fi
 
 \def\tudfonts@defstyle#1{%
-  \expandafter\def\csname tudfonts@style@#1\endcsname
+  \expandafter\def\csname tudbeamer@font@style@#1\endcsname
 }
 
 \def\tudfontsloadstyle#1{
-  \csname tudfonts@style@#1\endcsname
+  \typeout{loading font style: #1}%
+  \csname tudbeamer@font@style@#1\endcsname
 }
 \tudfonts@defstyle{cd2012ts}{%
   \typeout{font style: cd2012ts}%
@@ -178,7 +181,7 @@
   \setbeamerfont{subtitle}{size=\tudtitlenormalsize,series=\mdseries,family=\sffamily}
 }
 
-\tudfontsloadstyle{\tudfonts@style}
+\tudfontsloadstyle{\tudbeamer@font@style}
 
 \setbeamerfont{itemize/enumerate subbody}{size=\scriptsize}
 \setbeamerfont{itemize/enumerate subsubbody}{size=\scriptsize}

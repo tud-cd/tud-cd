@@ -1,9 +1,32 @@
 \ProvidesPackage{beamercolorthemetud}[2011/01/17 v1 Tobias Schlemmer]
-\DeclareOptionBeamer{cd2018}{\PassOptionsToPackage{tudcolors}{\CurrentOption}}
-\DeclareOptionBeamer{cd2012ts}{\PassOptionsToPackage{tudcolors}{\CurrentOption}}
+\def\tudbeamer@color@style{cd2018}
+\DeclareOptionBeamer{cd2018}{%
+  \PassOptionsToPackage{cd2018}{tudcolors}
+  \def\tudbeamer@color@style{cd2018}
+}
+\DeclareOptionBeamer{cd2012ts}{%
+  \typeout{TUD colors with cd2012ts}%
+  \PassOptionsToPackage{cd2012ts}{tudcolors}%
+  \def\tudbeamer@color@style{cd2012ts}
+}
 
-\RequirePackage[HTML]{tudcolors}
+\ProcessOptionsBeamer
 
+\RequirePackage{tudbeamermacros}%
+\tudbeamer@def{colorspace@cd2018}{%
+  \PassOptionsToPackage{HTML}{tudcolors}%
+}
+\tudbeamer@def{colorspace@cd2012ts}{%
+  \PassOptionsToPackage{cmyk}{tudcolors}%
+}
+\csname tudbeamer@colorspace@\tudbeamer@color@style\endcsname
+
+\RequirePackage{tudcolors}
+
+\def\tudbeamer@setcolor#1#2{%
+  \edef\@tempa{{#1}{#2}}%
+  \expandafter\setbeamercolor\@tempa
+}
 
 \setbeamercolor{normal text}{fg=tudbase,bg=white}
 \setbeamercolor{tud titlepage normal text cd2012ts}{fg=white,bg=tudbase}
@@ -97,3 +120,13 @@
 \setbeamercolor{institute}{fg=tudgrey,bg=white}
 \setbeamercolor{institute in head/foot}{fg=tudgrey,bg=white}
 \setbeamercolor{date/place in head/foot}{fg=tudgrey}
+
+\def\tudbeamer@set@colors#1{%
+  \setbeamercolor{tud titlepage normal text}{parent=tud titlepage normal text #1}
+}
+\def\settudbeamercolors#1{%
+  \edef\@tempa{#1}%
+  \let\tudbeamer@color@style{#1}%
+  \expandafter\tudbeamer@set@colors\expandafter{\tudbeamer@color@style}%
+}
+\expandafter\tudbeamer@set@colors\expandafter{\tudbeamer@color@style}%

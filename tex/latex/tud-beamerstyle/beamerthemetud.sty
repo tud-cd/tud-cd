@@ -16,12 +16,29 @@
 \DeclareOptionBeamer{noddc}{\PassOptionsToPackage{noddc}{beamerouterthemetud}}
 \DeclareOptionBeamer{ddc}{\PassOptionsToPackage{ddc}{beamerouterthemetud}}
 \DeclareOptionBeamer{ddcfooter}{\PassOptionsToPackage{ddcfooter}{beamerouterthemetud}}
+\DeclareOptionBeamer{cd2012ts}{
+  \PassOptionsToPackage{cd2012ts}{beamerouterthemetud}
+  \PassOptionsToPackage{cd2012ts}{beamerinnerthemetud}
+  \PassOptionsToPackage{cd2012ts}{beamerfontthemetud}
+  \PassOptionsToPackage{cd2012ts}{beamercolorthemetud}
+}
+\DeclareOptionBeamer{cd2018}{
+  \PassOptionsToPackage{cd2018}{beamerouterthemetud}
+  \PassOptionsToPackage{cd2018}{beamerinnerthemetud}
+  \PassOptionsToPackage{cd2018}{beamerfontthemetud}
+  \PassOptionsToPackage{cd2018}{beamercolorthemetud}
+}
+\DeclareOptionBeamer{cd2018}{
+  \PassOptionsToPackage{cd2018}{beamerouterthemetud}
+  \PassOptionsToPackage{cd2018}{beamerinnerthemetud}
+  \PassOptionsToPackage{cd2018}{beamerfontthemetud}
+  \PassOptionsToPackage{cd2018}{beamercolorthemetud}
+}
 
 \ProcessOptionsBeamer
 
 
-
-\useoutertheme{tud}
-\usefonttheme{tud}
 \usecolortheme{tud}
+\usefonttheme{tud}
+\useoutertheme{tud}
 \useinnertheme{tud}
