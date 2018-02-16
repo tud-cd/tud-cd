@@ -1,7 +1,22 @@
 tud-cd
 ======
 
+Testversion – Hinweis
+---------------------
+
+Am 1. Februar traten umfangreiche Änderungen zum Corporate Design der
+TU Dresden in Kraft. Dazu wurde auch der Beamerstil angepasst. Näheres
+können Sie in der Beispieldatei
+https://github.com/tud-cd/tud-cd/raw/master/doc/latex/tud-beamerstyle/beamerpraesentation8pt.pdf
+nachlesen.
+
+Diese Änderungen befinden sich derzeit in der Testphase. Sollten
+Probleme auftreten, finden Sie unter dem Tag cd2012ts
+(https://github.com/tud-cd/tud-cd/archive/cd2012ts.zip) die letzte
+Fassung vor den Änderungen.
+
 Corporate Design der TU Dresden – inoffizielles Repository
+----------------------------------------------------------
 
 In diesem Verzeichnis liegen ein Beamer-Stil, die Vorlagen für Poster
 der Fachrichtung Mathematik und ein Paket für Preprint-Titelseiten des
