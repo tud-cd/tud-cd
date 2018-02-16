@@ -147,6 +147,10 @@
   \newcommand*\tudtitlesmall{\@setfontsize\tudtitlesmall\@xpt\@xiipt}
   \newcommand*\tudtitletiny{\@setfontsize\tudtitletiny\@vipt\@viipt}
   \newcommand*\tudtitleLARGE{\@setfontsize\LARGE\@xviipt{22}}
+  \newcommand*\tudfoottiny{\@setfontsize\tudfoottiny%
+    {.347309973197\tudbeamerlogoheight}%
+    {.347309973197\tudbeamerlogoheight}%
+  }
   \setbeamerfont{einrichtung/titlepage}{size=\tudtitletiny,series=\bfseries}
   \setbeamerfont{fachrichtung/titlepage}{size=\tudtitletiny}
   \setbeamerfont{institut/titlepage}{parent=fachrichtung/titlepage}
@@ -161,6 +165,10 @@
   \newcommand*\tudtitleLARGE{\@setfontsize\tudtitleLARGE{0.059259\paperheight}{0.059259\paperheight}}
   \newcommand*\tudtitlesmall{\@setfontsize\tudtitlesmall{.0246916\paperheight}{.0046916\paperheight}}
   \newcommand*\tudtitletiny{\@setfontsize\tudtitletiny{.02057638\paperheight}{.02057638\paperheight}}
+  \newcommand*\tudfoottiny{\@setfontsize\tudfoottiny%
+    {.347309973197\tudbeamerlogoheight}%
+    {.347309973197\tudbeamerlogoheight}%
+  }
   \setbeamerfont{author/titlepage}{size=\tudtitlenormalsize,series=\mdseries,family=\sffamily}
   \setbeamerfont{einrichtung/titlepage}{parent=author/titlepage}
   \setbeamerfont{fachrichtung/titlepage}{parent=einrichtung/titlepage}
@@ -177,7 +185,9 @@
 \setbeamerfont{section in head/foot}{size=\normalsize,family=\sffamily}
 \setbeamerfont{frametitle}{size=\normalsize,family=\sffamily}
 \setbeamerfont{framesubtitle}{size=\small,series=\bfseries,family=\sffamily}
-\setbeamerfont{footline}{size=\tiny}
+\setbeamerfont{footline}{size=\tudfoottiny}
+\setbeamerfont{page number in footline}{size=\tudfoottiny}
+\setbeamerfont{title in head/foot}{family=\sffamily}
 \setbeamerfont{block title}{size={}}
 
 \if@noDIN

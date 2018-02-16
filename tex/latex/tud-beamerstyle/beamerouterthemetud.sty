@@ -529,33 +529,57 @@
       \ifx\@tempa\empty
       \else
         \@tempa
-        \ifx\insertdate\empty\else, %
+        \ifx\insershorttdate\empty\else, %
         \fi
       \fi
-      \insertdate
+      \insertshortdate
     %}%
     \strut
   }%
 }
 
-\defbeamertemplate*{title in head/foot}{tud}{%
-  \parbox[b]{\tudbeamerfootertitlewidth}{%
+\defbeamertemplate{title in head/foot}{tud cd2012ts}{%
+  \setlength\@tempdima{\tudbeamerfootercontentwidth-\tudbeamerfooterplacewidth}%
+  \parbox[b]{\@tempdima}{%
     \centering\insertshorttitle%h
     \strut
   }%
 }
+\defbeamertemplate{title in head/foot}{tud cd2018}{%
+  {\def\\{, }\insertshorttitle}\strut
+}
+\defbeamertemplate*{title in head/foot}{tud}{%
+}[action]{%
+  \setbeamertemplate{title in head/foot}[tud \tudbeamer@outer@style]
+}
+
+\defbeamertemplate*{institute in head/foot}{tud}{%
+  \insertshortinstitute\strut
+  \ifx\empty\beamer@shortinstitute
+  \else
+  \ifx\empty\beamer@shortauthor
+  \else{} // %
+  \fi
+  \fi
+}
+
+\defbeamertemplate*{author in head/foot}{tud}{%
+  \insertshortauthor\strut
+}
+
+\defbeamertemplate*{date/place in head/foot}{tud}{%
+  \insertdatecity\strut
+}
+
+\defbeamertemplate*{date in head/foot}{tud}{%
+  \insertshortdate
+}
 
 \defbeamertemplate{page number in footline}{page}[1][text and total]{%
-  \parbox[b]\tudbeamerfooterpagenumwidth {%
-    \raggedleft
-    \usebeamertemplate{page number: #1}%
-  }%
+  \usebeamertemplate{page number: #1}%
 }
 \defbeamertemplate*{page number in footline}{frame}[1][text and total]{%
-  \parbox[b]\tudbeamerfooterpagenumwidth {%
-    \raggedleft
-    \usebeamertemplate{frame number: #1}%
-  }%
+  \usebeamertemplate{frame number: #1}%
 }
 
 \defbeamertemplate*{page number: text and total}{english}{%
@@ -671,7 +695,8 @@
   \rule{\paperwidth}{0.3pt}\par
   \vskip 0.1em\relax
 }
-\defbeamertemplate*{footline}{tud pagenum cd2012ts}{%
+\defbeamertemplate{footline}{tud pagenum cd2012ts}{%
+  \typeout{footline 2012}%
   \usebeamertemplate***{upper separation line foot}%
   \usebeamerfont{footline}%
 %  \vbox to 0.0777\paperheight{%
@@ -681,31 +706,120 @@
       \hskip 0pt plus 1 fil minus 1 fil\relax
       \usebeamertemplate***{title in head/foot}%
       \hskip 0pt plus 1 fil minus 1 fil\relax
-      \usebeamertemplate***{page number in footline}%
+      \parbox[b]\tudbeamerfooterpagenumwidth {%
+        \raggedleft
+        \usebeamertemplate***{page number in footline}%
+      }
       \hskip\beamer@rightmargin
     }%
 %    \vskip 0pt plus 1 fil
 %  }%
-}[action]{\csname tudbeamer@calcsizes@cd2012ts\endcsname}
+}
 
-\defbeamertemplate*{footline}{tud pagenum cd2018}{%
+\defbeamertemplate{footline}{tud pagenum cd2018}{%
   \usebeamertemplate***{upper separation line foot}%
-  \usebeamerfont{footline}%
-%  \vbox to 0.0777\paperheight{%
-    \hbox to \paperwidth{%
-      \hskip\beamer@leftmargin
-      \usebeamertemplate***{date/place in footline}%
-      \hskip 0pt plus 1 fil minus 1 fil\relax
-      \usebeamertemplate***{title in head/foot}%
-      \hskip 0pt plus 1 fil minus 1 fil\relax
-      \usebeamertemplate***{page number in footline}%
-      \hskip\beamer@rightmargin
+  \vbox to \tudbeamer@footheight{%
+    \setlength\@tempdima{\tudbeamer@footheight-\tudbeamerlogoheight}%
+    \vskip 0.45\@tempdima%
+    \setbox\@tempboxa\hbox to \paperwidth{%
+      \usebeamerfont{footline}%
+      \hskip\tudbeamerlogoleftmargin
+      \vbox to \tudbeamerlogoheight {%
+        \hsize=\tudbeamerlogowidth
+        \usebeamercolor[fg]{logo}%
+        \includegraphics[width=\tudbeamerlogowidth]{\logo@default}%
+        \par
+      }%
+      \hfill
+      \vbox to \tudbeamerlogoheight{%
+        \hsize=1em\relax
+        \usebeamercolor[fg]{footline}%
+        \def\\{, }%
+        \setbox\@tempboxa\hbox{%
+          \usebeamertemplate***{title in head/foot}\strut
+        }%
+        \typeout{Höhe: \the\ht\@tempboxa}%
+        \typeout{Tiefe: \the\dp\@tempboxa}%
+        \typeout{Logohöhe: \the\tudbeamerlogoheight}%
+        \ifdim\wd\@tempboxa > \hsize\relax
+          \hsize=\wd\@tempboxa
+        \fi
+        \usebox\@tempboxa
+        \par
+        % \leavevmode
+        \setbox\@tempboxa\hbox{%
+          \usebeamertemplate***{institute in head/foot}%
+          \usebeamertemplate***{author in head/foot}\strut
+        }%
+        \ifdim\wd\@tempboxa > \hsize\relax
+          \hsize=\wd\@tempboxa
+        \fi
+        \usebox\@tempboxa
+        \par
+        \setbox\@tempboxa\hbox{%
+          \usebeamertemplate***{date/place in head/foot}\color{fg},
+          \usebeamertemplate***{date in head/foot}\strut
+        }%
+        \ifdim\wd\@tempboxa > \hsize\relax
+          \hsize=\wd\@tempboxa
+        \fi
+        \usebox\@tempboxa
+        \par%
+        \vss
+        \ifdim\hsize > \tudbeamerfootercontentwidth\relax
+          \hsize=\tudbeamerfootercontentwidth
+        \fi
+      }%
+      \hfill
+      \vbox to \tudbeamerlogoheight{%
+        \hsize=\tudbeamerfooterpagenumwidth
+        \setbox\@tempboxa\vbox{%
+          \lineskip=0pt
+          \lineskiplimit 0pt
+          \centering
+          \strut
+          \usebeamertemplate***{page number in footline}%
+          \strut\\%
+          \ifdim\vsize > 2.1\baselineskip
+          \vsize=3\baselineskip
+          \fi
+        }%
+        \setlength\@tempdima{0.4\tudbeamerlogoheight}%
+        \setlength\@tempdimb{\ht\@tempboxa}%
+        \ifdim\@tempdimb>\@tempdima
+          \usebox\@tempboxa
+          \vss
+        \else
+          \vfill
+          \usebox\@tempboxa
+          \vfill
+        \fi
+        \vss
+      }
+      \hfill
+      \setbox\@tempboxa\hbox{\usebeamertemplate{zweitlogo/titlepage}}%
+      \vbox to \tudbeamerlogoheight{%
+        \hsize=\wd\@tempboxa
+        \vss
+        \usebox\@tempboxa\par
+        \vss
+      }
+      % \vrule
+      \hskip\tudbeamerlogoleftmargin
     }%
-%    \vskip 0pt plus 1 fil
-%  }%
-}[action]{\csname tudbeamer@calcsizes@cd2018\endcsname}
+    %\vskip\ht\@tempboxa
+    \usebox\@tempboxa
+    \vfill
+  }%
+}
+
+\defbeamertemplate*{footline}{tud pagenum}{%
+}[action]{%
+  \setbeamertemplate{footline}[tud pagenum \tudbeamer@outer@style]%
+}
 
 \defbeamertemplate{footline}{tud nopagenum}{%
+  \typeout{footline nopagenum}%
   \usebeamertemplate***{upper separation line foot}%
   \usebeamerfont{footline}%
 %  \vbox to 0.0777\paperheight{%
@@ -720,7 +834,7 @@
     }%
 %    \vskip 0pt plus 1 fil
 %  }%
-}[action]{\csname tudbeamer@calcsizes@cd2012ts}
+}
 
 
 \defbeamertemplate{frametitle}{tud titlesection}{%
