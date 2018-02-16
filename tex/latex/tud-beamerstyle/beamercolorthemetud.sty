@@ -56,7 +56,7 @@
 \setbeamercolor{logo}{use=structure,fg=structure.fg}
 
 
-\newcommand*{\darktitlepage}{%
+\def\darktitlepage{%
   \setbeamercolor{normal text/titlepage}{fg=white,bg=tudbase}%
   \setbeamercolor{title}{use=normal text/titlepage,fg=normal text/titlepage.fg}%
   \setbeamercolor{subtitle}{use=normal text/titlepage,fg=normal text/titlepage.fg}%
@@ -75,7 +75,7 @@
   \let\logo@DDCf\logo@DDC@whitef
 }
 
-\newcommand*{\whitetitlepage}{%
+\def\whitetitlepage{%
   \setbeamercolor{normal text/titlepage}
     {use=normal text,fg=normal text.fg,bg=normal text.bg}
   \setbeamercolor{title}{use=normal text/titlepage,fg=normal text/titlepage.fg}%
@@ -97,6 +97,8 @@
   \setbeamercolor{footline}{fg=tudgrey}
 }
 
+\setbeamercolor{part page/title}{parent=title}
+\setbeamercolor{part page/subtitle}{parent=subtitle}
 \def\logo@DDC@white{DDC-weiss}
 \def\logo@DDC@whitef{DDC-weissf}
 \def\logo@DDC@color{DDC-color}

@@ -1,5 +1,13 @@
 \ProvidesPackage{beamerinnerthemetud}[2011/01/17 v1 TU Dresden
 corporate design inner theme]
+\def\tudbeamer@inner@style{cd2018}
+\DeclareOptionBeamer{cd2018}{\def\tudbeamer@inner@style{cd2018}}
+\DeclareOptionBeamer{cd2012ts}{\def\tudbeamer@inner@style{cd2012ts}}
+
+
+\ProcessOptionsBeamer\relax
+
+
 \beamertemplatedotitem
 \usesubitemizeitemtemplate{--}
 
@@ -12,64 +20,71 @@ corporate design inner theme]
 
 
 % Faktor zur PPT-Vorlage: / 0,1984375      * 5,04
-\defbeamertemplate*{title page}{tud cd2012ts}{%
+\defbeamertemplate{title page/tud}{cd2012ts}{%
+  \typeout{title page 2012}%
   \usebeamercolor{normal text/titlepage}%
   \usebeamerfont{normal text/titlepage}%
-    \vfill%
-    {%
-      %\renewcommand\baselinestretch{1}%
-      \usebeamerfont*{title}%
-      \usebeamercolor[fg]{title}%
-      \expandafter\setlength\expandafter\baselineskip{\f@size pt*\ratio{10pt}{10pt}}%
-      \MakeUppercase{\inserttitle}\par%
-    }\vfill%
-    {%
-      \ifx\insertsubtitle\empty
-      \else
-        \usebeamerfont*{subtitle}%
-        \usebeamercolor[fg]{subtitle}%
-        \insertsubtitle
-        \vfill
-      \fi%
-      \usebeamerfont*{author}%
-      \usebeamercolor[fg]{author/titlepage}%
-      \insertauthor
-    }%
-    \vfill\vfill%
-}
-
-\defbeamertemplate*{title page}{tud cd2018}{%
-%  \color{tudaccent5}\rule{\beamer@leftmargin}{1pt}%
-  \parindent0pt
-  \vfill\vfill
-  \usebeamercolor{normal text/titlepage}%
-  \usebeamerfont{normal text/titlepage}%
-  {%
-    \vfill
-    \usebeamerfont*{author/titlepage}%
-    \usebeamercolor[fg]{author/titlepage}%
-    \insertauthor\\
-    \usebeamercolor{einrichtung/titlepage}%
-    \usebeamerfont*{einrichtung/titlepage}%
-    \usebeamertemplate{einrichtung/titlepage}%
-    \usebeamercolor{fachrichtung/titlepage}%
-    \usebeamerfont*{fachrichtung/titlepage}%
-    \usebeamertemplate{fachrichtung/titlepage}%
-    \usebeamercolor{institut/titlepage}%
-    \usebeamerfont*{institut/titlepage}%
-    \usebeamertemplate{institut/titlepage}%
-    \usebeamercolor{professur/titlepage}%
-    \usebeamerfont*{professur/titlepage}%
-    \usebeamertemplate{professur/titlepage}%
-    %\insertinstitution
-  }%
   \vfill%
   {%
     % \renewcommand\baselinestretch{1}%
     \usebeamerfont*{title}%
     \usebeamercolor[fg]{title}%
     \expandafter\setlength\expandafter\baselineskip{\f@size pt*\ratio{10pt}{10pt}}%
-    \inserttitle\par%
+    \MakeUppercase{\inserttitle}\par%
+  }\vfill%
+  {%
+    \ifx\insertsubtitle\empty
+    \else
+    \usebeamerfont*{subtitle}%
+    \usebeamercolor[fg]{subtitle}%
+    \insertsubtitle
+    \vfill
+    \fi%
+    \usebeamerfont*{author}%
+    \usebeamercolor[fg]{author/titlepage}%
+    \insertauthor
+  }%
+  \vfill\vfill%
+}
+
+\defbeamertemplate*{title page/tud}{cd2018}{%
+  \typeout{title page 2018}%
+%  \color{tudaccent5}\rule{\beamer@leftmargin}{1pt}%
+  \parindent0pt
+  \setlength\@tempdima{0.55\paperheight-\headheight}%
+  \vbox to \@tempdima{
+    \vfill\vfill
+    \usebeamercolor{normal text/titlepage}%
+    \usebeamerfont{normal text/titlepage}%
+    {%
+      \vfill
+      \usebeamerfont*{author/titlepage}%
+      \usebeamercolor[fg]{author/titlepage}%
+      \insertauthor\\
+      \usebeamercolor{einrichtung/titlepage}%
+      \usebeamerfont*{einrichtung/titlepage}%
+      \usebeamertemplate{einrichtung/titlepage}%
+      \usebeamercolor{fachrichtung/titlepage}%
+      \usebeamerfont*{fachrichtung/titlepage}%
+      \usebeamertemplate{fachrichtung/titlepage}%
+      \usebeamercolor{institut/titlepage}%
+      \usebeamerfont*{institut/titlepage}%
+      \usebeamertemplate{institut/titlepage}%
+      \usebeamercolor{professur/titlepage}%
+      \usebeamerfont*{professur/titlepage}%
+      \usebeamertemplate{professur/titlepage}%
+      % \insertinstitution
+    }%
+    \vfill%
+    {%
+      % \renewcommand\baselinestretch{1}%
+      \usebeamerfont*{title}%
+      \usebeamercolor[fg]{title}%
+      \expandafter\setlength\expandafter\baselineskip{\f@size pt*\ratio{10pt}{10pt}}%
+      \inserttitle\strut\par%
+    }%
+  }%
+  {
     \ifx\insertsubtitle\empty
     \else
     \usebeamerfont*{subtitle}%
@@ -98,6 +113,38 @@ corporate design inner theme]
 }
 
 \setbeamertemplate{title page/tud}[\tudbeamer@inner@style]%
+
+
+\defbeamertemplate*{part page/title}{section}{%
+  \insertsection
+}
+\defbeamertemplate{part page/subtitle}{section}{%
+  \insertsection
+}
+\defbeamertemplate*{part page/subtitle}{subsection}{%
+  \insertsubsection
+}
+
+\defbeamertemplate*{part page/tud}{subsection cd2018}{%
+  % \color{tudaccent5}\rule{\beamer@leftmargin}{1pt}%
+  \vbox to 0.55\paperheight{%
+    \vfill
+    % \renewcommand\baselinestretch{1}%
+    \usebeamertemplate***{part page/title}\strut\par%
+    \leavevmode\usebeamertemplate***{part page/subtitle}\strut
+  }%
+  \vfill%
+}
+
+\defbeamertemplate{part page}{tud}{
+  \usebeamertemplate{part page/tud}%
+}
+
+\defbeamertemplate*{part page}{tud cd2018}{%
+}[action]{%
+  \setbeamertemplate{part page/tud}[cd2018]%
+  \setbeamertemplate{part page}[tud]%
+}
 
 \setbeamertemplate{title page}[tud]
 

@@ -161,6 +161,8 @@
   \setbeamerfont{date in head/foot/titlepage}{size=\tudtitlenormalsize}
   \setbeamerfont{author/titlepage}{size=\tudtitlesmall}
   \setbeamerfont{subtitle}{series=\bfseries,family=\sffamily}
+  \setbeamerfont{frametitle}{size=\normalsize,family=\sffamily}
+  \setbeamerfont{framesubtitle}{size=\small,series=\bfseries,family=\sffamily}
 }
 \tudfonts@defstyle{cd2018}{%
   \typeout{font style: cd2018}%
@@ -179,6 +181,8 @@
   \setbeamerfont{professur/titlepage}{parent=fachrichtung/titlepage}
   \setbeamerfont{date in head/foot/titlepage}{size=\tudtitlenormalsize,family=\sffamily}
   \setbeamerfont{subtitle}{size=\tudtitlenormalsize,series=\mdseries,family=\sffamily}
+  \setbeamerfont{frametitle}{size=\LARGE,family=\sffamily,series=\bfseries}
+  \setbeamerfont{framesubtitle}{size=\LARGE,family=\sffamily,series=\mdseries}
 }
 
 \tudfontsloadstyle{\tudbeamer@font@style}
@@ -186,12 +190,12 @@
 \setbeamerfont{itemize/enumerate subbody}{size=\scriptsize}
 \setbeamerfont{itemize/enumerate subsubbody}{size=\scriptsize}
 \setbeamerfont{section in head/foot}{size=\normalsize,family=\sffamily}
-\setbeamerfont{frametitle}{size=\normalsize,family=\sffamily}
-\setbeamerfont{framesubtitle}{size=\small,series=\bfseries,family=\sffamily}
 \setbeamerfont{footline}{size=\tudfoottiny}
 \setbeamerfont{page number in footline}{size=\tudfoottiny}
 \setbeamerfont{title in head/foot}{family=\sffamily}
 \setbeamerfont{block title}{size={}}
+\setbeamerfont{part page/title}{parent=title}
+\setbeamerfont{part page/subtitle}{parent=part page/title,series=\mdseries}
 
 \if@noDIN
   \setbeamerfont{title}{size=\tudtitleLARGE,series=\bfseries,family=\sffamily}
