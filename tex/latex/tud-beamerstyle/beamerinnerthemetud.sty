@@ -21,7 +21,6 @@ corporate design inner theme]
 
 % Faktor zur PPT-Vorlage: / 0,1984375      * 5,04
 \defbeamertemplate{title page/tud}{cd2012ts}{%
-  \typeout{title page 2012}%
   \usebeamercolor{normal text/titlepage}%
   \usebeamerfont{normal text/titlepage}%
   \vfill%
@@ -48,8 +47,6 @@ corporate design inner theme]
 }
 
 \defbeamertemplate*{title page/tud}{cd2018}{%
-  \typeout{title page 2018}%
-%  \color{tudaccent5}\rule{\beamer@leftmargin}{1pt}%
   \parindent0pt
   \setlength\@tempdima{0.55\paperheight-\headheight}%
   \vbox to \@tempdima{
@@ -73,11 +70,9 @@ corporate design inner theme]
       \usebeamercolor{professur/titlepage}%
       \usebeamerfont*{professur/titlepage}%
       \usebeamertemplate{professur/titlepage}%
-      % \insertinstitution
     }%
     \vfill%
     {%
-      % \renewcommand\baselinestretch{1}%
       \usebeamerfont*{title}%
       \usebeamercolor[fg]{title}%
       \expandafter\setlength\expandafter\baselineskip{\f@size pt*\ratio{10pt}{10pt}}%

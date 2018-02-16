@@ -105,7 +105,6 @@
 
 \defbeamertemplate{page layout/cd2012ts}{default}[1][0.125]{%
 }[action]{%
-  \typeout{page layout/cd2012ts:default}%
   \def\tudbeamer@outer@setlength##1##2{%
     \pgfmathsetlength{##1}{##2 * (#1\paperheight)/65pt}%
   }%
@@ -142,7 +141,6 @@
 \defbeamertemplate{page layout/cd2018}{default}[1]%
 [\ifdim\paperheight>0.6875\paperwidth]{%
 }[action]{%
-  \typeout{page layout/cd2018:default}%
   \setlength\@tempdima{0.11\paperheight}%
   \edef\tudbeamer@footheight{\the\@tempdima}%
   \setlength\tudbeamerlogoleftmargin{0.04\paperwidth}%
@@ -178,14 +176,11 @@
 
 \defbeamertemplate*{page layout}{default}{%
 }[action]{%
-  \typeout{page layout:default}%
-  \typeout{calling setbeamertemplate{page layout/\tudbeamer@outer@style}{default}}%
   \setbeamertemplate{page layout/\tudbeamer@outer@style}[default]%
 }
 
 \defbeamertemplate{page layout/cd2018}{titlepage}{%
 }[action]{%
-  \typeout{page layout/cd2018:titlepage}%
   \def\tudbeamer@footheight{0pt}%
   \setlength\tudbeamerlogotopmargin{0.0509\paperheight}%
   \pgfmathsetlength\tudbeamerlogowidth{sqrt((\paperheight / 1cm)* (\paperwidth / 1cm)) * 0.1927cm}%
@@ -227,8 +222,6 @@
 
 \defbeamertemplate{page layout}{titlepage}{%
 }[action]{%
-  \typeout{page layout:titlepage}%
-  \typeout{calling setbeamertemplate{page layout/\tudbeamer@outer@style}{titlepage}}%
   \setbeamertemplate{page layout/\tudbeamer@outer@style}[titlepage]%
 }
 
@@ -243,8 +236,6 @@
 
 \defbeamertemplate{page layout}{partpage}{%
 }[action]{%
-  \typeout{page layout:partpage}%
-  \typeout{calling setbeamertemplate{page layout/\tudbeamer@outer@style}{partpage}}%
   \setbeamertemplate{page layout/\tudbeamer@outer@style}[partpage]%
 }
 
@@ -448,13 +439,10 @@
 }[action]{\setbeamertemplate{headline/titlepage}[tud \tudbeamer@outer@style]}
 
 \defbeamertemplate{headline/titlepage}{tud cd2012ts}{%
-  \typeout{headline/titlepage tud cd2012ts}%
   \vbox to 0.175\paperheight{%
     \vskip\tudbeamerlogotopmargin
     \hskip\tudbeamerlogoleftmargin
     \usebeamercolor[fg]{logo/titlepage}%
-    \show\logo@front
-    \showthe\tudbeamerlogowidth
     \includegraphics[width=\tudbeamerlogowidth]{\logo@front}%
     \hfill
     \usebeamertemplate{zweitlogo/titlepage}
@@ -477,18 +465,14 @@
 }
 
 \defbeamertemplate{headline/titlepage}{tud cd2018}{%
-  % \vbox to 0pt{% don't change the head height
-  \typeout{Headline 2018}%
   \vskip\tudbeamerlogotopmargin
   \hskip\tudbeamerlogoleftmargin%
-  \typeout{logo \tudbeamerlogowidth}%
   \usebeamercolor[fg]{logo}%
   \includegraphics[width=\tudbeamerlogowidth]{\logo@default}%
   \hfill
   \usebeamertemplate{zweitlogo/titlepage}%
   \hskip\tudbeamerlogorightmargin\hbox{}%
   \par
-%  }%
   \vskip\tudbeamer@barheight
   \vskip\tudbeamer@barheight
 }
@@ -601,7 +585,6 @@ height=\tudbeamerbackgroundheight]{%
     {\pgfpoint{\paperwidth}{\tudbeamer@barheight}}%
     \pgfusepath{fill}%
   \end{pgfpicture}%
-  % \show\tudbeamerbackgroundheight
   % \hbox to \paperwidth{%
   %   \pgftransformrotate{\tudbeamer@backgroundshadeangle}%
   %   \pgfuseshading{tud titlepage background}%
@@ -820,24 +803,20 @@ height=\tudbeamerbackgroundheight]{%
   \vskip 0.1em\relax
 }
 \defbeamertemplate{footline}{tud pagenum cd2012ts}{%
-  \typeout{footline 2012}%
   \usebeamertemplate***{upper separation line foot}%
   \usebeamerfont{footline}%
-%  \vbox to 0.0777\paperheight{%
-    \hbox to \paperwidth{%
-      \hskip\beamer@leftmargin
-      \usebeamertemplate***{date/place in footline}%
-      \hskip 0pt plus 1 fil minus 1 fil\relax
-      \usebeamertemplate***{title in head/foot}%
-      \hskip 0pt plus 1 fil minus 1 fil\relax
-      \parbox[b]\tudbeamerfooterpagenumwidth {%
-        \raggedleft
-        \usebeamertemplate***{page number in footline}%
-      }
-      \hskip\beamer@rightmargin
-    }%
-%    \vskip 0pt plus 1 fil
-%  }%
+  \hbox to \paperwidth{%
+    \hskip\beamer@leftmargin
+    \usebeamertemplate***{date/place in footline}%
+    \hskip 0pt plus 1 fil minus 1 fil\relax
+    \usebeamertemplate***{title in head/foot}%
+    \hskip 0pt plus 1 fil minus 1 fil\relax
+    \parbox[b]\tudbeamerfooterpagenumwidth {%
+      \raggedleft
+      \usebeamertemplate***{page number in footline}%
+    }
+    \hskip\beamer@rightmargin
+  }%
 }
 
 \defbeamertemplate{footline}{tud pagenum cd2018}{%
@@ -862,9 +841,6 @@ height=\tudbeamerbackgroundheight]{%
         \setbox\@tempboxa\hbox{%
           \usebeamertemplate***{title in head/foot}\strut
         }%
-        \typeout{Höhe: \the\ht\@tempboxa}%
-        \typeout{Tiefe: \the\dp\@tempboxa}%
-        \typeout{Logohöhe: \the\tudbeamerlogoheight}%
         \ifdim\wd\@tempboxa > \hsize\relax
           \hsize=\wd\@tempboxa
         \fi
@@ -943,21 +919,17 @@ height=\tudbeamerbackgroundheight]{%
 }
 
 \defbeamertemplate{footline}{tud nopagenum}{%
-  \typeout{footline nopagenum}%
   \usebeamertemplate***{upper separation line foot}%
   \usebeamerfont{footline}%
-%  \vbox to 0.0777\paperheight{%
-    \hbox{%
-      \hskip\beamer@leftmargin
-      \usebeamertemplate***{date/place in footline}%
-      \hskip 0pt plus 1 fil minus 1 fil\relax
-      \usebeamertemplate***{title in head/foot}%
-      \hskip 0pt plus 1 fil minus 1 fil\relax
-      \kern\tudbeamerfooterpagenumwidth%
-      \hskip\beamer@rightmargin
-    }%
-%    \vskip 0pt plus 1 fil
-%  }%
+  \hbox{%
+    \hskip\beamer@leftmargin
+    \usebeamertemplate***{date/place in footline}%
+    \hskip 0pt plus 1 fil minus 1 fil\relax
+    \usebeamertemplate***{title in head/foot}%
+    \hskip 0pt plus 1 fil minus 1 fil\relax
+    \kern\tudbeamerfooterpagenumwidth%
+    \hskip\beamer@rightmargin
+  }%
 }
 
 
@@ -1072,40 +1044,23 @@ height=\tudbeamerbackgroundheight]{%
   }%
   \else
   {%
-    \printpagelayout
     \setbeamertemplate{page layout}[titlepage]%
     \tudbeamer@setcolor{background canvas}{parent=tud titlepage normal text \tudbeamer@outer@style}%
     \tudbeamer@setcolor{normal text}{parent=tud titlepage normal text \tudbeamer@outer@style}%
-    %,
-    %  fg=tud titlepage normal text \tudbeamer@outer@style .fg,
-    %  bg=tud titlepage normal text \tudbeamer@outer@style .bg}%
     \setbeamertemplate{headline}[titlepage]%
     \setbeamertemplate{footline}[titlepage]%
     \setbeamertemplate{sidebar left}[default]%
     \setbeamertemplate{sidebar right}[default]%
-    % \tracingall
-    % \tudbeamer@savelayout{tudbeamer@beforetitle}%
     \restoregeometry
     \newgeometry{left=\beamer@leftmargin,
       right=\beamer@rightmargin,
       head=0pt,top=0pt,
       headsep=0pt,
       vmargin=0cm}%
-%    \tracingnone
-%    \printpagelayout
     \setbeamertemplate{background}[titlepage]%
-    % \typeout{calculating head/foot}%
     \beamer@calculateheadfoot
-    % \typeout{creating frame}%
     \frame{\titlepage}%
-%    \tracingall
-%    \tracingnone
-    \typeout{---}%
-    \printpagelayout
     \restoregeometry% does not work fully.
- %   \tudbeamer@loadlayout{tudbeamer@beforetitle}%
-    \printpagelayout
-    \typeout{===}%
   }%
   \iftrue
   \newgeometry{left=\beamer@leftmargin,
@@ -1134,38 +1089,24 @@ height=\tudbeamerbackgroundheight]{%
   }%
   \else
   {%
-    \printpagelayout
     \setbeamertemplate{page layout}[partpage]%
-    \typeout{outer theme style \tudbeamer@outer@style}%
     \tudbeamer@setcolor{normal text}{parent=tud titlepage normal text \tudbeamer@outer@style}%
     \tudbeamer@setcolor{background canvas}{parent=tud titlepage normal text \tudbeamer@outer@style}%
     \setbeamertemplate{headline}[tud header]%
     \setbeamertemplate{footline}[tud pagenum]%
     \setbeamertemplate{sidebar left}[default]%
     \setbeamertemplate{sidebar right}[default]%
-    % \tracingall
-    % \tudbeamer@savelayout{tudbeamer@beforetitle}%
     \restoregeometry
     \newgeometry{left=\beamer@leftmargin,
       right=\beamer@rightmargin,
       head=0pt,top=0pt,
       headsep=0pt,
       vmargin=0cm}%
-%    \tracingnone
-%    \printpagelayout
     \setbeamertemplate{background}[titlepage]%
-    % \typeout{calculating head/foot}%
     \beamer@calculateheadfoot
-    % \typeout{creating frame}%
     \frame{#1}%
-%    \tracingall
-%    \tracingnone
-    \typeout{---}%
-    \printpagelayout
     \restoregeometry% does not work fully.
- %   \tudbeamer@loadlayout{tudbeamer@beforetitle}%
     \printpagelayout
-    \typeout{===}%
   }%
   \iftrue
   \newgeometry{left=\beamer@leftmargin,

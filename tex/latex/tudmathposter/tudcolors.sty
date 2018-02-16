@@ -4,7 +4,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{tudcolors}[2012/02/05 v2.0.1 TU Dresden CD-Farben Tobias.Schlemmer@mailbox.tu-dresden.de]
 \def\tudcolorscheme#1{%
-  \typeout{defining color scheme #1}%
   \edef\tudcolor@scheme{#1}%
 }
 \def\tudcolormodel#1{%
@@ -36,7 +35,6 @@
 }
 
 \@ifundefined{tudcolor@scheme}{%
-  \typeout{no colorscheme selected}%
   \def\tudcolor@scheme{cd2018}%
 }{}
 \def\tudcolors@define@scheme#1{%
@@ -44,7 +42,6 @@
 }
 
 \def\tudcolorselect{%
-  \typeout{selecting \tudcolor@scheme\ color scheme}%
   \expandafter\csname tudcolors@scheme@\tudcolor@scheme\endcsname%
 }
 
