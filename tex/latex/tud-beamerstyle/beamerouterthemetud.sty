@@ -224,7 +224,6 @@
 
 \defbeamertemplate{page layout/cd2012ts}{titlepage}{%
 }[action]{%
-  \typeout{page layout titlepage}
   \setbeamertemplate{page layout/cd2012ts}[default][0.175]%
   \setlength\@tempdima{0.025\paperheight}%
   \edef\tudbeamer@barheight{\the\@tempdima}%
@@ -900,7 +899,6 @@ height=\tudbeamerbackgroundheight]{%
         \usebox\@tempboxa\par
         \vss
       }
-      % \vrule
       \hskip\tudbeamerlogoleftmargin
     }%
     %\vskip\ht\@tempboxa
@@ -1068,7 +1066,6 @@ height=\tudbeamerbackgroundheight]{%
   \restoregeometry
   \fi
   \beamer@calculateheadfoot
-  \printpagelayout
   \fi
 }
 
@@ -1102,7 +1099,6 @@ height=\tudbeamerbackgroundheight]{%
     \beamer@calculateheadfoot
     \frame{#1}%
     \restoregeometry% does not work fully.
-    \printpagelayout
   }%
   \iftrue
   \newgeometry{left=\beamer@leftmargin,
@@ -1114,7 +1110,6 @@ height=\tudbeamerbackgroundheight]{%
   \restoregeometry
   \fi
   \beamer@calculateheadfoot
-  \printpagelayout
   \fi
 }
 
