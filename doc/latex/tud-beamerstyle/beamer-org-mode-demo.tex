@@ -1,7 +1,7 @@
-% Created 2018-01-11 Do 12:22
+% Created 2018-02-21 Mi 22:24
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation,t]{beamer}
-\usepackage[utf8]{inputenc}
+\usepackage[utf8]{luainputenc}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{grffile}
@@ -14,16 +14,16 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
-\pdfmapfile{+tud}%
-\pdfmapfile{+tudscr}%
+%\pdfmapfile{+tud}%
+%\pdfmapfile{+tudscr}%
 \usepackage{amsmath}
 \usepackage{uniinput}
 \usepackage{amsfonts}
 \usepackage{tikz}
 \usepackage[ngerman, germanb]{babel}
 \usetikzlibrary{decorations.pathmorphing}
+\useinnertheme{rounded}
 \usetheme[section,navigation,pagenum,ddc]{tud}
-\useinnertheme[shadow=true]{rounded}
 %\usetheme{Boadilla}
 %\usecolortheme{tud}
 \institut{Institut f\"ur Algebra}%
@@ -38,8 +38,8 @@
 \setlength{\tudbeamerfooterplacewidth}{0.3\linewidth}%
 \setlength{\tudbeamerfooterpagenumwidth}{5em}%
 \makeatletter
-\setlength{\tudbeamerfootertitlewidth}{\paperwidth-\beamer@leftmargin-\beamer@rightmargin
--\tudbeamerfooterplacewidth-\tudbeamerfooterpagenumwidth}%
+%\setlength{\tudbeamerfootertitlewidth}{\paperwidth-\beamer@leftmargin-\beamer@rightmargin
+%   -\tudbeamerfooterplacewidth-\tudbeamerfooterpagenumwidth}%
 \makeatother
 \usetheme{default}
 \author{Tobias Schlemmer}
@@ -60,10 +60,10 @@
 \end{frame}
 
 \section{Einführung}
-\label{sec:org6074547}
+\label{sec:org142ac96}
 \subsection{Allgemeines}
-\label{sec:orgb97a5d7}
-\begin{frame}[label={sec:org06439ca}]{Geschichte}
+\label{sec:org8c714f2}
+\begin{frame}[label={sec:orgfff3617}]{Geschichte}
 \begin{itemize}
 \item Corporate Design der TU Dresden
 \item tudbeamer Klasse (mit vielen Nachteilen)
@@ -71,14 +71,14 @@
 \item \alert{Konfigurierbarer Beamer-Stil}
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org9318c1a}]{CD-Vorgaben (Handbuch)}
+\begin{frame}[label={sec:orgfb014b2}]{CD-Vorgaben (Handbuch)}
 \begin{itemize}
 \item \textcolor{HKS65K100}{Ränder relativ zu Papiergrüße}
 \item \textcolor{red}{Schriften in MS Punkt (inkompatible Maßeinheit)}
 \item \textcolor{red}{Logoposition fehlt}
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org1d4bba0}]{Designkriterien}
+\begin{frame}[label={sec:org36a98cd}]{Designkriterien}
 \begin{itemize}
 \item Interpretation der Vorgaben
 \item Abweichend: HKS Farbschema und Univers
@@ -88,8 +88,8 @@
 \end{itemize}
 \end{frame}
 \subsection{Benutzung}
-\label{sec:org46be8ca}
-\begin{frame}[label={sec:org0bb5c80}]{Beispieldokument}
+\label{sec:org8cda57f}
+\begin{frame}[label={sec:orge7a94c5}]{Beispieldokument}
 \textbackslash usepackage[ngerman]\{babel\}\\
 \textbackslash usetheme[section,navigation]\{tud\}\\
 \textbackslash institut\{Institut f\textbackslash ''ur Algebra\}\%\\
@@ -103,10 +103,10 @@ Inhalt\\
 \end{frame}
 
 \section{Einstellungen}
-\label{sec:org7eb05c9}
+\label{sec:org9450a1e}
 \subsection{\textbackslash usetheme\{tud\}}
-\label{sec:org609bb8c}
-\begin{frame}[label={sec:orgb450ea2}]{Paketoptionen (Schriften)}
+\label{sec:org7543d1e}
+\begin{frame}[label={sec:org8492c93}]{Paketoptionen (Schriften)}
 \begin{description}
 \item[{noeulermath}] Benutze keine Euler-Mathematikschriften
 \item[{noDIN}] Titel ohne DIN bold
@@ -115,33 +115,33 @@ Inhalt\\
 \item[{beamerfont}] Keine Fontänderungen
 \end{description}
 \end{frame}
-\begin{frame}[label={sec:org8369dc7}]{Paketoptionen (Seitenstruktur)}
+\begin{frame}[label={sec:org6fe4286}]{Paketoptionen (Seitenstruktur)}
 \begin{description}
 \item[{noheader}] Benutze Folien ohne Kopfzeile
 \item[{smallrightmargin}] Schmaler rechter Rand (verletzt CD-Richtlinie
 \item[{pagenum}] Seitenzahlen in der Fußzeile anzeigen
 \item[{section}] mit Abschnittstitel auf jeder Folie
 \item[{navbar}] mit Navigationshilfen
-\item[{noddc}] ohne Dresden-Concept-Logo
-\item[{ddc}] mit Dresden-Concept-Logo
-\item[{ddcfooter}] mit Dresden-Concept Logo im Fußbereich (Standardeinstellung)
+\item[{noddc}] ohne DRESDEN"=concept-Logo
+\item[{ddc}] mit DRESDEN"=concept-Logo
+\item[{ddcfooter}] mit DRESDEN"=concept Logo im Fußbereich (Standardeinstellung)
 \end{description}
 \end{frame}
 \subsection{\textbackslash useoutertheme\{tud\}}
-\label{sec:org15ff8a3}
-\begin{frame}[label={sec:org2ba5c2a}]{Paketoptionen (\textbackslash useoutertheme\{tud\})}
+\label{sec:org253b1e8}
+\begin{frame}[label={sec:org8f5dd1e}]{Paketoptionen (\textbackslash useoutertheme\{tud\})}
 \begin{description}
 \item[{noheader}] Benutze Folien ohne Kopfzeile
 \item[{smallrightmargin}] Schmaler rechter Rand (verletzt CD-Richtlinie
 \item[{pagenum}] Seitenzahlen in der Fußzeile anzeigen
 \item[{section}] mit Abschnittstitel auf jeder Folie
 \item[{navbar}] mit Navigationshilfen
-\item[{noddc}] ohne Dresden-Concept-Logo
-\item[{ddc}] mit Dresden-Concept-Logo
-\item[{ddcfooter}] mit Dresden-Concept Logo im Fußbereich (Standardeinstellung)
+\item[{noddc}] ohne DRESDEN"=concept-Logo
+\item[{ddc}] mit DRESDEN"=concept-Logo
+\item[{ddcfooter}] mit DRESDEN"=concept Logo im Fußbereich (Standardeinstellung)
 \end{description}
 \end{frame}
-\begin{frame}[label={sec:org4ca8c91}]{Makros (\textbackslash useoutertheme\{tud\})}
+\begin{frame}[label={sec:orgc738b4a}]{Makros (\textbackslash useoutertheme\{tud\})}
 \begin{description}
 \item[{\textbackslash einrichtung\{\emph{einrichtung}\}}] Legt die
 Einrichtung/Fakultät fest
@@ -154,7 +154,7 @@ Professur fest
 \item[{\textbackslash datecity\{\emph{Datumsort}\}}] Legt den Ort für den Vortrag fest
 \end{description}
 \end{frame}
-\begin{frame}[label={sec:org1f459c2}]{Register (\textbackslash useoutertheme\{tud\})}
+\begin{frame}[label={sec:org3a37624}]{Register (\textbackslash useoutertheme\{tud\})}
 \begin{description}
 \item[{\textbackslash topmarginnoheader}] Länge, die den Oberen Rand Seitenrand bei
 Kopflosen Folien angibt.
@@ -185,7 +185,7 @@ Vorlage für Seitenkopf
 Vorlage für ein zweites Logo im Kopf der Titelseite
 \begin{description}
 \item[{default}] kein Zweitlogo
-\item[{ddc}] Dresden-Concept-Logo
+\item[{ddc}] DRESDEN"=concept-Logo
 \item[{logofile}] Eine Logo-Datei wird als Parameter übergeben und mit
 \textbackslash includegraphics eingebunden und auf die
 richtige Höhe skaliert.
@@ -209,7 +209,7 @@ skaliertes Register expandiert wird (siehe
 Vorlage für ein zweites Logo im Kopf einer normalen Seite (keine Titelseite)
 \begin{description}
 \item[{default}] kein Zweitlogo
-\item[{ddc}] Dresden-Concept-Logo
+\item[{ddc}] DRESDEN"=concept-Logo
 \item[{logofile}] Eine Logo-Datei wird als Parameter übergeben und mit
 \textbackslash includegraphics eingebunden und auf die
 richtige Höhe skaliert.
@@ -374,7 +374,7 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:orgb96a3ab}]{Beispiel (\textbackslash useoutertheme\{tud\})}
+\begin{frame}[label={sec:orga958255}]{Beispiel (\textbackslash useoutertheme\{tud\})}
 \textbackslash setbeamercolor\{normal text\}\{bg=white\}\\
 \textbackslash setbeamertemplate\{headline\}[tud header]\\
 \textbackslash setbeamertemplate\{footline\}[tud pagenum]\\
@@ -383,9 +383,9 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 
 
 \subsection{\textbackslash usefonttheme\{tud\}}
-\label{sec:orgd950251}
+\label{sec:org948f5ed}
 
-\begin{frame}[label={sec:orga38f525}]{Paketoptionen (\textbackslash usefonttheme\{tud\})}
+\begin{frame}[label={sec:orgf1f9510}]{Paketoptionen (\textbackslash usefonttheme\{tud\})}
 \begin{description}
 \item[{noeulermath}] Benutze keine Euler-Mathematikschriften
 \item[{noDIN}] Titel ohne DIN bold
@@ -396,7 +396,7 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 \end{description}
 \end{frame}
 
-\begin{frame}[label={sec:orgad3453e}]{Makros (\textbackslash usefonttheme\{tud\})}
+\begin{frame}[label={sec:org2925a5f}]{Makros (\textbackslash usefonttheme\{tud\})}
 \begin{description}
 \item[{\textbackslash tudtitlenormalsize}] Ersatz für \textbackslash
   normalsize auf der Titelseite
@@ -447,9 +447,9 @@ Es werden folgende Vorlagen definiert:
 
 
 \subsection{\textbackslash usecolortheme\{tud\}}
-\label{sec:org3a3a7eb}
+\label{sec:orge42ca70}
 
-\begin{frame}[label={sec:org1cc7017}]{Makros (\textbackslash usecolortheme\{tud\})}
+\begin{frame}[label={sec:org5ad9746}]{Makros (\textbackslash usecolortheme\{tud\})}
 \begin{description}
 \item[{\textbackslash darktitlepage}] Stellt eine dunkle Titelseite ein, wie
 \end{description}
@@ -564,7 +564,7 @@ $\backslash${use=normal text,fg=normal text.fg, bg=normal text.bg$\backslash$}@@
 
 
 \subsection{\textbackslash useinnertheme\{tud\}}
-\label{sec:org8f00c94}
+\label{sec:orgfd0f188}
 
 \begin{frame}[allowframebreaks]{Vorlagen (\textbackslash useinnertheme\{tud\})}
 Für die inneren Vorlagen gibt es keine Vorgaben außer für die
@@ -582,10 +582,10 @@ der TUD für die Titelseite ein. Dieses Makro wird automatisch mit
 \end{frame}
 
 \section{Tips und Tricks}
-\label{sec:org5e634fe}
+\label{sec:org9174b2b}
 \subsection{Tips}
-\label{sec:org22b3c6a}
-\begin{frame}[label={sec:org3cf35c6}]{Fußzeile}
+\label{sec:org5a964d7}
+\begin{frame}[label={sec:org624775f}]{Fußzeile}
 Die Fußzeile sollte die wichtigsten Informationen enthalten, an die
 sich das Publikum erinnern soll. Wenn das TU-Logo im Kopf enthalten
 ist die Angabe „TU Dresden“ redundant.
@@ -596,7 +596,7 @@ footline\}[default][I. Nachname]
 Setzt statt der TU Dresden den Namen
 des Sprechers.
 \end{frame}
-\begin{frame}[label={sec:org839ecfb}]{Blöcke mit runden Ecken und Schatten}
+\begin{frame}[label={sec:orge908428}]{Blöcke mit runden Ecken und Schatten}
 \begin{block}{Aufruf}
 Blöcke wie dieser hier werden mittels 
 
@@ -606,8 +606,8 @@ in der Dokumentpräambel voreingestellt
 \end{block}
 \end{frame}
 \subsection{Ein Beispiel}
-\label{sec:org8aedc26}
-\begin{frame}[label={sec:org3ee76e1}]{Eine Beispielfolie}
+\label{sec:orgd7f3c6b}
+\begin{frame}[label={sec:org051b873}]{Eine Beispielfolie}
 \begin{columns}
 \begin{column}{0.3\columnwidth}
 \tikzstyle{automorphismuspfeil}=[->,HKS44K100,decoration={bent,aspect=0.3,amplitude=3},decorate]
@@ -694,10 +694,10 @@ Eine Tabelle
 
 
 \section{Minimal agierende Automorphismen}
-\label{sec:org1c7a117}
+\label{sec:orgb9357fa}
 \subsection{Quasiordnung der Automorphismen}
-\label{sec:orgc392e48}
-\begin{frame}[label={sec:org504087b}]{Ein Satz mit Beweis}
+\label{sec:orgead3172}
+\begin{frame}[label={sec:org76bab90}]{Ein Satz mit Beweis}
 \begin{theorem}[Quasiordnung]
 Sei \(G\leq \mathfrak{Aut}(M,\leq)\) eine Untergruppe der geordneten
 Menge \((M,\leq)\). Dann ist die Relation \({\sqsubseteq}\subseteq
@@ -716,7 +716,7 @@ eine Quasiordnung.
 \dots
 \end{proof}
 \end{frame}
-\begin{frame}[label={sec:org3ded075}]{Beispielfolie}
+\begin{frame}[label={sec:org0b7204d}]{Beispielfolie}
 \begin{example}[Beispieltitel]
 mal sehen, was wird
 \end{example}

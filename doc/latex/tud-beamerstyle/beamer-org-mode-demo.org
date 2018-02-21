@@ -39,8 +39,8 @@
 #+LATEX_HEADER_EXTRA: \usepackage{tikz}
 #+LATEX_HEADER_EXTRA: \usepackage[ngerman]{babel}
 #+LATEX_HEADER_EXTRA: \usetikzlibrary{decorations.pathmorphing}
+#+LATEX_HEADER_EXTRA: \useinnertheme{rounded}
 #+LATEX_HEADER_EXTRA: \usetheme[section,navigation,pagenum,ddc]{tud}
-#+LATEX_HEADER_EXTRA: \useinnertheme[shadow=true]{rounded}
 #+LATEX_HEADER_EXTRA: %\usetheme{Boadilla}
 #+LATEX_HEADER_EXTRA: %\usecolortheme{tud}
 #+LATEX_HEADER_EXTRA: \institut{Institut f\"ur Algebra}%
@@ -55,8 +55,8 @@
 #+LATEX_HEADER_EXTRA: \setlength{\tudbeamerfooterplacewidth}{0.3\linewidth}%
 #+LATEX_HEADER_EXTRA: \setlength{\tudbeamerfooterpagenumwidth}{5em}%
 #+LATEX_HEADER_EXTRA: \makeatletter
-#+LATEX_HEADER_EXTRA: \setlength{\tudbeamerfootertitlewidth}{\paperwidth-\beamer@leftmargin-\beamer@rightmargin
-#+LATEX_HEADER_EXTRA:    -\tudbeamerfooterplacewidth-\tudbeamerfooterpagenumwidth}%
+#+LATEX_HEADER_EXTRA: %\setlength{\tudbeamerfootertitlewidth}{\paperwidth-\beamer@leftmargin-\beamer@rightmargin
+#+LATEX_HEADER_EXTRA: %   -\tudbeamerfooterplacewidth-\tudbeamerfooterpagenumwidth}%
 #+LATEX_HEADER_EXTRA: \makeatother
 #+COLUMNS: %45ITEM %10BEAMER_env(Env) %10BEAMER_envargs(Env Args) %4BEAMER_col(Col) %8BEAMER_extra(Extra)
 #+PROPERTY: BEAMER_col_ALL 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 :ETC
@@ -108,9 +108,9 @@ Inhalt\\
 - pagenum :: Seitenzahlen in der Fußzeile anzeigen
 - section :: mit Abschnittstitel auf jeder Folie
 - navbar :: mit Navigationshilfen
-- noddc :: ohne Dresden-Concept-Logo
-- ddc :: mit Dresden-Concept-Logo
-- ddcfooter :: mit Dresden-Concept Logo im Fußbereich (Standardeinstellung)
+- noddc :: ohne DRESDEN"=concept-Logo
+- ddc :: mit DRESDEN"=concept-Logo
+- ddcfooter :: mit DRESDEN"=concept Logo im Fußbereich (Standardeinstellung)
 ** @@latex:\textbackslash useoutertheme\{tud\}@@
 *** Paketoptionen (@@latex:\textbackslash useoutertheme\{tud\}@@)
 - noheader :: Benutze Folien ohne Kopfzeile
@@ -118,9 +118,9 @@ Inhalt\\
 - pagenum :: Seitenzahlen in der Fußzeile anzeigen
 - section :: mit Abschnittstitel auf jeder Folie
 - navbar :: mit Navigationshilfen
-- noddc :: ohne Dresden-Concept-Logo
-- ddc :: mit Dresden-Concept-Logo
-- ddcfooter :: mit Dresden-Concept Logo im Fußbereich (Standardeinstellung)
+- noddc :: ohne DRESDEN"=concept-Logo
+- ddc :: mit DRESDEN"=concept-Logo
+- ddcfooter :: mit DRESDEN"=concept Logo im Fußbereich (Standardeinstellung)
 *** Makros (@@latex:\textbackslash useoutertheme\{tud\}@@)
 - \textbackslash einrichtung{/einrichtung/} :: Legt die
  Einrichtung/Fakultät fest
@@ -165,7 +165,7 @@ Vorlage für Seitenkopf
 :END:
 Vorlage für ein zweites Logo im Kopf der Titelseite
 - default :: kein Zweitlogo
-- ddc :: Dresden-Concept-Logo
+- ddc :: DRESDEN"=concept-Logo
 - logofile :: Eine Logo-Datei wird als Parameter übergeben und mit
               @@latex:\textbackslash includegraphics@@ eingebunden und auf die
               richtige Höhe skaliert.
@@ -189,7 +189,7 @@ Beispiel:
 :END:
 Vorlage für ein zweites Logo im Kopf einer normalen Seite (keine Titelseite)
 - default :: kein Zweitlogo
-- ddc :: Dresden-Concept-Logo
+- ddc :: DRESDEN"=concept-Logo
 - logofile :: Eine Logo-Datei wird als Parameter übergeben und mit
               @@latex:\textbackslash includegraphics@@ eingebunden und auf die
               richtige Höhe skaliert.

@@ -19,48 +19,25 @@
 \begin{document}
 \section*{Vorwort}
 \subsection*{Hinweis auf die Dokumentation}
-%\partpage{\usebeamertemplate***{part page}}
+% \partpage{\usebeamertemplate***{part page}}
 \begin{frame}{Dokumentation}
   Die Dokumentation befindet sich in der Datei
   \url{beamer-org-mode-demo.pdf}.
-\end{frame}
-\subsection*{Hilfsseiten für die Erstellung der Vorlagen}
-\begin{frame}
-  \frametitle{Maßsystem}
-  \framesubtitle{zum Testen}
 
-  Eine Seite ist $\inmm\paperwidth\times\inmm{\paperheight}$\,mm${}^2$
-  \typeout{1}%
-  groß.  $1\,$pt ist $\inmm{1pt}$\,mm und $2660$\,pt sind
-  \typeout{1}%
-  $\inmm{2660pt}$\,mm groß.  $1\,$pc ist $\inmm{1pc}$\,mm und $266$\,pc
-  \typeout{1}%
-  sind $\inmm{266pc}$\,mm groß.  $1\,$in ist $\inmm{1in}$\,mm und
-  \typeout{5}%
-  $26.6$\,in sind $\inmm{26.6in}$\,mm groß.  $1\,$in ist
-  \typeout{1}%
-  $\inpt{1in}$\,pt und $26.6$\,in sind $\inpt{26.6in}$\,pt groß.  1
-  \typeout{1}%
-  Pariser Punkt beträgt $\inpt{0.376mm}$ seit 1975 $\inpt{0.375mm}$
-  \typeout{1}%
-  (Änderung hat sich nicht durchgesetzt).
+  \vfill
+  Es gibt Seitenzahlen und Foliennummern, die sich in diesen
+  Beispiel in unterschiedlichen Stilen abwechseln. Diese Seite zeigt die Vorgabe: Folie ohne Anhang.
 
-  1\,bp (DTP-Punkt) ist $\inpt{1bp}$.
-  
-  \ss eine Text-Zahl 1234567890.
-
-  \[
-    \int_{[0,1]\setminus \{0\}} e^{2\pi i} = 1 \mathbf{a}\mathsf{a}{a}
-  \]
-  \edef\tempa{.36226328 * \the\tudbeamerlogoheight}
-  \typeout{\tempa}
-  \typeout{\the\paperheight x \the\paperwidth}
+  \vfill
+  {}\hfill los gehts\dots
 \end{frame}
 \setbeamertemplate{tud background}[image/shaded]{Seminarraum.jpg}{0.7}
 \maketitle
+\setbeamertemplate{page number in footline}[page][text and total]
 \frame{\frametitle{Inhalt}\tableofcontents}
 \setbeamertemplate{tud background}[image/shaded]{Posterflur.jpg}{0.6}
 \section{Geschichte}
+\setbeamertemplate{page number in footline}[page][text and filetotal]
 \subsection{(eher ein Roman keine Präsentation)}
 \begin{frame}\frametitle{2005 – Einführung des Corporate Designs}\framesubtitle{Kein \LaTeX{}}
   Bei der Einführung des Corporate Designs der TU Dresden 2005 hielt
@@ -71,6 +48,7 @@
   Textverarbeitung darstellen.
 \end{frame}
 
+\setbeamertemplate{page number in footline}[page][text]
 \begin{frame}[allowframebreaks]\frametitle{Erste \LaTeX{}-Klassen}
   Die aufkommende Nachfrage führte dazu, dass relativ schnell
   \LaTeX-Klassen für die wichtigsten Textdokumente nachgeliefert
@@ -85,6 +63,7 @@
   Einsatz.
 \end{frame}
 
+\setbeamertemplate{page number in footline}[page][total]
 \begin{frame}[allowframebreaks]\frametitle{2010 – Evaluierung der Fachrichtung Mathematik}
   Als 2010 die Fachrichtung Mathematik evaluiert wurde, sollten sich
   die einzelnen Mitarbeiter und Arbeitsgruppen in einer Poster-Session
@@ -113,7 +92,8 @@
   Poster-Inhalte ausgeschnitten und verkleinert in neue Poster
   eingefügt. Die relativ wenigen InDesign"=Poster wurden in der
   Schriftgröße angepasst und der zusätzlich gewonnene Platz sinnvoll
-  verteilt.
+  verteilt.%
+  \setbeamertemplate{page number in footline}[page][only]
 
   Durch die sehr konstruktive Zusammenarbeit der zuständigen Akteure
   entwickelte sich ein Vertrauensverhältnis und eine Akzeptanz der
@@ -121,6 +101,11 @@
   Seiten Beiträge gab, die sich von Kurzartikeln in den ersten
   Entwürfen zu ansprechenden Postern entwickelten.
 \end{frame}
+\begin{frame}\frametitle{Kurze Unterbrechung}
+  \framesubtitle{Seitenzahlen}
+  Seitenzahlen \uncover<2->{zählen} \uncover<3->{jede} \uncover<4->{PDF"=Seite}, Foliennummern nicht.
+\end{frame}
+\setbeamertemplate{page number in footline}[frame][text and total]
 \begin{frame}[allowframebreaks]
   \frametitle{tudbeamer} Die Übertragung von Erkenntnissen aus der
   Postergestaltung auf Präsentationen förderte einige Probleme mit der
@@ -137,6 +122,7 @@
     \end{itemize}
   \end{block}
 \end{frame}
+\setbeamertemplate{page number in footline}[frame][text and filetotal]
 \begin{frame}[allowframebreaks]
   \frametitle{2012 – Modularisierung und freie Interpretation}
 
@@ -161,6 +147,7 @@
   notwendiges Minimum zu beschränken. Insbesondere der Große
   Platzbedarf der Fußzeile wurde oft kritisiert.
 \end{frame}
+\setbeamertemplate{page number in footline}[frame][text and total and overlay]
 \begin{frame}
   \frametitle{2018 – Neues Corporate Design} Mit der Einführung des
   überarbeiteten Corporate Designs wurde 2018 auch der Beamer-Stil
@@ -170,7 +157,19 @@
     institute} und weiteren Teilvorlagen rückt der Stil dabei noch
   näher an die Ideen der originalen Beamer"=Klasse.
 \end{frame}
+\begin{frame}\frametitle{Noch eine Info"=Pause}
+  \framesubtitle{Overlay-Nummern}
 
+  \uncover<2->{\alert<2>{Zum Aufbauen}} %
+  \uncover<3->{\alert<3>{von Folien}} %
+  \uncover<4->{\alert<4>{kann man}} %
+  \uncover<5->{\alert<5>{sich auch}} %
+  die so genannten \alert<6>{Overlay}"=Nummern anzeigen lassen. Der
+  Name kommt vom Auflegen zusätzlicher Folien beim Polylux
+  (Tageslichtprojektor).
+\end{frame}
+
+\setbeamertemplate{page number in footline}[frame][text and filetotal and overlay]
 \setbeamertemplate{tud background}[image/shaded]{Schreibwerkzeug.jpg}{0.6}
 \section{Benutzung}
 
@@ -188,8 +187,8 @@
   Dabei werden die Schriftarten in folgender Reihenfolge gesucht:
   \begin{enumerate}
   \item Schriften des \texttt{tudscr}-Paketes
-  \item \texttt{tudscrold}-Schriften
-  \item Schriften der alten TUD-\LaTeX-Klassen
+  \item<+-> \texttt{tudscrold}-Schriften
+  \item<+-> Schriften der alten TUD-\LaTeX-Klassen
   \end{enumerate}
   \framebreak
   Es gibt weitere Paketoptionen, mit denen das Layout grob angepasst
@@ -203,6 +202,7 @@
   veraltet und zu einigen Paketen inkompatibel.
 \end{frame}
 
+\setbeamertemplate{page number in footline}[frame][text]
 \begin{frame}[allowframebreaks]{Optionen}
   \begin{description}
     \item[heavyfont] Stärkere Schriften
@@ -214,16 +214,16 @@
     \item[pagenum] Seitennummern in der Fußzeile
     \item[nosectionnum] Keine Abschnittsnummern in Folienüberschriften
     \item[navbar] Navigationszeile
-    \item[ddc] Logo von Dresden Concept als Zweitlogo auf der
+    \item[ddc] Logo von DRESDEN"=concept als Zweitlogo auf der
       Titelseite (benötigt Logo"=Datei von tudbeamer.cls). Diese
-      Option ist für Präsentationen im Zusammenhang mit Dresden
-      Concept vorbehalten.
-    \item[ddcfooter] Logo von Dresden Concept in der Fußzeile der
+      Option ist für Präsentationen im Zusammenhang mit DRESDEN"=concept
+      vorbehalten.
+    \item[ddcfooter] Logo von DRESDEN"=concept in der Fußzeile der
       Titelseite (Voreinstellung, benötigt Logo"=Datei von
       tudbeamer.cls). Diese Option ist für alle Präsentationen der TUD
-      gedacht, die nicht im Rahmen von Dresden Concept abgehalten
+      gedacht, die nicht im Rahmen von DRESDEN"=concept abgehalten
       werden.
-    \item[noddc] Es wird kein Logo von Dresden Concept angezeigt
+    \item[noddc] Es wird kein Logo von DRESDEN"=concept angezeigt
     \item[cd2012ts] Die letzte Fassung des Beamer-Stils vor 2018 wird verwendet
     \item[cd2018] Das CD von 2018 wird umgesetzt, mit einigen \hyperref[baustellen]{Baustellen}
   \end{description}
@@ -244,18 +244,20 @@
   \end{itemize}
 \end{frame}
 
+\setbeamertemplate{page number in footline}[frame][text and overlay]
 \setbeamertemplate{tud background}[image/shaded]{Baustelle.jpg}{0.6}
 \section{Über den Beamer-Stil}
 \begin{frame}{Konzeptionelles}
   \begin{itemize}
   \item Optionale Optische Kompatibilität zu vorheriger Fassung
-  \item Algorithmisches Layout
-  \item Volle Beamer-Unterstützung angestrebt (z.\,B. weitere Seitenverhältnisse)
-  \item Metrische Seitengröße (im Gegensatz zu 10/7,5 Zoll bei PowerPoint)
-  \item Seitengröße entsprechend Schriftgröße (bei PowerPoint anders herum)
-  \item PowerPoint-Vorlagen approximativ bei 8\,pt Brotschrift
+  \item<+-> Algorithmisches Layout
+  \item<+-> Volle Beamer-Unterstützung angestrebt (z.\,B. weitere Seitenverhältnisse, theorem-Blöcke u.\,ä.)
+  \item<+> Metrische Seitengröße (im Gegensatz zu 10/7,5 Zoll bei PowerPoint)
+  \item<+> Seitengröße entsprechend Schriftgröße (bei PowerPoint anders herum)
+  \item<+-> PowerPoint-Vorlagen approximativ bei 8\,pt Brotschrift
   \end{itemize}
 \end{frame}
+\setbeamertemplate{page number in footline}[frame][text and total]
 \begin{frame}{Baustellen}\label{baustellen}
   \begin{itemize}
   \item Pixelgenaue PowerPoint-Vorlage-Rekonstruktion für gemischte Präsentationen PowerPoint/\LaTeX.
@@ -271,8 +273,15 @@
     \item Entwicklung weiterer Paketoptionen für die Schriftvorlagen
     \end{itemize}
   \end{itemize}
+  \begin{enumerate}     
+  \item \dots\setcounter{enumi}{8}
+  \item Bei langen Aufzählungen 
+  \item gibt es
+  \item Kollisionen.
+  \end{enumerate}
 \end{frame}
 
+\setbeamertemplate{page number in footline}[frame][text and filetotal]
 \setbeamertemplate{tud background}[image/shaded]{Ausfahrt.jpg}{0.6}
 \section{Abschlussfolie}
 \begin{frame}
@@ -284,6 +293,89 @@
   ungeeignet. Tipps für Ihre Präsentation können sie u.\,a.\ der Datei
   beameruserguide.pdf ihrer \TeX"=Installation entnehmen.
 \end{frame}
+\setbeamertemplate{page number in footline}[frame][text and total and overlay]
+\frame{\frametitle{Seitennummerndemonstrationsseite I}text \only<2->{and total} \only<3->{and overlay}}
+\setbeamertemplate{page number in footline}[frame][text and filetotal and overlay]
+\frame{\frametitle{Seitennummerndemonstrationsseite II}text \only<2->{and filetotal} \only<3->{and overlay}}
+\setbeamertemplate{page number in footline}[frame][text]
+\frame{\frametitle{Seitennummerndemonstrationsseite III}text}
+\setbeamertemplate{page number in footline}[frame][text and overlay]
+\frame{\frametitle{Seitennummerndemonstrationsseite IV}text \only<2->{and} \only<3->{overlay}}
+\setbeamertemplate{page number in footline}[frame][total]
+\frame{\frametitle{Seitennummerndemonstrationsseite V}total}
+\setbeamertemplate{page number in footline}[frame][filetotal]
+\frame{\frametitle{Seitennummerndemonstrationsseite VI}filetotal bedeutet: inklusive Anhang}
+\setbeamertemplate{page number in footline}[frame][total and overlay]
+\frame{\frametitle{Seitennummerndemonstrationsseite VII}total \only<2->{and} \only<3->{overlay}}
+\setbeamertemplate{page number in footline}[frame][filetotal and overlay]
+\frame{\frametitle{Seitennummerndemonstrationsseite VIII}filetotal \only<2->{and} \only<3->{overlay}}
+\setbeamertemplate{page number in footline}[frame][only]
+\frame{\frametitle{Seitennummerndemonstrationsseite IX}only}
+\setbeamertemplate{page number in footline}[frame][overlay]
+\frame{\frametitle{Seitennummerndemonstrationsseite X}o\only<+->v\only<+->e\only<+->r\only<+->l\only<+->a\only<+->y
+
+  Es folgt der Anhang}
+
+\setbeamertemplate{page number in footline}[frame][text and total]
+\setbeamertemplate{tud background}[shaded]
+\appendix
+\section{Hilfsseiten für die Erstellung der Vorlagen}
+
+\begin{frame}
+  \frametitle{Maßsystem}
+  \framesubtitle{zum Testen}
+
+  Eine Seite ist $\inmm\paperwidth\times\inmm{\paperheight}$\,mm${}^2$
+  groß.  $1\,$pt ist $\inmm{1pt}$\,mm und $2660$\,pt sind
+  $\inmm{2660pt}$\,mm groß.  $1\,$pc ist $\inmm{1pc}$\,mm und $266$\,pc
+  sind $\inmm{266pc}$\,mm groß.  $1\,$in ist $\inmm{1in}$\,mm und
+  $26.6$\,in sind $\inmm{26.6in}$\,mm groß.  $1\,$in ist
+  $\inpt{1in}$\,pt und $26.6$\,in sind $\inpt{26.6in}$\,pt groß.  1
+  Pariser Punkt beträgt $\inpt{0.376mm}$ seit 1975 $\inpt{0.375mm}$
+  (Änderung hat sich nicht durchgesetzt).
+
+  1\,bp (DTP-Punkt) ist $\inpt{1bp}$.
+  
+  \ss eine Text-Zahl 1234567890.
+
+  \[
+    \int_{[0,1]\setminus \{0\}} e^{2\pi i} = 1 \mathbf{a}\mathsf{a}{a}
+  \]
+  \edef\tempa{.36226328 * \the\tudbeamerlogoheight}
+\end{frame}
+\begin{frame}{Stichpunkte usw.}
+  Dies ist ein Blindtext, er wird erweitert, bis die zweite
+  Zeile anfängt, so dass man den Zeilenumbruch sieht
+  \begin{itemize}
+  \item
+    Dies ist ein Blindtext, er wird erweitert, bis die zweite
+    Zeile anfängt, so dass man den Zeilenumbruch sieht
+    \begin{itemize}
+    \item Dies ist ein Blindtext, er wird erweitert, bis die zweite
+      Zeile anfängt, so dass man den Zeilenumbruch sieht
+      \begin{itemize}
+      \item Dies ist ein Blindtext, er wird erweitert, bis die zweite
+        Zeile anfängt, so dass man den Zeilenumbruch sieht
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+  Dies ist ein Blindtext, er wird erweitert, bis die zweite
+  Zeile anfängt, so dass man den Zeilenumbruch sieht
+  \begin{enumerate}
+  \item   Dies ist ein Blindtext, er wird erweitert, bis die zweite
+    Zeile anfängt, so dass man den Zeilenumbruch sieht
+    \begin{enumerate}
+    \item Dies ist ein Blindtext, er wird erweitert, bis die zweite
+      Zeile anfängt, so dass man den Zeilenumbruch sieht
+      \begin{enumerate}
+      \item Dies ist ein Blindtext, er wird erweitert, bis die zweite
+        Zeile anfängt, so dass man den Zeilenumbruch sieht
+      \end{enumerate}
+    \end{enumerate}
+  \end{enumerate}
+  Ende
+\end{frame}
+
 \end{document}
 
 %%% Local Variables: 
