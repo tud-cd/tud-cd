@@ -7,9 +7,26 @@ corporate design inner theme]
 
 \ProcessOptionsBeamer\relax
 
+\setbeamertemplate{sections/subsections in toc}[default]
 
+\AtBeginDocument{%
+  \normalfont
+  \setlength\leftmargini{1.25em}%
+  \setlength\leftmarginii{1.25em}%
+  \setlength\leftmarginiii{1.25em}%
+  \setlength\labelsep{0.25em}%
+  \setlength\labelwidth{1em}%
+}
+\tracingall
+\setbeamertemplate{items}[default]
+\tracingnone
 \beamertemplatedotitem
-\usesubitemizeitemtemplate{--}
+\setbeamertemplate{itemize items}{\hbox to \labelwidth{\textbullet\hfill}}
+\setbeamertemplate{itemize subitem}{\hbox to \labelwidth{--\hfill}}
+\setbeamertemplate{itemize subsubitem}{\hbox to \labelwidth{--\hfill}}
+\setbeamertemplate{enumerate item}{\hbox to \labelwidth{\theenumi.\hfill}}
+\setbeamertemplate{enumerate subitem}{\hbox to 1.5\labelwidth{\theenumi.\theenumii.\hfill}}
+\setbeamertemplate{enumerate subsubitem}{\hbox to 2\labelwidth{\theenumi.\theenumii.\theenumiii.\hfill}}
 
 \mode<presentation>
 
