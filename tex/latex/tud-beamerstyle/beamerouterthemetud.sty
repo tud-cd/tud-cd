@@ -60,16 +60,26 @@
 
 \def\tudbeamer@outer@setGermanNames{%
   \setbeamertemplate{page number: text and total}[german]%
+  \setbeamertemplate{page number: text and filetotal}[german]%
   \setbeamertemplate{page number: text}[german]%
   \setbeamertemplate{frame number: text and total}[german]%
+  \setbeamertemplate{frame number: text and filetotal}[german]%
   \setbeamertemplate{frame number: text}[german]%
+  \setbeamertemplate{frame number: text and total and overlay}[german]%
+  \setbeamertemplate{frame number: text and filetotal and overlay}[german]%
+  \setbeamertemplate{frame number: text and overlay}[german]%
 }
 
 \def\tudbeamer@outer@setEnglishNames{%
   \setbeamertemplate{page number: text and total}[english]%
+  \setbeamertemplate{page number: text and filetotal}[english]%
   \setbeamertemplate{page number: text}[english]%
   \setbeamertemplate{frame number: text and total}[english]%
+  \setbeamertemplate{frame number: text and filetotal}[english]%
   \setbeamertemplate{frame number: text}[english]%
+  \setbeamertemplate{frame number: text and total and overlay}[english]%
+  \setbeamertemplate{frame number: text and filetotal and overlay}[english]%
+  \setbeamertemplate{frame number: text and overlay}[english]%
 }
 
 
@@ -116,7 +126,7 @@
     0.020\paperheight*((#1/0.125)^2) -
     \tudbeamerlogoheight
   }%
-  \setlength{\tudbeamerfooterpagenumwidth}{0.25\linewidth}%
+  %\setlength{\tudbeamerfooterpagenumwidth}{0.25\linewidth}%
   \setlength{\tudbeamerfooterplacewidth}{0.25\linewidth}%
   \setlength{\tudbeamerfootercontentwidth}{\paperwidth - \beamer@leftmargin-\beamer@rightmargin
     -\tudbeamerfooterpagenumwidth}%
@@ -148,7 +158,7 @@
   \setlength\tudbeamerlogoheight{0.048\paperheight}%
   \pgfmathsetlength\tudbeamerlogowidth{\tudbeamerlogoheight * 2.57/0.75}%
   \setlength\tudbeamerfootercontentwidth{0.452\paperwidth}%
-  \setlength\tudbeamerfooterpagenumwidth{0.0579\paperwidth}%
+  % \setlength\tudbeamerfooterpagenumwidth{0.06\paperwidth}%
   \edef\tudbeamer@barheight{0pt}%
   % convenience
   \setlength{\@tempdima}{%
@@ -204,7 +214,7 @@
   \def\tudbeamer@backgroundstart{0pt}%
   % convenience
   \setlength\tudbeamerfootercontentwidth{0.452\paperwidth}%
-  \setlength\tudbeamerfooterpagenumwidth{0.0579\paperwidth}%
+  %\setlength\tudbeamerfooterpagenumwidth{0.0579\paperwidth}%
   \setlength{\tudbeamerfooterplacewidth}{0.25\linewidth}%
   %
   \setlength\beamer@leftmargin{\tudbeamerlogoleftmargin+0.3333\tudbeamerlogowidth}%
@@ -243,9 +253,6 @@
 \if@useNavBar\else\setbeamertemplate{navigation symbols}{}\fi    % Nav-Leiste aus
 
 
-\providecommand*{\insertdatecity}{Dresden}
-\providecommand*\inserttotalpagenumber{??}
-\providecommand*\inserttotalframenumber{??}
 
 
 
@@ -687,82 +694,82 @@ height=\tudbeamerbackgroundheight]{%
 }
 
 \defbeamertemplate*{page number: text and total}{english}{%
-  Page \insertpagenumber\ of \insertpresentationendpage
+  Page \pagenumberbox{\insertpagenumber} of \insertpresentationendpage
 }
 \defbeamertemplate*{page number: text and filetotal}{english}{%
-  Page \insertpagenumber\ of \inserttotalpagenumber
+  Page \pagenumberbox{\insertpagenumber} of \inserttotalpagenumber
 }
 \defbeamertemplate*{page number: text}{english}{%
-  Page \insertpagenumber
+  Page \pagenumberbox{\insertpagenumber}%
 }
 \defbeamertemplate{page number: text and total}{german}{%
-  Seite \insertpagenumber\ von \insertpresentationendpage
+  Seite \pagenumberbox{\insertpagenumber}\ von \insertpresentationendpage
 }
 \defbeamertemplate{page number: text and filetotal}{german}{%
-  Seite \insertpagenumber\ von \inserttotalpagenumber
+  Seite \pagenumberbox{\insertpagenumber}\ von \inserttotalpagenumber
 }
 \defbeamertemplate{page number: text}{german}{%
-  Seite \insertpagenumber
+  Seite \pagenumberbox{\insertpagenumber}%
 }
 \defbeamertemplate*{page number: total}{default}{%
-  \insertpagenumber/\inserttotalpagenumber
+  \pagenumberbox{\insertpagenumber}/\inserttotalpagenumber
 }
 \defbeamertemplate*{page number: only}{default}{%
-  \insertpagenumber
+  \pagenumberbox{\insertpagenumber}%
 }
 \defbeamertemplate*{frame number: text and total}{english}{%
-  Slide~\insertframenumber\\ of~\insertpresentationendframe
+  Slide~\framenumberbox{\insertframenumber} of~\insertpresentationendframe
 }
 \defbeamertemplate*{frame number: text and filetotal}{english}{%
-  Slide~\insertframenumber\\ of~\inserttotalframenumber
+  Slide~\framenumberbox{\insertframenumber} of~\inserttotalframenumber
 }
 \defbeamertemplate*{frame number: text and total and overlay}{english}{%
-  Slide\\ \insertframenumber.\insertslideinframe\\ of~\insertpresentationendframe
+  Slide \framenumberbox{\insertframenumber}.\insertslideinframe{} of~\insertpresentationendframe
 }
 \defbeamertemplate*{frame number: text and filetotal and overlay}{english}{%
-  Slide\\ \insertframenumber.\insertslideinframe\\ of \inserttotalframenumber
+  Slide \framenumberbox{\insertframenumber}.\insertslideinframe{} of \inserttotalframenumber
 }
 \defbeamertemplate*{frame number: text}{english}{%
-  Slide~\insertframenumber
+  Slide~\framenumberbox{\insertframenumber}%
 }
 \defbeamertemplate*{frame number: text and overlay}{english}{%
-  Slide\\ \insertframenumber.\insertslideinframe%
+  Slide \framenumberbox{\insertframenumber}.\insertslideinframe%
 }
 \defbeamertemplate{frame number: text and total}{german}{%
-  Folie \insertframenumber\\ von \insertpresentationendframe
+  Folie \framenumberbox{\insertframenumber} von \insertpresentationendframe
 }
 \defbeamertemplate{frame number: text and filetotal}{german}{%
-  Folie \insertframenumber\\ von \inserttotalframenumber
+  Folie \framenumberbox{\insertframenumber} von \inserttotalframenumber
 }
 \defbeamertemplate{frame number: text and total and overlay}{german}{%
-  Folie\\ \insertframenumber.\insertslideinframe\\ von \insertpresentationendframe
+  Folie \framenumberbox{\insertframenumber}.\insertslideinframe{} von \insertpresentationendframe
 }
 \defbeamertemplate{frame number: text and filetotal and overlay}{german}{%
-  Folie\\ \insertframenumber.\insertslideinframe\\ von \inserttotalframenumber
+  Folie \framenumberbox{\insertframenumber}.\insertslideinframe{} von \inserttotalframenumber
 }
 \defbeamertemplate{frame number: text}{german}{%
-  Folie~\insertframenumber
+  Folie~\framenumberbox{\insertframenumber}%
 }
 \defbeamertemplate{frame number: text and overlay}{german}{%
-  Folie\\ \insertframenumber.\insertslideinframe%
+  Folie \framenumberbox{\insertframenumber}.\insertslideinframe%
 }
 \defbeamertemplate*{frame number: total}{default}{%
-  \insertframenumber/\insertpresentationendframe
+  \framenumberbox{\insertframenumber}/\insertpresentationendframe
 }
 \defbeamertemplate*{frame number: filetotal}{default}{%
-  \insertframenumber/\inserttotalframenumber
+  \framenumberbox{\insertframenumber}/\inserttotalframenumber
 }
 \defbeamertemplate*{frame number: total and overlay}{default}{%
-  \insertframenumber.\insertslideinframe/\insertpresentationendframe
+  \framenumberbox{\insertframenumber}.\insertslideinframe/\insertpresentationendframe
 }
 \defbeamertemplate*{frame number: filetotal and overlay}{default}{%
-  \insertframenumber.\insertslideinframe/\inserttotalframenumber
+  \framenumberbox{\insertframenumber}.\insertslideinframe/\inserttotalframenumber
 }
 \defbeamertemplate*{frame number: only}{default}{%
-  \insertframenumber
+  \framenumberbox{\insertframenumber}%
 }
 \defbeamertemplate*{frame number: overlay}{default}{%
-  \insertframenumber.\insertslideinframe
+  \framenumberbox{\insertframenumber}.\insertslideinframe
 }
 
 \defbeamertemplate{footline}{titlepage}{%
@@ -811,10 +818,15 @@ height=\tudbeamerbackgroundheight]{%
     \hskip 0pt plus 1 fil minus 1 fil\relax
     \usebeamertemplate***{title in head/foot}%
     \hskip 0pt plus 1 fil minus 1 fil\relax
-    \parbox[b]\tudbeamerfooterpagenumwidth {%
-      \raggedleft
-      \usebeamertemplate***{page number in footline}%
-    }
+    \tudbeamermakefooterbox\tudbeamerfooterpagenumwidth{%
+      \setbox\@tempboxa\hbox{\usebeamertemplate***{page number in footline}}%
+      \@tempdima\wd\@tempboxa\relax
+      \ifdim \@tempdima>\tudbeamer@footerpagenumwidth
+        \tudbeamer@footerpagenumwidth\@tempdima
+        \tudbeamerfooterpagenumwidth\@tempdima
+      \fi
+      \hbox to \tudbeamerfooterpagenumwidth{\unhbox\@tempboxa\hfill}%
+    }%
     \hskip\beamer@rightmargin
   }%
 }
@@ -871,31 +883,15 @@ height=\tudbeamerbackgroundheight]{%
         \fi
       }%
       \hfill
-      \vbox to \tudbeamerlogoheight{%
-        \hsize=\tudbeamerfooterpagenumwidth
-        \setbox\@tempboxa\vbox{%
-          \lineskip=0pt
-          \lineskiplimit 0pt
-          \centering
-          \strut
-          \usebeamertemplate***{page number in footline}%
-          \strut\\%
-          \ifdim\vsize > 2.1\baselineskip
-          \vsize=3\baselineskip
-          \fi
-        }%
-        \setlength\@tempdima{0.4\tudbeamerlogoheight}%
-        \setlength\@tempdimb{\ht\@tempboxa}%
-        \ifdim\@tempdimb>\@tempdima
-          \usebox\@tempboxa
-          \vss
-        \else
-          \vfill
-          \usebox\@tempboxa
-          \vfill
+      \tudbeamermakefooterbox\tudbeamerfooterpagenumwidth{%
+        \setbox\@tempboxa\hbox{\usebeamertemplate***{page number in footline}}%
+        \@tempdima\wd\@tempboxa\relax
+        \ifdim \@tempdima>\tudbeamer@footerpagenumwidth
+          \global\tudbeamer@footerpagenumwidth\@tempdima
+          \global\tudbeamerfooterpagenumwidth\@tempdima
         \fi
-        \vss
-      }
+        \hbox to \tudbeamerfooterpagenumwidth{\unhbox\@tempboxa\hfill}%
+      }%
       \hfill
       \setbox\@tempboxa\hbox{\usebeamertemplate{zweitlogo/titlepage}}%
       \vbox to \tudbeamerlogoheight{%
@@ -1152,8 +1148,9 @@ height=\tudbeamerbackgroundheight]{%
 
 \mode<all>
 \tudbeamersetouterstyle{\tudbeamer@outer@style}
-\AtBeginDocument{\setbeamersize{sidebar width left=0pt,
-  sidebar width right=0pt}%
+% The following lines are not ok:
+%\AtBeginDocument{\setbeamersize{sidebar width left=0pt,
+%  sidebar width right=0pt}}%
 
 %\loggingoutput
 %\errorcontextlines\maxdimen

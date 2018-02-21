@@ -65,9 +65,13 @@
 \newlength\tudbeamerlogoheight
 \newlength\tudbeamerfooterplacewidth
 \newlength\tudbeamerfootercontentwidth
-\newlength\tudbeamerfooterpagenumwidth
+\newlength\tudbeamerfooterpagenumwidth% Layout width
+\newlength\tudbeamer@footerpagenumwidth% measurement of page number width
 \newlength\tudbeamerbackgroundheight
 \newlength\tudbeamerbackgroundwidth
+
+\setlength\tudbeamer@footerpagenumwidth{0pt}
+
 
 % frame title
 \gdef\frame@title@section{}
@@ -125,16 +129,78 @@
   \csname tudbeamer@savedlayout@#1\endcsname
 }
 
+\newcommand\tudbeamermakefooterbox[2]{%
+  \vbox to \tudbeamerlogoheight{%
+    \hsize=#1\relax
+    \setbox\@tempboxa\vbox{%
+      \hsize=#1\relax
+      \lineskip=0pt
+      \lineskiplimit 0pt
+      \centering
+      \strut
+      #2\relax
+      \strut\\%
+      \ifdim\vsize > 2.1\baselineskip
+        \vsize=3\baselineskip
+      \fi
+    }%
+    \setlength\@tempdima{0.4\tudbeamerlogoheight}%
+    \setlength\@tempdimb{\ht\@tempboxa}%
+    \ifdim\@tempdimb>\@tempdima
+      \usebox\@tempboxa
+    \else
+      \vfill
+      \usebox\@tempboxa
+      \vfill
+    \fi
+    \vss
+  }%
+}
+
+\def\framenumberbox#1{%
+  \hphantom{\insertpresentationendframe}\llap{#1}%
+}
+\def\pagenumberbox#1{%
+  \hphantom{\insertpresentationendframe}\llap{#1}%
+}
+
+\newcommand\tudbeamersetpagenumberwidths[2]{%
+  \def\insertpresentationendframe{#1}%
+  \def\insertpresentationendpage{#2}%
+}
 
 \newcommand{\tudbeamer@appendixstart}{%
   \edef\insertpresentationendframe{\insertframenumber}%
+  \edef\insertpresentationendpage{\insertpagenumber}%
   \immediate\write\@auxout{\string\@writefile{nav}%
-    {\noexpand\headcommand{\noexpand\def\noexpand\insertpresentationendframe{\insertframenumber}}}%
+    {%
+      \noexpand\headcommand{%
+        \noexpand\tudbeamersetpagenumberwidths{\insertpresentationendframe}%
+        {\insertpresentationendpage}%
+      }%
+    }%
   }%
+  \immediate\write\@auxout{%
+    \noexpand\def\noexpand\settudbeamerfooterpagenumwidth{%
+      \noexpand\setlength\noexpand\tudbeamerfooterpagenumwidth{\the\tudbeamer@footerpagenumwidth}%
+    }%
+  }
   \let\tudbeamer@enddocument\relax
+  \let\settudbeamerfooterpagenumwidth\settudbeamerfooterpagenumendwidth
+  \settudbeamerfooterpagenumwidth
 }
 
+\newcommand\settudbeamerfooterpagenumwidth{
+  \setlength\tudbeamerfooterpagenumwidth{2em}%
+}
+\let\settudbeamerfooterpagenumendwidth\settudbeamerfooterpagenumwidth
+\providecommand{\framenumberbox}[1]{\hbox{#1}}
+\providecommand{\pagenumberbox}[1]{\hbox{#1}}
 \providecommand{\insertpresentationendframe}{??}
+\providecommand{\insertpresentationendpage}{??}
+\providecommand*{\insertdatecity}{Dresden}
+\providecommand*\inserttotalpagenumber{??}
+\providecommand*\inserttotalframenumber{??}
 \let\tudbeamer@origappendix\appendix
 \def\appendix{%
   \tudbeamer@appendixstart
@@ -142,4 +208,14 @@
 }
 
 \newcommand{\tudbeamer@enddocument}{\tudbeamer@appendixstart}
-\AtEndDocument{\tudbeamer@enddocument}
+\AtEndDocument{
+  \immediate\write\@auxout{%
+    \noexpand\def\noexpand\settudbeamerfooterpagenumendwidth{%
+      \noexpand\setlength\noexpand\tudbeamerfooterpagenumwidth{\the\tudbeamer@footerpagenumwidth}%
+    }%
+  }
+  \immediate\write\@auxout{%
+    \noexpand\global\noexpand\def\noexpand\inserttotalpagenumber{\insertpagenumber}%
+  }
+  \tudbeamer@enddocument
+}
