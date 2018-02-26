@@ -678,7 +678,12 @@ height=\tudbeamerbackgroundheight]{%
 }
 
 \defbeamertemplate*{date/place in head/foot}{tud}{%
-  \insertdatecity\strut
+  \insertdatecity
+  \ifx\empty\insertdatecity
+  \else\ifx\empty\insertshortdate
+  \else,
+  \fi
+  \fi
 }
 
 \defbeamertemplate*{date in head/foot}{tud}{%
@@ -868,7 +873,7 @@ height=\tudbeamerbackgroundheight]{%
         \usebox\@tempboxa
         \par
         \setbox\@tempboxa\hbox{%
-          \usebeamertemplate***{date/place in head/foot}\color{fg},
+          \usebeamertemplate***{date/place in head/foot}\strut%
           \usebeamertemplate***{date in head/foot}\strut
         }%
         \ifdim\wd\@tempboxa > \hsize\relax
