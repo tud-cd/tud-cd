@@ -25,7 +25,12 @@ Instituts für Algebra der TU Dresden.
 Installation: 
 
 1. Zunächst müssen die Schriften des Corporate Design der TU Dresden
-   installiert sein. Die Rohschriften müssen per Email angefordert
+   installiert sein.
+   
+   Für das seit Februar 2018 gültige Corporate Design genügt es das 
+   OpenSans-Paket Ihrer LaTeX-Distribution zu installieren.
+   
+   Die alten Rohschriften für die vergangenen Versionen müssen per Email angefordert
    werden.
 
    Informationen dazu sind unter der Adresse 
