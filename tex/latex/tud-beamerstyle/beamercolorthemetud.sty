@@ -12,14 +12,25 @@
 \ProcessOptionsBeamer
 
 \RequirePackage{tudbeamermacros}%
+\iffalse
+\def\tudbeamer@fixcolormodel{%
+  \selectcolormodel{RGB}%
+  \typeout{no color model}%
+}%
 \tudbeamer@def{colorspace@cd2018}{%
-  \PassOptionsToPackage{RGB}{tudcolors}%
+  \def\tudbeamer@fixcolormodel{%
+    \selectcolormodel{RGB}%
+    \typeout{2018 color model}%
+  }%
 }
 \tudbeamer@def{colorspace@cd2012ts}{%
-  \PassOptionsToPackage{cmyk}{tudcolors}%
+  \def\tudbeamer@fixcolormodel{%
+    \selectcolormodel{cmyk}%
+    \typeout{2012 color model}%
+  }%
 }
-\csname tudbeamer@colorspace@\tudbeamer@color@style\endcsname
-
+%\csname tudbeamer@colorspace@\tudbeamer@color@style\endcsname
+\fi
 \RequirePackage{tudcolors}
 
 \def\tudbeamer@setcolor#1#2{%
