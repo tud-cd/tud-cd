@@ -9,13 +9,14 @@
 \fachrichtung{Fachrichtung}
 \institut{Institut für Algebra}
 \professur{Professur}
+\datecity{Dresden}
 
 \newcommand*\inmm[1]{\pgfmathsetmacro\inmmwert{#1 / 1mm}\inmmwert}
 \makeatletter
 \newcommand*\inpt[1]{\setlength\@tempdima{#1}\the\@tempdima}
 \makeatother
 
-\AtBeginSection[]{\partpage{\usebeamertemplate***{part page}}} 
+\AtBeginSection[]{\partpage{\usebeamertemplate***{part page}}}
 \begin{document}
 \section*{Vorwort}
 \subsection*{Hinweis auf die Dokumentation}
@@ -177,7 +178,7 @@
   Die Klasse kann einfach eingebunden werden:
   \begin{block}{}
     \texttt{\textbackslash usetheme\{tud\}} oder
-    \texttt{\textbackslash usetheme[cd2018]\{tud\}}    
+    \texttt{\textbackslash usetheme[cd2018]\{tud\}}
   \end{block}
   Und schon erscheint die Präsentation im Corporate Design der TU Dresden.
 
@@ -273,9 +274,9 @@
     \item Entwicklung weiterer Paketoptionen für die Schriftvorlagen
     \end{itemize}
   \end{itemize}
-  \begin{enumerate}     
+  \begin{enumerate}
   \item \dots\setcounter{enumi}{8}
-  \item Bei langen Aufzählungen 
+  \item Bei langen Aufzählungen
   \item gibt es
   \item Kollisionen.
   \end{enumerate}
@@ -335,7 +336,7 @@
   (Änderung hat sich nicht durchgesetzt).
 
   1\,bp (DTP-Punkt) ist $\inpt{1bp}$.
-  
+
   \ss eine Text-Zahl 1234567890.
 
   \[
@@ -375,10 +376,64 @@
   \end{enumerate}
   Ende
 \end{frame}
+\begin{frame}[allowframebreaks]{Farbpalette}
+  \footnotesize Wie man sieht wird für Präsentationen intern mit rgb
+  gerechnet. Die daraus abgeleiteten CMYK-Werte entsprechen nicht den
+  Vorgabewerten. \LaTeX{} kann aber auch intern mit CMYK arbeiten.
+  \begin{testcolors}[rgb,RGB,HTML,cmyk]
+    \testcolor{tudbase}
+    \testcolor{tudgrey}
+    \testcolor{tudaccent1}
+    \testcolor{tudaccent2}
+    \testcolor{tudaccent3}
+    \testcolor{tudaccent4}
+    \testcolor{tudaccent5}
+    \testcolor{tudaccent6}
+    \testcolor{tudalert}
+  \end{testcolors}
 
+  \begin{testcolors}[rgb,RGB,HTML,cmyk]
+    \testcolor{HKS41}
+    \testcolor{HKS44}
+    \testcolor{HKS92}
+    \testcolor{HKS33}
+    \testcolor{HKS36}
+    \testcolor{HKS65}
+    \testcolor{HKS57}
+    \testcolor{HKS07}
+    \testcolor{TUDCyan}
+  \end{testcolors}
+
+  \framebreak
+  \begin{testcolors}[rgb,RGB,HTML,cmyk]
+    \testcolor{tudbase 100}
+    \testcolor{tudbase 90}
+    \testcolor{tudbase 80}
+    \testcolor{tudbase 70}
+    \testcolor{tudbase 60}
+    \testcolor{tudbase 50}
+    \testcolor{tudbase 40}
+    \testcolor{tudbase 30}
+    \testcolor{tudbase 20}
+    \testcolor{tudbase 10}
+  \end{testcolors}
+
+  \begin{testcolors}[rgb,RGB,HTML,cmyk]
+    \testcolor{tudgrey 100}
+    \testcolor{tudgrey 90}
+    \testcolor{tudgrey 80}
+    \testcolor{tudgrey 70}
+    \testcolor{tudgrey 60}
+    \testcolor{tudgrey 50}
+    \testcolor{tudgrey 40}
+    \testcolor{tudgrey 30}
+    \testcolor{tudgrey 20}
+    \testcolor{tudgrey 10}
+  \end{testcolors}
+\end{frame}
 \end{document}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
-%%% End: 
+%%% End:
