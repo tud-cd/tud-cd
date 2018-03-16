@@ -64,6 +64,12 @@ Installation:
    +	*nix (incl. macports): ~/texmf/
    +	MacTeX: ~/Library/texmf/
    +	MikTeX: ...\Dokumente und Einstellungen\<Benutzername>\texmf\
+   
+   Im Zweifel kann man sich mit `kpsewhich --var-value=TEXMF --progname=pdflatex` 
+   den Suchpfad ansehen. Der Inhalt dieses Repositories muss in einem dieser
+   Verzeichnisse entpackt werden. Dabei muss die Verzeichnisstruktur eingehalten werden,
+   so dass beispielsweise das Verzeichnis tex/latex/tud-beamerstyle im Unterverzeichnis
+   mit selbem Namen landet.
 
 4. Die Dokumentation der Klassen, Stile und Pakete befindet sich in
    den beigefügten PDF-Dateien im Unterordner doc. Die wichtigsten sind
