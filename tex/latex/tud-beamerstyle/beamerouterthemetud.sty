@@ -1033,11 +1033,15 @@ height=\tudbeamerbackgroundheight]{%
 
 \def\maketitle{%
   \ifbeamer@inframe{%
-    \PackageError{outer theme TUD}{Cannot set page style.^^J
-      \spaces Use \string maketitle outside of any frame, please.^^J
+    \PackageError{beamerouterthemetud}{Cannot set page style.^^J
+      \space Use \string\maketitle \space outside of any frame, please.^^J
       ^^J
-      \spaces Die Titelseite konnte nicht konfiguriert werden.^^J
-      \spaces Verwenden Sie bitte \string\maketitle außerhalb von Folien.
+      \space Die Titelseite konnte nicht konfiguriert werden.^^J
+      \space Verwenden Sie bitte \string\maketitle \space außerhalb von Folien.
+    }%
+    {%
+      \space See the TUD beamer style examples for further information.
+      \space http://GitHub.com/tud-cd/tud-cd
     }%
     \titlepage
   }%
