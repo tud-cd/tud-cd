@@ -14,7 +14,8 @@
 \newif\if@smallRightMargin\@smallRightMarginfalse
 \DeclareOptionBeamer{smallrightmargin}{\@smallRightMargintrue}
 
-\newif\if@usePageNum\@usePageNumfalse
+\newif\if@usePageNum\@usePageNumtrue
+\DeclareOptionBeamer{nopagenum}{\@usePageNumfalse}
 \DeclareOptionBeamer{pagenum}{\@usePageNumtrue}
 
 \newif\if@useNoFrameTitleSection\@useNoFrameTitleSectiontrue
@@ -785,29 +786,28 @@ height=\tudbeamerbackgroundheight]{%
 
 
 \defbeamertemplate{footline/titlepage}{tud cd2012ts}{%
-%  \vfill
-   \hbox to \textwidth{%
-     \hskip\beamer@leftmargin
-       \usebeamerfont*{date in head/foot/titlepage}%
-       \usebeamercolor[fg]{date in head/foot/titlepage}%
-       \insertdatecity
-       \ifx\insertdatecity\empty
-       \else
-         \ifx\insertdate\empty
-         \else,
-         \fi
-       \fi
-       \insertdate%
-       \strut
-     \hskip 0pt plus 1 fil\relax
-     \if@ddcfooter
-      \includegraphics[height=0.424\tudbeamerlogowidth]{DDC-weissf}%
-     \fi
-     \hskip\beamer@rightmargin
-   }%
-   \vskip0.125\paperheight
+  % \vfill
+  \hbox to \textwidth{%
+    \hskip\beamer@leftmargin
+    \usebeamerfont*{date in head/foot/titlepage}%
+    \usebeamercolor[fg]{date in head/foot/titlepage}%
+    \insertdatecity
+    \ifx\insertdatecity\empty
+    \else
+    \ifx\insertdate\empty
+    \else,
+    \fi
+    \fi
+    \insertdate%
+    \strut
+    \hskip 0pt plus 1 fil\relax
+    \if@ddcfooter
+    \includegraphics[height=0.424\tudbeamerlogowidth]{DDC-weissf}%
+    \fi
+    \hskip\beamer@rightmargin
+  }%
+  \vskip0.125\paperheight
 }
-
 
 \defbeamertemplate*{upper separation line foot}{default}{%
   \rule{\paperwidth}{0.3pt}\par
@@ -912,12 +912,79 @@ height=\tudbeamerbackgroundheight]{%
   }%
 }
 
+\defbeamertemplate{footline}{tud nopagenum cd2018}{%
+  \usebeamertemplate***{upper separation line foot}%
+  \vbox to \tudbeamer@footheight{%
+    \setlength\@tempdima{\tudbeamer@footheight-\tudbeamerlogoheight}%
+    \vskip 0.45\@tempdima%
+    \setbox\@tempboxa\hbox to \paperwidth{%
+      \usebeamerfont{footline}%
+      \hskip\tudbeamerlogoleftmargin
+      \vbox to \tudbeamerlogoheight {%
+        \hsize=\tudbeamerlogowidth
+        \usebeamercolor[fg]{logo}%
+        \includegraphics[width=\tudbeamerlogowidth]{\logo@default}%
+        \par
+      }%
+      \hfill
+      \vbox to \tudbeamerlogoheight{%
+        \hsize=1em\relax
+        \usebeamercolor[fg]{footline}%
+        \def\\{, }%
+        \setbox\@tempboxa\hbox{%
+          \usebeamertemplate***{title in head/foot}\strut
+        }%
+        \ifdim\wd\@tempboxa > \hsize\relax
+          \hsize=\wd\@tempboxa
+        \fi
+        \usebox\@tempboxa
+        \par
+        % \leavevmode
+        \setbox\@tempboxa\hbox{%
+          \usebeamertemplate***{institute in head/foot}%
+          \usebeamertemplate***{author in head/foot}\strut
+        }%
+        \ifdim\wd\@tempboxa > \hsize\relax
+          \hsize=\wd\@tempboxa
+        \fi
+        \usebox\@tempboxa
+        \par
+        \setbox\@tempboxa\hbox{%
+          \usebeamertemplate***{date/place in head/foot}\strut%
+          \usebeamertemplate***{date in head/foot}\strut
+        }%
+        \ifdim\wd\@tempboxa > \hsize\relax
+          \hsize=\wd\@tempboxa
+        \fi
+        \usebox\@tempboxa
+        \par%
+        \vss
+        \ifdim\hsize > \tudbeamerfootercontentwidth\relax
+          \hsize=\tudbeamerfootercontentwidth
+        \fi
+      }%
+      \hfill
+      \setbox\@tempboxa\hbox{\usebeamertemplate{zweitlogo/titlepage}}%
+      \vbox to \tudbeamerlogoheight{%
+        \hsize=\wd\@tempboxa
+        \vss
+        \usebox\@tempboxa\par
+        \vss
+      }
+      \hskip\tudbeamerlogoleftmargin
+    }%
+    %\vskip\ht\@tempboxa
+    \usebox\@tempboxa
+    \vfill
+  }%
+}
+
 \defbeamertemplate*{footline}{tud pagenum}{%
 }[action]{%
   \setbeamertemplate{footline}[tud pagenum \tudbeamer@outer@style]%
 }
 
-\defbeamertemplate{footline}{tud nopagenum}{%
+\defbeamertemplate{footline}{tud nopagenum cd2012ts}{%
   \usebeamertemplate***{upper separation line foot}%
   \usebeamerfont{footline}%
   \hbox{%
@@ -929,6 +996,11 @@ height=\tudbeamerbackgroundheight]{%
     \kern\tudbeamerfooterpagenumwidth%
     \hskip\beamer@rightmargin
   }%
+}
+
+\defbeamertemplate{footline}{tud nopagenum}{%
+}[action]{%
+  \setbeamertemplate{footline}[tud nopagenum \tudbeamer@outer@style]%
 }
 
 
