@@ -666,9 +666,9 @@ height=\tudbeamerbackgroundheight]{%
 
 \defbeamertemplate*{institute in head/foot}{tud}{%
   \insertshortinstitute\strut
-  \if\empty\beamer@shortinstitute
+  \if{\empty}{\beamer@shortinstitute}
   \else
-  \if\empty\beamer@shortauthor
+  \if{\empty}{\beamer@shortauthor}
   \else{} // %
   \fi
   \fi
