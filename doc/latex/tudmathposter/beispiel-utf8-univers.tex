@@ -17,7 +17,7 @@
 %\pdfmapfile{+univers.map}
 %\pdfmapfile{+dinbold.map}
 %%
-\documentclass[a0paper,noDIN,MathematikA0]{tudmathposter}
+\documentclass[a0paper,noDIN,univers,MathematikA0]{tudmathposter}
 \listfiles
 % Bei Bedarf: dinBold für Section. Dann aber auch Überschrift nur in
 % Großbuchstaben.
@@ -31,8 +31,6 @@
 \usepackage[ngerman]{babel}
 \usepackage{multicol}
 \usepackage{listings}
-\usepackage{amsmath}
-\usepackage{amsfonts}
 \usepackage{tikz}
 \usepackage{url}
 \usepackage[pdfborder={0 0 0}]{hyperref}
@@ -544,7 +542,6 @@ In Abb.~\ref{tonnetz} sieht man die Vererbung an den eckigen Knoten.}%
 %
 \hilfsgitter
 %
-\iffalse
 \draw (0,0) node [text width=\breite,anchor=north west,inner
 sep=0pt,outer sep=0pt,line width=0pt](title) {\begingroup
   \topsep33.02mm\relax%
@@ -595,7 +592,6 @@ width=\randspaltenbreite,anchor=north east] (beispiel) {\beispiel};
 (\breite,\hoehe) node [beispiel node,anchor=south east,text
 width=30cm,minimum height=30cm](quelltext){\quelltext};
 %
-\fi
 %\draw (\breite,\hoehe) node [beispiel node,anchor=south east,text
 %width=\randspaltenbreite](tonnetz){\tonnetzbsp};
 \end{tikzpicture}}%
@@ -863,3 +859,8 @@ Diese Hilfslinie zeigt das Seitenende an. \textbf{ZU ENTFERNEN}!
 \hrule
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

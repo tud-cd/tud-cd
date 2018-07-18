@@ -32,6 +32,10 @@
 \DeclareOption{serifmath}{\PassOptionsToPackage{\CurrentOption}{tudfonts}}
 \DeclareOption{noeulermath}{\PassOptionsToPackage{\CurrentOption}{tudfonts}}
 \DeclareOption{noDIN}{\PassOptionsToPackage{\CurrentOption}{tudfonts}}
+\newif\ifunivers\universfalse
+\DeclareOption{univers}{%
+  \universtrue
+}
 
 % Wers hardcore haben möchte. Acrobat schimpft dann über falsche Angaben
 \DeclareOption{x-1a}{\RequirePackage[x-1a]{pdfx}}
@@ -66,7 +70,13 @@
 \RequirePackage{graphicx}
 \RequirePackage{textcomp}
 \RequirePackage{tabularx}
+\ifunivers
 \RequirePackage{tudfonts}
+\else
+\RequirePackage[default,defaultsans]{opensans}
+\newcommand\DeclareTudMathSizes[4]{}
+\newif\if@tudfonts@nodin\@tudfonts@nodintrue
+\fi
 \RequirePackage{tudcolors}
 
 % Konfiguration
@@ -138,28 +148,37 @@
 %% End of Copy
 \fi
 
-\if@tudfonts@nodin
-  \setkomafont{title}{\fontfamily{aun}\fontseries{b}\Huge} % Univ
-  \newcommand\subtitlefont{\fontfamily{aun}\fontseries{m}\huge}
-  \newcommand\preprocesstitle[1]{\mbox{#1}}
-\else
-  \setkomafont{title}{\dinBold\Huge}
-  \newcommand\subtitlefont{\dinBold\huge}
-  \newcommand\preprocesstitle[1]{\mbox{\MakeUppercase{#1}}}
-\fi
+\ifunivers
+  \if@tudfonts@nodin
+    \setkomafont{title}{\fontfamily{aun}\fontseries{b}\Huge} % Univ
+    \newcommand\subtitlefont{\fontfamily{aun}\fontseries{m}\huge}
+    \newcommand\preprocesstitle[1]{\mbox{#1}}
+  \else
+    \setkomafont{title}{\dinBold\Huge}
+    \newcommand\subtitlefont{\dinBold\huge}
+    \newcommand\preprocesstitle[1]{\mbox{\MakeUppercase{#1}}}
+  \fi
 
-\if@mathevorgabe
-\if@tudfonts@nodin
-\setkomafont{title}{\fontfamily{aun}\fontseries{b}\Huge} % Univers 55
+  \if@mathevorgabe
+    \if@tudfonts@nodin
+      \setkomafont{title}{\fontfamily{aun}\fontseries{b}\Huge} % Univers 55
                                 % bold 104pt
-\renewcommand\subtitlefont{\fontfamily{aun}\fontseries{m}\huge}
+      \renewcommand\subtitlefont{\fontfamily{aun}\fontseries{m}\huge}
+    \else
+      \setkomafont{title}{\dinBold\Huge} % DIN bold 104pt
+      \renewcommand\subtitlefont{\dinBold\huge}
+    \fi
+    \newcommand{\sectionfont}{\fontfamily{aun}\fontseries{b}\fontshape{n}\LARGE} %Univers55 bold 60pt
+    \newcommand{\subsectionfont}{\fontfamily{aun}\fontseries{b}\fontshape{n}\large}
+    % Univers45 light bold 42pt
+  \fi
 \else
-\setkomafont{title}{\dinBold\Huge} % DIN bold 104pt
-\renewcommand\subtitlefont{\dinBold\huge}
-\fi
-\newcommand{\sectionfont}{\fontfamily{aun}\fontseries{b}\fontshape{n}\LARGE} %Univers55 bold 60pt
-\newcommand{\subsectionfont}{\fontfamily{aun}\fontseries{b}\fontshape{n}\large}
-% Univers45 light bold 42pt
+    \setkomafont{title}{\fontfamily{\sfdefault}\fontseries{b}\Huge} % Univ
+    \newcommand\subtitlefont{\fontfamily{\sfdefault}\fontseries{m}\huge}
+    \newcommand\preprocesstitle[1]{\mbox{#1}}
+    \renewcommand\subtitlefont{\fontfamily{\sfdefault}\fontseries{m}\huge}
+    \newcommand{\sectionfont}{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\LARGE} %Univers55 bold 60pt
+    \newcommand{\subsectionfont}{\fontfamily{\sfdefault}\fontseries{b}\fontshape{n}\large}  
 \fi
 
 \normalsize

@@ -18,37 +18,40 @@ Fassung vor den Änderungen.
 Corporate Design der TU Dresden – inoffizielles Repository
 ----------------------------------------------------------
 
-In diesem Verzeichnis liegen ein Beamer-Stil, die Vorlagen für Poster
-der Fachrichtung Mathematik und ein Paket für Preprint-Titelseiten des
-Instituts für Algebra der TU Dresden.
+In diesem Verzeichnis liegen ein Beamer-Stil, die (inzwischen
+veralteten) Vorlagen für Poster der Fachrichtung Mathematik und ein
+(ebenfalls veraltetes) Paket für Preprint-Titelseiten des Instituts
+für Algebra der TU Dresden.
+
+Die Posterklasse wurde notdürftig an die Bedürfnisse von OpenSans
+angepasst. Ein Beispiel für die Benutzung liefert beispiel-utf8.tex.
 
 Installation: 
 
 1. Zunächst müssen die Schriften des Corporate Design der TU Dresden
    installiert sein.
    
-   Für das seit Februar 2018 gültige Corporate Design genügt es das 
-   OpenSans-Paket Ihrer LaTeX-Distribution zu installieren.
+   + Für das seit Februar 2018 gültige Corporate Design genügt es das 
+	 OpenSans-Paket Ihrer LaTeX-Distribution zu installieren.
    
-   Die alten Rohschriften für die vergangenen Versionen müssen per Email angefordert
-   werden.
+   + Die alten Rohschriften Univers und DIN werden nur benötigt, wenn
+	 älteren Dokumente ohne Änderungen neu übersetzt werden, und wenn
+	 diese Schriften tatsächlich verwendet wurden. Sie mussten per
+	 Email angefordert werden. Bei Änderungen und neu erstellten
+	 Dokumenten sollte auf das aktuelle Corporate Design umgestellt werden.
 
-   Informationen dazu sind unter der Adresse 
-   http://tu-dresden.de/service/publizieren/cd/4_latex
-   erhältlich.
-
-   Der Präsentationsstil kann sowohl mit der alten Variante der Fonts,
-   als auch mit den verbesserten Fonts aus dem TUD-Script-Bundle
-   verwendet werden. Die anderen Vorlagen verwenden die alten Schriften
-   Installationsskripte sind unter 
-   +     https://github.com/tud-cd/tudscr/releases/tag/fonts (neu)
-   +     https://github.com/tud-cd/tudscr/releases/tag/oldfonts (alt)
-   zu finden.
+	 Der Präsentationsstil kann sowohl mit der alten Variante der Fonts,
+     als auch mit den verbesserten Fonts aus dem TUD-Script-Bundle
+     verwendet werden. Die anderen Vorlagen verwenden die alten Schriften
+     Installationsskripte sind unter 
+     +     https://github.com/tud-cd/tudscr/releases/tag/fonts (neu)
+     +     https://github.com/tud-cd/tudscr/releases/tag/oldfonts (alt)
+     zu finden.
    
-   Es wird jedoch empfohlen, für Beamer-Präsentationen stattdessen die
-   Schriften so zu installieren, wie es das aktuelle tudscr-Paket
-   empfiehlt: http://www.ctan.org/pkg/tudscr
-   Als Beispiel sei hier beamerpraesentation-tudscrfonts.tex genannt.
+     Es wird jedoch empfohlen, für Beamer-Präsentationen stattdessen die
+     Schriften so zu installieren, wie es das aktuelle tudscr-Paket
+     empfiehlt: http://www.ctan.org/pkg/tudscr
+     Als Beispiel sei hier beamerpraesentation-tudscrfonts.tex genannt.
 
    Fehlermeldungen und Anregungen sind auf https://github.com/tud-cd/tud-cd/issues herzlich willkommen.
 
