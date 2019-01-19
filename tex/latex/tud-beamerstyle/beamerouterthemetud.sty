@@ -431,8 +431,13 @@
 \setbeamertemplate{zweitlogo/titlepage}[ddc]
 \setbeamertemplate{zweitlogo/headline}[ddc]
 \else
+\if@ddcfooter
+\setbeamertemplate{zweitlogo/titlepage}[ddc]
+\setbeamertemplate{zweitlogo/headline}[ddc]
+\else
 \setbeamertemplate{zweitlogo/titlepage}[default]
 \setbeamertemplate{zweitlogo/headline}[default]
+\fi
 \fi
 
 
