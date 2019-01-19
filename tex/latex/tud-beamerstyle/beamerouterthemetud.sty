@@ -102,17 +102,12 @@
 
 %\mode<presentation>
 \def\insertslideinframe{%
-  \@tempcnta\beamer@slideinframe
-  \advance\@tempcnta by -1\relax
-  \ifnum\@tempcnta < 0\relax
-    \@tempcnta -\@tempcnta
-  \else
-    \ifnum \@tempcnta = 0 \relax
-      \@tempcnta = 1
-    \fi
-  \fi
+  \@tempcnta-\beamer@startpageofframe
+  \advance\@tempcnta\c@page
+  \advance\@tempcnta by 1\relax
   \@arabic\@tempcnta
 }
+
 
 \defbeamertemplate{page layout/cd2012ts}{default}[1][0.125]{%
 }[action]{%
