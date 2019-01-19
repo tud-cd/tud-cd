@@ -33,6 +33,10 @@ Installation:
    
    + Für das seit Februar 2018 gültige Corporate Design genügt es das 
 	 OpenSans-Paket Ihrer LaTeX-Distribution zu installieren.
+	 Für Debian-basierte Systeme wie Ubuntu kann dies im Terminal mit folgendem Befehl geschehen:
+	 ```
+	     sudo apt-get install texlive-fonts-extra
+	 ```
    
    + Die alten Rohschriften Univers und DIN werden nur benötigt, wenn
 	 älteren Dokumente ohne Änderungen neu übersetzt werden, und wenn
