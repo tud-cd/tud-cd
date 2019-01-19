@@ -351,6 +351,61 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 - default :: normal
 - empty :: keine Ausgabe
 
+**** tud background                                              :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Zeichnet den Hintergrund für die Titelseite und Kapitelüberschriften
+
+- shaded :: Farbverlauf der Titelseite aus der Beispielpräsentation
+            für PowerPoint
+- image[includegraphics-optionen]{bilddatei} :: Ein
+     Hintergrundbild. Die Parameter werden direkt an die Vorlage „tud
+     background image” weitergeleitet.
+- image/shaded[includegraphics-optionen]{bilddatei}{deckkraft} :: eine
+     Kombination aus image und default: Über das Bild wird ein
+     transparenter Farbverlauf gelegt. Die Deckkraft (Wert zwischen $0.0$ und $1.0$) gibt das
+     Verhältnis zwischen Bildinhalt und Farbverlauf an. Dabei bedeuten:
+  - $0.0$ :: Der Farbverlauf ist vollständig transparent.
+  - $1.0$ :: Das Bild ist nicht sichtbar.
+  - dazwischen :: Das Bild bleibt hinter dem Farbverlauf sichtbar (der Grad kann eingestellt werden).
+- image/overlay :: [includegraphics-optionen]{bilddatei}{inhalt} :: ein Hintergrundbild,
+     über das weiterer Inhalt gelegt werden kann.
+- image/pgfoverlay :: [includegraphics-optionen]{bilddatei}{inhalt} :: ein
+     Hintergrundbild über das im Hintergrund-PGF-Kontext von Beamer
+     weiterer Inhalt gelegt werden kann.  bedeuten:
+- image/tikzoverlay :: [includegraphics-optionen]{bilddatei}{inhalt} :: ein
+     Hintergrundbild über das in einer TikZ-Umgebug weiterer Inhalt
+     gelegt werden kann. Im Voraus wird die Grüße von (0,0) nach
+     (@@latex:\textbackslash tudbeamerbackgroundwidth@@,@@latex:\textbackslash tudbeamerbackgroundheight@@)
+     festgelegt.
+
+     In Kombination mit \texttt{\textbackslash usebaemertemplate\{tud
+     background shade\}} kann der Effekt von \texttt{image/shade}
+     nachgebildet werden.
+
+**** tud background shade                                        :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Zeichnet einen Hintergrund-Farbverlauf
+
+- default :: Farbverlauf der Titelseite aus der Beispielpräsentation
+             für PowerPoint
+
+**** tud background image                                        :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Zeichnet ein Hintergrundbild
+
+- default[includegraphics-optionen]{bilddatei} :: Die Bilddatei wird
+     mit den gegebenen Parametern eingebunden. Die Standardeinstellung
+     für die parameter lautet: „width=@@latex:\textbackslash
+     tudbeamerbackgroundwidth@@, height=@@latex:\textbackslash
+     tudbeamerbackgroundheight”.
+
+
 *** Beispiel (@@latex:\textbackslash useoutertheme\{tud\}@@)
 
 \textbackslash setbeamercolor{normal text}{bg=white}\\

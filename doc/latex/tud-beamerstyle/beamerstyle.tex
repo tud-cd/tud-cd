@@ -1,13 +1,30 @@
-\pdfmapfile{+tud}%
-\pdfmapfile{+tudscr}%
-\pdfmapfile{+univers}%
-\pdfmapfile{+dinbold}%
-\documentclass[ngerman,oneside]{tudscrbook}
+%\pdfmapfile{+tud}%
+%\pdfmapfile{+tudscr}%
+%\pdfmapfile{+univers}%
+%\pdfmapfile{+dinbold}%
+\documentclass[ngerman,oneside,cdfont=false,cdfont=nodin]{tudscrbook}
 \usepackage[utf8]{luainputenc}
 \usepackage[TS1,T1]{fontenc}
 \usepackage[ngerman]{babel}
+\usepackage[default]{opensans}
 \usepackage{beamerarticle}
-\newcommand*{\dinfamily}{\fontencoding{OT1}\fontfamily{din}\fontseries{b}\selectfont}
+\usepackage{tudbeamermacros}
+\usepackage{tudcolors}
+\usepackage{hyperref}
+
+\makeatletter
+\newcommand*\beamer@@frametitle[1]{}
+% \newcommand*\setbeamertemplate{%
+%   \ifnextchar\bgroup{\setbeamertemplategroup}{\setbeamertemplatea}%
+% }
+% \newcommand*\setbeamertemplatea{%
+%   \ifnextchar[{\setbeamertemplateoption}{}%
+% }
+% \newcommand*\setbeamertemplategroup[1]{\setbeamertemplate}
+% \newcommand*\setbeamertemplateoption[1][]{\setbeamertemplate}
+\makeatother
+
+%\newcommand*{\dinfamily}{\fontencoding{OT1}\fontfamily{din}\fontseries{b}\selectfont}
 \input{tud.beamer.style}
 %%% Local Variables: 
 %%% mode: latex

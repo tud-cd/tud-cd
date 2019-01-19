@@ -1,7 +1,7 @@
-% Created 2018-02-21 Mi 22:24
+% Created 2019-01-19 Sa 09:53
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation,t]{beamer}
-\usepackage[utf8]{luainputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{grffile}
@@ -14,8 +14,8 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
-%\pdfmapfile{+tud}%
-%\pdfmapfile{+tudscr}%
+\pdfmapfile{+tud}%
+\pdfmapfile{+tudscr}%
 \usepackage{amsmath}
 \usepackage{uniinput}
 \usepackage{amsfonts}
@@ -41,7 +41,6 @@
 %\setlength{\tudbeamerfootertitlewidth}{\paperwidth-\beamer@leftmargin-\beamer@rightmargin
 %   -\tudbeamerfooterplacewidth-\tudbeamerfooterpagenumwidth}%
 \makeatother
-\usetheme{default}
 \author{Tobias Schlemmer}
 \date{@latex:7.$\backslash$,5.\textasciitilde{}2012@}
 \title{Beamer-Präsentationen mit dem CD der TU Dresden}
@@ -50,35 +49,34 @@
  pdftitle={Beamer-Präsentationen mit dem CD der TU Dresden},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 25.2.1 (Org mode 9.1.2)}, 
+ pdfcreator={Emacs 25.2.1 (Org mode 9.1.14)}, 
  pdflang={Germanb}}
 \begin{document}
 
 \maketitle
-\begin{frame}[allowframebreaks]{Inhalt}
 \tableofcontents
-\end{frame}
 
 \section{Einführung}
-\label{sec:org142ac96}
+\label{sec:orgd03e7a0}
 \subsection{Allgemeines}
-\label{sec:org8c714f2}
-\begin{frame}[label={sec:orgfff3617}]{Geschichte}
+\label{sec:orgec9a0d5}
+\subsubsection{Geschichte}
+\label{sec:org4e14fa7}
 \begin{itemize}
 \item Corporate Design der TU Dresden
 \item tudbeamer Klasse (mit vielen Nachteilen)
 \item tud-cd-Paket
 \item \alert{Konfigurierbarer Beamer-Stil}
 \end{itemize}
-\end{frame}
-\begin{frame}[label={sec:orgfb014b2}]{CD-Vorgaben (Handbuch)}
+\subsubsection{CD-Vorgaben (Handbuch)}
+\label{sec:org7875d76}
 \begin{itemize}
 \item \textcolor{HKS65K100}{Ränder relativ zu Papiergrüße}
 \item \textcolor{red}{Schriften in MS Punkt (inkompatible Maßeinheit)}
 \item \textcolor{red}{Logoposition fehlt}
 \end{itemize}
-\end{frame}
-\begin{frame}[label={sec:org36a98cd}]{Designkriterien}
+\subsubsection{Designkriterien}
+\label{sec:orgaa56e41}
 \begin{itemize}
 \item Interpretation der Vorgaben
 \item Abweichend: HKS Farbschema und Univers
@@ -86,10 +84,10 @@
 \item Farbschema mit anderem Layout kombinierbar (partiell implementiert)
 \item Alle Stile überschreibbar
 \end{itemize}
-\end{frame}
 \subsection{Benutzung}
-\label{sec:org8cda57f}
-\begin{frame}[label={sec:orge7a94c5}]{Beispieldokument}
+\label{sec:org1c92380}
+\subsubsection[Beispieldokument]{Beispieldokument\hfill{}\textsc{B\_example}}
+\label{sec:org6bab0cb}
 \textbackslash usepackage[ngerman]\{babel\}\\
 \textbackslash usetheme[section,navigation]\{tud\}\\
 \textbackslash institut\{Institut f\textbackslash ''ur Algebra\}\%\\
@@ -100,13 +98,13 @@
 Inhalt\\
 \textbackslash end\{frame\}\\
 \textbackslash end\{document\}\\
-\end{frame}
 
 \section{Einstellungen}
-\label{sec:org9450a1e}
+\label{sec:org6e95185}
 \subsection{\textbackslash usetheme\{tud\}}
-\label{sec:org7543d1e}
-\begin{frame}[label={sec:org8492c93}]{Paketoptionen (Schriften)}
+\label{sec:org3e3cb0f}
+\subsubsection{Paketoptionen (Schriften)}
+\label{sec:org147f942}
 \begin{description}
 \item[{noeulermath}] Benutze keine Euler-Mathematikschriften
 \item[{noDIN}] Titel ohne DIN bold
@@ -114,8 +112,8 @@ Inhalt\\
 \item[{heavyfont}] Nutze Univers 55 statt Univers 45
 \item[{beamerfont}] Keine Fontänderungen
 \end{description}
-\end{frame}
-\begin{frame}[label={sec:org6fe4286}]{Paketoptionen (Seitenstruktur)}
+\subsubsection{Paketoptionen (Seitenstruktur)}
+\label{sec:org2801829}
 \begin{description}
 \item[{noheader}] Benutze Folien ohne Kopfzeile
 \item[{smallrightmargin}] Schmaler rechter Rand (verletzt CD-Richtlinie
@@ -126,10 +124,10 @@ Inhalt\\
 \item[{ddc}] mit DRESDEN"=concept-Logo
 \item[{ddcfooter}] mit DRESDEN"=concept Logo im Fußbereich (Standardeinstellung)
 \end{description}
-\end{frame}
 \subsection{\textbackslash useoutertheme\{tud\}}
-\label{sec:org253b1e8}
-\begin{frame}[label={sec:org8f5dd1e}]{Paketoptionen (\textbackslash useoutertheme\{tud\})}
+\label{sec:org93372dd}
+\subsubsection{Paketoptionen (\textbackslash useoutertheme\{tud\})}
+\label{sec:orgf7e1617}
 \begin{description}
 \item[{noheader}] Benutze Folien ohne Kopfzeile
 \item[{smallrightmargin}] Schmaler rechter Rand (verletzt CD-Richtlinie
@@ -140,8 +138,8 @@ Inhalt\\
 \item[{ddc}] mit DRESDEN"=concept-Logo
 \item[{ddcfooter}] mit DRESDEN"=concept Logo im Fußbereich (Standardeinstellung)
 \end{description}
-\end{frame}
-\begin{frame}[label={sec:orgc738b4a}]{Makros (\textbackslash useoutertheme\{tud\})}
+\subsubsection{Makros (\textbackslash useoutertheme\{tud\})}
+\label{sec:org8a9f8a8}
 \begin{description}
 \item[{\textbackslash einrichtung\{\emph{einrichtung}\}}] Legt die
 Einrichtung/Fakultät fest
@@ -153,8 +151,8 @@ Institut fest
 Professur fest
 \item[{\textbackslash datecity\{\emph{Datumsort}\}}] Legt den Ort für den Vortrag fest
 \end{description}
-\end{frame}
-\begin{frame}[label={sec:org3a37624}]{Register (\textbackslash useoutertheme\{tud\})}
+\subsubsection{Register (\textbackslash useoutertheme\{tud\})}
+\label{sec:orgf0196b1}
 \begin{description}
 \item[{\textbackslash topmarginnoheader}] Länge, die den Oberen Rand Seitenrand bei
 Kopflosen Folien angibt.
@@ -165,23 +163,25 @@ die Seitenzahl in der Fußzeilereserviert
 \item[{\textbackslash topmarginnoheader}] Länge, die Platz für den
 Kurztitel in der Fußzeile reserviert
 \end{description}
-\end{frame}
-\begin{frame}[allowframebreaks]{Vorlagen (\textbackslash useoutertheme\{tud\})}
+\subsubsection[Vorlagen (\textbackslash useoutertheme\{tud\})]{Vorlagen (\textbackslash useoutertheme\{tud\})\hfill{}\textsc{B\_frame}}
+\label{sec:orgfc73643}
 Vorlangen werden mit 
 \textbf{\textbackslash setbeamertemplate\{\emph{Kategorie}\}[\emph{Vorlage}]}
 gesetzt. Es können neue
 definiert und ausgewählt werden. Weitere Informationen dazu gibt es im
 „Beamer User Guide“ (\texttt{texdoc beamer}).
-\begin{block}{headline}
+\begin{enumerate}
+\item headline\hfill{}\textsc{B\_block}
+\label{sec:org649c8fb}
 Vorlage für Seitenkopf
 \begin{description}
 \item[{tud titlepage}] Titelseitenkopf
 \item[{tud header}] normaler Folienkopf
 \item[{tud noheader}] Folienkopf für kopflose Folien
 \end{description}
-\end{block}
 
-\begin{block}{zweitlogo/titlepage}
+\item zweitlogo/titlepage\hfill{}\textsc{B\_block}
+\label{sec:orgf7184d8}
 Vorlage für ein zweites Logo im Kopf der Titelseite
 \begin{description}
 \item[{default}] kein Zweitlogo
@@ -192,8 +192,8 @@ richtige Höhe skaliert.
 \end{description}
 Beispiel: 
 \textbf{\textbackslash \mbox{setbeamertemplate} \{zweitlogo/headline\}[logofile]\{fremdfirma.png\}}
-\end{block}
-\begin{block}{zweitlogo/titlepage (Fortsetzung)}
+\item zweitlogo/titlepage (Fortsetzung)\hfill{}\textsc{B\_block}
+\label{sec:orgd7d9779}
 \begin{description}
 \item[{freeform}] Es wird der \LaTeX -Code direkt als Parameter übergeben. Beispiel:
 \textbf{\textbackslash \mbox{setbeamertemplate} \{zweitlogo/headline\}[freeform]\{\textbackslash LaTeX\}}
@@ -203,9 +203,9 @@ Weiterverarbeitung ist wichtig, dass es in ein
 skaliertes Register expandiert wird (siehe
 \texttt{beamerouterthemetod.sty}).
 \end{description}
-\end{block}
 
-\begin{block}{zweitlogo/headline}
+\item zweitlogo/headline\hfill{}\textsc{B\_block}
+\label{sec:org31ddcb7}
 Vorlage für ein zweites Logo im Kopf einer normalen Seite (keine Titelseite)
 \begin{description}
 \item[{default}] kein Zweitlogo
@@ -216,8 +216,8 @@ richtige Höhe skaliert.
 \end{description}
 Beispiel: 
 \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[logofile]\{fremdfirma.png\}}
-\end{block}
-\begin{block}{zweitlogo/headline (Fortsetzung)}
+\item zweitlogo/headline (Fortsetzung)\hfill{}\textsc{B\_block}
+\label{sec:orgbbb2df6}
 \begin{description}
 \item[{freeform}] Es wird der \LaTeX -Code direkt als Parameter übergeben. Beispiel:
 \textbf{\textbackslash setbeamertemplate\{zweitlogo/headline\}[freeform]\{\textbackslash LaTeX\}}
@@ -227,22 +227,22 @@ Weiterverarbeitung ist wichtig, dass es in ein
 skaliertes Register expandiert wird (siehe
 \texttt{beamerouterthemetod.sty}).
 \end{description}
-\end{block}
 
-\begin{block}{date/place in footline}
+\item date/place in footline\hfill{}\textsc{B\_block}
+\label{sec:org9452fa8}
 \begin{description}
 \item[{default}] Vorlage für Datum/Ort in Fußzeile mit optionalem Argument
 für Ort. Standardwert „TU Dresden“.
 \end{description}
-\end{block}
 
-\begin{block}{short title in footline}
+\item short title in footline\hfill{}\textsc{B\_block}
+\label{sec:org7089dea}
 \begin{description}
 \item[{default}] Fügt den Kurztitel in die Fußzeile ein
 \end{description}
-\end{block}
 
-\begin{block}{page number in footline}
+\item page number in footline\hfill{}\textsc{B\_block}
+\label{sec:org03ef019}
 \small
 \begin{description}
 \item[{page}] Setzt die Seitenzahl. Die Form kann als optionaler Parameter
@@ -254,70 +254,70 @@ wird automatisch hinzugefügt).
 siehe unten, Vorlagen, die mit „frame number: “ anfangen (dieser Teil
 wird automatisch hinzugefügt).
 \end{description}
-\end{block}
 
-\begin{block}{page number: text and total}
+\item page number: text and total\hfill{}\textsc{B\_block}
+\label{sec:org365277a}
 Setzt Seitenzahl – Sprachauswahl für Nummer und Gesamtzahl.(wird automatisch gesetzt)
 \begin{description}
 \item[{english}] Englisch
 \item[{german}] Deutsch
 \end{description}
-\end{block}
 
-\begin{block}{page number: text}
+\item page number: text\hfill{}\textsc{B\_block}
+\label{sec:orgbf077e6}
 Setzt Seitenzahl – Sprachauswahl für Nummer.(wird automatisch gesetzt)
 \begin{description}
 \item[{english}] Englisch
 \item[{german}] Deutsch
 \end{description}
-\end{block}
 
-\begin{block}{page number: total}
+\item page number: total\hfill{}\textsc{B\_block}
+\label{sec:org7b2cc7c}
 Setzt Seitenzahl und Gesamtzahl ohne Worte.(wird automatisch gesetzt)
 \begin{description}
 \item[{default}] Standardeinstellung
 \end{description}
-\end{block}
 
-\begin{block}{page number: only}
+\item page number: only\hfill{}\textsc{B\_block}
+\label{sec:org81fa21a}
 Setzt Seitenzahl ohne Gesamtzahl ohne Worte.(wird automatisch gesetzt)
 \begin{description}
 \item[{default}] Standardeinstellung
 \end{description}
-\end{block}
 
-\begin{block}{frame number: text and total}
+\item frame number: text and total\hfill{}\textsc{B\_block}
+\label{sec:org525a4a6}
 Setzt Foliennummer – Sprachauswahl für Nummer und Gesamtzahl.(wird automatisch gesetzt)
 \begin{description}
 \item[{english}] Englisch
 \item[{german}] Deutsch
 \end{description}
-\end{block}
 
-\begin{block}{frame number: text}
+\item frame number: text\hfill{}\textsc{B\_block}
+\label{sec:org13e5bbc}
 Setzt Foliennummer – Sprachauswahl für Nummer.(wird automatisch gesetzt)
 \begin{description}
 \item[{english}] Englisch
 \item[{german}] Deutsch
 \end{description}
-\end{block}
 
-\begin{block}{frame number: total}
+\item frame number: total\hfill{}\textsc{B\_block}
+\label{sec:orgbc0a072}
 Setzt Foliennummer und Gesamtzahl ohne Worte.(wird automatisch gesetzt)
 \begin{description}
 \item[{default}] Standardeinstellung
 \end{description}
-\end{block}
 
-\begin{block}{frame number: only}
+\item frame number: only\hfill{}\textsc{B\_block}
+\label{sec:org4c8ada9}
 Setzt Foliennummer ohne  Gesamtzahl ohne Worte.(wird automatisch gesetzt)
 \begin{description}
 \item[{default}] Standardeinstellung
 \end{description}
-\end{block}
 
 
-\begin{block}{footline}
+\item footline\hfill{}\textsc{B\_block}
+\label{sec:org30f7399}
 Setzt den Seitenfuß
 
 \begin{description}
@@ -326,9 +326,9 @@ Setzt den Seitenfuß
 Parameter zu „page number in footline“
 \item[{tud nopagenum}] Fußzeile ohne Seiten- und Folienzahl
 \end{description}
-\end{block}
 
-\begin{block}{frametitle}
+\item frametitle\hfill{}\textsc{B\_block}
+\label{sec:org257f2c0}
 Setzt den Folientitel
 \begin{description}
 \item[{tud titlesection}] Setzt vor dem eigentlichen Titel den
@@ -337,55 +337,113 @@ Abschnittstitel
 \begin{description}
 \item[{tud notitlesection}] Es wird nur der
 \end{description}
-\end{block}
 
-\begin{block}{einrichtung/titlepage}
+\item einrichtung/titlepage\hfill{}\textsc{B\_block}
+\label{sec:orge9a3057}
 Setzt die Einrichtung im Seitenkopf auf der Titelseite
 
 \begin{description}
 \item[{default}] normal
 \item[{empty}] keine Ausgabe
 \end{description}
-\end{block}
-\begin{block}{fachrichtung/titlepage}
+\item fachrichtung/titlepage\hfill{}\textsc{B\_block}
+\label{sec:org8d4f704}
 Setzt die Fachrichtung im Seitenkopf auf der Titelseite
 
 \begin{description}
 \item[{default}] normal
 \item[{empty}] keine Ausgabe
 \end{description}
-\end{block}
-\begin{block}{intstitut/titlepage}
+\item intstitut/titlepage\hfill{}\textsc{B\_block}
+\label{sec:orge6931ed}
 Setzt den Institutsnamen im Seitenkopf auf der Titelseite
 
 \begin{description}
 \item[{default}] normal
 \item[{empty}] keine Ausgabe
 \end{description}
-\end{block}
 
-\begin{block}{professur/titlepage}
+\item professur/titlepage\hfill{}\textsc{B\_block}
+\label{sec:org6771e6b}
 Setzt die Professur im Seitenkopf auf der Titelseite
 
 \begin{description}
 \item[{default}] normal
 \item[{empty}] keine Ausgabe
 \end{description}
-\end{block}
-\end{frame}
 
-\begin{frame}[label={sec:orga958255}]{Beispiel (\textbackslash useoutertheme\{tud\})}
+\item tud background\hfill{}\textsc{B\_block}
+\label{sec:org045352c}
+Zeichnet den Hintergrund für die Titelseite und Kapitelüberschriften
+
+\begin{description}
+\item[{shaded}] Farbverlauf der Titelseite aus der Beispielpräsentation
+für PowerPoint
+\item[{image[includegraphics-optionen]\{bilddatei\}}] Ein
+Hintergrundbild. Die Parameter werden direkt an die Vorlage „tud
+background image” weitergeleitet.
+\item[{image/shaded[includegraphics-optionen]\{bilddatei\}\{deckkraft\}}] eine
+Kombination aus image und default: Über das Bild wird ein
+transparenter Farbverlauf gelegt. Die Deckkraft (Wert zwischen \(0.0\) und \(1.0\)) gibt das
+Verhältnis zwischen Bildinhalt und Farbverlauf an. Dabei bedeuten:
+\begin{description}
+\item[{\(0.0\)}] Der Farbverlauf ist vollständig transparent.
+\item[{\(1.0\)}] Das Bild ist nicht sichtbar.
+\item[{dazwischen}] Das Bild bleibt hinter dem Farbverlauf sichtbar (der Grad kann eingestellt werden).
+\end{description}
+\item[{image/overlay :: [includegraphics-optionen]\{bilddatei\}\{inhalt\}}] ein Hintergrundbild,
+über das weiterer Inhalt gelegt werden kann.
+\item[{image/pgfoverlay :: [includegraphics-optionen]\{bilddatei\}\{inhalt\}}] ein
+Hintergrundbild über das im Hintergrund-PGF-Kontext von Beamer
+weiterer Inhalt gelegt werden kann.  bedeuten:
+\item[{image/tikzoverlay :: [includegraphics-optionen]\{bilddatei\}\{inhalt\}}] ein
+Hintergrundbild über das in einer TikZ-Umgebug weiterer Inhalt
+gelegt werden kann. Im Voraus wird die Grüße von (0,0) nach
+(\textbackslash tudbeamerbackgroundwidth,\textbackslash tudbeamerbackgroundheight)
+festgelegt.
+
+In Kombination mit \texttt\{\textbackslash usebaemertemplate$\backslash${tud
+background shade$\backslash$}\} kann der Effekt von \texttt{image/shade}
+nachgebildet werden.
+\end{description}
+
+\item tud background shade\hfill{}\textsc{B\_block}
+\label{sec:orgea38d38}
+Zeichnet einen Hintergrund-Farbverlauf
+
+\begin{description}
+\item[{default}] Farbverlauf der Titelseite aus der Beispielpräsentation
+für PowerPoint
+\end{description}
+
+\item tud background image\hfill{}\textsc{B\_block}
+\label{sec:org5514769}
+Zeichnet ein Hintergrundbild
+
+\begin{description}
+\item[{default[includegraphics-optionen]\{bilddatei\}}] Die Bilddatei wird
+mit den gegebenen Parametern eingebunden. Die Standardeinstellung
+für die parameter lautet: „width=\textbackslash
+     tudbeamerbackgroundwidth, height=@@latex:\textbackslash
+tudbeamerbackgroundheight”.
+\end{description}
+\end{enumerate}
+
+
+\subsubsection{Beispiel (\textbackslash useoutertheme\{tud\})}
+\label{sec:org6c0505d}
+
 \textbackslash setbeamercolor\{normal text\}\{bg=white\}\\
 \textbackslash setbeamertemplate\{headline\}[tud header]\\
 \textbackslash setbeamertemplate\{footline\}[tud pagenum]\\
 \textbackslash setbeamertemplate\{frametitle\}[tud notitlesection]\\
-\end{frame}
 
 
 \subsection{\textbackslash usefonttheme\{tud\}}
-\label{sec:org948f5ed}
+\label{sec:orgefdd83a}
 
-\begin{frame}[label={sec:orgf1f9510}]{Paketoptionen (\textbackslash usefonttheme\{tud\})}
+\subsubsection{Paketoptionen (\textbackslash usefonttheme\{tud\})}
+\label{sec:orgf66c027}
 \begin{description}
 \item[{noeulermath}] Benutze keine Euler-Mathematikschriften
 \item[{noDIN}] Titel ohne DIN bold
@@ -394,9 +452,9 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 \item[{heavyfont}] Nutze Univers 55 statt Univers 45
 \item[{beamerfont}] Keine Fontänderungen
 \end{description}
-\end{frame}
 
-\begin{frame}[label={sec:org2925a5f}]{Makros (\textbackslash usefonttheme\{tud\})}
+\subsubsection{Makros (\textbackslash usefonttheme\{tud\})}
+\label{sec:org4ac21b2}
 \begin{description}
 \item[{\textbackslash tudtitlenormalsize}] Ersatz für \textbackslash
   normalsize auf der Titelseite
@@ -405,9 +463,9 @@ Setzt die Professur im Seitenkopf auf der Titelseite
 \end{description}
 
 Darüberhinaus lädt dieses Paket das Paket „tudfonts“ mit all seinen makros
-\end{frame}
 
-\begin{frame}[allowframebreaks]{Schriftvorlagen (\textbackslash usefonttheme\{tud\})}
+\subsubsection[Schriftvorlagen (\textbackslash usefonttheme\{tud\})]{Schriftvorlagen (\textbackslash usefonttheme\{tud\})\hfill{}\textsc{B\_frame}}
+\label{sec:org85b0d21}
 Vorlangen werden mit \textbackslash
 setbeamerfont\{\emph{Name}\}\{Werte\} gesetzt. Sie können mit \textbackslash
 usebeamerfont aktiviert werden. Weitere Informationen dazu gibt es im
@@ -442,14 +500,14 @@ Es werden folgende Vorlagen definiert:
 \item \textbackslash setbeamerfont\{date in head/foot/titlepage\} \{size=\textbackslash tudtitlenormalsize\}
 \item \textbackslash setbeamerfont\{author\} \{size=\textbackslash tudtitlesmall\}
 \end{itemize}
-\end{frame}
 
 
 
 \subsection{\textbackslash usecolortheme\{tud\}}
-\label{sec:orge42ca70}
+\label{sec:org61002fd}
 
-\begin{frame}[label={sec:org5ad9746}]{Makros (\textbackslash usecolortheme\{tud\})}
+\subsubsection{Makros (\textbackslash usecolortheme\{tud\})}
+\label{sec:org84d4b34}
 \begin{description}
 \item[{\textbackslash darktitlepage}] Stellt eine dunkle Titelseite ein, wie
 \end{description}
@@ -460,9 +518,9 @@ vom CD gefordert
 
 Darüberhinaus lädt dieses Paket das Paket „tudcolors“ mit all seinen
 makros und den HKS-Farben (siehe Dokumentation von tudmathposter)
-\end{frame}
 
-\begin{frame}[allowframebreaks]{Farbvorlagen (\textbackslash usecolortheme\{tud\})}
+\subsubsection[Farbvorlagen (\textbackslash usecolortheme\{tud\})]{Farbvorlagen (\textbackslash usecolortheme\{tud\})\hfill{}\textsc{B\_frame}}
+\label{sec:org7406959}
 Farbvorlagen werden mit \textbackslash
 setbeamercolor\{\emph{Name}\}\{Werte\} gesetzt. Sie können mit \textbackslash
 usebeamercolor für die Aktivierung geladen werden. Weitere Informationen dazu gibt es im
@@ -559,17 +617,19 @@ $\backslash${use=normal text,fg=normal text.fg, bg=normal text.bg$\backslash$}@@
 \item \textbackslash setbeamercolor\{block title alerted\}
    \{fg=HKS07K100, bg=HKS65K20\}
 \end{itemize}
-\end{frame}
 
 
 
 \subsection{\textbackslash useinnertheme\{tud\}}
-\label{sec:orgfd0f188}
+\label{sec:org45e30c8}
 
-\begin{frame}[allowframebreaks]{Vorlagen (\textbackslash useinnertheme\{tud\})}
+\subsubsection[Vorlagen (\textbackslash useinnertheme\{tud\})]{Vorlagen (\textbackslash useinnertheme\{tud\})\hfill{}\textsc{B\_frame}}
+\label{sec:org1afa858}
 Für die inneren Vorlagen gibt es keine Vorgaben außer für die
 Titelseite.
-\begin{block}{Verwendete Vorlagen/Makros}
+\begin{enumerate}
+\item Verwendete Vorlagen/Makros\hfill{}\textsc{B\_block}
+\label{sec:orge32de70}
 \begin{description}
 \item[{\textbackslash beamertemplatedotitem}] siehe beamer-Dokumentation
 \item[{\textbackslash usesubitemizeitemtemplate\{-\/-\}}] siehe
@@ -578,14 +638,14 @@ beamer-Dokumentation
 der TUD für die Titelseite ein. Dieses Makro wird automatisch mit
 \textbackslash begin \{document\} aufgerufen.
 \end{description}
-\end{block}
-\end{frame}
+\end{enumerate}
 
 \section{Tips und Tricks}
-\label{sec:org9174b2b}
+\label{sec:orgfe60708}
 \subsection{Tips}
-\label{sec:org5a964d7}
-\begin{frame}[label={sec:org624775f}]{Fußzeile}
+\label{sec:org8b12365}
+\subsubsection{Fußzeile}
+\label{sec:org47ce108}
 Die Fußzeile sollte die wichtigsten Informationen enthalten, an die
 sich das Publikum erinnern soll. Wenn das TU-Logo im Kopf enthalten
 ist die Angabe „TU Dresden“ redundant.
@@ -595,21 +655,27 @@ footline\}[default][I. Nachname]
 
 Setzt statt der TU Dresden den Namen
 des Sprechers.
-\end{frame}
-\begin{frame}[label={sec:orge908428}]{Blöcke mit runden Ecken und Schatten}
-\begin{block}{Aufruf}
+\subsubsection{Blöcke mit runden Ecken und Schatten}
+\label{sec:orga04af27}
+\begin{enumerate}
+\item Aufruf\hfill{}\textsc{B\_block}
+\label{sec:orgcf75c7f}
 Blöcke wie dieser hier werden mittels 
 
 \textbackslash useinnertheme[shadow=true]\{rounded\}
 
 in der Dokumentpräambel voreingestellt
-\end{block}
-\end{frame}
+\end{enumerate}
 \subsection{Ein Beispiel}
-\label{sec:orgd7f3c6b}
-\begin{frame}[label={sec:org051b873}]{Eine Beispielfolie}
-\begin{columns}
-\begin{column}{0.3\columnwidth}
+\label{sec:org6851d03}
+\subsubsection{Eine Beispielfolie}
+\label{sec:org965c13d}
+\begin{enumerate}
+\item 0.3\hfill{}\textsc{B\_columns}
+\label{sec:orge5446bd}
+\begin{enumerate}
+\item 0.3\hfill{}\textsc{B\_column}
+\label{sec:org6152963}
 \tikzstyle{automorphismuspfeil}=[->,HKS44K100,decoration={bent,aspect=0.3,amplitude=3},decorate]
 \tikzstyle{automorphismuspfeil2}=[automorphismuspfeil,decoration={bent,aspect=0.3,amplitude=2}]
 \begin{tikzpicture}
@@ -664,12 +730,10 @@ in der Dokumentpräambel voreingestellt
   \draw[automorphismuspfeil] (n5) -- (n3);
 }
 \end{tikzpicture}
-\end{column}
-\begin{column}{0.7\columnwidth}
-\begin{block}{Beschreibung}
+\item Beschreibung\hfill{}\textsc{B\_block:BMCOL}
+\label{sec:orgf5009ce}
 Eine Tabelle
 
-{}\uncover<2->{\tiny %}
 \begin{center}
 \begin{tabular}{lllllllll}
 \hline
@@ -686,19 +750,19 @@ Eine Tabelle
 \hline
 \end{tabular}
 \end{center}
-}
-\end{block}
-\end{column}
-\end{columns}
-\end{frame}
+\end{enumerate}
+\end{enumerate}
 
 
 \section{Minimal agierende Automorphismen}
-\label{sec:orgb9357fa}
+\label{sec:org1a35f44}
 \subsection{Quasiordnung der Automorphismen}
-\label{sec:orgead3172}
-\begin{frame}[label={sec:org76bab90}]{Ein Satz mit Beweis}
-\begin{theorem}[Quasiordnung]
+\label{sec:org5b03f63}
+\subsubsection{Ein Satz mit Beweis}
+\label{sec:orgd69eefa}
+\begin{enumerate}
+\item Quasiordnung\hfill{}\textsc{B\_theorem}
+\label{sec:orgc3a2e82}
 Sei \(G\leq \mathfrak{Aut}(M,\leq)\) eine Untergruppe der geordneten
 Menge \((M,\leq)\). Dann ist die Relation \({\sqsubseteq}\subseteq
 G\times G\) mit 
@@ -706,22 +770,23 @@ G\times G\) mit
 g\sqsubseteq h :\Leftrightarrow ∀u∈\Orb(〈g〉)∃U'∈\Orb(〈h〉)\text{ und }U\subseteq U'
 \]
 eine Quasiordnung.
-\end{theorem}
 
-\begin{proof}[Beweis]
+\item Beweis\hfill{}\textsc{B\_ignoreheading}
+\label{sec:orge7a4294}
 \begin{enumerate}
 \item Reflexiv: \(\Orb(〈g〉) = \Orb(〈g〉)\)
 \item Transitiv:
 \end{enumerate}
 \dots
-\end{proof}
-\end{frame}
-\begin{frame}[label={sec:org0b7204d}]{Beispielfolie}
-\begin{example}[Beispieltitel]
+\end{enumerate}
+\subsubsection[Beispielfolie]{Beispielfolie\hfill{}\textsc{B\_example}}
+\label{sec:org21c80b2}
+\begin{enumerate}
+\item Beispieltitel\hfill{}\textsc{B\_example}
+\label{sec:org65249c6}
 mal sehen, was wird
-\end{example}
-\begin{alertblock}{Block hervorgehoben}
+\item Block hervorgehoben\hfill{}\textsc{B\_alertblock}
+\label{sec:org47d8313}
 Inhalt
-\end{alertblock}
-\end{frame}
+\end{enumerate}
 \end{document}

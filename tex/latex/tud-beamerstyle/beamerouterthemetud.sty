@@ -542,15 +542,69 @@ height=\tudbeamerbackgroundheight]{
   \setbeamertemplate{tud background image}[default][#1]{#2}%
 }
 
+
 \defbeamertemplate{tud background}{image/shaded}[3][width=\tudbeamerbackgroundwidth,
+height=\tudbeamerbackgroundheight]{}[action]{%
+  \setbeamertemplate{tud background}[image/shaded/pgfoverlay][#1]{#2}{#3}{}%
+}
+
+\defbeamertemplate{tud background}{image/pgfoverlay}[3][width=\tudbeamerbackgroundwidth,
 height=\tudbeamerbackgroundheight]{%
   \usebeamertemplate{tud background image}%
-  % \pgfsetfading{tud background fade}{}%
+  #3%
+}[action]{%
+  \setbeamertemplate{tud background image}[default][#1]{#2}%
+}
+\defbeamertemplate{tud background}{image/shaded/pgfoverlay}[4][width=\tudbeamerbackgroundwidth,
+height=\tudbeamerbackgroundheight]{%
+  \usebeamertemplate{tud background image}%
   \pgfsetfillopacity{#3}%
   \usebeamertemplate{tud background shade}%
+  #4%
 }[action]{%
   \setbeamertemplate{tud background image}[default][#1]{#2}%
   \setbeamertemplate{tud background shade}[default]%
+}
+
+\defbeamertemplate{tud background}{image/overlay}[3][width=\tudbeamerbackgroundwidth,
+height=\tudbeamerbackgroundheight]{}[action]{%
+  \setbeamertemplate{tud background}[image/pgfoverlay][#1]{#2}{%
+    \setbox\@tempboxa\hbox{%
+      \begin{pgfinterruptpicture}%
+        #3%
+      \end{pgfinterruptpicture}%
+    }%
+    \pgfqboxsynced\@tempboxa
+  }
+}
+\defbeamertemplate{tud background}{image/shaded/overlay}[4][width=\tudbeamerbackgroundwidth,
+height=\tudbeamerbackgroundheight]{}[action]{%
+  \setbeamertemplate{tud background}[image/shaded/pgfoverlay][#1]{#2}{#3}{%
+    \setbox\@tempboxa\hbox{%
+      \begin{pgfinterruptpicture}%
+        #4%
+      \end{pgfinterruptpicture}%
+    }%
+    \pgfqboxsynced\@tempboxa
+  }
+}
+\defbeamertemplate{tud background}{image/tikzoverlay}[3][width=\tudbeamerbackgroundwidth,
+height=\tudbeamerbackgroundheight]{}[action]{%
+  \setbeamertemplate{tud background}[image/overlay][#1]{#2}{%
+    \begin{tikzpicture}%
+      \useasboundingbox (0,0) -- (\tudbeamerbackgroundwidth,\tudbeamerbackgroundheight);
+      #3%
+    \end{tikzpicture}%
+  }
+}
+\defbeamertemplate{tud background}{image/shaded/tikzoverlay}[4][width=\tudbeamerbackgroundwidth,
+height=\tudbeamerbackgroundheight]{}[action]{%
+  \setbeamertemplate{tud background}[image/shaded/overlay][#1]{#2}{#3}{%
+    \begin{tikzpicture}%
+      \useasboundingbox (0,0) -- (\tudbeamerbackgroundwidth,\tudbeamerbackgroundheight);
+      #4%
+    \end{tikzpicture}%
+  }
 }
 
 

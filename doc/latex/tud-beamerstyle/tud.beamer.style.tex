@@ -1,6 +1,7 @@
 % -*- LaTeX -*-
 \usepackage{xcolor}
 \usepackage{listings}
+\usepackage{tikz}
 
 \title[Präsentationsvorlagen im CD]{Präsentationsvorlagen\protect\\\mdseries im CD der TU Dresden\strut}
 \subtitle{Beamer-Stil}
@@ -32,13 +33,17 @@
   \vfill
   {}\hfill los gehts\dots
 \end{frame}
-\setbeamertemplate{tud background}[image/shaded]{Seminarraum.jpg}{0.7}
+\mode<presentation>{\setbeamertemplate{tud background}[image/shaded]{Seminarraum.jpg}{0.7}}
+\tracingall
 \maketitle
-\setbeamertemplate{page number in footline}[page][text and total]
+\tracingnone
+\mode<presentation>{\setbeamertemplate{page number in footline}[page][text and total]}
 \frame{\frametitle{Inhalt}\tableofcontents}
-\setbeamertemplate{tud background}[image/shaded]{Posterflur.jpg}{0.6}
+\mode<presentation>{\setbeamertemplate{tud background}[image/shaded/tikzoverlay]{Posterflur.jpg}{0.6}{%
+  \node[anchor=south east] at (\tudbeamerbackgroundwidth,0) {\footnotesize Foto: Tobias Schlemmer};
+}}
 \section{Geschichte}
-\setbeamertemplate{page number in footline}[page][text and filetotal]
+\mode<presentation>{\setbeamertemplate{page number in footline}[page][text and filetotal]}
 \subsection{(eher ein Roman keine Präsentation)}
 \begin{frame}\frametitle{2005 – Einführung des Corporate Designs}\framesubtitle{Kein \LaTeX{}}
   Bei der Einführung des Corporate Designs der TU Dresden 2005 hielt
@@ -49,7 +54,7 @@
   Textverarbeitung darstellen.
 \end{frame}
 
-\setbeamertemplate{page number in footline}[page][text]
+\mode<presentation>{\setbeamertemplate{page number in footline}[page][text]}
 \begin{frame}[allowframebreaks]\frametitle{Erste \LaTeX{}-Klassen}
   Die aufkommende Nachfrage führte dazu, dass relativ schnell
   \LaTeX-Klassen für die wichtigsten Textdokumente nachgeliefert
@@ -64,7 +69,7 @@
   Einsatz.
 \end{frame}
 
-\setbeamertemplate{page number in footline}[page][total]
+\mode<presentation>{\setbeamertemplate{page number in footline}[page][total]}
 \begin{frame}[allowframebreaks]\frametitle{2010 – Evaluierung der Fachrichtung Mathematik}
   Als 2010 die Fachrichtung Mathematik evaluiert wurde, sollten sich
   die einzelnen Mitarbeiter und Arbeitsgruppen in einer Poster-Session
@@ -94,7 +99,7 @@
   eingefügt. Die relativ wenigen InDesign"=Poster wurden in der
   Schriftgröße angepasst und der zusätzlich gewonnene Platz sinnvoll
   verteilt.%
-  \setbeamertemplate{page number in footline}[page][only]
+  \mode<presentation>{\setbeamertemplate{page number in footline}[page][only]}
 
   Durch die sehr konstruktive Zusammenarbeit der zuständigen Akteure
   entwickelte sich ein Vertrauensverhältnis und eine Akzeptanz der
@@ -106,12 +111,13 @@
   \framesubtitle{Seitenzahlen}
   Seitenzahlen \uncover<2->{zählen} \uncover<3->{jede} \uncover<4->{PDF"=Seite}, Foliennummern nicht.
 \end{frame}
-\setbeamertemplate{page number in footline}[frame][text and total]
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
 \begin{frame}[allowframebreaks]
   \frametitle{tudbeamer} Die Übertragung von Erkenntnissen aus der
   Postergestaltung auf Präsentationen förderte einige Probleme mit der
   Klasse \texttt{tudbeamer} zu Tage, deren Behebung zur Entwicklung
   des TUD"=Beamerstils geführt hat.
+
   \begin{block}{Nachteile von tudbeamer.cls}
     \begin{itemize}
     \item Keine Benutzung von beamerarticle.sty möglich
@@ -123,7 +129,7 @@
     \end{itemize}
   \end{block}
 \end{frame}
-\setbeamertemplate{page number in footline}[frame][text and filetotal]
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and filetotal]}
 \begin{frame}[allowframebreaks]
   \frametitle{2012 – Modularisierung und freie Interpretation}
 
@@ -148,7 +154,7 @@
   notwendiges Minimum zu beschränken. Insbesondere der Große
   Platzbedarf der Fußzeile wurde oft kritisiert.
 \end{frame}
-\setbeamertemplate{page number in footline}[frame][text and total and overlay]
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total and overlay]}
 \begin{frame}
   \frametitle{2018 – Neues Corporate Design} Mit der Einführung des
   überarbeiteten Corporate Designs wurde 2018 auch der Beamer-Stil
@@ -170,8 +176,13 @@
   (Tageslichtprojektor).
 \end{frame}
 
-\setbeamertemplate{page number in footline}[frame][text and filetotal and overlay]
-\setbeamertemplate{tud background}[image/shaded]{Schreibwerkzeug.jpg}{0.6}
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and filetotal and overlay]}
+\mode<presentation>{\setbeamertemplate{tud background}[image/shaded/overlay]{Schreibwerkzeug.jpg}{0.6}{%
+  \begin{tikzpicture}%
+    \useasboundingbox (0,0) -- (\tudbeamerbackgroundwidth,\tudbeamerbackgroundheight);
+    \node[anchor=north east] at (\tudbeamerbackgroundwidth,\tudbeamerbackgroundheight) {\footnotesize Arrangement/Foto: Tobias Schlemmer};
+  \end{tikzpicture}%
+}}
 \section{Benutzung}
 
 \begin{frame}[allowframebreaks]{Einbindung}
@@ -203,11 +214,11 @@
   veraltet und zu einigen Paketen inkompatibel.
 \end{frame}
 
-\setbeamertemplate{page number in footline}[frame][text]
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text]}
 \begin{frame}[allowframebreaks]{Optionen}
   \begin{description}
     \item[heavyfont] Stärkere Schriften
-    \item[nodin] Lade keine {\dinfamily DIN bold}
+    \item[nodin] Lade keine {\csname dinfamily\endcsname DIN bold}% nur wenn dinfamily definiert ist.
     \item[beamerfont] Keine TU"=Schriften
     \item[serifmath] Benutze die vorgegebene Serifenschrift für mathematische Formeln
     \item[noheader] Keine Kopfzeile mit Logo (außer Titelseite)
@@ -245,8 +256,22 @@
   \end{itemize}
 \end{frame}
 
-\setbeamertemplate{page number in footline}[frame][text and overlay]
-\setbeamertemplate{tud background}[image/shaded]{Baustelle.jpg}{0.6}
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and overlay]}
+\makeatletter
+\let\tstempboxa\@tempboxa
+\makeatother
+\mode<presentation>{\setbeamertemplate{tud background}[image/shaded/pgfoverlay]{Baustelle.jpg}{0.6}{
+  \setbox\tstempboxa\hbox{%
+    \begin{pgfinterruptpicture}%
+      \begin{tikzpicture}%
+        \useasboundingbox (0,0) -- (\tudbeamerbackgroundwidth,\tudbeamerbackgroundheight);
+        \node[anchor=south east] at (\tudbeamerbackgroundwidth,0) {\footnotesize Neue Mensa Dresden};
+      \end{tikzpicture}%
+    \end{pgfinterruptpicture}%
+  }%
+  \pgfqboxsynced\tstempboxa
+}}
+
 \section{Über den Beamer-Stil}
 \begin{frame}{Konzeptionelles}
   \begin{itemize}
@@ -258,7 +283,7 @@
   \item<+-> PowerPoint-Vorlagen approximativ bei 8\,pt Brotschrift
   \end{itemize}
 \end{frame}
-\setbeamertemplate{page number in footline}[frame][text and total]
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total]}
 \begin{frame}{Baustellen}\label{baustellen}
   \begin{itemize}
   \item Pixelgenaue PowerPoint-Vorlage-Rekonstruktion für gemischte Präsentationen PowerPoint/\LaTeX.
@@ -282,8 +307,21 @@
   \end{enumerate}
 \end{frame}
 
-\setbeamertemplate{page number in footline}[frame][text and filetotal]
-\setbeamertemplate{tud background}[image/shaded]{Ausfahrt.jpg}{0.6}
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and filetotal]}
+\mode<presentation>{\setbeamertemplate{tud background}[image/pgfoverlay]{Ausfahrt.jpg}{0.6}{
+  \pgfsetfillopacity{0.6}%
+  \usebeamertemplate{tud background shade}%
+  \setbox\tstempboxa\hbox{%
+    \begin{pgfinterruptpicture}%
+      \begin{tikzpicture}%
+        \useasboundingbox (0,0) -- (\tudbeamerbackgroundwidth,\tudbeamerbackgroundheight);
+        \node[anchor=south east] at (\tudbeamerbackgroundwidth,0) {\footnotesize Gute Fahrt!};
+      \end{tikzpicture}%
+    \end{pgfinterruptpicture}%
+  }%
+  \pgfqboxsynced\tstempboxa
+}}
+
 \section{Abschlussfolie}
 \begin{frame}
   \begin{block}{}
@@ -294,7 +332,7 @@
   ungeeignet. Tipps für Ihre Präsentation können sie u.\,a.\ der Datei
   beameruserguide.pdf ihrer \TeX"=Installation entnehmen.
 \end{frame}
-\setbeamertemplate{page number in footline}[frame][text and total and overlay]
+\mode<presentation>{\setbeamertemplate{page number in footline}[frame][text and total and overlay]
 \frame{\frametitle{Seitennummerndemonstrationsseite I}text \only<2->{and total} \only<3->{and overlay}}
 \setbeamertemplate{page number in footline}[frame][text and filetotal and overlay]
 \frame{\frametitle{Seitennummerndemonstrationsseite II}text \only<2->{and filetotal} \only<3->{and overlay}}
@@ -317,8 +355,10 @@
 
   Es folgt der Anhang}
 
+
 \setbeamertemplate{page number in footline}[frame][text and total]
 \setbeamertemplate{tud background}[shaded]
+}
 \appendix
 \section{Hilfsseiten für die Erstellung der Vorlagen}
 
@@ -380,6 +420,8 @@
   \footnotesize Wie man sieht wird für Präsentationen intern mit rgb
   gerechnet. Die daraus abgeleiteten CMYK-Werte entsprechen nicht den
   Vorgabewerten. \LaTeX{} kann aber auch intern mit CMYK arbeiten.
+
+  \tiny
   \begin{testcolors}[rgb,RGB,HTML,cmyk]
     \testcolor{tudbase}
     \testcolor{tudgrey}
@@ -418,6 +460,7 @@
     \testcolor{tudbase 10}
   \end{testcolors}
 
+  \framebreak
   \begin{testcolors}[rgb,RGB,HTML,cmyk]
     \testcolor{tudgrey 100}
     \testcolor{tudgrey 90}
