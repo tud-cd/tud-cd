@@ -72,6 +72,39 @@
 
 \setlength\tudbeamer@footerpagenumwidth{0pt}
 
+% check for emptyness
+% https://tex.stackexchange.com/a/53091/25948
+% for explanation
+\newcommand*\tudbeamerunspace{%
+  \ifnum\lastnodetype=11
+    \unskip\tudbeamerunspace
+  \else
+    \ifnum\lastnodetype=12
+      \unkern\tudbeamerunspace
+    \else
+      \ifnum\lastnodetype=13
+        \unpenalty\tudbeamerunspace
+      \fi
+    \fi
+  \fi
+}
+\newcommand*\iftudbeameremptymacro[1]{%
+  \if\relax\detokenize{#1}\relax
+  \let\tudbeamer@tempa\@firstoftwo
+  \else
+  \let\tudbeamer@tempa\@secondoftwo
+  \fi
+  \tudbeamer@tempa
+}
+\newcommand*\iftudbeameremptyoutput[1]{%
+  \setbox0=\hbox{#1\tudbeamerunspace}\ifdim\wd0=0pt
+  \let\tudbeamer@tempa\@firstoftwo
+  \else
+  \let\tudbeamer@tempa\@secondoftwo
+  \fi
+  \tudbeamer@tempa
+}
+
 
 % frame title
 \gdef\frame@title@section{}

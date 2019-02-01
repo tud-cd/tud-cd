@@ -279,7 +279,7 @@
   \usebeamertemplate{fachrichtung}%
   \usebeamertemplate{institut}%
   \usebeamertemplate{professur}%
-]{%
+  ]{%
   \usebeamertemplate{einrichtung/titlepage}%
   \usebeamertemplate{fachrichtung/titlepage}%
   \usebeamertemplate{institut/titlepage}%
@@ -288,74 +288,69 @@
 
 \defbeamertemplate*{einrichtung/titlepage}{default}{%
   % Hier muss ein Leerzeichen folgen
-  \ifx\@einrichtung\empty
-  \else
+  \iftudbeameremptyoutput\@einrichtung{}{%
     \@einrichtung%
-    \ifx\@fachrichtung\empty
-      \ifx\@institut\empty
-        \ifx\@professur\empty
-        \else,
-        \fi
-      \else,
-      \fi
-    \else,
-    \fi
-  \fi
+    \iftudbeameremptyoutput\@fachrichtung{%
+      \iftudbeameremptyoutput\@institut{%
+        \iftudbeameremptyoutput\@professur{}{, }%
+      }{, }%
+    }{, }%
+  }%
   \strut
 }
 \defbeamertemplate*{fachrichtung/titlepage}{default}{%
-  \ifx\@fachrichtung\empty
-  \else
-  \@fachrichtung%
-    \ifx\@institut\empty
-      \ifx\@professur\empty
-      \else,
-      \fi
-    \else,
-    \fi
-  \fi
+  \iftudbeameremptyoutput{\@fachrichtung}{}{%
+    \@fachrichtung
+    \iftudbeameremptyoutput{\@institut}{%
+      \iftudbeameremptyoutput{\@professur}{}{, }}{, }%
+  }%
   \strut
 }
 \defbeamertemplate*{institut/titlepage}{default}{%
-  \ifx\@institut\empty
-  \else
-    \@institut%
-    \ifx\@professur\empty
-    \else,
-    \fi
-  \fi
+  \iftudbeameremptyoutput{\@institut}{}{%
+    \@institut
+    \iftudbeameremptyoutput{\@professur}{}{, }%
+  }%
   \strut
 }
 \defbeamertemplate*{professur/titlepage}{default}{%
-  \@professur%
+  \iftudbeameremptyoutput\@professur{}{%
+    \@professur%
+  }%
   \strut
 }
 
 
 \defbeamertemplate*{einrichtung}{default}{%
-  \ifx\@professur\@empty
-  \ifx\@institut\@empty
-  \ifx\@fachrichtung\@empty
-  \@einrichtung
-  \strut
-  \fi\fi\fi
+  \iftudbeameremptyoutput{\@professur}{%
+    \iftudbeameremptyoutput{\@institut}{%
+      \iftudbeameremptyoutput{\@fachrichtung}{%
+        \iftudbeameremptyoutput\@einrichtung{}{
+          \@einrichtung\strut
+        }%
+      }{}}{}}{}%
 }
 \defbeamertemplate*{fachrichtung}{default}{%
-  \ifx\@professur\@empty
-  \ifx\@institut\@empty
-  \@fachrichtung
-  \strut
-  \fi\fi
+  \iftudbeameremptyoutput\@professur{%
+    \iftudbeameremptyoutput\@institut{%
+      \iftudbeameremptyoutput\@fachrichtung{}{%
+        \@fachrichtung\strut
+      }%
+    }{}}{}%
 }
 \defbeamertemplate*{institut}{default}{%
-  \ifx\@professur\@empty
-  \@institut
-  \strut
-  \fi
+  \iftudbeameremptyoutput\@professur{%
+    \iftudbeameremptyoutput\@institut{}{%
+      \@institut
+      \strut
+    }%
+  }{}%
 }
 \defbeamertemplate*{professur}{default}{%
-  \@professur%
-  \strut
+  \iftudbeameremptyoutput\@professur{}{%
+    \@professur%
+    \strut
+  }%
 }
 
 
@@ -692,16 +687,12 @@ height=\tudbeamerbackgroundheight]{}[action]{%
 
 \defbeamertemplate*{date/place in footline}{default}[1][TU~Dresden]{%
   \parbox[b]\tudbeamerfooterplacewidth{%
-    \raggedright%\mbox{
-      \def\@tempa{#1}%
-      \ifx\@tempa\empty
-      \else
-        \@tempa
-        \ifx\insershorttdate\empty\else, %
-        \fi
-      \fi
-      \insertshortdate
-    %}%
+    \raggedright
+    \iftudbeameremptyoutput{#1}{}{%
+      #1%
+      \iftudbeameremptyoutput\insertshortdate{}{, }%
+    }%
+    \insertshortdate
     \strut
   }%
 }
@@ -723,12 +714,9 @@ height=\tudbeamerbackgroundheight]{}[action]{%
 
 \defbeamertemplate*{institute in head/foot}{tud}{%
   \insertshortinstitute\strut
-  \if{\empty}{\beamer@shortinstitute}
-  \else
-  \if{\empty}{\beamer@shortauthor}
-  \else{} // %
-  \fi
-  \fi
+  \iftudbeameremptyoutput{\beamer@shortinstitute}{}{%
+    \iftudbeameremptyoutput{\beamer@shortauthor}{}{ // }%
+  }%
 }
 
 \defbeamertemplate*{author in head/foot}{tud}{%
@@ -737,11 +725,9 @@ height=\tudbeamerbackgroundheight]{}[action]{%
 
 \defbeamertemplate*{date/place in head/foot}{tud}{%
   \insertdatecity
-  \ifx\empty\insertdatecity
-  \else\ifx\empty\insertshortdate
-  \else,
-  \fi
-  \fi
+  \iftudbeameremptyoutput{\insertdatecity}{}{%
+    \iftudbeameremptyoutput{\insertshortdate}{}{, }%
+  }%
 }
 
 \defbeamertemplate*{date in head/foot}{tud}{%
@@ -848,13 +834,10 @@ height=\tudbeamerbackgroundheight]{}[action]{%
     \hskip\beamer@leftmargin
     \usebeamerfont*{date in head/foot/titlepage}%
     \usebeamercolor[fg]{date in head/foot/titlepage}%
-    \insertdatecity
-    \ifx\insertdatecity\empty
-    \else
-    \ifx\insertdate\empty
-    \else,
-    \fi
-    \fi
+    \iftudbeameremptyoutput{\insertdatecity}{}{%
+      \insertdatecity
+      \iftudbeameremptyoutput{\insertdate}{}{, }%
+    }%
     \insertdate%
     \strut
     \hskip 0pt plus 1 fil\relax
@@ -1063,75 +1046,66 @@ height=\tudbeamerbackgroundheight]{}[action]{%
 
 \defbeamertemplate{frametitle}{tud titlesection}{%
 %  \vskip0.3ex%
-  \ifx\insertframetitle\empty
-  \else
+  \tudbeameremptyoutput{\insertframetitle}{}{%
     \usebeamercolor[fg]{section in head/foot}%
     \usebeamerfont{section in head/foot}%
-    \ifx\insertsection\empty
-      \strut\hfill\\
-    \else
-      \arabic{section} \insertsection\strut\\
-    \fi
+    \iftudbeameremptyoutput\insertsection{%
+      \strut\hfill\\%
+    }{%
+      \arabic{section} \insertsection\strut\\%
+    }%
     \usebeamercolor[fg]{frametitle}%
     \usebeamerfont{frametitle}%
     \insertframetitle
-    \ifx\insertframesubtitle\empty
-    \else
-      \strut\\%
-    \fi
-  \fi
-  \ifx\insertframesubtitle\empty
-  \else
+    \iftudbeameremptyoutput\insertframesubtitle{}{%
+      \strut\hfill\\%
+    }%
+  }%
+  \iftudbeameremptyoutput{\insertframesubtitle}{}{%
     \vskip0.3ex
     \usebeamercolor[fg]{framesubtitle}%
     \usebeamerfont{framesubtitle}%
     \insertframesubtitle%
-  \fi
+  }%
   \strut
   \usebeamerfont*{normal text}%
 }
 
 \defbeamertemplate{frametitle}{tud notitlesection}{%
-  \ifx\insertframetitle\empty
-  \else
+  \iftudbeameremptyoutput\insertframetitle{}{%
     \usebeamercolor[fg]{frametitle}%
     \usebeamerfont{frametitle}%
     \insertframetitle
-    \ifx\insertframesubtitle\empty
-    \else
+    \iftudbeameremptyoutput\insertframesubtitle{}{%
       \\%
-    \fi
-  \fi
-  \ifx\insertframesubtitle\empty
-  \else
+    }%
+  }%
+  \iftudbeameremptyoutput\insertframesubtitle{}{%
     \vskip0.3ex
     \usebeamercolor[fg]{framesubtitle}%
     \usebeamerfont     {framesubtitle}%
     \insertframesubtitle%
-  \fi
+  }%
   \usebeamerfont* {normal text}%
   \usebeamercolor*{normal text}%
 }
 
 \defbeamertemplate*{frametitle}{tud cd2018}{%
   \vskip 0.05\paperheight
-  \ifx\insertframetitle\empty
-  \else
+  \iftudbeameremptyoutput{\insertframetitle}{}{%
     \usebeamercolor[fg]{frametitle}%
     \usebeamerfont{frametitle}%
     \insertframetitle
-    \ifx\insertframesubtitle\empty
-    \else
+    \iftudbeameremptyoutput\insertframesubtitle{}{%
       \\%
-    \fi
-  \fi
-  \ifx\insertframesubtitle\empty
-  \else
+    }%
+  }%
+  \iftudbeameremptyoutput\insertframesubtitle{}{%
     \vskip0.3ex
     \usebeamercolor[fg]{framesubtitle}%
     \usebeamerfont     {framesubtitle}%
     \insertframesubtitle%
-  \fi
+  }%
   \usebeamerfont* {normal text}%
   \usebeamercolor*{normal text}%
 }

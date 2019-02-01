@@ -47,13 +47,12 @@ corporate design inner theme]
     \MakeUppercase{\inserttitle}\par%
   }\vfill%
   {%
-    \ifx\insertsubtitle\empty
-    \else
-    \usebeamerfont*{subtitle}%
-    \usebeamercolor[fg]{subtitle}%
-    \insertsubtitle
-    \vfill
-    \fi%
+    \iftudbeameremptyoutput\insertsubtitle{}{%
+      \usebeamerfont*{subtitle}%
+      \usebeamercolor[fg]{subtitle}%
+      \insertsubtitle
+      \vfill
+    }%
     \usebeamerfont*{author}%
     \usebeamercolor[fg]{author/titlepage}%
     \insertauthor
@@ -94,28 +93,23 @@ corporate design inner theme]
       \inserttitle\strut\par%
     }%
   }%
-  {
-    \ifx\insertsubtitle\empty
-    \else
-    \usebeamerfont*{subtitle}%
-    \usebeamercolor[fg]{subtitle}%
-    \insertsubtitle
-    \ifx\insertdatecity\empty
-    \ifx\insertdate\empty
-    \else{} // \fi
-    \else{} // \fi
-    \fi
+  {%
+    \iftudbeameremptyoutput\insertsubtitle{}{%
+      \usebeamerfont*{subtitle}%
+      \usebeamercolor[fg]{subtitle}%
+      \insertsubtitle
+      \iftudbeameremptyoutput\insertdatecity{%
+        \iftudbeameremptyoutput\insertdate{}{ // }%
+      }{ // }%
+    }%
   }%
   {%
     \usebeamerfont*{date in head/foot/titlepage}%
     \usebeamercolor[fg]{date in head/foot/titlepage}%
     \insertdatecity
-    \ifx\insertdatecity\empty
-    \else
-    \ifx\insertdate\empty
-    \else,
-    \fi
-    \fi
+    \iftudbeameremptyoutput\insertdatecity{}{%
+      \iftudbeameremptyoutput\insertdate{}{, }%
+    }
     \insertdate%
     \strut
   }%
