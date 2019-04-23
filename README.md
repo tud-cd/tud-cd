@@ -4,7 +4,7 @@ tud-cd
 Testversion – Hinweis
 ---------------------
 
-Am 1. Februar traten umfangreiche Änderungen zum Corporate Design der
+Am 1. Februar 2018 traten umfangreiche Änderungen zum Corporate Design der
 TU Dresden in Kraft. Dazu wurde auch der Beamerstil angepasst. Näheres
 können Sie in der Beispieldatei
 https://github.com/tud-cd/tud-cd/raw/master/doc/latex/tud-beamerstyle/beamerpraesentation8pt.pdf
