@@ -70,12 +70,12 @@
 \RequirePackage{graphicx}
 \RequirePackage{textcomp}
 \RequirePackage{tabularx}
+\newif\if@tudfonts@nodin\@tudfonts@nodintrue
 \ifunivers
 \RequirePackage{tudfonts}
 \else
 \RequirePackage[default,defaultsans]{opensans}
 \newcommand\DeclareTudMathSizes[4]{}
-\newif\if@tudfonts@nodin\@tudfonts@nodintrue
 \fi
 \RequirePackage{tudcolors}
 
