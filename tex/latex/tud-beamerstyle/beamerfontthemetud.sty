@@ -108,10 +108,6 @@
 
 \ProcessOptionsBeamer
 
-\if@sansmath
-\else
-  \usefonttheme[onlymath]{serif}
-\fi
 
 \def\tud@font@setup@beamer@tudfonts{}
 \def\tud@font@setup@beamer@tudscrfonts{%
@@ -144,7 +140,9 @@
     \RequirePackage{unicode-math}
     \IfFontExistsTF{Open Sans}{%
       \PackageInfo{Beamer Font Theme TUD}{Using default Open Sans font}
+      \if@sansmath
       \setmathfont{XITS Math}
+      \fi
       \setmainfont{Open Sans}
       \setsansfont{Open Sans}
 %      \setmathfont{texgyrepagella-math.otf}
@@ -154,6 +152,7 @@
       % \setmathfont[range=\mathbfsfit/{greek,Greek,latin,Latin}]{Open Sans}
       % up , it , tt , bfup , bfit , bb , bbit , scr , bfscr , cal , bfcal ,
       % frak , bffrak , sfup , sfit , bfsfup , bfsfit , bfsf
+      \if@sansmath
       \setmathfont[range={up}]{Open Sans}
       \setmathfont[range={it}]{Open Sans Italic}
       \setmathfont[range={bfup}]{Open Sans Bold}
@@ -163,6 +162,7 @@
       \setmathfont[range={bfsfup}]{Open Sans Light}
       \setmathfont[range={bfsfit}]{Open Sans Light Italic}
       \setmathfont[range=\mathfrak]{STIXGeneral}
+      \fi
       %\setmathfont{Open Sans}
       %\renewcommand*\setminus{\mathbin{\mathsf{\backslash}}}
       % \setmonofont{Open Sans}
@@ -212,6 +212,11 @@
   \let\rmdefault\familydefault
   \fi
 \fi
+\fi
+
+\if@sansmath
+\else
+  \usefonttheme[onlymath]{serif}
 \fi
 
 \def\tudfonts@defstyle#1{%
