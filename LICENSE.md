@@ -1,7 +1,7 @@
 The LaTeX sources in this repository are licensed under the LPPL.
 Excluded from this license are all third party files, namely logos and fonts.
 For the other images and the overall design may other restrictions apply.
-If in daubt, the Corporate Design Office of TU Dresden will provide further information. 
+If in doubt, the Corporate Design Office of TU Dresden will provide further information. 
 
 
 The LaTeX Project Public License
